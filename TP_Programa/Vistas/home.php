@@ -263,6 +263,7 @@
                 </div>
               </div>
               <a class="btn btn-primary btn-block" href=" ">Registrese</a>
+              <input type="submit"  class="btn btn-default" value="REGISTRARSE" name="upload">
             
             </div>
             <div class="modal-footer">
