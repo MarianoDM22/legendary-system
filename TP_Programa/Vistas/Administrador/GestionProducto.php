@@ -40,11 +40,7 @@
 			<section class="col-md-10">
 				<h2>Productos</h2>
 
-		<?php
-			if(isset($_SESSION['TipoCerveza'])) {
-			$TipoCerveza = $_SESSION['TipoCerveza'];}
-			var_dump($TipoCerveza);
-		?>
+
 			
 				<!-- Button trigger modal -->
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-insc">
@@ -103,9 +99,7 @@
 
 				<!-- Fin Modal -->
 
-			<?php
-				if(isset($_SESSION['Producto'])) {
-					$Producto = $_SESSION['Producto']; ?>
+
 
 					<table class="table table-bordered table-responsive">
 						<thead class="thead-inverse">
@@ -122,7 +116,7 @@
 						</thead>
 						<tbody>
 							<?php 
-									foreach ($Producto as $key => $value) { ?>
+									foreach ($producto as $key => $value) { ?>
 								
 									<tr>
 										<td><?= $value->getId(); ?></td>
@@ -162,7 +156,7 @@
 																			<select name="TipoCerveza" class="custom-select">
 																				<option disabled>Seleccione el Tipo de Cerveza...</option>
 																				<?php 
-																				foreach ($TipoCerveza as $key => $valor) { ?>
+																				foreach ($cervezas as $key => $valor) { ?>
 																					<option value="<?= $valor->getId();  ?>"><?= $valor->getDescripcion();  ?></option>
 																				<?php } ?>
 																			</select><br><br>
@@ -203,7 +197,7 @@
 							<?php } ?>
 						</tbody>
 					</table>
-				<?php } ?>
+
 
 			</section>
     	</div>

@@ -105,7 +105,7 @@ class ControlGestionTipoCerveza
 
     public function index()
    	{
-   		$this->traerTodos();
+   		$cervezas = $this->traertodos();
    		require_once(ROOT . 'Vistas/Administrador/GestionTipoCerveza.php');
    	}
 
@@ -115,15 +115,13 @@ class ControlGestionTipoCerveza
    		$this->index();
    	}
 
-   	public function traerTodos()
+   	public function traertodos()
    	{
 
    		$cervezas= array();
    		$cervezas =$this->DAOTipoCerveza->traerTodos();
-   		$_SESSION['TipoCerveza']=$cervezas;
-   		//$cerveza=$this->DAOTipoCerveza->traerTodos(); usar esta, no es visible la variable cervezas desde la vista gestion tipo cerveza
-   		//$this->index();
 
+		return $cervezas;  
    	}
 
    	public function modificar()

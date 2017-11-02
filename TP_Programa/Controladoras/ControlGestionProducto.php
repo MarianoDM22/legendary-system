@@ -106,8 +106,8 @@ class ControlGestionProducto
 
     public function index()
    	{
-   		include_once(ROOT . 'Controladoras/ControlGestionTipoCerveza.php');
-   		$this->traerTodos();
+   	
+   		$producto=$this->traerTodos();
    		
    		require_once(ROOT . 'Vistas/Administrador/GestionProducto.php');
    	}
@@ -120,23 +120,11 @@ class ControlGestionProducto
 
    	public function traerTodos()
    	{
-
+   		new \DAOS\TiposDeCervezasDAO();
    		$producto= array();
    		$producto =$this->DAOProducto->traerTodos();
-   		$_SESSION['Producto']=$producto;
-   		//$cerveza=$this->DAOProducto->traerTodos(); usar esta, no es visible la variable producto desde la vista gestion tipo cerveza
-   		//$this->index();
 
-   	}
-
-   	public function traerTodasCervezas()
-   	{
-
-   		$cerveza= array();
-   		$cerveza=$this->DAOTipoCerveza->traerTodos();
-   		$_SESSION['TipoCerveza']=$cerveza;
-   		
-
+   		return $producto;
    	}
 
    	public function modificar()
