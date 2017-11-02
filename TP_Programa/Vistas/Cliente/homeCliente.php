@@ -1,0 +1,124 @@
+<?php namespace Cliente;
+
+
+ ?>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- No viene de bootstrap -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title></title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <!-- Font Awesome-->
+    <link href="font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Mi CSS -->
+    <link href="css/estilos.css" type="text/css" rel="stylesheet">
+
+  </head>
+  <body>
+
+    <?php require("headerCliente.php"); ?>
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-3">
+
+          <h1 class="my-4">Categorias</h1>
+
+          <div class="list-group">
+            <a href= "" class="list-group-item">Categoria 1</a>
+            <a href=" " class="list-group-item">Categoria 2</a>
+            <a href=" " class="list-group-item">Categoria 3</a>
+          </div>
+
+        </div>
+
+        <div class="col-lg-9">
+        <!-- se podria implementar slider-->
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+              <div class="carousel-item active">
+                <img class="d-block img-fluid" src="..." alt="First slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block img-fluid" src="..." alt="Second slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block img-fluid" src="..." alt="Third slide">
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Anterior</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Siguiente</span>
+            </a>
+          </div>
+
+        <!-- aca se comienzan a listar los productos -->
+        <div class="row">
+          <!-- se deberia llamar a traer todos los productos -->
+
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card-deck">
+              <div class="card h-100 text-white bg-primary mb-3">
+                <a href=""><img class="card-img-top" src="" alt="Card image cap"></a>
+                  <div class="card-body">
+
+                      <h4 class="card-title">
+                        <a href=" ">Item uno</a>
+                      </h4>
+                      
+                      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+
+                  </div>
+                  <div class="card-footer">
+                    <form action= "<?= ROOT_VIEW ?> /" method="post" enctype="multipart/form-data" class="addToCart">
+                      <div class="precioProducto">
+                        <h5>$24.99</h5>
+                      </div>
+                      <div class="">
+                        <select class="" name="qty"></select>
+                      </div>
+                      <input class="btn btn-primary" name="botonAgregar" type="submit" value="Agregar">
+                    </form>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- fin llamado -->
+
+        </div>
+        <!-- FIN aca se comienzan a listar los productos -->
+
+
+
+        </div>
+      </div>    
+    </div>
+
+    <?php require(ROOT . "Vistas/footer.php"); ?>
+
+
+      <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+  </body>
+</html>
