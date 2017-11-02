@@ -25,10 +25,10 @@
 
     <?php require("headerCliente.php"); ?>
 
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
 
-        <div class="col-lg-3">
+        <div class="col-lg-2">
 
           <h1 class="my-4">Categorias</h1>
 
@@ -40,23 +40,23 @@
 
         </div>
 
-        <div class="col-lg-9">
-        <!-- se podria implementar slider-->
+        <div class="col-lg-10">
+        
           <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
               <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
               <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
               <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
             </ol>
-            <div class="carousel-inner" role="listbox">
+            <div class="carousel-inner">
               <div class="carousel-item active">
-                <img class="d-block img-fluid" src="..." alt="First slide">
+                <img class="d-block w-100" src="../images/ferrari.jpg" alt="First slide">
               </div>
               <div class="carousel-item">
-                <img class="d-block img-fluid" src="..." alt="Second slide">
+                <img class="d-block w-100" src="..." alt="Second slide">
               </div>
               <div class="carousel-item">
-                <img class="d-block img-fluid" src="..." alt="Third slide">
+                <img class="d-block w-100" src="..." alt="Third slide">
               </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -68,14 +68,14 @@
               <span class="sr-only">Siguiente</span>
             </a>
           </div>
-
+        
         <!-- aca se comienzan a listar los productos -->
         <div class="row">
           <!-- se deberia llamar a traer todos los productos -->
 
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card-deck">
-              <div class="card h-100 text-white bg-primary mb-3">
+              <div class="card bg-light mb-2">
                 <a href=""><img class="card-img-top" src="" alt="Card image cap"></a>
                   <div class="card-body">
 
@@ -88,13 +88,16 @@
                   </div>
                   <div class="card-footer">
                     <form action= "<?= ROOT_VIEW ?> /" method="post" enctype="multipart/form-data" class="addToCart">
-                      <div class="precioProducto">
-                        <h5>$24.99</h5>
+                      <div class="text-center">
+                        <div class="precioProducto">
+                          <h5>$24.99</h5>
+                        </div>
+                        <div class="row center-block">
+                          <select class="" name="qty"></select>
+                        
+                          <input class="btn btn-primary" name="botonAgregar" type="submit" value="Agregar">
+                        </div>
                       </div>
-                      <div class="">
-                        <select class="" name="qty"></select>
-                      </div>
-                      <input class="btn btn-primary" name="botonAgregar" type="submit" value="Agregar">
                     </form>
                   </div>
               </div>

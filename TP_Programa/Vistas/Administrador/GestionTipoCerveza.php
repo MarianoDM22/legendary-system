@@ -78,13 +78,6 @@
 				</div>
 				<!-- Fin Modal -->
 
-				<?php 
-
-				if(isset($_SESSION['TipoCerveza'])) 
-				{
-					$TipoCerveza = $_SESSION['TipoCerveza'];
-					 ?>
-					
 
 					<table class="table table-bordered table-responsive">
 						<thead class="thead-inverse">
@@ -99,7 +92,7 @@
 						<tbody>
 							<?php
 
-									foreach ($TipoCerveza  as $key => $value) { ?>
+									foreach ($cervezas  as $key => $value) { ?>
 								
 									<tr>
 										<td><?= $value->getId(); ?></td>
@@ -158,7 +151,6 @@
 							<?php } ?>
 						</tbody>
 					</table>
-			<?php }?>
 
 			</section>
     	</div>

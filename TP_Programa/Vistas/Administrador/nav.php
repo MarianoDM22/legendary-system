@@ -51,19 +51,19 @@
         </ul>
       </div>
 
-      <div>
-        <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-           <li class="nav-item justify-content-end">
-            <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-              <i class="fa fa-fw fa-sign-out"></i>Logout</a>
-          </li>
-        </ul>
-      </div> 
+        <div>
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+             <li class="nav-item justify-content-end">
+              <a class="nav-link" data-toggle="modal" data-target="#logoutModal">
+                <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+            </li>
+          </ul>
+        </div> 
       
     </nav>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
