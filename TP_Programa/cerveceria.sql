@@ -69,7 +69,7 @@ foreign key(fk_sucursal) references sucursales(id_sucursal)
 CREATE TABLE cuentas(
 id_cuenta int auto_increment not null,
 email varchar(100),
-password varchar(100),
+pass varchar(100),
 rol varchar(10),
 fk_cliente int,
 primary key(id_cuenta),

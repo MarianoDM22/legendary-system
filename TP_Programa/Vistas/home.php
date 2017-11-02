@@ -243,7 +243,7 @@
     <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <form action="<?= ROOT_VIEW ?>/Register/prueba" method="post" enctype="multipart/form-data">
+          <form action="<?= ROOT_VIEW ?> /Registrar/nuevo" method="post" enctype="multipart/form-data">
             <div class="modal-header">
               <h5 class="modal-title">Registre una cuenta</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
