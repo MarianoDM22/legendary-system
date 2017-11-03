@@ -39,7 +39,29 @@ class ClientesDAO extends SingletonAbstractDAO implements IDAO
 		$command->execute();
 	}
 	public function insertarDevolverID($dato){
+		$query = 'INSERT INTO '.$this->table.' 
+		( apellido , domicilio , nombre , telefono ) 
+		VALUES 
+		( :apellido , :domicilio , :nombre , :telefono )';
 
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);
+
+		$apellido = $dato->getApellido();
+		$domicilio = $dato->getDomicilio();
+		$nombre = $dato->getNombre();
+		$telefono = $dato->getTelefono();
+
+		$command->bindParam(':apellido', $apellido);
+		$command->bindParam(':domicilio', $domicilio);
+		$command->bindParam(':nombre', $nombre);
+		$command->bindParam(':telefono', $telefono);
+		$command->execute();
+
+		$dato->setId($connection->lastInsertId());
+			
+		return $dato;
 	}
 	public function buscarPorNombre($dato){
 
