@@ -194,5 +194,30 @@ class ProductosDAO extends SingletonAbstractDAO implements IDAO
 
 		return $objects;	
 	}
+		public function calcularPrecio(){
+			/*
+		$precio = array();
+
+		$query = 'SELECT * FROM '.$this->table;
+
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);
+		$command->execute();
+
+		while ($row = $command->fetch())
+		{
+			$precio=($producto->getCapacidad() * $tipoCerveza->getPrecio_litro()) * $producto->getFactor();
+	   		$precio->setPrecio($precio);
+
+	
+
+			$precio->setPrecio($row['precio']);	
+
+		}
+
+		return $precio;	
+		*/
+	}
 }
 ?>

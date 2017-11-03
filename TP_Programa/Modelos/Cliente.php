@@ -12,13 +12,12 @@ class Cliente
 	private $m_Pedido=array();
 
 
-	public function __construct($apellido, $domicilio, $nombre, $telefono, $m_Cuenta)
+	public function __construct($apellido, $domicilio, $nombre, $telefono)
 	{
 		$this->setApellido($apellido);
 		$this->setDomicilio($domicilio);
 		$this->setNombre($nombre);
 		$this->setTelefono($telefono);
-		$this->setMCuenta($m_Cuenta);
 	}
 
     public function getId()

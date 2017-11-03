@@ -164,10 +164,10 @@ class ControlGestionTipoCerveza
 					   		$object->setImagen($imagen);
 
 					   		//LLAMA A ACTUALIZAR
-							$buscado=$this->DAOTipoCerveza->buscarPorNombre($desc);
+							$buscado=$this->DAOTipoCerveza->buscarPorID($_POST['id']);
 	    				
 
-	    					if ($buscado==null)
+	    					if ($buscado!=null)
 	    					{	
 	    						$this->DAOTipoCerveza->actualizar($object);
 	    						//echo "<script> if(alert('Tipo de Cerveza modificado!'));</script>";

@@ -31,6 +31,35 @@
 
   <body id="page-top">
 
+    <!-- Funcion Google Maps-->
+    <script>
+    
+      function initMap() {
+        var uluru = {lat: -38, lng: -57.55};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: uluru,
+        });
+        //PRIMER MARCADOR SUCURSAL 1
+        
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+          title: 'BeerRecharge MDP Sucursal 1'
+        });
+        
+        //SEGUNDO MARCADOR SUCURSAL 2
+
+        var marker2 = new google.maps.Marker({
+          position: {lat: -38.01433842017485, lng: -57.54189133644104},
+          map: map,
+          title: 'BeerRecharge MDP Sucursal 2'
+        });
+      }
+      
+    </script>
+
+
 
         <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark flex-column flex-md-row bd-navbar bg-primary" id="mainNav">
@@ -262,8 +291,7 @@
                   </div>
                 </div>
               </div>
-              <a class="btn btn-primary btn-block" href=" ">Registrese</a>
-              <input type="submit"  class="btn btn-default" value="REGISTRARSE" name="upload">
+              <input type="submit"  class="btn btn-primary btn-block" value="Registrese" name="upload">
             
             </div>
             <div class="modal-footer">
@@ -404,33 +432,6 @@
           });
       </script>
 
-    <!-- Funcion Google Maps-->
-    <script>
-    
-      function initMap() {
-        var uluru = {lat: -38, lng: -57.55};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
-          center: uluru,
-        });
-        //PRIMER MARCADOR SUCURSAL 1
-        
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map,
-          title: 'BeerRecharge MDP Sucursal 1'
-        });
-        
-        //SEGUNDO MARCADOR SUCURSAL 2
-
-        var marker2 = new google.maps.Marker({
-          position: {lat: -38.01433842017485, lng: -57.54189133644104},
-          map: map,
-          title: 'BeerRecharge MDP Sucursal 2'
-        });
-      }
-      
-    </script>
 
 
       <script>

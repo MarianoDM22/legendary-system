@@ -48,6 +48,10 @@
 					$this->DAORegistrar->insertarCuenta($cuentaNueva);//agrego la cuenta completa a la BD
 					echo "<script> if(alert('Usuario Registrado !'));</script>";
 				}
+				else
+				{
+					echo "<script> if(alert('Las contaseñas no coinciden'));</script>";
+				}
 				
 			}
 			

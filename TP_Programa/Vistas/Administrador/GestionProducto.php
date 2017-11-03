@@ -68,7 +68,7 @@
 												<select name="TipoCerveza" class="custom-select">
 													<option  disabled>Seleccione el Tipo de Cerveza...</option>
 													<?php 
-													foreach ($TipoCerveza as $key => $value) { ?>
+													foreach ($cervezas as $key => $value) { ?>
 														<option value="<?= $value->getId();  ?>"><?= $value->getDescripcion();  ?></option>
 													<?php } ?>
 												</select><br><br>
@@ -124,11 +124,7 @@
 										<td><?= $value->getMTiposDeCerveza(); ?></td>
 										<td><?= $value->getCapacidad(); ?></td>
 										<td><?= $value->getFactor(); ?></td>
-										<td>
-										<form action="<?= ROOT_VIEW ?>/GestionProducto/calcularPrecio" method="POST">
-											<input type="hidden" name="id" value="<?= $value->getId(); ?>">
-										</form>
-										</td>
+										<td><?= $value->getPrecio(); ?></td>
 										<td><img src="<?= "../" . $value->getImagen(); ?>" width="30"></td>
 
 										<td>

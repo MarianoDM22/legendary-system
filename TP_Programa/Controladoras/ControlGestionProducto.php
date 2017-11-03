@@ -9,11 +9,13 @@ use Modelos\Producto as Producto;
 class ControlGestionProducto
 {
 	private $DAOProducto;
+	private $DAOTipoCerveza;
 
 	public function __construct()
 	{
 		//$this->DAOProducto=\DAOS\listaProducto::getInstance();
 		$this->DAOProducto=\DAOS\ProductosDAO::getInstance(); //cuando pasemos a BD
+		$this->DAOTipoCerveza=\DAOS\TiposDeCervezasDAO::getInstance();
 	}
 	
 
@@ -108,6 +110,8 @@ class ControlGestionProducto
    	{
    	
    		$producto=$this->traerTodos();
+   		$cervezas=$this->traerTodosCervezas();
+   		$precio=$this->calcularPrecio();
    		
    		require_once(ROOT . 'Vistas/Administrador/GestionProducto.php');
    	}
@@ -120,12 +124,20 @@ class ControlGestionProducto
 
    	public function traerTodos()
    	{
-   		new \DAOS\TiposDeCervezasDAO();
    		$producto= array();
-   		$producto =$this->DAOProducto->traerTodos();
+   		$producto=$this->DAOProducto->traerTodos();
 
    		return $producto;
    	}
+
+   	public function traerTodosCervezas()
+   	{
+   		$cervezas= array();
+   		$cervezas=$this->DAOTipoCerveza->traerTodos();
+ 
+   		return $cervezas;
+   	}
+
 
    	public function modificar()
    	{
@@ -163,6 +175,7 @@ class ControlGestionProducto
 						{	//guarda el archivo subido en el directorio 'images/' tomando true si lo subio, y false si no lo hizo
 							$imagen = str_replace("../", "", $file); 
 							//crea el objeto
+							var_dump($desc);
 	    					$object = $this->DAOProducto->buscarPorID($_POST['id']);
 					   		$object->setDescripcion($desc);
 					   		$object->setMTiposDeCerveza($tipo_cerveza);
@@ -172,10 +185,10 @@ class ControlGestionProducto
 					   		$object->setImagen($imagen);
 
 					   		//LLAMA A ACTUALIZAR
-							$buscado=$this->DAOProducto->buscarPorNombre($desc);
+							$buscado=$this->DAOProducto->buscarPorID($_POST['id']);
 	    				
 
-	    					if ($buscado==null)
+	    					if ($buscado!=null)
 	    					{	
 	    						$this->DAOProducto->actualizar($object);
 	    						//echo "<script> if(alert('Producto modificado!'));</script>";
@@ -208,6 +221,14 @@ class ControlGestionProducto
 			
 		}					
 		
+   	}
+
+   	public function calcularPrecio()
+   	{
+   		$precio= array();
+   		$precio=$this->DAOProducto->calcularPrecio();
+
+   		return $precio;
    	}
 }
 ?>

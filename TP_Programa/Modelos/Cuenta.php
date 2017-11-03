@@ -13,7 +13,7 @@ class Cuenta
 	public function __construct($email, $password, $rol, $m_Cliente)
 	{
 		$this->setEmail($email);
-		$this->setPassword($passwor);
+		$this->setPassword($password);
 		$this->setRol($rol);
 		$this->setMCliente($m_Cliente);
 	}
