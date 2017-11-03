@@ -64,7 +64,32 @@ class SucursalesDAO extends SingletonAbstractDAO implements IDAO
 		return $dato;
 	}
 	public function buscarPorNombre($dato){
+		$object = null;
 
+		$query = 'SELECT * FROM '.$this->table.' WHERE nombre = :nombre';
+
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);			
+
+		$command->bindParam(':nombre', $dato);
+		$command->execute();
+
+		while ($row = $command->fetch())
+		{
+
+			$domicilio = ($row['domicilio']);
+			$latitud = ($row['latitud']);
+			$longitud = ($row['longitud']);
+			$nombre = ($row['nombre']);
+
+			$object = new \Modelos\Sucursales( $domicilio , $latitud , $longitud , $nombre );
+
+			$object->setId($row['id_sucursal']);	
+
+		}
+
+		return $object;
 	}
 	public function buscarPorID($dato){
 
