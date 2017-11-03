@@ -20,7 +20,29 @@ class EnviosDAO extends SingletonAbstractDAO implements IDAO
 	private $table = 'envios';
 
 	public function insertar($dato){
+		$query = 'INSERT INTO '.$this->table.' 
+		( domicilio , email , fecha_programada , hora_desde , hora_hasta , telefono ) 
+		VALUES 
+		( :domicilio , :email , :fecha_programada , :hora_desde , :hora_hasta , :telefono )';
 
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);
+
+		$domicilio = $dato->getDomicilio();
+		$email = $dato->getEmail();
+		$fecha_programada = $dato->getFechaProgramada();
+		$hora_desde = $dato->getHoraDesde();
+		$hora_hasta = $dato->getHoraHasta();
+		$telefono = $dato->getTelefono();
+
+		$command->bindParam(':domicilio', $domicilio);
+		$command->bindParam(':email', $email);
+		$command->bindParam(':fecha_programada', $fecha_programada);
+		$command->bindParam(':hora_desde', $hora_desde);
+		$command->bindParam(':hora_hasta', $hora_hasta);
+		$command->bindParam(':telefono', $telefono);
+		$command->execute();
 	}
 	public function insertarDevolverID($dato){
 		$query = 'INSERT INTO '.$this->table.' 
