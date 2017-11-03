@@ -156,12 +156,12 @@ class ProductosDAO extends SingletonAbstractDAO implements IDAO
 		$connection = $pdo->Connect();
 		$command = $connection->prepare($query);
 
-		$command->bindParam(':capacidad', $producto->getCapacidad());
-		$command->bindParam(':descripcion', $producto->getDescripcion());
-		$command->bindParam(':factor', $producto->getFactor());
-		$command->bindParam(':imagen', $producto->getImagen());
-		$command->bindParam(':id', $producto->getId());
-		$command->bindParam(':fk_tipodecerveza', $producto->getMTiposDeCerveza());
+		$command->bindParam(':capacidad', $dato->getCapacidad());
+		$command->bindParam(':descripcion', $dato->getDescripcion());
+		$command->bindParam(':factor', $dato->getFactor());
+		$command->bindParam(':imagen', $dato->getImagen());
+		$command->bindParam(':id', $dato->getId());
+		$command->bindParam(':fk_tipodecerveza', $dato->getMTiposDeCerveza());
 
 		$command->execute();
 	}
