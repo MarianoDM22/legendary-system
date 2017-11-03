@@ -67,7 +67,30 @@ class ClientesDAO extends SingletonAbstractDAO implements IDAO
 
 	}
 	public function buscarPorID($dato){
+		$object = null;
 
+		$query = 'SELECT * FROM '.$this->table.' WHERE id_cliente = :id';
+
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);			
+
+		$command->bindParam(':id', $dato);
+		$command->execute();
+
+		while ($row = $command->fetch())
+		{
+			$apellido = ($row['apellido']);
+			$domicilio = ($row['domicilio']);
+			$nombre = ($row['nombre']);
+			$telefono = ($row['telefono']);
+
+			$object = new \Modelos\Cliente( $apellido , $domicilio , $nombre , $telefono ) ;
+
+			$object->setId($row['id_cliente']);	
+		}
+
+		return $object;
 	}
 	public function borrar($dato){
 
