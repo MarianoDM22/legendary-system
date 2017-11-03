@@ -39,7 +39,29 @@ class SucursalesDAO extends SingletonAbstractDAO implements IDAO
 		$command->execute();
 	}
 	public function insertarDevolverID($dato){
+		$query = 'INSERT INTO '.$this->table.' 
+		( domicilio , latitud , longitud , nombre ) 
+		VALUES 
+		( :domicilio , :latitud , :longitud , :nombre )';
 
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);
+
+		$domicilio = $dato->getDomicilio();
+		$latitud = $dato->getLatitud();
+		$longitud = $dato->getLongitud();
+		$nombre = $dato->getNombre();
+
+		$command->bindParam(':domicilio', $domicilio);
+		$command->bindParam(':latitud', $latitud);
+		$command->bindParam(':longitud', $longitud);
+		$command->bindParam(':nombre', $nombre);
+		$command->execute();
+
+		$dato->setId($connection->lastInsertId());
+			
+		return $dato;
 	}
 	public function buscarPorNombre($dato){
 
