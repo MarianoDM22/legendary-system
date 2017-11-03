@@ -18,6 +18,7 @@ class ClientesDAO extends SingletonAbstractDAO implements IDAO
 	private $table = 'clientes';
 
 	public function insertar($dato){
+		/*
 		$query = 'INSERT INTO '.$this->table.' 
 		( apellido , domicilio , nombre , telefono ) 
 		VALUES 
@@ -37,8 +38,10 @@ class ClientesDAO extends SingletonAbstractDAO implements IDAO
 		$command->bindParam(':nombre', $nombre);
 		$command->bindParam(':telefono', $telefono);
 		$command->execute();
+		*/
 	}
 	public function insertarDevolverID($dato){
+		/*
 		$query = 'INSERT INTO '.$this->table.' 
 		( apellido , domicilio , nombre , telefono ) 
 		VALUES 
@@ -62,11 +65,13 @@ class ClientesDAO extends SingletonAbstractDAO implements IDAO
 		$dato->setId($connection->lastInsertId());
 			
 		return $dato;
+		*/
 	}
 	public function buscarPorNombre($dato){
 
 	}
 	public function buscarPorID($dato){
+		/*
 		$object = null;
 
 		$query = 'SELECT * FROM '.$this->table.' WHERE id_cliente = :id';
@@ -91,6 +96,7 @@ class ClientesDAO extends SingletonAbstractDAO implements IDAO
 		}
 
 		return $object;
+		*/
 	}
 	public function borrar($dato){
 
