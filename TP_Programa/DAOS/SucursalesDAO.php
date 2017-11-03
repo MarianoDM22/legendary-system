@@ -150,7 +150,31 @@ class SucursalesDAO extends SingletonAbstractDAO implements IDAO
 		$command->execute();
 	}
 	public function traerTodos(){
-		
+		$objects = array();
+
+		$query = 'SELECT * FROM '.$this->table;
+
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);
+		$command->execute();
+
+		while ($row = $command->fetch())
+		{
+			$domicilio = ($row['domicilio']);
+			$latitud = ($row['latitud']);
+			$longitud = ($row['longitud']);
+			$nombre = ($row['nombre']);
+
+			$object = new \Modelos\Sucursales( $domicilio , $latitud , $longitud , $nombre );
+
+			$object->setId($row['id_sucursal']);
+
+			array_push($objects, $object);
+
+		}
+
+		return $objects;
 	}
 }
 ?>
