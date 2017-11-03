@@ -190,7 +190,8 @@
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <form action="<?= ROOT_VIEW ?>/Login/prueba" method="post" enctype="multipart/form-data">
+          <form action="<?= ROOT_VIEW ?>/Login/verificarSesion" method="post" enctype="multipart/form-data"><!--SE ENVIA EL FORMULARIO A LA CONTROLADORA -->
+
             <div class="modal-header">
               <h5 class="modal-title">LogIn</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -201,11 +202,11 @@
 
                 <div class="form-group">
                   <label for="InputEmail">Direccion de Email</label>
-                  <input class="form-control" id="InputEmail" type="email" aria-describedby="emailHelp" placeholder="Correo electrónico">
+                  <input class="form-control" id="InputEmail" type="email" name=email aria-describedby="emailHelp" placeholder="Correo electrónico">
                 </div>
                 <div class="form-group">
                   <label for="InputPassword">Contraseña</label>
-                  <input class="form-control" id="InputPassword" type="password" placeholder="Password">
+                  <input class="form-control" id="InputPassword" name="passLogin" type="password" placeholder="Password">
                 </div>
                 <div class="form-group">
                   <div class="form-check">
@@ -213,7 +214,9 @@
                       <input class="form-check-input" type="checkbox"> Recordar Contraseña</label>
                   </div>
                 </div>
-                <a class="btn btn-primary btn-block" href=" ">Login</a>
+
+                <!-- <a class="btn btn-primary btn-block" href=" ">Login</a> --> <!-- ESTE BOTON NO ME RE DIRIGIA EL FORMULARIO A LA CONTROLADORA -->
+                <input type="submit"  class="btn btn-primary btn-block" value="Login" name="upload">
             
             </div>
             <div class="modal-footer">
@@ -223,7 +226,6 @@
                     <div class="text-center">
 
                       <a class="d-block small mt-3" id="registerLink" data-toggle="modal" data-target="#registerModal">Registra una cuenta</a>
-
                       <a class="d-block small mt-3" id="forgotLink" data-toggle="modal" data-target="#forgotModal">Olvidaste tu Contaseña?</a>
 
                     </div>
@@ -231,6 +233,7 @@
                 </div>
               </div>
             </div>
+
           </form>
         </div>
       </div>
@@ -300,8 +303,8 @@
                   <div class="col-lg-12">
                     <div class="text-center">
 
+                      
                       <a class="d-block small mt-3" id="loginLink" data-toggle="modal" data-target="#loginModal">Login</a>
-
                        <a class="d-block small mt-3" id="forgot2Link" data-toggle="modal" data-target="#forgotModal">Olvidaste tu Contaseña?</a>
 
                     </div>
