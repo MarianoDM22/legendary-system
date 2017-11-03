@@ -130,7 +130,24 @@ class SucursalesDAO extends SingletonAbstractDAO implements IDAO
 		$command->execute();
 	}
 	public function actualizar($dato){
+		$query= 'UPDATE '.$this->table.'
+				SET domicilio = :domicilio, 
+					latitud = :latitud,
+					longitud = :longitud,
+					nombre = :nombre
+				WHERE id_producto = :id';
 
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);
+
+		$command->bindParam(':domicilio', $dato->getDomicilio());
+		$command->bindParam(':latitud', $dato->getLatitud());
+		$command->bindParam(':longitud', $dato->getLongitud());
+		$command->bindParam(':nombre', $dato->getNombre());
+		$command->bindParam(':id', $dato->getId());
+
+		$command->execute();
 	}
 	public function traerTodos(){
 		
