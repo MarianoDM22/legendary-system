@@ -194,8 +194,9 @@ class ProductosDAO extends SingletonAbstractDAO implements IDAO
 
 		return $objects;	
 	}
-		public function calcularPrecio(){
-			/*
+	/*
+	public function calcularPrecio(){
+			
 		$precio = array();
 
 		$query = 'SELECT * FROM '.$this->table;
@@ -217,7 +218,8 @@ class ProductosDAO extends SingletonAbstractDAO implements IDAO
 		}
 
 		return $precio;	
-		*/
+		
 	}
+	*/
 }
 ?>
