@@ -59,7 +59,10 @@
       
     </script>
 
+    <?php //var_dump($_SESSION['Login']);
 
+
+     ?>
 
         <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark flex-column flex-md-row bd-navbar bg-primary" id="mainNav">
@@ -84,7 +87,7 @@
               <a class="nav-link" href="<?= ROOT_VIEW ?>/HomeCliente/index">Cliente</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#contact">Contáctanos</a>
+              <a class="nav-link" href="<?= ROOT_VIEW ?>/Login/cerrarSesion">LogOut</a>
             </li>
           </ul>
 

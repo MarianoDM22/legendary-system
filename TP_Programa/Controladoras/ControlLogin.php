@@ -19,10 +19,11 @@
 
 		function verificarSesion()
 		{
-
-			if(	!isset($_SESSION['Login']) )//entra si la sesion Login NO existe			
+			session_start();
+			
+			if(	!isset($_SESSION['Login']) )//entra si la sesion Login existe			
 			{	
-
+		
 				$emailBuscado=$_POST['email'];//tomo mail ingresado
 				$passLogin=$_POST['passLogin'];//tomo password ingresada
 
@@ -59,25 +60,42 @@
 				
 			}//fin if general session
 
-			else//entra si la session LOGIN EXISTE...  NO ENTRA NUNCA ACA, REVISAR
+			else//entra si la session LOGIN EXISTE... 
 			{
 				
 				echo "<script> if(alert('ERROR! Usuario actualmente logueado'));</script>";
 				$this->index();
 				
-				
 			}//fin else general
-
-
-		}//fin buscar email**********
+			
+		}//fin verificar session**********
 
 
 		function crearSesion($cuenta)
-		{						
+		{	
+										
 			$_SESSION['Login']=$cuenta;//guardo el objeto CUENTA logueada en la session			
 			echo '<script language="javascript">alert("Bienvenido '.$cuenta->getEmail(). '!");</script>';
-			var_dump($_SESSION['Login']);
 			$this->index();
+
+		}//fin crear session**********
+
+		function cerrarSesion()
+		{	
+			session_start();
+			
+			if (isset($_SESSION['Login']) )//entra si existe la session
+			{	
+    			unset($_SESSION["Login"]);
+    			echo '<script language="javascript">alert("LogOut correcto !");</script>';
+    			$this->index();
+			}
+
+			else
+			{
+				echo '<script language="javascript">alert("Ningun usuario logueado!");</script>';
+				$this->index();
+			}			
 
 		}//fin crear session**********
 
