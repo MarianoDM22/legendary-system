@@ -57,7 +57,7 @@
                             <div class="dropdown-divider"></div>
 
                             <a class="dropdown-item nav-link" data-toggle="modal" data-target="#logoutModal">
-                              <i class=""></i>Logout</a>
+                              <a class="nav-link" href="<?= ROOT_VIEW ?>/Login/cerrarSesion">LogOut</a>
                           </div>
                         </li>
 

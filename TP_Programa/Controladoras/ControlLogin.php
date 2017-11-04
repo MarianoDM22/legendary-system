@@ -4,16 +4,38 @@
 	class ControlLogin
 	{
 		private $DAOLogin;
+		private $DAOProducto;
+		private $DAOTipoCerveza;
 
 		public function __construct()
 		{
 			//$this->DAOTipoCerveza=\DAOS\listaTipoCerveza::getInstance();
 			$this->DAOLogin=\DAOS\LoginDAO::getInstance(); //cuando pasemos a BD
+			$this->DAOProducto=\DAOS\ProductosDAO::getInstance();
+			$this->DAOTipoCerveza=\DAOS\TiposDeCervezasDAO::getInstance();
 		}	
 
 		function index()
 		{
-			require_once(ROOT . '/Vistas/home.php');
+
+			if(isset($_SESSION['Login']))//Si hay session:
+			{
+				
+
+				if($_SESSION['Login']->getRol()=="adm")//SI ES ADMIN LO LLEVA A SU PAG
+				{
+					require_once(ROOT_VIEW .'/Controladoras/ControlGestionTipoCerveza/index');
+				}
+				if($_SESSION['Login']->getRol()=="cliente")// SI ES CLIENTE AL HOME DE CLIENTE
+				{
+					require_once(ROOT_VIEW . '/Controladoras/ControlHomeCliente/index');
+				}
+			}
+
+			else
+			{
+				require_once(ROOT . '/Vistas/home.php');//SI NO HAY SESSION LO LLEVA A HOME
+			}
 		}
 
 

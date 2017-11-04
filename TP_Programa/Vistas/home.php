@@ -81,7 +81,7 @@
             </li>
           -->
             <li class="nav-item">
-              <a class="nav-link" href="<?= ROOT_VIEW ?>/GestionTipoCerveza/index">Admin</a>
+              <a class="nav-link" href="<?=ROOT_VIEW ?>/GestionTipoCerveza/index">Admin</a>
             </li>
              <li class="nav-item">
               <a class="nav-link" href="<?= ROOT_VIEW ?>/HomeCliente/index">Cliente</a>
@@ -89,6 +89,7 @@
             <li class="nav-item">
               <a class="nav-link" href="<?= ROOT_VIEW ?>/Login/cerrarSesion">LogOut</a>
             </li>
+            
           </ul>
 
           <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
@@ -218,7 +219,7 @@
                   </div>
                 </div>
 
-                <!-- <a class="btn btn-primary btn-block" href=" ">Login</a> --> <!-- ESTE BOTON NO ME RE DIRIGIA EL FORMULARIO A LA CONTROLADORA -->
+                
                 <input type="submit"  class="btn btn-primary btn-block" value="Login" name="upload">
             
             </div>

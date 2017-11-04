@@ -55,7 +55,7 @@
           <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
              <li class="nav-item justify-content-end">
               <a class="nav-link" data-toggle="modal" data-target="#logoutModal">
-                <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+                <a class="nav-link" href="<?= ROOT_VIEW ?>/Login/cerrarSesion">LogOut</a>
             </li>
           </ul>
         </div> 

@@ -111,7 +111,7 @@ class ControlGestionProducto
    	
    		$producto=$this->traerTodos();
    		$cervezas=$this->traerTodosCervezas();
-   		$precio=$this->calcularPrecio();
+   		//$this->calcularPrecio($producto);
    		
    		require_once(ROOT . 'Vistas/Administrador/GestionProducto.php');
    	}
@@ -223,12 +223,17 @@ class ControlGestionProducto
 		
    	}
 
-   	public function calcularPrecio()
+   	public function calcularPrecio($producto)
    	{
-   		$precio= array();
-   		$precio=$this->DAOProducto->calcularPrecio();
+   		$precio= 0;
 
-   		return $precio;
+   		foreach ($producto as $key => $precio) 
+   		{
+   			$precio=(($producto->getCapacidad()) * ($tipoCerveza->getPrecio_litro())) * ($producto->getFactor());
+
+	   		$producto->setPrecio($precio);
+   		}
+   		
    	}
 }
 ?>
