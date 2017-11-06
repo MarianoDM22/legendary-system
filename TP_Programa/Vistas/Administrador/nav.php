@@ -54,8 +54,8 @@
         <div>
           <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
              <li class="nav-item justify-content-end">
-              <a class="nav-link" data-toggle="modal" data-target="#logoutModal">
-                <a class="nav-link" href="<?= ROOT_VIEW ?>/Login/cerrarSesion">LogOut</a>
+              <a class="nav-link" data-toggle="modal" data-target="#logoutModal"
+                >LogOut</a>
             </li>
           </ul>
         </div> 
@@ -75,7 +75,7 @@
           <div class="modal-body">Selecione "Logout" si está listo para finalizar su seción.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-            <a class="btn btn-primary" href="<?= ROOT_VIEW ?>/Home/index">Logout</a>
+            <a class="btn btn-primary" href="<?= ROOT_VIEW ?>/Login/cerrarSesion">Logout</a>
           </div>
         </div>
       </div>

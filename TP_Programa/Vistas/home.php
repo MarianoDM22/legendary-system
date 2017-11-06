@@ -80,16 +80,7 @@
               <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
             </li>
           -->
-            <li class="nav-item">
-              <a class="nav-link" href="<?=ROOT_VIEW ?>/GestionTipoCerveza/index">Admin</a>
-            </li>
-             <li class="nav-item">
-              <a class="nav-link" href="<?= ROOT_VIEW ?>/HomeCliente/index">Cliente</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<?= ROOT_VIEW ?>/Login/cerrarSesion">LogOut</a>
-            </li>
-            
+
           </ul>
 
           <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">

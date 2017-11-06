@@ -56,8 +56,8 @@
 
                             <div class="dropdown-divider"></div>
 
-                            <a class="dropdown-item nav-link" data-toggle="modal" data-target="#logoutModal">
-                              <a class="nav-link" href="<?= ROOT_VIEW ?>/Login/cerrarSesion">LogOut</a>
+                            <a class="dropdown-item nav-link" data-toggle="modal" data-target="#logoutModal"
+                              >LogOut</a>
                           </div>
                         </li>
 
@@ -89,7 +89,7 @@
           <div class="modal-body">Selecione "Logout" si está listo para finalizar su seción.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-            <a class="btn btn-primary" href="<?= ROOT_VIEW ?>/Home/index">Logout</a>
+            <a class="btn btn-primary" href="<?= ROOT_VIEW ?>/Login/cerrarSesion">Logout</a>
           </div>
         </div>
       </div>
