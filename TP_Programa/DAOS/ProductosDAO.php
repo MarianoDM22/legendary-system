@@ -156,12 +156,20 @@ var_dump($object);
 		$connection = $pdo->Connect();
 		$command = $connection->prepare($query);
 
-		$command->bindParam(':capacidad', $dato->getCapacidad());
-		$command->bindParam(':descripcion', $dato->getDescripcion());
-		$command->bindParam(':factor', $dato->getFactor());
-		$command->bindParam(':imagen', $dato->getImagen());
-		$command->bindParam(':id', $dato->getId());
-		$command->bindParam(':fk_tipodecerveza', $dato->getMTiposDeCerveza());
+		$id = $dato->getId();
+		$descripcion = $dato->getDescripcion();
+		$capacidad = $dato->getCapacidad();
+		$factor = $dato->getFactor();
+		$imagen = $dato->getImagen();
+		$fk_tipodecerveza = $dato->getMTiposDeCerveza();
+
+
+		$command->bindParam(':capacidad', $capacidad);
+		$command->bindParam(':descripcion', $descripcion);
+		$command->bindParam(':factor', $factor);
+		$command->bindParam(':imagen', $imagen);
+		$command->bindParam(':id', $id);
+		$command->bindParam(':fk_tipodecerveza', $fk_tipodecerveza);
 
 		$command->execute();
 	}
