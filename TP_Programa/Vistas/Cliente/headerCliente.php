@@ -99,7 +99,7 @@
 
     <!-- Checkout Modal-->
     <div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Tu carrito:</h5>
@@ -109,8 +109,38 @@
           </div>
           <div class="modal-body">
               <!-- todas las lineas del pedido-->
+              <table class="table table-bordered">
+                <thead class="thead-inverse">
+                  <tr>            
+                    <th>Descripcion</th>
+                    <th>Imagen</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th> 
+                    <th>Opciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php 
+                      foreach ($producto as $key => $value) { ?>
+                    
+                      <tr>
+                        <td><?= $value->getDescripcion(); ?></td>
+                        <td><img src="<?= "../" . $value->getImagen(); ?>" width="30"></td>
+                        <td><?= $value->getPrecio(); ?></td>
+                        <td><select class="" name="qty"></select></td>
+                        <td>
+                          <form action="<?= ROOT_VIEW ?>//borrar" method="POST">
+                            <input type="hidden" name="id" value="<?= $value->getId(); ?>">
+                            <button type="submit" class="btn btn-primary">Eliminar</button>
+                          </form>
+                        </td>
+                      </tr>  
+                  <?php } ?>     
+                </tbody>  
+              </table>      
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer center-block">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Update</button>
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
             <a class="btn btn-primary" href="<?= ROOT_VIEW ?>/checkout/index">CheckOut</a>
           </div>

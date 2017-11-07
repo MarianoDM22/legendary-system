@@ -7,17 +7,26 @@
 		private $DAOProducto;
 		private $DAOTipoCerveza;
 		
-		function __construct() 
+		public function __construct() 
 		{
 			$this->DAOLogin=\DAOS\LoginDAO::getInstance(); //cuando pasemos a BD
 			$this->DAOProducto=\DAOS\ProductosDAO::getInstance();
 			$this->DAOTipoCerveza=\DAOS\TiposDeCervezasDAO::getInstance();
 		}
 
-		function index() {
+		public function index() 
+		{
+			$producto=$this->traerTodos();
+			
 			require_once(ROOT . '/Vistas/Cliente/homeCliente.php');
 		}
 
-		
+	  	public function traerTodos()
+	   	{
+	   		$producto= array();
+	   		$producto=$this->DAOProducto->traerTodos();
+
+	   		return $producto;
+	   	}
 	}
 ?>

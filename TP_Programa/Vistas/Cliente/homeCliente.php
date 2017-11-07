@@ -69,47 +69,49 @@
             </a>
           </div>
         
-        <!-- aca se comienzan a listar los productos -->
-        <div class="row">
-          <!-- se deberia llamar a traer todos los productos -->
+          <!-- aca se comienzan a listar los productos -->
+          
+            <div class="row">
+              <div class="col-lg-12"> 
+                <div class="card-deck ">
+                  <?php 
+                      foreach ($producto as $key => $value) { ?>
+                       
+                        <div class="card bg-light text-center">
+                          <form action= "<?= ROOT_VIEW ?> /" method="post" enctype="multipart/form-data" class="addToCart">
 
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card-deck">
-              <div class="card bg-light mb-2">
-                <a href=""><img class="card-img-top" src="" alt="Card image cap"></a>
-                  <div class="card-body">
+                            <a href=""><img src="<?= "../" . $value->getImagen(); ?>" width="50"></a>
 
-                      <h4 class="card-title">
-                        <a href=" ">Item uno</a>
-                      </h4>
-                      
-                      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                              <div class="card-body">
+                                  <h4 class="card-title"><a href=" "><?= $value->getDescripcion(); ?></a></h4>
 
-                  </div>
-                  <div class="card-footer">
-                    <form action= "<?= ROOT_VIEW ?> /" method="post" enctype="multipart/form-data" class="addToCart">
-                      <div class="text-center">
-                        <div class="precioProducto">
-                          <h5>$24.99</h5>
+                                  <div class="precioProducto"><h5><?= $value->getPrecio(); ?></h5></div>
+
+                                  <div class="center-block">
+                                    <select class="custom-select" name="qty">
+                                      <option> 1 </option>
+                                      <option> 2 </option>
+                                      <option> 3 </option>
+                                      <option> 4 </option>
+                                    </select>
+
+                                    <input class="btn btn-primary" name="botonAgregar" type="submit" value="Agregar">
+                                  </div>
+                              </div>
+     
+                          </form>
                         </div>
-                        <div class="row center-block">
-                          <select class="" name="qty"></select>
                         
-                          <input class="btn btn-primary" name="botonAgregar" type="submit" value="Agregar">
-                        </div>
-                      </div>
-                    </form>
-                  </div>
+                  <?php } ?>
+                </div>
               </div>
-            </div>
-          </div>
+            </div> 
 
-          <!-- fin llamado -->
+          <!-- fin listado de productos -->
 
         </div>
-        <!-- FIN aca se comienzan a listar los productos -->
-
-
+        <!-- fin del col 10 -->
+          
 
         </div>
       </div>    

@@ -86,7 +86,7 @@
 								<th>Descripcion</th>
 								<th>Precio/litro</th>
 								<th>Imagen</th>
-								<th colspan="2">Opciones</td>
+								<th colspan="2">Opciones</th>
 							</tr>
 						</thead>
 						<tbody>

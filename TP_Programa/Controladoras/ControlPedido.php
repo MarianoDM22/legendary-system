@@ -2,23 +2,14 @@
 
 class ControlPedido
 {
-	$DAOPedido=ListaPedido.getInstance();
-	//$DAOPedido=BDCPedido.getInstance(); //cuando pasemos a BD
+	private $DAOProducto;
 
-	public function Nuevo
+		public function __construct()
 	{
-		//crea el objeto
-		//llama al DAO para insertarlo
+		//$this->DAOProducto=\DAOS\listaProducto::getInstance();
+		$this->DAOProducto=\DAOS\ProductosDAO::getInstance(); //cuando pasemos a BD
 		
-		$DAOPedido->Insertar(objetoCreado)
 	}
-
-	 public function getTipoDeCerveza()
-    {
-    	ControlGestionTipoCerveza=new ControlGestionTipoCerveza();
-
-        return ControlGestionTipoCerveza.getTipoDeCerveza();
-    }
 
 }
 ?>
