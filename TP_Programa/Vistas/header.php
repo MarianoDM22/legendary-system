@@ -26,7 +26,7 @@
       <div class="container">
         <img class="img-fluid" src="images/" alt="">
         <div class="intro-text">
-          <span class="name">BeeRecharge</span>
+          <span class="name">BeeRecharge MDQ</span>
           <hr class="star-light">
         </div>
       </div>

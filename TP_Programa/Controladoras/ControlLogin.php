@@ -113,7 +113,7 @@
 			if (isset($_SESSION['Login']) )//entra si existe la session
 			{	
     			unset($_SESSION["Login"]);
-    			echo '<script language="javascript">alert("LogOut correcto !");</script>';
+    			
     			$this->index();
 			}
 

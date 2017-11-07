@@ -3,6 +3,7 @@
 
 
 use Modelos\Producto as Producto;
+use Exception as Exception;
 
 
 
@@ -151,6 +152,7 @@ class ControlGestionProducto
 		$tipo_cerveza=$_POST ['TipoCerveza'];
 		$capacidad=$_POST['capacidad'];
 		$factor=$_POST['factor'];
+
 		//$imagen=$_FILES['fileToUpload'];
 
 		if((isset($_FILES['fileToUpload'])) && ($_FILES['fileToUpload']['name'] != ''))
@@ -176,10 +178,9 @@ class ControlGestionProducto
 						{	//guarda el archivo subido en el directorio 'images/' tomando true si lo subio, y false si no lo hizo
 							$imagen = str_replace("../", "", $file); 
 							//crea el objeto
-							var_dump($_POST['id']);
-							var_dump($capacidad);
 	    					$object = $this->DAOProducto->buscarPorID($_POST['id']);
-					   		$object->setDescripcion($desc);
+	    					
+	    					$object->setDescripcion($desc);
 					   		$object->setMTiposDeCerveza($tipo_cerveza);
 					   		$object->setCapacidad($capacidad);
 					   		$object->setFactor($factor);
@@ -187,8 +188,7 @@ class ControlGestionProducto
 					   		$object->setImagen($imagen);
 
 					   		//LLAMA A ACTUALIZAR
-							$buscado=$this->DAOProducto->buscarPorID($_POST['id']);
-	    				
+							$buscado=$this->DAOProducto->buscarPorID($_POST['id']);    				
 
 	    					if ($buscado!=null)
 	    					{	
