@@ -51,12 +51,12 @@
                           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#">Mi Cuenta</a>
                             <a class="dropdown-item" href="#">Mis Ordenes</a>
-                            <a class="dropdown-item nav-link" data-toggle="modal" data-target="#changeModal">
+                            <a class="dropdown-item " data-toggle="modal" data-target="#changeModal">
                               <i class=""></i>Cambiar Contraseña</a>
 
                             <div class="dropdown-divider"></div>
 
-                            <a class="dropdown-item nav-link" data-toggle="modal" data-target="#logoutModal"
+                            <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal"
                               >LogOut</a>
                           </div>
                         </li>

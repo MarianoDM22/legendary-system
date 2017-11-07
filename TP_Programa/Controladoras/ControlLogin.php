@@ -11,7 +11,8 @@
 		{
 			//$this->DAOTipoCerveza=\DAOS\listaTipoCerveza::getInstance();
 			$this->DAOLogin=\DAOS\LoginDAO::getInstance(); //cuando pasemos a BD
-			
+			//$this->DAOProducto=\DAOS\ProductosDAO::getInstance();
+			//$this->DAOTipoCerveza=\DAOS\TiposDeCervezasDAO::getInstance();
 			
 		}	
 

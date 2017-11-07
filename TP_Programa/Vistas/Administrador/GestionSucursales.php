@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- No viene de bootstrap -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Gestion_Producto</title>
+    <title>Gestion_Sucursales</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
@@ -22,38 +22,34 @@
   <body>
 
   	<?php require("nav.php"); ?>
-
+  	
   	<header class="bg-primary">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h1>Gestión Productos</h1>
+					<h1>Gestión Sucursales</h1>
 				</div>
 			</div>
 		</div>
 	</header>
 
-
-
 	<div class="container">
 		<div class="row">
-			<section class="col-md-10">
-				<h2>Productos</h2>
+			<section class="col-md-8">
+				<h2>Sucursales</h2>
 
-
-			
 				<!-- Button trigger modal -->
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-insc">
-				  Nuevo Producto
+				  Nueva Sucursal
 				</button>
 
-				<!-- Modal Producto-->
+				<!-- Modal Nueva Sucursal-->
 				<div class="modal fade" id="modal-insc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">		  
-					<div class="modal-dialog " role="document">
+					<div class="modal-dialog" role="document">
 					    <div class="modal-content">
-					      	<form action="<?= ROOT_VIEW ?>/GestionProducto/nuevo" method="post" enctype="multipart/form-data">
+					      	<form action= "<?= ROOT_VIEW ?> /GestionSucursal/nuevo" method="post" enctype="multipart/form-data">
 						      	<div class="modal-header">
-							        <h5 class="modal-title">Nuevo Producto</h5>
+							        <h5 class="modal-title">Nueva Sucursal</h5>
 							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							          	<span aria-hidden="true">&times;</span>
 							        </button>
@@ -62,82 +58,67 @@
 									<div class="container-fluid">
 										<div class="row">
 											<div class="col-md-11">
-												<label>Descripción: </label>
-												<input type="text" name="descripcion" class="form-control" /><br>
-												<label>Tipo de Cerveza: </label><br>
-												<select name="TipoCerveza" class="custom-select">
-													<option  disabled>Seleccione el Tipo de Cerveza...</option>
-													<?php 
-													foreach ($cervezas as $key => $value) { ?>
-														<option value="<?= $value->getId();  ?>"><?= $value->getDescripcion();  ?></option>
-													<?php } ?>
-												</select><br><br>
-													<div class="row">
-														<div class="col-sm-6">
-															<label>Capacidad en Litros: </label>
-															<input type="text" name="capacidad" class="form-control" />
-														</div>
-														<div class="col-sm-6">
-															<label>Factor: </label>
-															<input type="text" name="factor" class="form-control" /><br>
-														</div>	
+												<label>Nombre: </label>
+												<input type="text" name="nombre" class="form-control" /><br>
+												<label>Direccion: </label>
+												<input type="text" name="direccion" class="form-control" /><br>
+												<div class="row">
+													<div class="col-sm-6">
+														<label>Latitud: </label>
+														<input type="text" name="latitud" class="form-control" />
 													</div>
-												<label>Imagen: </label>
-												<input type="file" name="fileToUpload" id="fileToUpload" class="form-control" required="required"><br>
+													<div class="col-sm-6">
+														<label>Longitud: </label>
+														<input type="text" name="longitud" class="form-control" /><br>
+													</div>	
+												</div>
 											</div>
 										</div>	
-									</div>
+									</div>			
 								</div>
 								<div class="modal-footer">
-								        <input type="submit" name="guardar" class="btn btn-default" value="Guardar">
+								        <input type="submit"  class="btn btn-default" value="Guardar" name="upload">
 								        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 							    </div>
 						 	 </form>
 					    </div>
 				  	</div>
 				</div>
-
 				<!-- Fin Modal -->
-
 
 
 					<table class="table table-bordered table-responsive">
 						<thead class="thead-inverse">
 							<tr>
 								<th>Id</th>
-								<th>Descripcion</th>
-								<th>Cerveza</th>
-								<th>Capacidad en Litros</th>
-								<th>Factor</th>
-								<th>Precio</th>
-								<th>Imagen</th>
+								<th>Nombre</th>
+								<th>Direccion</th>
+								<th colspan="2">Coordenadas</th>
 								<th colspan="2">Opciones</td>
 							</tr>
 						</thead>
 						<tbody>
-							<?php 
-									foreach ($producto as $key => $value) { ?>
+							<?php
+
+									foreach ($cervezas  as $key => $value) { ?>
 								
 									<tr>
 										<td><?= $value->getId(); ?></td>
-										<td><?= $value->getDescripcion(); ?></td>
-										<td><?= $value->getMTiposDeCerveza(); ?></td>
-										<td><?= $value->getCapacidad(); ?></td>
-										<td><?= $value->getFactor(); ?></td>
-										<td><?= $value->getPrecio(); ?></td>
-										<td><img src="<?= "../" . $value->getImagen(); ?>" width="30"></td>
-
+										<td><?= $value->getNombre(); ?></td>
+										<td><?= $value->getDomicilio(); ?></td>
+										<td><?= $value->getLatitud(); ?></td>
+										<td><?= $value->getLongitud(); ?></td>
 										<td>
-										<!-- Boton Modal y Modal modificar-->
+											<!-- Boton Modal y Modal modificar-->
 											<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-inscp-<?= $value->getId() ?>">Modificar</button>
-										
+											
 											<div class="modal fade" id="modal-inscp-<?= $value->getId() ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 
 												<div class="modal-dialog" role="document">
 												    <div class="modal-content">
-												      	<form action="<?= ROOT_VIEW ?>/GestionProducto/modificar" method="post" enctype="multipart/form-data">
+												      	<form action="<?= ROOT_VIEW ?>/GestionSucursal/modificar" method="post" enctype="multipart/form-data">
 													      	<div class="modal-header">
-														        <h5 class="modal-title">Modificar Producto</h5>
+														        <h5 class="modal-title">Modificar Sucursal</h5>
 														        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 														          	<span aria-hidden="true">&times;</span>
 														        </button>
@@ -146,28 +127,20 @@
 																<div class="container-fluid">
 																	<div class="row">
 																		<div class="col-md-11">
-																			<label>Descripción: </label>
-																			<input type="text" name="descripcion" class="form-control" value="<?= $value->getDescripcion(); ?>" /><br>
-																			<label>Tipo de Cerveza: </label><br>
-																			<select name="TipoCerveza" class="custom-select">
-																				<option disabled>Seleccione el Tipo de Cerveza...</option>
-																				<?php 
-																				foreach ($cervezas as $key => $valor) { ?>
-																					<option value="<?= $valor->getId();  ?>"><?= $valor->getDescripcion();  ?></option>
-																				<?php } ?>
-																			</select><br><br>
-																				<div class="row">
-																					<div class="col-sm-6">
-																						<label>Capacidad en Litros: </label>
-																						<input type="text" name="capacidad" class="form-control" value="<?= $value->getCapacidad(); ?>" />
-																					</div>
-																					<div class="col-sm-6">
-																						<label>Factor: </label>
-																						<input type="text" name="factor" class="form-control" value="<?= $value->getFactor(); ?>" /><br>
-																					</div>	
+																			<label>Nombre: </label>
+																			<input type="text" name="nombre" class="form-control" value="<?= $value->getNombre(); ?>" /<br>
+																			<label>Direccion: </label>
+																			<input type="text" name="direccion" class="form-control" value="<?= $value->getDomicilio(); ?>" /<br>
+																			<div class="row">
+																				<div class="col-sm-6">
+																					<label>Latitud: </label>
+																					<input type="text" name="latitud" class="form-control" value="<?= $value->getLatitud(); ?>" />
 																				</div>
-																			<label>Imagen: </label>
-																			<input type="file" name="fileToUpload" id="fileToUpload" class="form-control" required="required"><br>
+																				<div class="col-sm-6">
+																					<label>Longitud: </label>
+																					<input type="text" name="longitud" class="form-control" value="<?= $value->getLongitud(); ?>" /><br>
+																				</div>	
+																			</div>
 																			<input type="hidden" name="id" class="form-control" value="<?= $value->getId();?>" >
 																		</div>
 																	</div>	
@@ -184,7 +157,7 @@
 											<!-- Fin Modal -->
 										</td>
 										<td>
-											<form action="<?= ROOT_VIEW ?>/GestionProducto/borrar" method="POST">
+											<form action="<?= ROOT_VIEW ?>/GestionSucursal/borrar" method="POST">
 												<input type="hidden" name="id" value="<?= $value->getId(); ?>">
 												<button type="submit" class="btn btn-primary" >Eliminar</button>
 											</form>
@@ -195,13 +168,13 @@
 						</tbody>
 					</table>
 
-
 			</section>
     	</div>
 	</div>
   	
-
 	<?php require(ROOT . "Vistas/footer.php"); ?>
+
+
 
 
 

@@ -7,7 +7,7 @@ class Pedido
 	private $estado;
 	private $fecha;
 	private $m_Cliente;
-	private $m_LineasDePedido;
+	private $m_LineasDePedido;//array
 	private $m_Envio;
 	private $m_Sucursales;
 

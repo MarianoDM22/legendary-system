@@ -107,7 +107,7 @@ class ProductosDAO extends SingletonAbstractDAO implements IDAO
 	}
 	public function buscarPorID($dato){
 		$object = null;
-
+var_dump($dato);
 		$query = 'SELECT * FROM '.$this->table.' WHERE id_producto = :id';
 
 		$pdo = new Connection();
@@ -130,7 +130,7 @@ class ProductosDAO extends SingletonAbstractDAO implements IDAO
 
 			$object->setId($row['id_producto']);	
 		}
-
+var_dump($object);
 		return $object;
 	}
 	public function borrar($dato){

@@ -111,7 +111,7 @@ class ControlGestionProducto
    	
    		$producto=$this->traerTodos();
    		$cervezas=$this->traerTodosCervezas();
-   		//$this->calcularPrecio($producto);
+   		$this->calcularPrecio($producto);
    		
    		require_once(ROOT . 'Vistas/Administrador/GestionProducto.php');
    	}
@@ -141,6 +141,7 @@ class ControlGestionProducto
 
    	public function modificar()
    	{
+
    		$imageDirectory = 'images/';
 
 		if(!file_exists($imageDirectory))
@@ -175,7 +176,8 @@ class ControlGestionProducto
 						{	//guarda el archivo subido en el directorio 'images/' tomando true si lo subio, y false si no lo hizo
 							$imagen = str_replace("../", "", $file); 
 							//crea el objeto
-							var_dump($desc);
+							var_dump($_POST['id']);
+							var_dump($capacidad);
 	    					$object = $this->DAOProducto->buscarPorID($_POST['id']);
 					   		$object->setDescripcion($desc);
 					   		$object->setMTiposDeCerveza($tipo_cerveza);
@@ -227,11 +229,12 @@ class ControlGestionProducto
    	{
    		$precio= 0;
 
-   		foreach ($producto as $key => $precio) 
+   		foreach ($producto as $key) 
    		{
-   			$precio=(($producto->getCapacidad()) * ($tipoCerveza->getPrecio_litro())) * ($producto->getFactor());
+   			$x= $this->DAOTipoCerveza->buscarPorID($key->getMTiposDeCerveza())->getPrecio_litro();
+   			$precio=(  ($key->getCapacidad() ) * $x * ($key->getFactor())  );
 
-	   		$producto->setPrecio($precio);
+	   		$key->setPrecio($precio);
    		}
    		
    	}

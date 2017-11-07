@@ -46,7 +46,7 @@
             <a class="nav-link" href="<?= ROOT_VIEW ?>/GestionProducto/index">Gestion Productos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Sucursales</a>
+            <a class="nav-link" href="<?= ROOT_VIEW ?>/GestionSucursales/index">Sucursales</a>
           </li>
         </ul>
       </div>
