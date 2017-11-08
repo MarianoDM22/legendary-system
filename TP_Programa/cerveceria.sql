@@ -76,3 +76,5 @@ primary key(id_cuenta),
 foreign key(fk_cliente) references clientes(id_cliente),
 constraint unq_cuenta_email unique (email)
 );
+
+INSERT into cuentas (email,pass,rol) VALUES ('admin@mdp','1234' , 'adm');

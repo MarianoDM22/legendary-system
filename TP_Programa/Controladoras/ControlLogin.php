@@ -70,17 +70,9 @@
 				}
 				
 				else
-				{
-					if( ($passLogin=='1234') && ($emailBuscado=='admin@mdp') )//verifica si los datos ingresados son de ADM y crea la session como rol 'adm'
-					{					
-						$cuenta=  new \Modelos\Cuenta('admin@mdp', '1234', 'adm','null');//creo objeto cuenta con datos como adm y creo la session como adm
-						$this->crearSesion($cuenta);//llamo a crear session y le paso la CUENTA de adm
-					}
-					else
-					{
+				{					
 						echo "<script> if(alert('El E-Mail ingresado no se encuentra Registrado'));</script>";
-						$this->index();
-					}					
+						$this->index();										
 									
 				}
 				
