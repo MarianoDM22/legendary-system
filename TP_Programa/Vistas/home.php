@@ -65,7 +65,7 @@
      ?>
 
         <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark flex-column flex-md-row bd-navbar bg-primary" id="mainNav">
+    <nav class="navbar navbar-expand-lg navbar-dark flex-column flex-md-row bd-navbar bg-dark" id="mainNav">
       <div class="container">
 
         <a class="navbar-brand js-scroll-trigger" href="#page-top">BeerRecharge</a>
@@ -222,11 +222,11 @@
 
                 <div class="form-group">
                   <label for="InputEmail">Direccion de Email</label>
-                  <input class="form-control" id="InputEmail" type="email" name=email aria-describedby="emailHelp" placeholder="Correo electrónico">
+                  <input class="form-control" id="InputEmail" type="email" name=email aria-describedby="emailHelp" placeholder="Correo electrónico" required>
                 </div>
                 <div class="form-group">
                   <label for="InputPassword">Contraseña</label>
-                  <input class="form-control" id="InputPassword" name="passLogin" type="password" placeholder="Password">
+                  <input class="form-control" id="InputPassword" name="passLogin" type="password" placeholder="Password" required>
                 </div>
                 <div class="form-group">
                   <div class="form-check">
@@ -278,11 +278,11 @@
                 <div class="form-row">
                   <div class="col-md-6">
                     <label for="InputName">Nombre</label>
-                    <input class="form-control" id="InputName" name="nombre" type="text" aria-describedby="nameHelp" placeholder="Ingrese su nombre">
+                    <input class="form-control" id="InputName" name="nombre" type="text" aria-describedby="nameHelp" placeholder="Ingrese su nombre" required>
                   </div>
                   <div class="col-md-6">
                     <label for="InputLastName">Apellido</label>
-                    <input class="form-control" id="InputLastName" name="apellido" type="text" aria-describedby="nameHelp" placeholder="Ingrese su apellido">
+                    <input class="form-control" id="InputLastName" name="apellido" type="text" aria-describedby="nameHelp" placeholder="Ingrese su apellido" required>
                   </div>
                 </div>
               </div>
@@ -290,27 +290,27 @@
                 <div class="form-row">
                   <div class="col-md-6">
                     <label for="InputAddress">Domicilio</label>
-                    <input class="form-control" id="InputAddress" name="domicilio" type="text" aria-describedby="nameHelp" placeholder="Ingrese su domicilio">
+                    <input class="form-control" id="InputAddress" name="domicilio" type="text" aria-describedby="nameHelp" placeholder="Ingrese su domicilio" required>
                   </div>
                   <div class="col-md-6">
                     <label for="InputTel">Teléfono</label>
-                    <input class="form-control" id="InputTel" name="telefono" type="text" aria-describedby="nameHelp" placeholder="Ingrese su teléfono">
+                    <input class="form-control" id="InputTel" name="telefono" type="text" aria-describedby="nameHelp" placeholder="Ingrese su teléfono" required>
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <label for="InputEmail1">Direccion de Email</label>
-                <input class="form-control" id="InputEmail1" name="email" type="email" aria-describedby="emailHelp" placeholder="Correo electrónico">
+                <input class="form-control" id="InputEmail1" name="email" type="email" aria-describedby="emailHelp" placeholder="Correo electrónico" required>
               </div>
               <div class="form-group">
                 <div class="form-row">
                   <div class="col-md-6">
                     <label for="InputPassword1">Contraseña</label>
-                    <input class="form-control" id="InputPassword1" name="pass1" type="password" placeholder="Password">
+                    <input class="form-control" id="InputPassword1" name="pass1" type="password" placeholder="Password" required>
                   </div>
                   <div class="col-md-6">
                     <label for="ConfirmPassword">Confirme su Contraseña</label>
-                    <input class="form-control" id="ConfirmPassword" name="pass2" type="password" placeholder="Confirme password">
+                    <input class="form-control" id="ConfirmPassword" name="pass2" type="password" placeholder="Confirme password" required>
                   </div>
                 </div>
               </div>
@@ -361,7 +361,7 @@
 
                 <div class="form-group">
                   <label for="InputReEmail">Direccion de Email</label>
-                  <input class="form-control" id="InputReEmail" type="email" aria-describedby="emailHelp" placeholder="Ingrese su correo electrónico">
+                  <input class="form-control" id="InputReEmail" type="email" aria-describedby="emailHelp" placeholder="Ingrese su correo electrónico" required>
                 </div>
                 
              

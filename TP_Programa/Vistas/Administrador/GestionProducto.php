@@ -23,7 +23,7 @@
 
   	<?php require("nav.php"); ?>
 
-  	<header class="bg-primary">
+  	<header class="bg-dark"">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
@@ -63,7 +63,7 @@
 										<div class="row">
 											<div class="col-md-11">
 												<label>Descripción: </label>
-												<input type="text" name="descripcion" class="form-control" /><br>
+												<input type="text" name="descripcion" class="form-control" required><br>
 												<label>Tipo de Cerveza: </label><br>
 												<select name="TipoCerveza" class="custom-select">
 													<option  disabled>Seleccione el Tipo de Cerveza...</option>
@@ -75,11 +75,11 @@
 													<div class="row">
 														<div class="col-sm-6">
 															<label>Capacidad en Litros: </label>
-															<input type="text" name="capacidad" class="form-control" />
+															<input type="text" name="capacidad" class="form-control" required>
 														</div>
 														<div class="col-sm-6">
 															<label>Factor: </label>
-															<input type="text" name="factor" class="form-control" /><br>
+															<input type="text" name="factor" class="form-control" required><br>
 														</div>	
 													</div>
 												<label>Imagen: </label>
@@ -147,7 +147,7 @@
 																	<div class="row">
 																		<div class="col-md-11">
 																			<label>Descripción: </label>
-																			<input type="text" name="descripcion" class="form-control" value="<?= $value->getDescripcion(); ?>" /><br>
+																			<input type="text" name="descripcion" class="form-control" value="<?= $value->getDescripcion(); ?>" required><br>
 																			<label>Tipo de Cerveza: </label><br>
 																			<select name="TipoCerveza" class="custom-select">
 																				<option disabled>Seleccione el Tipo de Cerveza...</option>
@@ -159,11 +159,11 @@
 																				<div class="row">
 																					<div class="col-sm-6">
 																						<label>Capacidad en Litros: </label>
-																						<input type="text" name="capacidad" class="form-control" value="<?= $value->getCapacidad(); ?>" />
+																						<input type="text" name="capacidad" class="form-control" value="<?= $value->getCapacidad(); ?>" required>
 																					</div>
 																					<div class="col-sm-6">
 																						<label>Factor: </label>
-																						<input type="text" name="factor" class="form-control" value="<?= $value->getFactor(); ?>" /><br>
+																						<input type="text" name="factor" class="form-control" value="<?= $value->getFactor(); ?>" required><br>
 																					</div>	
 																				</div>
 																			<label>Imagen: </label>

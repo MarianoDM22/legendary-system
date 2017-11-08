@@ -23,7 +23,7 @@
 
   	<?php require("nav.php"); ?>
   	
-  	<header class="bg-primary">
+  	<header class="bg-dark"">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
@@ -59,17 +59,17 @@
 										<div class="row">
 											<div class="col-md-11">
 												<label>Nombre: </label>
-												<input type="text" name="nombre" class="form-control" /><br>
+												<input type="text" name="nombre" class="form-control" required><br>
 												<label>Direccion: </label>
-												<input type="text" name="direccion" class="form-control" /><br>
+												<input type="text" name="direccion" class="form-control" required><br>
 												<div class="row">
 													<div class="col-sm-6">
 														<label>Latitud: </label>
-														<input type="text" name="latitud" class="form-control" />
+														<input type="text" name="latitud" class="form-control" required>
 													</div>
 													<div class="col-sm-6">
 														<label>Longitud: </label>
-														<input type="text" name="longitud" class="form-control" /><br>
+														<input type="text" name="longitud" class="form-control" required><br>
 													</div>	
 												</div>
 											</div>
@@ -128,17 +128,17 @@
 																	<div class="row">
 																		<div class="col-md-11">
 																			<label>Nombre: </label>
-																			<input type="text" name="nombre" class="form-control" value="<?= $value->getNombre(); ?>" /<br>
+																			<input type="text" name="nombre" class="form-control" value="<?= $value->getNombre(); ?>" required><br>
 																			<label>Direccion: </label>
-																			<input type="text" name="direccion" class="form-control" value="<?= $value->getDomicilio(); ?>" /<br>
+																			<input type="text" name="direccion" class="form-control" value="<?= $value->getDomicilio(); ?>" required><br>
 																			<div class="row">
 																				<div class="col-sm-6">
 																					<label>Latitud: </label>
-																					<input type="text" name="latitud" class="form-control" value="<?= $value->getLatitud(); ?>" />
+																					<input type="text" name="latitud" class="form-control" value="<?= $value->getLatitud(); ?>" required>
 																				</div>
 																				<div class="col-sm-6">
 																					<label>Longitud: </label>
-																					<input type="text" name="longitud" class="form-control" value="<?= $value->getLongitud(); ?>" /><br>
+																					<input type="text" name="longitud" class="form-control" value="<?= $value->getLongitud(); ?>" required><br>
 																				</div>	
 																			</div>
 																			<input type="hidden" name="id" class="form-control" value="<?= $value->getId();?>" >

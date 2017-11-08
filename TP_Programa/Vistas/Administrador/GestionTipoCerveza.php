@@ -23,7 +23,7 @@
 
   	<?php require("nav.php"); ?>
   	
-  	<header class="bg-primary">
+  	<header class="bg-dark"">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
@@ -59,9 +59,9 @@
 										<div class="row">
 											<div class="col-md-11">
 												<label>Descripción: </label>
-												<input type="text" name="descripcion" class="form-control" /><br>
+												<input type="text" name="descripcion" class="form-control" required><br>
 												<label>Precio/litro: </label>
-												<input type="number" name="precio" class="form-control" /><br>
+												<input type="number" name="precio" class="form-control" required><br>
 												<label>Imagen: </label>
 												<input type="file" name="fileToUpload" id="fileToUpload" class="form-control" required="required"><br>
 											</div>
@@ -119,9 +119,9 @@
 																	<div class="row">
 																		<div class="col-md-11">
 																			<label>Descripción: </label>
-																			<input type="text" name="descripcion" class="form-control" value="<?= $value->getDescripcion(); ?>" /><br>
+																			<input type="text" name="descripcion" class="form-control" value="<?= $value->getDescripcion(); ?>" required><br>
 																			<label>Precio/litro: </label>
-																			<input type="number" name="precio" class="form-control" value="<?= $value->getPrecio_Litro(); ?>"/><br>
+																			<input type="number" name="precio" class="form-control" value="<?= $value->getPrecio_Litro(); ?>" required><br>
 																			<label>Imagen: </label>
 																			<input type="file" name="fileToUpload" id="fileToUpload" class="form-control" required="required"><br>
 																			<input type="hidden" name="id" class="form-control" value="<?= $value->getId();?>" >

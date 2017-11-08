@@ -1,15 +1,30 @@
 <?php namespace Controladoras;
 
-class ControlPedido
-{
-	private $DAOProducto;
 
-		public function __construct()
+
+	class ControlPedido
 	{
-		//$this->DAOProducto=\DAOS\listaProducto::getInstance();
-		$this->DAOProducto=\DAOS\ProductosDAO::getInstance(); //cuando pasemos a BD
-		
-	}
+		private $DAOPedido;
 
-}
+			public function __construct()
+		{
+			
+			$this->DAOPedido=\DAOS\PedidosDAO::getInstance(); 
+			
+		}
+
+
+		public function index() 
+		{
+			
+			
+			require_once(ROOT . '/Vistas/Cliente/checkoutCliente.php');
+		}
+
+
+		public function borrar()
+	   	{
+	   		$this->DAOPedido->borrar($_POST['id']);
+	   	}
+	}
 ?>

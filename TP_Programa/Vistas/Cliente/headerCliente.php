@@ -26,7 +26,7 @@
 
         <!-- Header -->
     <header>
-      <div class="bg-primary">
+      <div class="bg-dark">
         <div class="container-fluid">
           <div class="row">
             
@@ -36,7 +36,7 @@
             </div>
           
             <div class="col-lg-6 col-sm-4">
-              <nav class="navbar navbar-expand-lg navbar-dark flex-column flex-md-row bd-navbar">
+              <nav class="navbar navbar-expand-sm navbar-dark bg-dark flex-column flex-md-row bd-navbar">
                 <a class="navbar-brand" href="#"><img src="" width="30" height="30" alt=""></a>
                   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -86,7 +86,7 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <div class="modal-body">Selecione "Logout" si está listo para finalizar su seción.</div>
+          <div class="modal-body">Selecione "Logout" si está listo para finalizar su sesión.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
             <a class="btn btn-primary" href="<?= ROOT_VIEW ?>/Login/cerrarSesion">Logout</a>
@@ -127,9 +127,16 @@
                         <td><?= $value->getDescripcion(); ?></td>
                         <td><img src="<?= "../" . $value->getImagen(); ?>" width="30"></td>
                         <td><?= $value->getPrecio(); ?></td>
-                        <td><select class="" name="qty"></select></td>
+                        <td> 
+                          <select class="custom-select" name="qty">
+                            <option> 1 </option>
+                            <option> 2 </option>
+                            <option> 3 </option>
+                            <option> 4 </option>
+                          </select>
+                        </td>
                         <td>
-                          <form action="<?= ROOT_VIEW ?>//borrar" method="POST">
+                          <form action="<?= ROOT_VIEW ?>/ /borrar" method="POST">
                             <input type="hidden" name="id" value="<?= $value->getId(); ?>">
                             <button type="submit" class="btn btn-primary">Eliminar</button>
                           </form>
@@ -140,9 +147,10 @@
               </table>      
           </div>
           <div class="modal-footer center-block">
+            
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Update</button>
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-            <a class="btn btn-primary" href="<?= ROOT_VIEW ?>/checkout/index">CheckOut</a>
+            <a class="btn btn-primary" href="<?= ROOT_VIEW ?>/Pedido/index">CheckOut</a>
           </div>
         </div>
       </div>

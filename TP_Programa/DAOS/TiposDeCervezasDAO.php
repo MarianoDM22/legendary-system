@@ -142,10 +142,7 @@ class TiposDeCervezasDAO extends SingletonAbstractDAO implements IDAO
 		$command->bindParam(':imagen', $imagen);
 		$command->bindParam(':id', $id);
 
-		if($command->execute())
-			echo 'la query funciono';
-		else
-			echo "la query no funciono";
+		$command->execute();
 	}
 	public function traerTodos(){
 		$objects = array();

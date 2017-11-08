@@ -26,6 +26,7 @@ class LineasDePedido
         $this->id = $id;
     }
 
+
     public function getCantidad()
     {
         return $this->cantidad;
