@@ -72,24 +72,18 @@
          <!-- fin slider-->
 
 
-          <!-- aca se comienzan a listar los productos -->
-          
-            <div class="row">
-              <div class="col-lg-12"> 
-                <div class="card-deck ">
+          <!-- aca se comienzan a listar los productos -->            
+              
+                <div class="card-deck">
                   <?php 
-                      foreach ($producto as $key => $value) { ?>
-                       
+                    foreach ($producto as $key => $value) { ?>
+                      <div class="p-4 align-self-center col-md-4"> 
                         <div class="card bg-light text-center">
                           <form action= "<?= ROOT_VIEW ?> /" method="post" enctype="multipart/form-data" class="addToCart">
-
                             <a href=""><img src="<?= "../" . $value->getImagen(); ?>" width="50"></a>
-
                               <div class="card-body">
                                   <h4 class="card-title"><a href=" "><?= $value->getDescripcion(); ?></a></h4>
-
-                                  <div class="precioProducto"><h5><?= $value->getPrecio(); ?></h5></div>
-
+                                  <h5 class="card-subtitle"> <?= $value->getPrecio(); ?></h5>
                                   <div class="center-block">
                                     <select class="custom-select" name="qty">
                                       <option> 1 </option>
@@ -97,19 +91,15 @@
                                       <option> 3 </option>
                                       <option> 4 </option>
                                     </select>
-
                                     <input class="btn btn-primary" name="botonAgregar" type="submit" value="Agregar">
                                   </div>
                               </div>
-     
                           </form>
                         </div>
-                        
+                      </div>     
                   <?php } ?>
                 </div>
-              </div>
-            </div> 
-
+             
           <!-- fin listado de productos -->
 
         </div>

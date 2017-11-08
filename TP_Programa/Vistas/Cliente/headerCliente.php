@@ -16,13 +16,13 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <!-- Font Awesome-->
-    <link href="<?= ROOT ?>/Vistas/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
      <!-- Mi CSS -->
     <link href="css/estilos.css" type="text/css" rel="stylesheet">
 
   </head>
   <body>
-    <i class="fa fa-check-square" aria-hidden="true"></i>
+    
 
         <!-- Header -->
     <header>
@@ -36,37 +36,37 @@
             </div>
           
             <div class="col-lg-6 col-sm-4">
-              <nav class="navbar navbar-expand-sm navbar-dark bg-dark flex-column flex-md-row bd-navbar">
-                <a class="navbar-brand" href="#"><img src="" width="30" height="30" alt=""></a>
-                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button> 
+              <nav class="navbar navbar-expand-md navbar-dark bg-dark bd-navbar">
+                <div class="container">
+                  <a class="navbar-brand" href="#"><i class="fa d-inline fa-lg fa-cloud"></i><b>&nbsp;Beer Recharge</b></a>
+                    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button> 
 
-                    <div class="collapse navbar-collapse" id="navbarNav" >
-                      <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              User
-                          </a>
-                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Mi Cuenta</a>
-                            <a class="dropdown-item" href="#">Mis Ordenes</a>
-                            <a class="dropdown-item " data-toggle="modal" data-target="#changeModal">
-                              <i class=""></i>Cambiar Contraseña</a>
+                      <div class="collapse navbar-collapse text-center justify-content-end" id="navbarNav" >
+                        <ul class="navbar-nav">
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa d-inline fa-lg fa-user-circle-o"></i>&nbsp;</a>  
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="#">Mi Cuenta</a>
+                              <a class="dropdown-item" href="#">Mis Ordenes</a>
+                              <a class="dropdown-item " data-toggle="modal" data-target="#changeModal">
+                                <i class=""></i>Cambiar Contraseña</a>
 
-                            <div class="dropdown-divider"></div>
+                              <div class="dropdown-divider"></div>
 
-                            <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal"
-                              >LogOut</a>
-                          </div>
-                        </li>
+                              <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal"
+                                >LogOut</a>
+                            </div>
+                          </li>
 
-                        <li class="nav-item">
-                          <a class="nav-link" data-toggle="modal" data-target="#checkoutModal">
-                            <i class=""></i>CheckOut</a>
-                        </li>
-                      </ul>
-                    </div>   
+                          <li class="nav-item">
+                            <a class="nav-link" data-toggle="modal" data-target="#checkoutModal">
+                              <i class=""></i>CheckOut</a>
+                          </li>
+                        </ul>
+                      </div>   
+                </div>      
               </nav>
             </div>
           
