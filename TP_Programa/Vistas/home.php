@@ -1,37 +1,83 @@
-<?php namespace Vistas;
+<?php
 
 
- ?>
+
+
+?>
+
 
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- No viene de bootstrap -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<html>
 
-    <title>BeerRecharge</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-beta.1.css" type="text/css"> 
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <!-- Font Awesome-->
-    <link href="font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-     <!-- Mi CSS -->
-    <link href="css/estilos.css" type="text/css" rel="stylesheet">
-
-    <!-- Google Maps Key y URL -->
+  <!-- Google Maps Key y URL -->
     <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=AIzaSyA8zxt5WxVz1tas7WyeLebU0d2gyL4DYOs" type="text/javascript"></script>     
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8zxt5WxVz1tas7WyeLebU0d2gyL4DYOs&callback=initMap">
     </script> 
-    
 
-  </head>
+  <!-- Background transparenteL -->
+    <style>
+      div.background 
+      {
+        background: url(klematis.jpg) repeat;
+        border: 0px ;
+      }
 
-  <body id="page-top">
+      div.transbox 
+      {
+        margin: 10px;
+        background-color: #ffffff;
+        border: 1px solid black;
+        opacity: 0.6;
+        filter: alpha(opacity=60); /* For IE8 and earlier */
+      }
 
-    <!-- Funcion Google Maps-->
+      div.transbox p 
+      {
+        margin: 5%;
+        font-weight: bold;
+        color: #000000;
+      }
+    </style>
+    <!--  -->
+
+
+
+
+</head>
+
+<body>
+
+
+  <!-- INICIO HEADER  -->
+  <nav class="navbar navbar-expand-md bg-primary navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#"><i class="fa d-inline fa-lg fa-cloud"></i><b>&nbsp;Beer Recharge</b></a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+      <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fa d-inline fa-lg fa-bookmark-o"></i> Contactenos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href= "<?= ROOT_VIEW ?>/Login/cerrarSesion"><i class="fa d-inline fa-lg fa-envelope-o"></i>&nbsp;LogOut</a>
+          </li>
+        </ul>
+        <a class="btn navbar-btn ml-2 text-white btn-secondary" data-toggle="modal" href="#loginModal">
+        <i class="fa d-inline fa-lg fa-user-circle-o"></i>&nbsp; Iniciar Sesion</a>
+      </div>
+    </div>
+  </nav><!-- fin header  -->
+
+
+  <!-- Funcion Google Maps-->
     <script>
     
       function initMap() {
@@ -58,155 +104,136 @@
       }
       
     </script>
+  <!-- FIN Funcion Google Maps-->
 
-    <?php //var_dump($_SESSION['Login']);
 
+  <!-- INICIO MUESTRARIO CERVEZAS  -->
+   
+  <div class="p-5 bg-primary opaque-overlay" style="background-image: url(&quot;../images/fondoHome.jpg&quot;);">
+    <div class="container">
+      <div class="row">
 
-     ?>
-
-        <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark flex-column flex-md-row bd-navbar bg-dark" id="mainNav">
-      <div class="container">
-
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">BeerRecharge</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fa fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <!--
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
-            </li>
-          -->
-
-          </ul>
-
-          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-            <li class="nav-item justify-content-end">
-              <a class="nav-link" data-toggle="modal" data-target="#loginModal">
-                <i class="fa fa-fw fa-sign-in"></i>LogIn/Regístrese</a>
-            </li>
-          </ul>
-
-          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-            <li class="nav-item justify-content-end">
-              <a class="nav-link" data-toggle="modal" data-target="#logOutModal">
-                <i class="fa fa-fw fa-sign-in"></i>LogOut</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-    </nav>
-     <!-- Logout Modal-->
-    <div class="modal fade" id="logOutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Cerrar Seción?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">Selecione "Logout" si está listo para finalizar su seción.</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-            <a class="btn btn-primary" href="<?= ROOT_VIEW ?>/Login/cerrarSesion">Logout</a>
+        <div class="p-4 align-self-center col-md-4">
+          <div class="card background">
+            <img src="../images/porter.jpg" class="img-responsive" style="width:100%" alt="Image ">
+            <div class="card-block p-2">
+              <div class="panel-body ">                
+              </div>
+                <div class="p-1 col-md-4">                
+                      <select>
+                        <option value="volvo">Botellon 2L</option>
+                        <option value="saab">Botella 1L</option>
+                        <option value="mercedes">Lata 0,473L</option>
+                        <option value="audi">Barril 50L</option>
+                      </select>                  
+                    </div>               
+              <a href="#" class="btn btn-dark">Agregar al carrito</a>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- Fin Logout Modal-->
 
-
-    
-
-
-     <!-- About Section -->
-    <section class="success" id="about">
-      <div class="container">
-        <h2 class="text-center">Nosotros</h2>
-        <hr class="star-light">
-        <div class="row">
-          <div class="col-lg-4 ml-auto">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sapien magna, commodo ac arcu consectetur, porttitor maximus ligula. Praesent ac ex condimentum ligula auctor scelerisque id eu ligula. Quisque semper nisl eget cursus lacinia. Nullam nisl augue, elementum id justo vitae, accumsan vehicula dolor. Morbi quis volutpat lacus, at ullamcorper nisl. Pellentesque maximus enim est. Sed non turpis risus.</p>
-          </div>
-          <div class="col-lg-4 mr-auto">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sapien magna, commodo ac arcu consectetur, porttitor maximus ligula. Praesent ac ex condimentum ligula auctor scelerisque id eu ligula. Quisque semper nisl eget cursus lacinia. Nullam nisl augue, elementum id justo vitae, accumsan vehicula dolor. Morbi quis volutpat lacus, at ullamcorper nisl. Pellentesque maximus enim est. Sed non turpis risus.</p>
+        <div class="p-4 align-self-center col-md-4">
+          <div class="card background">
+            <img src="../images/scotch.jpg" class="img-responsive" style="width:100%" alt="Image">
+            <div class="card-block p-2 ">
+              <div class="panel-body">                
+              </div>
+                <div class="p-1 col-md-4">                
+                      <select>
+                        <option value="volvo">Botellon 2L</option>
+                        <option value="saab">Botella 1L</option>
+                        <option value="mercedes">Lata 0,473L</option>
+                        <option value="audi">Barril 50L</option>
+                      </select>                  
+                    </div>               
+              <a href="#" class="btn btn-dark">Agregar al carrito</a>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
 
-
-        <!-- Contact Section -->
- <!--
-    <section id="contact">
-      <div class="container">
-        <h2 class="text-center">Contáctanos/h2>
-        <hr class="star-primary">
-        <div class="row">
-          <div class="col-lg-8 mx-auto">
-          
-            <form name="sentMessage" id="contactForm" novalidate>
-              <div class="control-group">
-                <div class="form-group floating-label-form-group controls">
-                  <label>Nombre</label>
-                  <input class="form-control" id="name" type="text" placeholder="Name" required data-validation-required-message="Please enter your name.">
-                  <p class="help-block text-danger"></p>
-                </div>
+        <div class="p-4 align-self-center col-md-4">
+          <div class="card background">
+            <div class="panel-body"><img src="../images/honey-beer.jpg" class="img-responsive" style="width:100%" alt="Image">
+            <div class="card-block p-2">            
               </div>
-              <div class="control-group">
-                <div class="form-group floating-label-form-group controls">
-                  <label>Dirección de Email</label>
-                  <input class="form-control" id="email" type="email" placeholder="Email Address" required data-validation-required-message="Please enter your email address.">
-                  <p class="help-block text-danger"></p>
-                </div>
-              </div>
-              <div class="control-group">
-                <div class="form-group floating-label-form-group controls">
-                  <label>Número de Teléfono</label>
-                  <input class="form-control" id="phone" type="tel" placeholder="Phone Number" required data-validation-required-message="Please enter your phone number.">
-                  <p class="help-block text-danger"></p>
-                </div>
-              </div>
-              <div class="control-group">
-                <div class="form-group floating-label-form-group controls">
-                  <label>Mensage</label>
-                  <textarea class="form-control" id="message" rows="5" placeholder="Message" required data-validation-required-message="Please enter a message."></textarea>
-                  <p class="help-block text-danger"></p>
-                </div>
-              </div>
-              <br>
-              <div id="success"></div>
-              <div class="form-group">
-                <button type="submit" class="btn btn-success btn-lg" id="sendMessageButton">Enviar</button>
-              </div>
-            </form>
+                <div class="p-1 col-md-4">                
+                    <select>
+                      <option value="volvo">Botellon 2L</option>
+                      <option value="saab">Botella 1L</option>
+                      <option value="mercedes">Lata 0,473L</option>
+                      <option value="audi">Barril 50L</option>
+                    </select>                  
+                  </div>                 
+              <a href="#" class="btn btn-dark">Agregar al carrito</a>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
 
--->
+        <div class="p-4 align-self-center col-md-4">
+          <div class="card background">
+            <div class="panel-body">
+              <img src="../images/porter.jpg" class="img-responsive" style="width:100%" alt="Image">
+            <div class="card-block p-2">              
+              </div>
+                <div class="p-1 col-md-4">                
+                  <select>
+                    <option value="volvo">Botellon 2L</option>
+                    <option value="saab">Botella 1L</option>
+                    <option value="mercedes">Lata 0,473L</option>
+                    <option value="audi">Barril 50L</option>
+                  </select>                  
+                </div>                         
+              <a href="#" class="btn btn-dark">Agregar al carrito</a>
+            </div>
+          </div>
+        </div>
 
+        <div class="p-4 align-self-center col-md-4">
+          <div class="card background">
+            <div class="panel-body"><img src="../images/kolsch.jpg" class="img-responsive" style="width:100%" alt="Image">
+            <div class="card-block p-2">              
+              </div>
+                <div class="p-1 col-md-4">                
+                      <select>
+                        <option value="volvo">Botellon 2L</option>
+                        <option value="saab">Botella 1L</option>
+                        <option value="mercedes">Lata 0,473L</option>
+                        <option value="audi">Barril 50L</option>
+                      </select>                  
+                    </div>               
+              <a href="#" class="btn btn-dark">Agregar al carrito</a>
+            </div>
+          </div>
+        </div>
 
+        <div class="p-4 align-self-center col-md-4">
+          <div class="card background">
+            <div class="panel-body"><img src="../images/barley-wine.jpg" class="img-responsive" style="width:100%" alt="Image">
+            <div class="card-block p-2">              
+              </div> 
+                <div class="p-1 col-md-4">                
+                      <select>
+                        <option value="volvo">Botellon 2L</option>
+                        <option value="saab">Botella 1L</option>
+                        <option value="mercedes">Lata 0,473L</option>
+                        <option value="audi">Barril 50L</option>
+                      </select>                  
+                    </div>              
+              <a href="#" class="btn btn-dark">Agregar al carrito</a>
+            </div>
+          </div>
+        </div>
 
-
- <!-- Google Maps -->
- <div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="center-block">
-        <div id="map" style="width:600px; height:250px" >     </div> 
       </div>
     </div>
   </div>
-</div>
 
-   <!-- Login Modal-->
+  <!-- FINMUESTRARIO CERVEZAS  --> 
+
+
+
+
+  <!-- Login Modal-->
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -222,20 +249,12 @@
 
                 <div class="form-group">
                   <label for="InputEmail">Direccion de Email</label>
-                  <input class="form-control" id="InputEmail" type="email" name=email aria-describedby="emailHelp" placeholder="Correo electrónico" required>
+                  <input class="form-control" id="InputEmail" type="email" name=email aria-describedby="emailHelp" placeholder="Correo electrónico">
                 </div>
                 <div class="form-group">
                   <label for="InputPassword">Contraseña</label>
-                  <input class="form-control" id="InputPassword" name="passLogin" type="password" placeholder="Password" required>
-                </div>
-                <div class="form-group">
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input class="form-check-input" type="checkbox"> Recordar Contraseña</label>
-                  </div>
-                </div>
-
-                
+                  <input class="form-control" id="InputPassword" name="passLogin" type="password" placeholder="Password">
+                </div>                
                 <input type="submit"  class="btn btn-primary btn-block" value="Login" name="upload">
             
             </div>
@@ -260,232 +279,38 @@
     </div>
     <!-- Fin Login Modal-->
 
-  
 
-    <!-- Register Modal-->
-    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <form action="<?= ROOT_VIEW ?> /Registrar/nuevo" method="post" enctype="multipart/form-data">
-            <div class="modal-header">
-              <h5 class="modal-title">Registre una cuenta</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                 <span aria-hidden="true">&times;</span>
-              </button>
+  <!-- Footer -->
+  <div class="py-2 bg-dark text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 text-center align-self-center">
+          <p class="mb-5"> <strong>Beer Recharge </strong>
+            <br>Sucursal 1: Gral. Roca 2850, Mar del PLata
+            <br>Sucursal 2: Olavarria 6580, Mar del PLata            
+            <br>
+            <br>Seguinos!
+          <div class="my-3 row">
+            <div class="col-4">
+              <a href="https://www.facebook.com" target="_blank"><i class="fa fa-3x fa-facebook"></i></a>
             </div>
-            <div class="modal-body">
-              <div class="form-group">
-                <div class="form-row">
-                  <div class="col-md-6">
-                    <label for="InputName">Nombre</label>
-                    <input class="form-control" id="InputName" name="nombre" type="text" aria-describedby="nameHelp" placeholder="Ingrese su nombre" required>
-                  </div>
-                  <div class="col-md-6">
-                    <label for="InputLastName">Apellido</label>
-                    <input class="form-control" id="InputLastName" name="apellido" type="text" aria-describedby="nameHelp" placeholder="Ingrese su apellido" required>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="form-row">
-                  <div class="col-md-6">
-                    <label for="InputAddress">Domicilio</label>
-                    <input class="form-control" id="InputAddress" name="domicilio" type="text" aria-describedby="nameHelp" placeholder="Ingrese su domicilio" required>
-                  </div>
-                  <div class="col-md-6">
-                    <label for="InputTel">Teléfono</label>
-                    <input class="form-control" id="InputTel" name="telefono" type="text" aria-describedby="nameHelp" placeholder="Ingrese su teléfono" required>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="InputEmail1">Direccion de Email</label>
-                <input class="form-control" id="InputEmail1" name="email" type="email" aria-describedby="emailHelp" placeholder="Correo electrónico" required>
-              </div>
-              <div class="form-group">
-                <div class="form-row">
-                  <div class="col-md-6">
-                    <label for="InputPassword1">Contraseña</label>
-                    <input class="form-control" id="InputPassword1" name="pass1" type="password" placeholder="Password" required>
-                  </div>
-                  <div class="col-md-6">
-                    <label for="ConfirmPassword">Confirme su Contraseña</label>
-                    <input class="form-control" id="ConfirmPassword" name="pass2" type="password" placeholder="Confirme password" required>
-                  </div>
-                </div>
-              </div>
-              <input type="submit"  class="btn btn-primary btn-block" value="Registrese" name="upload">
-            
+            <div class="col-4">
+              <a href="https://twitter.com" target="_blank"><i class="fa fa-3x fa-twitter"></i></a>
             </div>
-            <div class="modal-footer">
-               <div class="container">
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="text-center">
-
-                      
-                      <a class="d-block small mt-3" id="loginLink" data-toggle="modal" data-target="#loginModal">Login</a>
-                       <a class="d-block small mt-3" id="forgot2Link" data-toggle="modal" data-target="#forgotModal">Olvidaste tu Contaseña?</a>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div class="col-4">
+              <a href="https://www.instagram.com" target="_blank"><i class="fa fa-3x fa-instagram"></i></a>
             </div>
-          </form>
+          </div>
         </div>
+        <div class="col-md-6 p-0">
+          <div id="map" style="width:500px; height:200px"></div> 
+          </div>
       </div>
     </div>
-    <!-- Fin Register Modal-->
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+</body>
 
-
-
-
-    <!-- Forgot Modal-->
-     <div class="modal fade" id="forgotModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <form action="<?= ROOT_VIEW ?>/Forgot/prueba" method="post" enctype="multipart/form-data">
-            <div class="modal-header">
-              <h5 class="modal-title">Reestablecer Contraseña</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                 <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-
-            <div class="modal-body">
-               <div class="text-center mt-4 mb-5">
-                <h4>Olvidaste tu Contraseña?</h4>
-                <p>Ingrese su dirección de email y te enviaremos instrucciones para que puedas reestablecer tu contraseña.</p>
-              </div>
-
-                <div class="form-group">
-                  <label for="InputReEmail">Direccion de Email</label>
-                  <input class="form-control" id="InputReEmail" type="email" aria-describedby="emailHelp" placeholder="Ingrese su correo electrónico" required>
-                </div>
-                
-             
-                <a class="btn btn-primary btn-block" href=" ">Reestablecer Contraseña</a>
-            
-            </div>
-
-            <div class="modal-footer">
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="text-center">
-
-                      <a class="d-block small mt-3" id="register2Link" data-toggle="modal" data-target="#registerModal">Registra una cuenta</a>
-
-                      <a class="d-block small mt-3" id="login2Link" data-toggle="modal" data-target="#loginModal">Login</a>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <!-- Fin Forgot Modal-->
-
-
-
-
-
-
-      <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-
-      <script>
-        $(function () {
-          $("#registerLink").on("click", function() 
-            {
-              $("#loginModal").modal("hide");
-            });
-          });
-      </script>
-
-      <script>
-        $(function () {
-          $("#forgotLink").on("click", function() 
-            {
-              $("#loginModal").modal("hide");
-            });
-          });
-      </script>
-
-      <script>
-        $(function () {
-          $("#loginLink").on("click", function() 
-            {
-              $("#registerModal").modal("hide");
-            });
-          });
-      </script>
-
-      <script>
-        $(function () {
-          $("#forgot2Link").on("click", function() 
-            {
-              $("#registerModal").modal("hide");
-            });
-          });
-      </script>
-
-      <script>
-        $(function () {
-          $("#register2Link").on("click", function() 
-            {
-              $("#forgotModal").modal("hide");
-            });
-          });
-      </script>
-
-      <script>
-        $(function () {
-          $("#login2Link").on("click", function() 
-            {
-              $("#forgotModal").modal("hide");
-            });
-          });
-      </script>
-
-
-
-      <script>
-        /*
-        var btn_log=$("#btn-log");
-
-        btn_log.on("clik", function(evento){
-          evento.preventDefault();
-
-          var usr=$("#usr").val();
-          var pass=$("#pass").val();
-
-          $.ajax({
-              url :"contoladora del log in",
-              type:"POST",
-              data: {
-                lo que espera:usr,
-                :pass,
-              },
-              beforesend:function() {
-                $("#loader-container").show();
-              },
-              success:function(rta){
-
-                alert(rta);
-                $("#loader-container").hide();
-              }
-          });
-        });
-
-      </script>
-
-  </body>
 </html>
