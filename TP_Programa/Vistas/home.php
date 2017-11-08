@@ -1,4 +1,4 @@
-<?php
+<?php namespace Vistas;
 
 
 
@@ -7,7 +7,7 @@
 
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
@@ -109,13 +109,13 @@
 
   <!-- INICIO MUESTRARIO CERVEZAS  -->
    
-  <div class="p-5 bg-primary opaque-overlay" style="background-image: url(&quot;../images/fondoHome.jpg&quot;);">
+  <div class="p-5 bg-primary opaque-overlay" style="background-image: url(&quot;http://localhost/TP_Programa/images/fondoHome.jpg&quot;);">
     <div class="container">
       <div class="row">
 
         <div class="p-4 align-self-center col-md-4">
           <div class="card background">
-            <img src="../images/porter.jpg" class="img-responsive" style="width:100%" alt="Image ">
+            <img src="http://localhost/TP_Programa/images/porter.jpg" class="img-responsive" style="width:100%" alt="Image ">
             <div class="card-block p-2">
               <div class="panel-body ">                
               </div>
@@ -134,7 +134,7 @@
 
         <div class="p-4 align-self-center col-md-4">
           <div class="card background">
-            <img src="../images/scotch.jpg" class="img-responsive" style="width:100%" alt="Image">
+            <img src="http://localhost/TP_Programa/images/scotch.jpg" class="img-responsive" style="width:100%" alt="Image">
             <div class="card-block p-2 ">
               <div class="panel-body">                
               </div>
@@ -153,7 +153,7 @@
 
         <div class="p-4 align-self-center col-md-4">
           <div class="card background">
-            <div class="panel-body"><img src="../images/honey-beer.jpg" class="img-responsive" style="width:100%" alt="Image">
+            <div class="panel-body"><img src="http://localhost/TP_Programa/images/honey-beer.jpg" class="img-responsive" style="width:100%" alt="Image">
             <div class="card-block p-2">            
               </div>
                 <div class="p-1 col-md-4">                
@@ -172,7 +172,7 @@
         <div class="p-4 align-self-center col-md-4">
           <div class="card background">
             <div class="panel-body">
-              <img src="../images/porter.jpg" class="img-responsive" style="width:100%" alt="Image">
+              <img src="http://localhost/TP_Programa/images/porter.jpg" class="img-responsive" style="width:100%" alt="Image">
             <div class="card-block p-2">              
               </div>
                 <div class="p-1 col-md-4">                
@@ -190,7 +190,7 @@
 
         <div class="p-4 align-self-center col-md-4">
           <div class="card background">
-            <div class="panel-body"><img src="../images/kolsch.jpg" class="img-responsive" style="width:100%" alt="Image">
+            <div class="panel-body"><img src="http://localhost/TP_Programa/images/kolsch.jpg" class="img-responsive" style="width:100%" alt="Image">
             <div class="card-block p-2">              
               </div>
                 <div class="p-1 col-md-4">                
@@ -208,7 +208,7 @@
 
         <div class="p-4 align-self-center col-md-4">
           <div class="card background">
-            <div class="panel-body"><img src="../images/barley-wine.jpg" class="img-responsive" style="width:100%" alt="Image">
+            <div class="panel-body"><img src="http://localhost/TP_Programa/images/barley-wine.jpg" class="img-responsive" style="width:100%" alt="Image">
             <div class="card-block p-2">              
               </div> 
                 <div class="p-1 col-md-4">                
@@ -278,6 +278,83 @@
       </div>
     </div>
     <!-- Fin Login Modal-->
+
+
+    <!-- Register Modal-->
+    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form action="<?= ROOT_VIEW ?> /Registrar/nuevo" method="post" enctype="multipart/form-data">
+            <div class="modal-header">
+              <h5 class="modal-title">Registre una cuenta</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <label for="InputName">Nombre</label>
+                    <input class="form-control" id="InputName" name="nombre" type="text" aria-describedby="nameHelp" placeholder="Ingrese su nombre" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="InputLastName">Apellido</label>
+                    <input class="form-control" id="InputLastName" name="apellido" type="text" aria-describedby="nameHelp" placeholder="Ingrese su apellido" required>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <label for="InputAddress">Domicilio</label>
+                    <input class="form-control" id="InputAddress" name="domicilio" type="text" aria-describedby="nameHelp" placeholder="Ingrese su domicilio" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="InputTel">Teléfono</label>
+                    <input class="form-control" id="InputTel" name="telefono" type="text" aria-describedby="nameHelp" placeholder="Ingrese su teléfono" required>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="InputEmail1">Direccion de Email</label>
+                <input class="form-control" id="InputEmail1" name="email" type="email" aria-describedby="emailHelp" placeholder="Correo electrónico" required>
+              </div>
+              <div class="form-group">
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <label for="InputPassword1">Contraseña</label>
+                    <input class="form-control" id="InputPassword1" name="pass1" type="password" placeholder="Password" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="ConfirmPassword">Confirme su Contraseña</label>
+                    <input class="form-control" id="ConfirmPassword" name="pass2" type="password" placeholder="Confirme password" required>
+                  </div>
+                </div>
+              </div>
+              <input type="submit"  class="btn btn-primary btn-block" value="Registrese" name="upload">
+            
+            </div>
+            <div class="modal-footer">
+               <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="text-center">
+
+                      
+                      <a class="d-block small mt-3" id="loginLink" data-toggle="modal" data-target="#loginModal">Login</a>
+                       <a class="d-block small mt-3" id="forgot2Link" data-toggle="modal" data-target="#forgotModal">Olvidaste tu Contaseña?</a>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Fin Register Modal-->
 
 
   <!-- Footer -->
