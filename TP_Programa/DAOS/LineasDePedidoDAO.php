@@ -16,7 +16,23 @@ class LineasDePedidoDAO extends SingletonAbstractDAO implements IDAO
 	private $table = 'lineasdepedido';
 
 	public function insertar($dato){
+		$query = 'INSERT INTO '.$this->table.' 
+		( cantidad , importe , fk_producto ) 
+		VALUES 
+		( :cantidad , :importe , :fk_producto )';
 
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);
+
+		$cantidad = $dato->getCantidad();
+		$importe = $dato->getImporte();
+		$fk_producto = $dato->getMProducto();
+
+		$command->bindParam(':cantidad', $cantidad);
+		$command->bindParam(':importe', $importe);
+		$command->bindParam(':fk_producto', $fk_producto);
+		$command->execute();
 	}
 	public function insertarDevolverID($dato){
 		$query = 'INSERT INTO '.$this->table.' 
