@@ -58,7 +58,7 @@ class LineasDePedidoDAO extends SingletonAbstractDAO implements IDAO
 		return $dato;
 	}
 	public function buscarPorNombre($dato){
-		
+
 	}
 	public function buscarPorID($dato){
 		$object = null;
@@ -96,7 +96,28 @@ class LineasDePedidoDAO extends SingletonAbstractDAO implements IDAO
 		$command->execute();
 	}
 	public function actualizar($dato){
+		$query= 'UPDATE '.$this->table.'
+				SET cantidad = :cantidad, 
+					importe = :importe,
+					fk_producto = :fk_producto
+				WHERE id_lineadepedido = :id';
 
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);
+
+		$id = $dato->getId();
+		$cantidad = $dato->getCantidad();
+		$importe = $dato->getImporte();
+		$fk_producto = $dato->getMProducto();
+
+
+		$command->bindParam(':cantidad', $cantidad);
+		$command->bindParam(':importe', $importe);
+		$command->bindParam(':fk_producto', $fk_producto);
+		$command->bindParam(':id', $id);
+
+		$command->execute();
 	}
 	public function traerTodos(){
 		
