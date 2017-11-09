@@ -69,7 +69,30 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 
 	}
 	public function buscarPorID($dato){
+		$object = null;
 
+		$query = 'SELECT * FROM '.$this->table.' WHERE id_cuenta = :id';
+
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);			
+
+		$command->bindParam(':id', $dato);
+		$command->execute();
+
+		while ($row = $command->fetch())
+		{
+			$email = ($row['email']);
+			$pass = ($row['pass']);
+			$rol = ($row['rol']);
+			$fk_cliente = ($row['fk_cliente']);
+
+			$object = new \Modelos\Producto($email,$pass,$rol,$fk_cliente);
+
+			$object->setId($row['id_cuenta']);	
+		}
+
+		return $object;
 	}
 	public function borrar($dato){
 
