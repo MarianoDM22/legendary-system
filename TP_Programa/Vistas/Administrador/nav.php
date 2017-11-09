@@ -20,6 +20,7 @@
 
   </head>
   <body>
+
   	<nav class="navbar navbar-expand-lg navbar-dark flex-column flex-md-row bd-navbar bg-dark">
       <a class="navbar-brand" href="#"><img src="" width="30" height="30" alt=""></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,7 +30,7 @@
         <ul class="navbar-nav">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Ordenes
+              Gestión de Órdenes
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="#"> Solicitado</a>
@@ -40,13 +41,13 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= ROOT_VIEW ?>/GestionTipoCerveza/index">Gestion Cervezas</a>
+            <a class="nav-link" href="<?= ROOT_VIEW ?>/GestionTipoCerveza/index">Gestión Cervezas</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= ROOT_VIEW ?>/GestionProducto/index">Gestion Productos</a>
+            <a class="nav-link" href="<?= ROOT_VIEW ?>/GestionProducto/index">Gestión Productos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= ROOT_VIEW ?>/GestionSucursales/index">Sucursales</a>
+            <a class="nav-link" href="<?= ROOT_VIEW ?>/GestionSucursal/index">Gestión Sucursales</a>
           </li>
         </ul>
       </div>
@@ -81,8 +82,6 @@
       </div>
     </div>
     <!-- Fin Logout Modal-->
-
-
 
 
       <!-- Optional JavaScript -->

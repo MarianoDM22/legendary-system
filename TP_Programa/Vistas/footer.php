@@ -15,20 +15,85 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <!-- Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
      <!-- Mi CSS -->
     <link href="css/estilos.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Maps Key y URL -->
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=AIzaSyA8zxt5WxVz1tas7WyeLebU0d2gyL4DYOs" type="text/javascript"></script>     
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8zxt5WxVz1tas7WyeLebU0d2gyL4DYOs&callback=initMap">
+    </script> 
 
   </head>
   <body>
 
+  <!-- Funcion Google Maps-->
+    <script>
+    
+      function initMap() {
+        var uluru = {lat: -38, lng: -57.55};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: uluru,
+        });
+        //PRIMER MARCADOR SUCURSAL 1
+        
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+          title: 'BeerRecharge MDP Sucursal 1'
+        });
+        
+        //SEGUNDO MARCADOR SUCURSAL 2
 
-    <footer class="sticky-footer bg-dark pad-v-sm">
+        var marker2 = new google.maps.Marker({
+          position: {lat: -38.01433842017485, lng: -57.54189133644104},
+          map: map,
+          title: 'BeerRecharge MDP Sucursal 2'
+        });
+      }
+      
+    </script>
+  <!-- FIN Funcion Google Maps-->
+
+  <!-- Footer -->
+  <footer class="sticky-footer bg-dark">
+    <div class="py-2 bg-dark text-white">
       <div class="container">
-        <div class="text-center">
-          <small>Copyright © UTN 2017</small>
+        <div class="row">
+          <div class="col-md-6 text-center align-self-center">
+            <p class="mb-5"> <strong>Beer Recharge </strong>
+              <br>Sucursal 1: Gral. Roca 2850, Mar del PLata
+              <br>Sucursal 2: Olavarria 6580, Mar del PLata            
+              <br>
+              <br>Seguinos!
+            <div class="my-3 row">
+              <div class="col-4">
+                <a href="https://www.facebook.com" target="_blank"><i class="fa fa-3x fa-facebook"></i></a>
+              </div>
+              <div class="col-4">
+                <a href="https://twitter.com" target="_blank"><i class="fa fa-3x fa-twitter"></i></a>
+              </div>
+              <div class="col-4">
+                <a href="https://www.instagram.com" target="_blank"><i class="fa fa-3x fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 p-0">
+            <div id="map" style="width:500px; height:200px"></div> 
+          </div>
+        </div>
+        <div class="row">
+          <div class="text-center">
+            <small>Copyright © UTN 2017</small>
+          </div>
         </div>
       </div>
-    </footer>
+    </div>
+  </footer>  
+  <!-- fin Footer -->
 
 
      <!-- Optional JavaScript -->

@@ -26,7 +26,7 @@
   	<header class="bg-dark"">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-12 text-white">
 					<h1>Gestión Tipos de Cerveza</h1>
 				</div>
 			</div>
@@ -97,7 +97,7 @@
 									<tr>
 										<td><?= $value->getId(); ?></td>
 										<td><?= $value->getDescripcion(); ?></td>
-										<td><?= $value->getPrecio_Litro(); ?></td>
+										<td>$<?= $value->getPrecio_Litro(); ?></td>
 										<td><img src="<?= "../" . $value->getImagen(); ?>" width="30"></td>
 										<td>
 											<!-- Boton Modal y Modal modificar-->

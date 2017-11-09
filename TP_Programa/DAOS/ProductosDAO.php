@@ -148,6 +148,7 @@ class ProductosDAO extends SingletonAbstractDAO implements IDAO
 				SET descripcion = :descripcion, 
 					capacidad = :capacidad,
 					factor = :factor,
+					precio = :precio,
 					imagen = :imagen,
 					fk_tipodecerveza = :fk_tipodecerveza
 				WHERE id_producto = :id';
@@ -160,6 +161,7 @@ class ProductosDAO extends SingletonAbstractDAO implements IDAO
 		$descripcion = $dato->getDescripcion();
 		$capacidad = $dato->getCapacidad();
 		$factor = $dato->getFactor();
+		$precio = $dato->getPrecio();
 		$imagen = $dato->getImagen();
 		$fk_tipodecerveza = $dato->getMTiposDeCerveza();
 
@@ -167,6 +169,7 @@ class ProductosDAO extends SingletonAbstractDAO implements IDAO
 		$command->bindParam(':capacidad', $capacidad);
 		$command->bindParam(':descripcion', $descripcion);
 		$command->bindParam(':factor', $factor);
+		$command->bindParam(':precio', $precio);
 		$command->bindParam(':imagen', $imagen);
 		$command->bindParam(':id', $id);
 		$command->bindParam(':fk_tipodecerveza', $fk_tipodecerveza);

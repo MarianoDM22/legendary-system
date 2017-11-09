@@ -12,13 +12,14 @@ class Producto
     private $imagen;
 
 
-    public function __construct($descripcion,  $m_TiposDeCerveza, $capacidad, $factor, $imagen)
+    public function __construct($descripcion,  $m_TiposDeCerveza, $capacidad, $factor, $imagen, $precio = '')
     {
         $this->setDescripcion($descripcion);
         $this->setMTiposDeCerveza($m_TiposDeCerveza);
         $this->setCapacidad($capacidad);
         $this->setFactor($factor);
         $this->setImagen($imagen);
+        $this->setPrecio($precio);
     }
 
     

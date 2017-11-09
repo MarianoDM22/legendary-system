@@ -16,7 +16,7 @@
 			
 		}	
 
-		function index()
+		public function index()
 		{
 
 			if(isset($_SESSION['Login']))//Si hay session:
@@ -44,11 +44,11 @@
 		}
 
 
-		function verificarSesion()
+		public function verificarSesion()
 		{
 			session_start();
 			
-			if(	!isset($_SESSION['Login']) )//entra si la sesion Login existe			
+			if(	!isset($_SESSION['Login']) )//entra si la sesion Login NO existe			
 			{	
 		
 				$emailBuscado=$_POST['email'];//tomo mail ingresado
@@ -90,7 +90,7 @@
 		}//fin verificar session**********
 
 
-		function crearSesion($cuenta)
+		public function crearSesion($cuenta)
 		{	
 										
 			$_SESSION['Login']=$cuenta;//guardo el objeto CUENTA logueada en la session			
@@ -99,7 +99,7 @@
 
 		}//fin crear session**********
 
-		function cerrarSesion()
+		public function cerrarSesion()
 		{	
 			session_start();
 			

@@ -149,42 +149,7 @@ $productos = $DAOProductos->traertodos();
 
   <!-- FINMUESTRARIO CERVEZAS  --> 
 
-<!-- Footer -->
-  <footer class="sticky-footer bg-dark">
-    <div class="py-2 bg-dark text-white">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 text-center align-self-center">
-            <p class="mb-5"> <strong>Beer Recharge </strong>
-              <br>Sucursal 1: Gral. Roca 2850, Mar del PLata
-              <br>Sucursal 2: Olavarria 6580, Mar del PLata            
-              <br>
-              <br>Seguinos!
-            <div class="my-3 row">
-              <div class="col-4">
-                <a href="https://www.facebook.com" target="_blank"><i class="fa fa-3x fa-facebook"></i></a>
-              </div>
-              <div class="col-4">
-                <a href="https://twitter.com" target="_blank"><i class="fa fa-3x fa-twitter"></i></a>
-              </div>
-              <div class="col-4">
-                <a href="https://www.instagram.com" target="_blank"><i class="fa fa-3x fa-instagram"></i></a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 p-0">
-            <div id="map" style="width:500px; height:200px"></div> 
-          </div>
-        </div>
-        <div class="row">
-          <div class="text-center">
-            <small>Copyright © UTN 2017</small>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>  
-  <!-- fin Footer -->
+  <?php require(ROOT . "Vistas/footer.php"); ?>
 
   <!-- Login Modal-->
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -33,12 +33,7 @@ class RegistrarDAO extends SingletonAbstractDAO implements IDAO
 		$command->bindParam(':fk_cliente', $fk_cliente);
 
 
-		if ($command->execute() ) {
-			echo 'Query correcta';
-		}
-		else
-			echo 'Query incorrecta';		
-
+		$command->execute();
 	}
 
 	public function insertarCuenta($dato)//le llega un objeto cuenta y lo guarda en BD
@@ -63,13 +58,7 @@ class RegistrarDAO extends SingletonAbstractDAO implements IDAO
 		$command->bindParam(':rol', $rol);
 		$command->bindParam(':fk_cliente', $fk_cliente);
 
-
-		if ($command->execute() ) {
-			echo 'Query correcta';
-		}
-		else
-			echo 'Query incorrecta';		
-
+		$command->execute();
 	}
 
 	public function insertarDevolverID($dato)//le llega un cliente sin ID
@@ -95,10 +84,7 @@ class RegistrarDAO extends SingletonAbstractDAO implements IDAO
 		$command->bindParam(':telefono', $telefono);
 
 
-		if ($command->execute())
-			echo 'query correcta CUENTAS';
-		else
-			echo 'query incorrecta CUENTAS';
+		$command->execute();
 		
 
 		$dato->setId($connection->lastInsertId());

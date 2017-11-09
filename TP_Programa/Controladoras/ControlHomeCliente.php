@@ -19,13 +19,13 @@
 			$producto=$this->traerTodos();
 			
 			require_once(ROOT . '/Vistas/Cliente/homeCliente.php');
+			//header('Location: ../Vistas/Cliente/homeCliente.php');
 		}
 
 	  	public function traerTodos()
 	   	{
 	   		$producto= array();
 	   		$producto=$this->DAOProducto->traerTodos();
-
 	   		return $producto;
 	   	}
 	}

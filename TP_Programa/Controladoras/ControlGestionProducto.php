@@ -58,11 +58,11 @@ class ControlGestionProducto
 							$imagen = str_replace("../", "", $file); 
 							//crea el objeto
 	    					$value = new Producto($desc, $tipo_cerveza, $capacidad, $factor, $imagen);
-	    					
+
+	    					$value->setPrecio($this->calcularPrecio($value));//le seteo el precio antes de insertarlo
+
+
 	    					//llama al DAO para insertarlo
-	    					
-	    				
-	 
 	    					$buscado=$this->DAOProducto->buscarPorNombre($desc);
 	    				
 
@@ -113,7 +113,7 @@ class ControlGestionProducto
    		$cervezas=$this->traerTodosCervezas();
    		if ($producto != null)
    		{
-   			$this->calcularPrecio($producto);
+   			$this->calcularTodosPrecio($producto);
    		}		
    		
    		
@@ -187,7 +187,7 @@ class ControlGestionProducto
 					   		$object->setMTiposDeCerveza($tipo_cerveza);
 					   		$object->setCapacidad($capacidad);
 					   		$object->setFactor($factor);
-					   		//$object->setPrecio($factor);
+					   		$object->setPrecio($this->calcularPrecio($object));//le seteo el precio 
 					   		$object->setImagen($imagen);
 
 					   		//LLAMA A ACTUALIZAR
@@ -228,18 +228,24 @@ class ControlGestionProducto
 		
    	}
 
-   	public function calcularPrecio($producto)
+   	public function calcularTodosPrecio($producto)
    	{
-   		$precio= 0;
-
    		foreach ($producto as $key) 
    		{
-   			$x= $this->DAOTipoCerveza->buscarPorID($key->getMTiposDeCerveza())->getPrecio_litro();
-   			$precio=(  ($key->getCapacidad() ) * $x * ($key->getFactor())  );
+   			$key->setPrecio($this->calcularPrecio($key));
+   		}	
+   	}
 
-	   		$key->setPrecio($precio);
-   		}
-   		
+   	public function calcularPrecio($obj)// calcula un solo precio
+   	{
+   		$precio= 0;
+  		
+   			$x= $this->DAOTipoCerveza->buscarPorID($obj->getMTiposDeCerveza())->getPrecio_litro();
+   			$precio=(  ($obj->getCapacidad() ) * $x * ($obj->getFactor())  );
+
+	   		//$obj->setPrecio($precio);
+
+	   	return $precio;
    	}
 }
 ?>

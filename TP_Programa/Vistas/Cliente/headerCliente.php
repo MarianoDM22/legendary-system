@@ -121,6 +121,12 @@
                 </thead>
                 <tbody>
                   <?php 
+                   if($producto==null)
+                    {?>
+                      <p>No hay productos en su carrito.</p>
+                   <?php }
+                    else
+                    {
                       foreach ($producto as $key => $value) { ?>
                     
                       <tr>
@@ -142,6 +148,8 @@
                           </form>
                         </td>
                       </tr>  
+                    }
+                      
                   <?php } ?>     
                 </tbody>  
               </table>      

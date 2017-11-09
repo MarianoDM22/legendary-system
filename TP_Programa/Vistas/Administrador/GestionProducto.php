@@ -26,7 +26,7 @@
   	<header class="bg-dark"">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-12 text-white">
 					<h1>Gestión Productos</h1>
 				</div>
 			</div>
@@ -124,7 +124,7 @@
 										<td><?= $value->getMTiposDeCerveza(); ?></td>
 										<td><?= $value->getCapacidad(); ?></td>
 										<td><?= $value->getFactor(); ?></td>
-										<td><?= $value->getPrecio(); ?></td>
+										<td>$<?= $value->getPrecio(); ?></td>
 										<td><img src="<?= "../" . $value->getImagen(); ?>" width="30"></td>
 
 										<td>
