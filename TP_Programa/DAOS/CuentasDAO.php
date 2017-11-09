@@ -110,7 +110,7 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 			$rol = ($row['rol']);
 			$fk_cliente = ($row['fk_cliente']);
 
-			$object = new \Modelos\Producto($email,$pass,$rol,$fk_cliente);
+			$object = new \Modelos\Cuenta($email,$pass,$rol,$fk_cliente);
 
 			$object->setId($row['id_cuenta']);	
 		}
@@ -155,7 +155,31 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 		$command->execute();
 	}
 	public function traerTodos(){
-		
+		$objects = array();
+
+		$query = 'SELECT * FROM '.$this->table;
+
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);
+		$command->execute();
+
+		while ($row = $command->fetch())
+		{
+			$email = ($row['email']);
+			$pass = ($row['pass']);
+			$rol = ($row['rol']);
+			$fk_cliente = ($row['fk_cliente']);
+
+			$object = new \Modelos\Cuenta($email,$pass,$rol,$fk_cliente);
+
+			$object->setId($row['id_cuenta']);	
+
+			array_push($objects, $object);
+
+		}
+
+		return $objects;	
 	}
 }
 ?>
