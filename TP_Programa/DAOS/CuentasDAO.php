@@ -23,7 +23,29 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 
 	}
 	public function insertarDevolverID($dato){
+		$query = 'INSERT INTO '.$this->table.' 
+		( email , pass , rol , fk_cliente ) 
+		VALUES 
+		( :email , :pass , :rol , :fk_cliente )';
 
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);
+
+		$email = $dato->getEmail();
+		$pass = $dato->getPassword();
+		$rol = $dato->getRol();
+		$fk_cliente = $dato->getMCliente();
+
+		$command->bindParam(':email', $email);
+		$command->bindParam(':pass', $pass);
+		$command->bindParam(':rol', $rol);
+		$command->bindParam(':fk_cliente', $fk_cliente);
+		$command->execute();
+
+		$dato->setId($connection->lastInsertId());
+			
+		return $dato;
 	}
 	public function buscarPorNombre($dato){
 
