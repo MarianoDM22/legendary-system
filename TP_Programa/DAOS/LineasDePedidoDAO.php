@@ -61,7 +61,29 @@ class LineasDePedidoDAO extends SingletonAbstractDAO implements IDAO
 
 	}
 	public function buscarPorID($dato){
+		$object = null;
 
+		$query = 'SELECT * FROM '.$this->table.' WHERE id_lineadepedido = :id';
+
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);			
+
+		$command->bindParam(':id', $dato);
+		$command->execute();
+
+		while ($row = $command->fetch())
+		{
+			$cantidad = ($row['cantidad']);
+			$importe = ($row['importe']);
+			$fk_producto = ($row['fk_producto']);
+
+			$object = new \Modelos\LineasDePedido($cantidad,$importe,$fk_producto);
+
+			$object->setId($row['id_lineadepedido']);	
+		}
+
+		return $object;
 	}
 	public function borrar($dato){
 
