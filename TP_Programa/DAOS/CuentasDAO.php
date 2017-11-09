@@ -118,7 +118,14 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 		return $object;
 	}
 	public function borrar($dato){
+		$query = 'DELETE FROM '.$this->table.' WHERE id_cuenta = :id';
 
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);
+
+		$command->bindParam(':id', $dato);
+		$command->execute();
 	}
 	public function actualizar($dato){
 
