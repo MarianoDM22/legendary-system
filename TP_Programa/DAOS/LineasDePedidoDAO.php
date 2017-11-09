@@ -120,7 +120,30 @@ class LineasDePedidoDAO extends SingletonAbstractDAO implements IDAO
 		$command->execute();
 	}
 	public function traerTodos(){
-		
+		$objects = array();
+
+		$query = 'SELECT * FROM '.$this->table;
+
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);
+		$command->execute();
+
+		while ($row = $command->fetch())
+		{
+			$cantidad = ($row['cantidad']);
+			$importe = ($row['importe']);
+			$fk_producto = ($row['fk_producto']);
+
+			$object = new \Modelos\LineasDePedido($cantidad,$importe,$fk_producto);
+
+			$object->setId($row['id_lineadepedido']);	
+
+			array_push($objects, $object);
+
+		}
+
+		return $objects;	
 	}
 }
 ?>
