@@ -1,8 +1,8 @@
 <?php namespace Vistas;
 
-
-
-
+use \Controladoras\ControlGestionProducto as ControlGestionTipoProducto;
+$DAOProductos= new ControlGestionTipoProducto();
+$productos = $DAOProductos->traertodos();
 ?>
 
 
@@ -65,7 +65,7 @@
   <!-- INICIO HEADER  -->
   <nav class="navbar navbar-expand-md bg-primary navbar-dark">
     <div class="container">
-      <a class="navbar-brand" href="#"><i class="fa d-inline fa-lg fa-cloud"></i><b>&nbsp;Beer Recharge MDP</b></a>
+      <a class="navbar-brand" href=""><i class="fa d-inline fa-lg fa-cloud"></i><b>&nbsp;Beer Recharge MDP</b></a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
       <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
         <ul class="navbar-nav">
@@ -113,24 +113,26 @@
   <!-- FIN Funcion Google Maps-->
 
 
-  <!-- INICIO MUESTRARIO CERVEZAS  -->
+  <!-- INICIO MUESTRARIO CERVEZAS    -->
    
   <div class="p-5 bg-primary opaque-overlay" style="background-image: url(&quot;http://localhost/TP_Programa/images/fondoHome.jpg&quot;);">
     <div class="container">
       <div class="row">
 
+      <?php
+      foreach ($productos as $valor) 
+      { ?>      
+       
+
         <div class="p-4 align-self-center col-md-4">
           <div class="card background">
-            <img src="http://localhost/TP_Programa/images/porter.jpg" class="img-responsive" style="width:100%" alt="Image ">
+            <img src="http://localhost/TP_Programa/<?=$valor->getImagen(); ?>" class="img-responsive" style="width:100%" alt="Image ">           
             <div class="card-block p-2">
               <div class="panel-body ">                
               </div>
                 <div class="p-1 col-md-4">                
                       <select>
-                        <option value="volvo">Botellon 2L</option>
-                        <option value="saab">Botella 1L</option>
-                        <option value="mercedes">Lata 0,473L</option>
-                        <option value="audi">Barril 50L</option>
+                        <option value="volvo"> <?= $valor->getDescripcion();?> <?=$valor->getCapacidad(); ?> Litros</option>
                       </select>                  
                     </div>               
               <a href="#" class="btn btn-dark">Agregar al carrito</a>
@@ -138,98 +140,9 @@
           </div>
         </div>
 
-        <div class="p-4 align-self-center col-md-4">
-          <div class="card background">
-            <img src="http://localhost/TP_Programa/images/scotch.jpg" class="img-responsive" style="width:100%" alt="Image">
-            <div class="card-block p-2 ">
-              <div class="panel-body">                
-              </div>
-                <div class="p-1 col-md-4">                
-                      <select>
-                        <option value="volvo">Botellon 2L</option>
-                        <option value="saab">Botella 1L</option>
-                        <option value="mercedes">Lata 0,473L</option>
-                        <option value="audi">Barril 50L</option>
-                      </select>                  
-                    </div>               
-              <a href="#" class="btn btn-dark">Agregar al carrito</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="p-4 align-self-center col-md-4">
-          <div class="card background">
-            <div class="panel-body"><img src="http://localhost/TP_Programa/images/honey-beer.jpg" class="img-responsive" style="width:100%" alt="Image">
-            <div class="card-block p-2">            
-              </div>
-                <div class="p-1 col-md-4">                
-                    <select>
-                      <option value="volvo">Botellon 2L</option>
-                      <option value="saab">Botella 1L</option>
-                      <option value="mercedes">Lata 0,473L</option>
-                      <option value="audi">Barril 50L</option>
-                    </select>                  
-                  </div>                 
-              <a href="#" class="btn btn-dark">Agregar al carrito</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="p-4 align-self-center col-md-4">
-          <div class="card background">
-            <div class="panel-body">
-              <img src="http://localhost/TP_Programa/images/porter.jpg" class="img-responsive" style="width:100%" alt="Image">
-            <div class="card-block p-2">              
-              </div>
-                <div class="p-1 col-md-4">                
-                  <select>
-                    <option value="volvo">Botellon 2L</option>
-                    <option value="saab">Botella 1L</option>
-                    <option value="mercedes">Lata 0,473L</option>
-                    <option value="audi">Barril 50L</option>
-                  </select>                  
-                </div>                         
-              <a href="#" class="btn btn-dark">Agregar al carrito</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="p-4 align-self-center col-md-4">
-          <div class="card background">
-            <div class="panel-body"><img src="http://localhost/TP_Programa/images/kolsch.jpg" class="img-responsive" style="width:100%" alt="Image">
-            <div class="card-block p-2">              
-              </div>
-                <div class="p-1 col-md-4">                
-                      <select>
-                        <option value="volvo">Botellon 2L</option>
-                        <option value="saab">Botella 1L</option>
-                        <option value="mercedes">Lata 0,473L</option>
-                        <option value="audi">Barril 50L</option>
-                      </select>                  
-                    </div>               
-              <a href="#" class="btn btn-dark">Agregar al carrito</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="p-4 align-self-center col-md-4">
-          <div class="card background">
-            <div class="panel-body"><img src="http://localhost/TP_Programa/images/barley-wine.jpg" class="img-responsive" style="width:100%" alt="Image">
-            <div class="card-block p-2">              
-              </div> 
-                <div class="p-1 col-md-4">                
-                      <select>
-                        <option value="volvo">Botellon 2L</option>
-                        <option value="saab">Botella 1L</option>
-                        <option value="mercedes">Lata 0,473L</option>
-                        <option value="audi">Barril 50L</option>
-                      </select>                  
-                    </div>              
-              <a href="#" class="btn btn-dark">Agregar al carrito</a>
-            </div>
-          </div>
-        </div>
-
+      <?php
+      }//fin FOR EACH
+      ?>
       </div>
     </div>
   </div>

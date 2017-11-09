@@ -39,6 +39,7 @@
 			else
 			{
 				require_once(ROOT . '/Vistas/home.php');//SI NO HAY SESSION LO LLEVA A HOME
+				//header('Location: ../Vistas/home.php');
 			}
 		}
 
@@ -104,8 +105,7 @@
 			
 			if (isset($_SESSION['Login']) )//entra si existe la session
 			{	
-    			unset($_SESSION["Login"]);
-    			
+    			unset($_SESSION["Login"]);    			
     			$this->index();
 			}
 

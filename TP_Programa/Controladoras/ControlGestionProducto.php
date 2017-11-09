@@ -109,10 +109,13 @@ class ControlGestionProducto
 
     public function index()
    	{
-   	
    		$producto=$this->traerTodos();
    		$cervezas=$this->traerTodosCervezas();
-   		$this->calcularPrecio($producto);
+   		if ($producto != null)
+   		{
+   			$this->calcularPrecio($producto);
+   		}		
+   		
    		
    		require_once(ROOT . 'Vistas/Administrador/GestionProducto.php');
    	}
