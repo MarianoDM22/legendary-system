@@ -113,26 +113,23 @@
                 <thead class="thead-inverse">
                   <tr>            
                     <th>Descripcion</th>
-                    <th>Imagen</th>
                     <th>Precio</th>
                     <th>Cantidad</th> 
+                    <th>Total</th>
                     <th>Opciones</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php 
-                   if($producto==null)
-                    {?>
-                      <p>No hay productos en su carrito.</p>
-                   <?php }
-                    else
-                    {
                       foreach ($producto as $key => $value) { ?>
                     
                       <tr>
-                        <td><?= $value->getDescripcion(); ?></td>
-                        <td><img src="<?= "../" . $value->getImagen(); ?>" width="30"></td>
-                        <td><?= $value->getPrecio(); ?></td>
+                        <td>
+                          <img src="<?= "../" . $value->getImagen(); ?>" width="30">
+                          <?= $value->getDescripcion(); ?>    
+                        </td>
+                        
+                        <td>$<?= $value->getPrecio(); ?></td>
                         <td> 
                           <select class="custom-select" name="qty">
                             <option> 1 </option>
@@ -141,6 +138,7 @@
                             <option> 4 </option>
                           </select>
                         </td>
+                        <td> </td>
                         <td>
                           <form action="<?= ROOT_VIEW ?>/ /borrar" method="POST">
                             <input type="hidden" name="id" value="<?= $value->getId(); ?>">
@@ -148,17 +146,28 @@
                           </form>
                         </td>
                       </tr>  
-                    }
                       
                   <?php } ?>     
                 </tbody>  
               </table>      
           </div>
-          <div class="modal-footer center-block">
-            
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Update</button>
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-            <a class="btn btn-primary" href="<?= ROOT_VIEW ?>/Pedido/index">CheckOut</a>
+          <div class="modal-footer">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12 text-right">
+                  <h6>Sub Total: $</h6>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 text-center">
+                  <div class="center-block">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Update</button>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" href="<?= ROOT_VIEW ?>/Pedido/index">CheckOut</a>
+                  </div>
+                </div>
+              </div>
+          </div>
           </div>
         </div>
       </div>
