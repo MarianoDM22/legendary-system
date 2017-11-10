@@ -17,7 +17,7 @@ class ControlGestionTipoCerveza
 	}
 	
 
-	public function nuevo( )
+	public function nuevo($desc, $precio, $imagen)
 	{
 		
 		$imageDirectory = 'images/';
@@ -25,8 +25,8 @@ class ControlGestionTipoCerveza
 		if(!file_exists($imageDirectory))
 		mkdir($imageDirectory);
 
-		$desc =$_POST['descripcion'];
-		$precio=$_POST ['precio'];
+		//$desc =$_POST['descripcion'];
+		//$precio=$_POST ['precio'];
 		//$imagen=$_FILES['fileToUpload'];
 
 		if((isset($_FILES['fileToUpload'])) && ($_FILES['fileToUpload']['name'] != ''))
@@ -109,9 +109,9 @@ class ControlGestionTipoCerveza
    		require_once(ROOT . 'Vistas/Administrador/GestionTipoCerveza.php');
    	}
 
-   	public function borrar()
+   	public function borrar($id)
    	{
-   		$this->DAOTipoCerveza->borrar($_POST['id']);
+   		$this->DAOTipoCerveza->borrar($id);
    		$this->index();
    	}
 
@@ -124,15 +124,15 @@ class ControlGestionTipoCerveza
 		return $cervezas;  
    	}
 
-   	public function modificar()
+   	public function modificar($desc, $precio, $imagen)
    	{
    		$imageDirectory = 'images/';
 
 		if(!file_exists($imageDirectory))
 		mkdir($imageDirectory);
 
-		$desc =$_POST['descripcion'];
-		$precio=$_POST ['precio'];
+		//$desc =$_POST['descripcion'];
+		//$precio=$_POST ['precio'];
 		//$imagen=$_FILES['fileToUpload'];
 
 		if((isset($_FILES['fileToUpload'])) && ($_FILES['fileToUpload']['name'] != ''))

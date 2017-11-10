@@ -44,15 +44,15 @@
 		}
 
 
-		public function verificarSesion()
+		public function verificarSesion($emailBuscado, $passLogin)
 		{
 			session_start();
 			
 			if(	!isset($_SESSION['Login']) )//entra si la sesion Login NO existe			
 			{	
 		
-				$emailBuscado=$_POST['email'];//tomo mail ingresado
-				$passLogin=$_POST['passLogin'];//tomo password ingresada
+				//$emailBuscado=$_POST['email'];//tomo mail ingresado
+				//$passLogin=$_POST['passLogin'];//tomo password ingresada
 
 				$buscado=$this->DAOLogin->buscarPorNombre($emailBuscado);//busco si existe el email en BD ,devuelve null o el objeto CUENTA
 

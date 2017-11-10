@@ -108,6 +108,11 @@
             </button>
           </div>
           <div class="modal-body">
+
+      <?php
+        if(isset($_SESSION['Carrito'])) {
+          $lineaCarrito = $_SESSION['Carrito']; ?>
+
               <!-- todas las lineas del pedido-->
               <table class="table table-bordered">
                 <thead class="thead-inverse">
@@ -120,12 +125,13 @@
                   </tr>
                 </thead>
                 <tbody>
+               
                   <?php 
-                      foreach ($producto as $key => $value) { ?>
+                      foreach ($lineaCarrito as $key => $value) { ?>
                     
                       <tr>
                         <td>
-                          <img src="<?= "../" . $value->getImagen(); ?>" width="30">
+                          <img src="<?= "../" . $value->getImagen(); ?>" width="40">
                           <?= $value->getDescripcion(); ?>    
                         </td>
                         
@@ -138,7 +144,7 @@
                             <option> 4 </option>
                           </select>
                         </td>
-                        <td> </td>
+                        <td>$<?= $value->getPrecioTotal(); ?> </td>
                         <td>
                           <form action="<?= ROOT_VIEW ?>/ /borrar" method="POST">
                             <input type="hidden" name="id" value="<?= $value->getId(); ?>">
@@ -154,12 +160,12 @@
           <div class="modal-footer">
             <div class="container">
               <div class="row">
-                <div class="col-md-12 text-right">
+                <div class="col-md-8 text-right">
                   <h6>Sub Total: $</h6>
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-12 text-center">
+                <div class="col-md-12 text-right">
                   <div class="center-block">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Update</button>
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
@@ -167,8 +173,17 @@
                   </div>
                 </div>
               </div>
+            </div>
           </div>
-          </div>
+          <?php } ?><!-- Fin sessionl-->
+
+          
+          <?php
+          if( !isset($_SESSION['Carrito']) ){?>
+            <p>N hay productos en su carrito!</p>
+          <?php } ?>
+          
+
         </div>
       </div>
     </div>

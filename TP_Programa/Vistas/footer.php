@@ -59,7 +59,7 @@
   <!-- FIN Funcion Google Maps-->
 
   <!-- Footer -->
-  <footer class="sticky-footer bg-dark">
+  <footer class="footer bg-dark">
     <div class="py-2 bg-dark text-white">
       <div class="container">
         <div class="row">
@@ -86,7 +86,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="text-center">
+          <div class="col-md-12 text-center align-self-center">
             <small>Copyright © UTN 2017</small>
           </div>
         </div>

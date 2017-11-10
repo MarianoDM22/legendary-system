@@ -4,19 +4,20 @@
 class Cliente
 {
     private $id;
+    private $nombre;
 	private $apellido;
 	private $domicilio;
-	private $nombre;
+	
 	private $telefono;
 	private $m_Cuenta;
 	private $m_Pedido=array();
 
 
-	public function __construct($apellido, $domicilio, $nombre, $telefono)
+	public function __construct($nombre, $apellido, $domicilio, $telefono)
 	{
+        $this->setNombre($nombre);
 		$this->setApellido($apellido);
 		$this->setDomicilio($domicilio);
-		$this->setNombre($nombre);
 		$this->setTelefono($telefono);
 	}
 

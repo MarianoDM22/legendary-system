@@ -79,10 +79,10 @@
                     foreach ($producto as $key => $value) {  ?>
                       <div class="p-4 align-self-center col-md-4"> 
                         <div class="card bg-light text-center">
-                          <form action= "<?= ROOT_VIEW ?> /" method="post" enctype="multipart/form-data" class="addToCart">
+                          <form action= "<?= ROOT_VIEW ?>/Pedido/agregarAlCarrito" method="post" enctype="multipart/form-data">
                             <a href=""><img src="<?= "../" . $value->getImagen(); ?>" width="50"></a>
                               <div class="card-body">
-                                  <h4 class="card-title" name="descripcion"><a href=" "><?= $value->getDescripcion(); ?></a></h4>
+                                  <h4 class="card-title"><a href=" "><?= $value->getDescripcion(); ?></a></h4>
                                   <h5 class="card-subtitle" name="precio"> $<?= $value->getPrecio(); ?></h5>
                                   <div class="center-block">
                                     <select class="custom-select" name="qty">
@@ -91,6 +91,7 @@
                                       <option> 3 </option>
                                       <option> 4 </option>
                                     </select>
+                                    <input type="hidden" name="id" class="form-control" value="<?= $value->getId();?>" >
                                     <input class="btn btn-primary" name="botonAgregar" type="submit" value="Agregar">
                                   </div>
                               </div>

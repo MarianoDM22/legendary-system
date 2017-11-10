@@ -20,7 +20,7 @@ class ControlGestionProducto
 	}
 	
 
-	public function nuevo( )
+	public function nuevo($desc, $tipo_cerveza, $capacidad, $factor, $imagen)
 	{
 		
 		$imageDirectory = 'images/';
@@ -28,10 +28,10 @@ class ControlGestionProducto
 		if(!file_exists($imageDirectory))
 		mkdir($imageDirectory);
 
-		$desc=$_POST['descripcion'];
-		$tipo_cerveza=$_POST ['TipoCerveza'];
-		$capacidad=$_POST['capacidad'];
-		$factor=$_POST['factor'];		
+		//$desc=$_POST['descripcion'];
+		//$tipo_cerveza=$_POST ['TipoCerveza'];
+		//$capacidad=$_POST['capacidad'];
+		//$factor=$_POST['factor'];		
 		//$imagen=$_FILES['fileToUpload'];
 
 		if((isset($_FILES['fileToUpload'])) && ($_FILES['fileToUpload']['name'] != ''))
@@ -104,7 +104,7 @@ class ControlGestionProducto
 
 	 public function getProducto()
     {
-        return $this->$ProductoDAO;
+        return $this->$producto;
     }
 
     public function index()
@@ -120,9 +120,9 @@ class ControlGestionProducto
    		require_once(ROOT . 'Vistas/Administrador/GestionProducto.php');
    	}
 
-   	public function borrar()
+   	public function borrar($id)
    	{
-   		$this->DAOProducto->borrar($_POST['id']);
+   		$this->DAOProducto->borrar($id);
    		$this->index();
    	}
 
@@ -143,7 +143,7 @@ class ControlGestionProducto
    	}
 
 
-   	public function modificar()
+   	public function modificar($desc, $tipo_cerveza, $capacidad, $factor, $imagen)
    	{
 
    		$imageDirectory = 'images/';
@@ -151,11 +151,10 @@ class ControlGestionProducto
 		if(!file_exists($imageDirectory))
 		mkdir($imageDirectory);
 
-		$desc=$_POST['descripcion'];
-		$tipo_cerveza=$_POST ['TipoCerveza'];
-		$capacidad=$_POST['capacidad'];
-		$factor=$_POST['factor'];
-
+		//$desc=$_POST['descripcion'];
+		//$tipo_cerveza=$_POST ['TipoCerveza'];
+		//$capacidad=$_POST['capacidad'];
+		//$factor=$_POST['factor'];
 		//$imagen=$_FILES['fileToUpload'];
 
 		if((isset($_FILES['fileToUpload'])) && ($_FILES['fileToUpload']['name'] != ''))

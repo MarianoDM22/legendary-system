@@ -65,9 +65,9 @@
                   <thead class="thead-inverse">
                     <tr>            
                       <th>Descripcion</th>
-                      <th>Imagen</th>
                       <th>Precio</th>
                       <th>Cantidad</th> 
+                      <th>Total</th> 
                       <th>Opciones</th>
                     </tr>
                   </thead>
@@ -76,8 +76,11 @@
                         foreach ($lineaPedido as $key => $value) { ?>
                       
                         <tr>
-                          <td><?= $value->getDescripcion(); ?></td>
-                          <td><img src="<?= "../" . $value->getImagen(); ?>" width="30"></td>
+                          <td>
+                            <img src="<?= "../" . $value->getImagen(); ?>" width="40">
+                            <?= $value->getDescripcion(); ?>
+                          </td>
+                          
                           <td><?= $value->getPrecio(); ?></td>
                           <td> 
                             <select class="custom-select" name="qty">
@@ -87,6 +90,7 @@
                               <option> 4 </option>
                             </select>
                           </td>
+                          <td> </td>
                           <td>
                             <form action="<?= ROOT_VIEW ?>/ /borrar" method="POST">
                               <input type="hidden" name="id" value="<?= $value->getId(); ?>">

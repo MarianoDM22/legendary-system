@@ -21,17 +21,18 @@
 
 
 
-		function nuevo() 
+		function nuevo($nombre, $apellido, $domicilio,  $telefono, $email, $pass1, $pass2) 
 		{
 
 			//recibo valores y los asigno a variables
-			$apellido =$_POST['apellido'];
-			$domicilio=$_POST ['domicilio'];
-			$nombre =$_POST['nombre'];
-			$telefono=$_POST ['telefono'];
-			$pass1 =$_POST['pass1'];
-			$pass2=$_POST ['pass2'];
-			$email=$_POST ['email'];
+			//$nombre =$_POST['nombre'];
+			//$apellido =$_POST['apellido'];
+			//$domicilio=$_POST ['domicilio'];
+			//$telefono=$_POST ['telefono'];
+			//$email=$_POST ['email'];
+			//$pass1 =$_POST['pass1'];
+			//$pass2=$_POST ['pass2'];
+			
 			$rol='cliente';
 
 
@@ -39,7 +40,7 @@
 			if ($buscado == null)
 			{//entra si el email buscado en BD no existe
 
-				$cliente = new \Modelos\Cliente($apellido, $domicilio, $nombre, $telefono);//creo el cliente				
+				$cliente = new \Modelos\Cliente($nombre, $apellido, $domicilio, $telefono);//creo el cliente				
 				$clienteConID = $this->DAORegistrar->insertarDevolverID($cliente);// le paso un cliente sin id, lo guarda en BD y me devuelve el cliente con ID
 
 				if ($pass1 == $pass2)//verifico que coincidan las pass
