@@ -19,7 +19,7 @@ CREATE TABLE productos(
 id_producto int auto_increment not null,
 descripcion varchar(30),
 fk_tipodecerveza int not null,
-capacidad int,
+capacidad float(3,2),
 factor float(3,2),
 precio int,
 imagen longblob,
