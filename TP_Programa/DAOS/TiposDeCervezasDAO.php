@@ -135,7 +135,6 @@ class TiposDeCervezasDAO extends SingletonAbstractDAO implements IDAO
 		$precio_litro = $dato->getPrecio_litro();
 		$imagen = $dato->getImagen();
 
-		
 
 		$command->bindParam(':descripcion', $descripcion);
 		$command->bindParam(':precio_litro', $precio_litro);

@@ -1,20 +1,21 @@
 <?php namespace Modelos;
 
-class Sucursales
+class Sucursal
 {
     private $id;
+    private $nombre;
 	private $domicilio;
 	private $latitud;
 	private $longitud;
-	private $nombre;
+	
 
 
-	public function __construct($domicilio, $latitud, $longitud, $nombre)
+	public function __construct($nombre, $domicilio, $latitud, $longitud)
 	{
+        $this->setNombre($nombre);
 		$this->setDomicilio($domicilio);
 		$this->setLatitud($latitud);
-		$this->setLongitud($longitud);
-		$this->setNombre($nombre);
+		$this->setLongitud($longitud);	
 	}
 
     public function getId()
@@ -27,8 +28,20 @@ class Sucursales
     {
         $this->id = $id;
     }
+  
+  
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
 
-	
+   
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+    }	
+
+
     public function getDomicilio()
     {
         return $this->domicilio;
@@ -64,16 +77,5 @@ class Sucursales
         $this->longitud = $longitud;
     }
 
-  
-    public function getNombre()
-    {
-        return $this->nombre;
-    }
-
-   
-    public function setNombre($nombre)
-    {
-        $this->nombre = $nombre;
-    }
 }
 ?>

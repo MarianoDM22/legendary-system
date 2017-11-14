@@ -5,10 +5,10 @@ namespace DAOS;
 /*
  *	CREATE TABLE sucursales(
  *	id_sucursal int auto_increment not null,
+ 	nombre varchar(30),
  *	domicilio varchar(100),
  *	latitud int,
  *	longitud int,
- *	nombre varchar(30),
  *	primary key(id_sucursal)
  *	);
  */
@@ -19,44 +19,46 @@ class SucursalesDAO extends SingletonAbstractDAO implements IDAO
 
 	public function insertar($dato){
 		$query = 'INSERT INTO '.$this->table.' 
-		( domicilio , latitud , longitud , nombre ) 
+		( nombre, domicilio , latitud , longitud ) 
 		VALUES 
-		( :domicilio , :latitud , :longitud , :nombre )';
+		( :nombre, :domicilio , :latitud , :longitud )';
 
 		$pdo = new Connection();
 		$connection = $pdo->Connect();
 		$command = $connection->prepare($query);
 
+		$nombre = $dato->getNombre();
 		$domicilio = $dato->getDomicilio();
 		$latitud = $dato->getLatitud();
 		$longitud = $dato->getLongitud();
-		$nombre = $dato->getNombre();
 
+		$command->bindParam(':nombre', $nombre);
 		$command->bindParam(':domicilio', $domicilio);
 		$command->bindParam(':latitud', $latitud);
 		$command->bindParam(':longitud', $longitud);
-		$command->bindParam(':nombre', $nombre);
+		
 		$command->execute();
 	}
 	public function insertarDevolverID($dato){
 		$query = 'INSERT INTO '.$this->table.' 
-		( domicilio , latitud , longitud , nombre ) 
+		(  nombre, domicilio , latitud , longitud ) 
 		VALUES 
-		( :domicilio , :latitud , :longitud , :nombre )';
+		( :nombre,  :domicilio , :latitud , :longitud )';
 
 		$pdo = new Connection();
 		$connection = $pdo->Connect();
 		$command = $connection->prepare($query);
 
+		$nombre = $dato->getNombre();
 		$domicilio = $dato->getDomicilio();
 		$latitud = $dato->getLatitud();
 		$longitud = $dato->getLongitud();
-		$nombre = $dato->getNombre();
 
+		$command->bindParam(':nombre', $nombre);
 		$command->bindParam(':domicilio', $domicilio);
 		$command->bindParam(':latitud', $latitud);
 		$command->bindParam(':longitud', $longitud);
-		$command->bindParam(':nombre', $nombre);
+		
 		$command->execute();
 
 		$dato->setId($connection->lastInsertId());
@@ -77,13 +79,12 @@ class SucursalesDAO extends SingletonAbstractDAO implements IDAO
 
 		while ($row = $command->fetch())
 		{
-
+			$nombre = ($row['nombre']);
 			$domicilio = ($row['domicilio']);
 			$latitud = ($row['latitud']);
 			$longitud = ($row['longitud']);
-			$nombre = ($row['nombre']);
 
-			$object = new \Modelos\Sucursales( $domicilio , $latitud , $longitud , $nombre );
+			$object = new \Modelos\Sucursal(  $nombre, $domicilio, $latitud, $longitud );
 
 			$object->setId($row['id_sucursal']);	
 
@@ -105,13 +106,12 @@ class SucursalesDAO extends SingletonAbstractDAO implements IDAO
 
 		while ($row = $command->fetch())
 		{
-
+			$nombre = ($row['nombre']);
 			$domicilio = ($row['domicilio']);
 			$latitud = ($row['latitud']);
 			$longitud = ($row['longitud']);
-			$nombre = ($row['nombre']);
 
-			$object = new \Modelos\Sucursales( $domicilio , $latitud , $longitud , $nombre );
+			$object = new \Modelos\Sucursal(  $nombre, $domicilio , $latitud , $longitud);
 
 			$object->setId($row['id_sucursal']);	
 
@@ -131,21 +131,28 @@ class SucursalesDAO extends SingletonAbstractDAO implements IDAO
 	}
 	public function actualizar($dato){
 		$query= 'UPDATE '.$this->table.'
-				SET domicilio = :domicilio, 
+				SET nombre = :nombre,
+					domicilio = :domicilio, 
 					latitud = :latitud,
-					longitud = :longitud,
-					nombre = :nombre
-				WHERE id_producto = :id';
+					longitud = :longitud
+					
+				WHERE id_sucursal = :id';
 
 		$pdo = new Connection();
 		$connection = $pdo->Connect();
 		$command = $connection->prepare($query);
 
-		$command->bindParam(':domicilio', $dato->getDomicilio());
-		$command->bindParam(':latitud', $dato->getLatitud());
-		$command->bindParam(':longitud', $dato->getLongitud());
-		$command->bindParam(':nombre', $dato->getNombre());
-		$command->bindParam(':id', $dato->getId());
+		$id = $dato->getId();
+		$nombre = $dato->getNombre();
+		$domicilio = $dato->getDomicilio();
+		$latitud = $dato->getLatitud();
+		$longitud = $dato->getLongitud();
+
+		$command->bindParam(':nombre', $nombre);
+		$command->bindParam(':domicilio', $domicilio);
+		$command->bindParam(':latitud', $latitud);
+		$command->bindParam(':longitud', $longitud);
+		$command->bindParam(':id', $id);
 
 		$command->execute();
 	}
@@ -161,12 +168,12 @@ class SucursalesDAO extends SingletonAbstractDAO implements IDAO
 
 		while ($row = $command->fetch())
 		{
+			$nombre = ($row['nombre']);
 			$domicilio = ($row['domicilio']);
 			$latitud = ($row['latitud']);
 			$longitud = ($row['longitud']);
-			$nombre = ($row['nombre']);
-
-			$object = new \Modelos\Sucursales( $domicilio , $latitud , $longitud , $nombre );
+			
+			$object = new \Modelos\Sucursal( $nombre, $domicilio , $latitud , $longitud);
 
 			$object->setId($row['id_sucursal']);
 

@@ -35,7 +35,7 @@
 
 	<div class="container">
 		<div class="row">
-			<section class="col-md-8">
+			<section class="col-md-10">
 				<h2>Tipos de Cerveza</h2>
 
 				<!-- Button trigger modal -->

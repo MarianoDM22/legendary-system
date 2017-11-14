@@ -26,7 +26,7 @@
   	<header class="bg-dark"">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-12 text-white">
 					<h1>Gestión Sucursales</h1>
 				</div>
 			</div>
@@ -35,7 +35,7 @@
 
 	<div class="container">
 		<div class="row">
-			<section class="col-md-8">
+			<section class="col-md-10">
 				<h2>Sucursales</h2>
 
 				<!-- Button trigger modal -->
@@ -100,14 +100,14 @@
 						<tbody>
 							<?php
 
-									foreach ($cervezas  as $key => $value) { ?>
+									foreach ($sucursal  as $key => $value) { ?>
 								
 									<tr>
 										<td><?= $value->getId(); ?></td>
 										<td><?= $value->getNombre(); ?></td>
 										<td><?= $value->getDomicilio(); ?></td>
-										<td><?= $value->getLatitud(); ?></td>
-										<td><?= $value->getLongitud(); ?></td>
+										<td>Lat: <?= $value->getLatitud(); ?></td>
+										<td>Long: <?= $value->getLongitud(); ?></td>
 										<td>
 											<!-- Boton Modal y Modal modificar-->
 											<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-inscp-<?= $value->getId() ?>">Modificar</button>
