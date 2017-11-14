@@ -22,13 +22,9 @@ $productos = $DAOProductos->traertodos();
    <!-- Mi CSS -->
   <link href="css/estilos.css" type="text/css" rel="stylesheet">
 
-  <!-- Google Maps Key y URL -->
-    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=AIzaSyA8zxt5WxVz1tas7WyeLebU0d2gyL4DYOs" type="text/javascript"></script>     
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8zxt5WxVz1tas7WyeLebU0d2gyL4DYOs&callback=initMap">
-    </script> 
 
   <!-- Background transparenteL -->
+  
     <style>
       div.background 
       {
@@ -52,6 +48,7 @@ $productos = $DAOProductos->traertodos();
         color: #000000;
       }
     </style>
+    
     <!--  -->
 
 
@@ -83,34 +80,6 @@ $productos = $DAOProductos->traertodos();
   </nav><!-- fin header  -->
 
 
-  <!-- Funcion Google Maps 
-    <script>
-    
-      function initMap() {
-        var uluru = {lat: -38, lng: -57.55};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
-          center: uluru,
-        });
-        //PRIMER MARCADOR SUCURSAL 1
-        
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map,
-          title: 'BeerRecharge MDP Sucursal 1'
-        });
-        
-        //SEGUNDO MARCADOR SUCURSAL 2
-
-        var marker2 = new google.maps.Marker({
-          position: {lat: -38.01433842017485, lng: -57.54189133644104},
-          map: map,
-          title: 'BeerRecharge MDP Sucursal 2'
-        });
-      }
-      
-    </script>
-  FIN Funcion Google Maps-->
 
 
   <!-- INICIO MUESTRARIO CERVEZAS    -->
@@ -149,7 +118,9 @@ $productos = $DAOProductos->traertodos();
 
   <!-- FINMUESTRARIO CERVEZAS  --> 
 
-  <?php require(ROOT . "Vistas/footer.php"); ?>
+
+  <?php //require(ROOT . "Vistas/footer.php"); ?>
+
 
   <!-- Login Modal-->
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -202,7 +173,7 @@ $productos = $DAOProductos->traertodos();
     <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <form action="<?= ROOT_VIEW ?> /Registrar/nuevo" method="post" enctype="multipart/form-data">
+          <form action="<?= ROOT_VIEW ?> /Login/nuevo" method="post" enctype="multipart/form-data">
             <div class="modal-header">
               <h5 class="modal-title">Registre una cuenta</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -412,7 +383,7 @@ $productos = $DAOProductos->traertodos();
               }
           });
         });
-
+      */
       </script>
 
   </body>

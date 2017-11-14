@@ -24,8 +24,9 @@
 
 	  	public function traerTodos()
 	   	{
-	   		$producto= array();
+	   		$producto=array();
 	   		$producto=$this->DAOProducto->traerTodos();
+	   		
 	   		return $producto;
 	   	}
 	}

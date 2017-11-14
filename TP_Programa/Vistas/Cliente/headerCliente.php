@@ -81,7 +81,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Cerrar Seción?</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Cerrar Sesión?</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
@@ -109,9 +109,9 @@
           </div>
           <div class="modal-body">
 
-      <?php
-        if(isset($_SESSION['Carrito'])) {
-          $lineaCarrito = $_SESSION['Carrito']; ?>
+           <?php
+             if(isset($_SESSION['Carrito'])) {
+               $lineaCarrito = $_SESSION['Carrito']; ?>
 
               <!-- todas las lineas del pedido-->
               <table class="table table-bordered">
@@ -120,7 +120,7 @@
                     <th>Descripcion</th>
                     <th>Precio</th>
                     <th>Cantidad</th> 
-                    <th>Total</th>
+                    <th>Sub Total</th>
                     <th>Opciones</th>
                   </tr>
                 </thead>
@@ -161,7 +161,7 @@
             <div class="container">
               <div class="row">
                 <div class="col-md-8 text-right">
-                  <h6>Sub Total: $</h6>
+                  <h6>Total: $</h6>
                 </div>
               </div>
               <div class="row">
@@ -169,7 +169,7 @@
                   <div class="center-block">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Update</button>
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="<?= ROOT_VIEW ?>/Pedido/index">CheckOut</a>
+                    <a class="btn btn-primary" href="<?= ROOT_VIEW ?>/Pedido/checkOut">CheckOut</a>
                   </div>
                 </div>
               </div>
@@ -180,7 +180,7 @@
           
           <?php
           if( !isset($_SESSION['Carrito']) ){?>
-            <p>N hay productos en su carrito!</p>
+            <p>No hay productos en su carrito!</p>
           <?php } ?>
           
 

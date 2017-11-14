@@ -6,7 +6,7 @@ apellido varchar(30),
 domicilio varchar(30),
 nombre varchar(30),
 telefono varchar(30),
-constraint pk_ cliente primary key(id_cliente)
+constraint pk_cliente primary key(id_cliente)
 );
 CREATE TABLE tiposdecervezas(
 id_tipodecerveza int auto_increment not null,

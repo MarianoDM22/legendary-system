@@ -1,9 +1,9 @@
 <?php namespace Vistas;
+/*
 use \Controladoras\ControlGestionSucursal as ControlGestionSucursal;
 $DAOSucursal= new ControlGestionSucursal();
 $sucursales = $DAOSucursal->traertodos();// agarro todas las sucursales de la BD, para luego crear los marcadores en el mapa
-
-
+*/
  ?>
 
 <!DOCTYPE html>
@@ -42,7 +42,8 @@ $sucursales = $DAOSucursal->traertodos();// agarro todas las sucursales de la BD
           center: uluru,
         });
         //PRIMER MARCADOR SUCURSAL 1
-
+        
+        /*
         for (var i = 0, l=<?php $sucursales ?>.length; i < l; i++) //recorrer el array $sucursales y crear un marcador en el mapa por cada iteracion
         {
           
@@ -53,15 +54,14 @@ $sucursales = $DAOSucursal->traertodos();// agarro todas las sucursales de la BD
             map: map,
             title: 'BeerRecharge MDP Sucursal 1'
           });
-        }
-        
-        
-            
-            
-        
-        
+        } 
+        */
 
-        
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+          title: 'BeerRecharge MDP Sucursal 1'
+        });
         
         //SEGUNDO MARCADOR SUCURSAL 2
 

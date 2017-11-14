@@ -3,18 +3,18 @@
 	
 	class ControlLogin
 	{
-		private $DAOLogin;
-		//private $DAOProducto;
-		//private $DAOTipoCerveza;
+		private $DAOCuentas;
+		
 
 		public function __construct()
 		{
-			//$this->DAOTipoCerveza=\DAOS\listaTipoCerveza::getInstance();
-			$this->DAOLogin=\DAOS\LoginDAO::getInstance(); //cuando pasemos a BD
-			//$this->DAOProducto=\DAOS\ProductosDAO::getInstance();
-			//$this->DAOTipoCerveza=\DAOS\TiposDeCervezasDAO::getInstance();
+			
+			$this->DAOCuentas=\DAOS\CuentasDAO::getInstance(); 
+		
 			
 		}	
+
+
 
 		public function index()
 		{
@@ -31,7 +31,7 @@
 				if($_SESSION['Login']->getRol()=="cliente")// SI ES CLIENTE AL HOME DE CLIENTE
 				{
 					
-					$var= new ControlHomeCliente;
+					$var= new ControlPedido;
 					$var->index();
 				}
 			}
@@ -54,7 +54,7 @@
 				//$emailBuscado=$_POST['email'];//tomo mail ingresado
 				//$passLogin=$_POST['passLogin'];//tomo password ingresada
 
-				$buscado=$this->DAOLogin->buscarPorNombre($emailBuscado);//busco si existe el email en BD ,devuelve null o el objeto CUENTA
+				$buscado=$this->DAOCuentas->buscarPorNombre($emailBuscado);//busco si existe el email en BD ,devuelve null o el objeto CUENTA
 
 				if ( $buscado !=null)//entra si encontro el mail
 				{
@@ -118,6 +118,48 @@
 		}//fin crear session**********
 
 
+		public function nuevo($nombre, $apellido, $domicilio,  $telefono, $email, $pass1, $pass2) 
+		{
 
-	}//fin classe control LOGIN********************************************
+			//recibo valores y los asigno a variables
+			//$nombre =$_POST['nombre'];
+			//$apellido =$_POST['apellido'];
+			//$domicilio=$_POST ['domicilio'];
+			//$telefono=$_POST ['telefono'];
+			//$email=$_POST ['email'];
+			//$pass1 =$_POST['pass1'];
+			//$pass2=$_POST ['pass2'];
+			
+			$rol='cliente';
+
+
+			$buscado=$this->DAOCuentas->buscarPorNombre($email);//busco si existe el email en BD
+			if ($buscado == null)
+			{//entra si el email buscado en BD no existe
+
+				$cliente = new \Modelos\Cliente($nombre, $apellido, $domicilio, $telefono);//creo el cliente				
+				$clienteConID = $this->DAOCuentas->insertarDevolverID($cliente);// le paso un cliente sin id, lo guarda en BD y me devuelve el cliente con ID
+
+				if ($pass1 == $pass2)//verifico que coincidan las pass
+				{
+					$cuentaNueva = new \Modelos\Cuenta($email, $pass1, $rol, $clienteConID->getId() );//creo la cuenta con el ID del cliente
+					$this->DAOCuentas->insertarCuenta($cuentaNueva);//agrego la cuenta completa a la BD
+					echo "<script> if(alert('Usuario Registrado !'));</script>";
+				}
+				else
+				{
+					echo "<script> if(alert('Las contaseñas no coinciden'));</script>";
+				}
+				
+			}
+			
+			else
+			{
+					echo "<script> if(alert('El Email ya se encuentra Registrado..'));</script>";
+			}
+
+			$this->index();//llamo a la vista
+		}//fin nuevo*****
+
+	}//fin clase control 
 ?>
