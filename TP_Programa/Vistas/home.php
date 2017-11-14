@@ -83,7 +83,7 @@ $productos = $DAOProductos->traertodos();
   </nav><!-- fin header  -->
 
 
-  <!-- Funcion Google Maps-->
+  <!-- Funcion Google Maps 
     <script>
     
       function initMap() {
@@ -110,7 +110,7 @@ $productos = $DAOProductos->traertodos();
       }
       
     </script>
-  <!-- FIN Funcion Google Maps-->
+  FIN Funcion Google Maps-->
 
 
   <!-- INICIO MUESTRARIO CERVEZAS    -->
