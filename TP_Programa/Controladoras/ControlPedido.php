@@ -21,14 +21,17 @@
 		}
 
 
-	   	public function agregarAlCarrito($importe, $cantidad, $id)
+	   	public function agregarAlCarrito($cantidad, $id, $importe)
 	   	{
+	   		
+
 	   		session_start();
 
 	   		if(	!isset($_SESSION['Carrito']) )//si es el primer producto agregado, creo la sesion y lo agrego
 	   		{
-	   			$linea= new \Modelos\LineasDePedido($importe, $cantidad, $id);	
 
+	   			$linea= new \Modelos\LineasDePedido($importe, $cantidad, $id);	
+	   			var_dump($id);
 	   			$this->crearSesion($linea);
 
 	   			$this->insertar($linea);
@@ -36,6 +39,7 @@
 	   		}
 	   		else
 	   		{
+	   			
 	   			$lineaBuscada=$this->buscarLinea($id);//si ya hay un carrito activo, busco si ese producto ya existe
 
 	   			if($lineaBuscada==null)//si no existe, agrrego la linea

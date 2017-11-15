@@ -23,7 +23,7 @@
   </head>
   <body>
 
-    <?php require("headerCliente.php"); ?>
+    <!--<?php //require("headerCliente.php"); ?> -->
 
     <div class="container-fluid">
       <div class="row">
@@ -42,8 +42,8 @@
 
         <div class="col-lg-10">
         
-        <!-- slider-->
-          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <!-- slider
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" >
             <ol class="carousel-indicators">
               <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
               <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -69,8 +69,9 @@
               <span class="sr-only">Siguiente</span>
             </a>
           </div>
-         <!-- fin slider-->
+         fin slider-->
 
+         
 
           <!-- aca se comienzan a listar los productos -->            
               
@@ -79,23 +80,26 @@
                     foreach ($producto as $key => $value) {  ?>
                       <div class="p-4 align-self-center col-md-4"> 
                         <div class="card bg-light text-center">
+
                           <form action= "<?= ROOT_VIEW ?>/Pedido/agregarAlCarrito" method="post" enctype="multipart/form-data">
                             <a href=""><img src="<?= "../" . $value->getImagen(); ?>" width="50"></a>
                               <div class="card-body">
                                   <h4 class="card-title"><a href=" "><?= $value->getDescripcion(); ?></a></h4>
-                                  <h5 class="card-subtitle" name="precio"> $<?= $value->getPrecio(); ?></h5>
+                                  <h5 class="card-subtitle" name=""> $<?= $value->getPrecio(); ?></h5>
                                   <div class="center-block">
-                                    <select class="custom-select" name="qty">
-                                      <option> 1 </option>
-                                      <option> 2 </option>
-                                      <option> 3 </option>
-                                      <option> 4 </option>
-                                    </select>
-                                    <input type="hidden" name="id" class="form-control" value="<?= $value->getId();?>" >
+                                    <select class="custom-select" name="cantidad">
+                                      <option value="1"> 1 </option>
+                                      <option value="2"> 2 </option>
+                                      <option value="3"> 3 </option>
+                                      <option value="4"> 4 </option>
+                                    </select>                             
                                     <input class="btn btn-primary"  type="submit" value="Agregar">
                                   </div>
                               </div>
+                              <input type="hidden" name="id" class="form-control" value= "<?= $value->getId();  ?>" >
+                              <input type="hidden" name="importe" class="form-control" value= "<?= $value->getPrecio();  ?>" >
                           </form>
+
                         </div>
                       </div>     
                   <?php } ?>
