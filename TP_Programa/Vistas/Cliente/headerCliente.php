@@ -49,10 +49,10 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                               <a class="dropdown-item" href="#">Mi Cuenta</a>
-                              <a class="dropdown-item" href="#">Mis Ordenes</a>
                               <a class="dropdown-item " data-toggle="modal" data-target="#changeModal">
                                 <i class=""></i>Cambiar Contraseña</a>
-
+                              <a class="dropdown-item" href="#">Mis Ordenes</a>
+                              
                               <div class="dropdown-divider"></div>
 
                               <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal"
@@ -144,7 +144,7 @@
                             <option> 4 </option>
                           </select>
                         </td>
-                        <td>$<?= $value->getPrecioTotal(); ?> </td>
+                        <td>$<?= $value->getPrecioSubTotal($value); ?> </td>
                         <td>
                           <form action="<?= ROOT_VIEW ?>/ /borrar" method="POST">
                             <input type="hidden" name="id" value="<?= $value->getId(); ?>">
@@ -161,7 +161,7 @@
             <div class="container">
               <div class="row">
                 <div class="col-md-8 text-right">
-                  <h6>Total: $</h6>
+                  <h6>Total: $ $<?= $value->getPrecioTotal(); ?></h6>
                 </div>
               </div>
               <div class="row">

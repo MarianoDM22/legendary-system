@@ -92,7 +92,7 @@
                                       <option> 4 </option>
                                     </select>
                                     <input type="hidden" name="id" class="form-control" value="<?= $value->getId();?>" >
-                                    <input class="btn btn-primary" name="botonAgregar" type="submit" value="Agregar">
+                                    <input class="btn btn-primary"  type="submit" value="Agregar">
                                   </div>
                               </div>
                           </form>
