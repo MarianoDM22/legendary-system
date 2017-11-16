@@ -93,11 +93,11 @@
 									foreach ($sucursal  as $key => $value) { ?>
 								
 									<tr>
-										<td > <strong style="font-size:15px;"> <?= $value->getId(); ?> </strong></td>
-										<td> <strong style="font-size:15px;"><?= $value->getNombre(); ?></strong></td>
-										<td><strong style="font-size:15px;"><?= $value->getDomicilio(); ?></strong></td>
-										<td><strong style="font-size:15px;">Lat: <?= $value->getLatitud(); ?></strong></td>
-										<td><strong style="font-size:15px;">Long: <?= $value->getLongitud(); ?></strong></td>
+										<td > <strong style="font-size:20px;"> <?= $value->getId(); ?> </strong></td>
+										<td> <strong style="font-size:20px;"><?= $value->getNombre(); ?></strong></td>
+										<td><strong style="font-size:20px;"><?= $value->getDomicilio(); ?></strong></td>
+										<td><strong style="font-size:20px;">Lat: <?= $value->getLatitud(); ?></strong></td>
+										<td><strong style="font-size:20px;">Long: <?= $value->getLongitud(); ?></strong></td>
 										<td>
 											<!-- Boton Modal y Modal modificar-->
 											<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-inscp-<?= $value->getId() ?>">Modificar</button>
