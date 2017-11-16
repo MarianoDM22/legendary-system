@@ -19,7 +19,7 @@
     <link href="css/estilos.css" type="text/css" rel="stylesheet">
 
   </head>
-  <body>
+  <body style="background-image: url(&quot;http://localhost/TP_Programa/images/fondoGestionCerveza.jpg&quot;);">
 
   	<?php require("nav.php"); ?>
   	
