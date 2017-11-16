@@ -77,10 +77,10 @@
 				<!-- Fin Modal -->
 
 
-					<table  BORDER="5" CELLPADDING="10" CELLSPACING="4" BORDERCOLOR="black" >
+					<table  BORDER="5" CELLPADDING="10" CELLSPACING="5" BORDERCOLOR="black" >
 						<thead class="thead-inverse" >
 							<tr>
-								<th>Id</th>
+								<th>Id </th>
 								<th>Nombre</th>
 								<th>Direccion</th>
 								<th colspan="2">Coordenadas</th>
@@ -93,11 +93,11 @@
 									foreach ($sucursal  as $key => $value) { ?>
 								
 									<tr>
-										<td><?= $value->getId(); ?></td>
-										<td><?= $value->getNombre(); ?></td>
-										<td><?= $value->getDomicilio(); ?></td>
-										<td>Lat: <?= $value->getLatitud(); ?></td>
-										<td>Long: <?= $value->getLongitud(); ?></td>
+										<td > <strong style="font-size:15px;"> <?= $value->getId(); ?> </strong></td>
+										<td> <strong style="font-size:15px;"><?= $value->getNombre(); ?></strong></td>
+										<td><strong style="font-size:15px;"><?= $value->getDomicilio(); ?></strong></td>
+										<td><strong style="font-size:15px;">Lat: <?= $value->getLatitud(); ?></strong></td>
+										<td><strong style="font-size:15px;">Long: <?= $value->getLongitud(); ?></strong></td>
 										<td>
 											<!-- Boton Modal y Modal modificar-->
 											<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-inscp-<?= $value->getId() ?>">Modificar</button>

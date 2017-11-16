@@ -91,7 +91,7 @@
 
 
 
-					<table BORDER="5" CELLPADDING="10" CELLSPACING="4" BORDERCOLOR="black">
+					<table BORDER="5" CELLPADDING="2" CELLSPACING="100" BORDERCOLOR="black">
 						<thead class="thead-inverse">
 							<tr>
 								<th>Id</th>
@@ -109,13 +109,13 @@
 									foreach ($producto as $key => $value) { ?>
 								
 									<tr>
-										<td><?= $value->getId(); ?></td>
-										<td><?= $value->getDescripcion(); ?></td>
-										<td><?= $value->getMTiposDeCerveza(); ?></td>
-										<td><?= $value->getCapacidad(); ?></td>
-										<td><?= $value->getFactor(); ?></td>
-										<td>$<?= $value->getPrecio(); ?></td>
-										<td><img src="<?= "../" . $value->getImagen(); ?>" width="30"></td>
+										<td><strong style="font-size:25px;"><?= $value->getId(); ?></strong></td>
+										<td><strong style="font-size:25px;"><?= $value->getDescripcion(); ?></strong></td>
+										<td><strong style="font-size:25px;"><?= $value->getMTiposDeCerveza(); ?></strong></td>
+										<td><strong style="font-size:25px;"><?= $value->getCapacidad(); ?></strong></td>
+										<td><strong style="font-size:25px;"><?= $value->getFactor(); ?></strong></td>
+										<td><strong style="font-size:25px;">$<?= $value->getPrecio(); ?></strong></td>
+										<td><img src="<?= "../" . $value->getImagen(); ?>" width="100"></td>
 
 										<td>
 										<!-- Boton Modal y Modal modificar-->

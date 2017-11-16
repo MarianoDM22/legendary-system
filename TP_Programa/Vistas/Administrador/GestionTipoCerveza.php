@@ -76,7 +76,7 @@
 								<th>Descripcion</th>
 								<th>Precio/litro</th>
 								<th>Imagen</th>
-								<th colspan="2">Opciones</th>
+								<th colspan="2" >Opciones</th>
 							</tr>
 						</thead>
 						<tbody id="transboxTEXT" >
@@ -85,10 +85,10 @@
 									foreach ($cervezas  as $key => $value) { ?>
 								
 									<tr>
-										<td><?= $value->getId(); ?></td>
-										<td><?= $value->getDescripcion(); ?></td>
-										<td>$<?= $value->getPrecio_Litro(); ?></td>
-										<td><img src="<?= "../" . $value->getImagen(); ?>" width="50"></td>
+										<td><strong style="font-size:25px;"><?= $value->getId(); ?> </strong></td>
+										<td><strong style="font-size:25px;"><?= $value->getDescripcion(); ?> </strong></td>
+										<td><strong style="font-size:25px;">$<?= $value->getPrecio_Litro(); ?> </strong></td>
+										<td><img src="<?= "../" . $value->getImagen(); ?>" width="110"></td>
 										<td>
 											<!-- Boton Modal y Modal modificar-->
 											<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-inscp-<?= $value->getId() ?>">Modificar</button>
