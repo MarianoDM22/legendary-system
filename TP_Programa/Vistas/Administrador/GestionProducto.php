@@ -23,16 +23,6 @@
 
   	<?php require("nav.php"); ?>
 
-  	<header class="bg-dark"">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 text-white">
-					<h1>Gestión Productos</h1>
-				</div>
-			</div>
-		</div>
-	</header>
-
 
 
 	<div class="container">
@@ -101,7 +91,7 @@
 
 
 
-					<table class="table table-bordered table-responsive">
+					<table BORDER="5" CELLPADDING="10" CELLSPACING="4" BORDERCOLOR="black">
 						<thead class="thead-inverse">
 							<tr>
 								<th>Id</th>
@@ -114,7 +104,7 @@
 								<th colspan="2">Opciones</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="transboxTEXT">
 							<?php 
 									foreach ($producto as $key => $value) { ?>
 								
@@ -200,7 +190,36 @@
     	</div>
 	</div>
   	
+	<!-- Estilos para footer y varios divs -->
+	<style>
+		#transparent
+		{
+			opacity: 0.5;
+		}
+		#tbody {
+	    border: 5px solid #ccc;
+	    opacity: 0.5;
+		}
+		#footer 
+		{
+		    position:absolute;
+		    bottom:0;
+		    width:100%;
+		    height:60px;   
+		    background:#6cf;
+		}
+		#transboxTEXT
+		{
+			margin: 5%;
+		    font-weight: bold;
+		    color: #000000;
+		}
+		#td 
+		{
+  			border: 1px solid orange;
+		}
 
+	</style>
 	<?php require(ROOT . "Vistas/footer.php"); ?>
 
 

@@ -69,7 +69,7 @@
 				<!-- Fin Modal -->
 
 
-					<table class="table table-bordered table-responsive">
+					<table BORDER="5" CELLPADDING="10" CELLSPACING="20" BORDERCOLOR="black">
 						<thead class="thead-inverse">
 							<tr>
 								<th>Id</th>
