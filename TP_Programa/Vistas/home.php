@@ -3,6 +3,7 @@
 use \Controladoras\ControlGestionProducto as ControlGestionTipoProducto;
 $DAOProductos= new ControlGestionTipoProducto();
 $productos = $DAOProductos->traertodos();
+$_SESSION['prod']=$productos;
 ?>
 
 
@@ -119,7 +120,7 @@ $productos = $DAOProductos->traertodos();
   <!-- FINMUESTRARIO CERVEZAS  --> 
 
 
-  <?php //require(ROOT . "Vistas/footer.php"); ?>
+  <?php require(ROOT . "Vistas/footer.php"); ?>
 
 
   <!-- Login Modal-->

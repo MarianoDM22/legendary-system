@@ -22,7 +22,7 @@
   <body>
 
   	<nav class="navbar navbar-expand-lg navbar-dark flex-column flex-md-row bd-navbar bg-dark">
-      <a class="navbar-brand" href="#"><img src="" width="30" height="30" alt=""></a>
+      <a class="navbar-brand" href="#"><img src="http://localhost/TP_Programa/images/Icono-lúpulo.png" width="40" height="40" alt=""></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

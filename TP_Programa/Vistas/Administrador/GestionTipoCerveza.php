@@ -17,21 +17,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
      <!-- Mi CSS -->
     <link href="css/estilos.css" type="text/css" rel="stylesheet">
-
+    <?php require("nav.php"); ?>
   </head>
-  <body>
+  <body style="background-image: url(&quot;http://localhost/TP_Programa/images/fondoGestionCerveza.jpg&quot;);">
 
-  	<?php require("nav.php"); ?>
   	
-  	<header class="bg-dark"">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 text-white">
-					<h1>Gestión Tipos de Cerveza</h1>
-				</div>
-			</div>
-		</div>
-	</header>
 
 	<div class="container">
 		<div class="row">
@@ -89,7 +79,7 @@
 								<th colspan="2">Opciones</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="transboxTEXT" >
 							<?php
 
 									foreach ($cervezas  as $key => $value) { ?>
@@ -98,7 +88,7 @@
 										<td><?= $value->getId(); ?></td>
 										<td><?= $value->getDescripcion(); ?></td>
 										<td>$<?= $value->getPrecio_Litro(); ?></td>
-										<td><img src="<?= "../" . $value->getImagen(); ?>" width="30"></td>
+										<td><img src="<?= "../" . $value->getImagen(); ?>" width="50"></td>
 										<td>
 											<!-- Boton Modal y Modal modificar-->
 											<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-inscp-<?= $value->getId() ?>">Modificar</button>
@@ -161,6 +151,36 @@
 
 
 
+	<!-- Estilos para footer y varios divs -->
+	<style>
+		#transparent
+		{
+			opacity: 0.5;
+		}
+		#tbody {
+	    border: 5px solid #ccc;
+	    opacity: 0.5;
+		}
+		#footer 
+		{
+		    position:absolute;
+		    bottom:0;
+		    width:100%;
+		    height:60px;   
+		    background:#6cf;
+		}
+		#transboxTEXT
+		{
+			margin: 5%;
+		    font-weight: bold;
+		    color: #000000;
+		}
+		#td 
+		{
+  			border: 1px solid orange;
+		}
+
+	</style>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

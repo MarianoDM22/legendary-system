@@ -182,8 +182,6 @@
           if( !isset($_SESSION['Carrito']) ){?>
             <p>No hay productos en su carrito!</p>
           <?php } ?>
-          
-
         </div>
       </div>
     </div>
