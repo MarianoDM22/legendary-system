@@ -53,36 +53,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d34d66', end
 .relative { position: relative; }
 .absolute { position: absolute; }
 
-/* Background transparenteL */
+/* Background transparencias */
 .background { background: url(klematis.jpg) repeat; border: 0px ; }
 .transbox { margin: 10px; background-color: #ffffff; border: 1px solid black; opacity: 0.6; filter: alpha(opacity=60); /* For IE8 and earlier */ }
 .transbox { margin: 5%; font-weight: bold; color: #000000; }
 
-#transparent
-		{
-			opacity: 0.5;
-		}
-		#tbody {
-	    border: 5px solid #ccc;
-	    opacity: 0.5;
-		}
-		#footer 
-		{
-		    position:absolute;
-		    bottom:0;
-		    width:100%;
-		    height:60px;   
-		    background:#6cf;
-		}
-		#transboxTEXT
-		{
-			margin: 5%;
-		    font-weight: bold;
-		    color: #000000;
-		}
-		#td 
-		{
-  			border: 1px solid orange;
-		}
+.transparent { opacity: 0.5; }
+.tbody { border: 5px solid #ccc; opacity: 0.5; }
+.footer { position:absolute; bottom:0; width:100%; height:60px; background:#6cf; }
+.transboxTEXT { margin: 5%; font-weight: bold; color: #000000; }
+.td { border: 1px solid orange; }
 
 /* Bootstrap */

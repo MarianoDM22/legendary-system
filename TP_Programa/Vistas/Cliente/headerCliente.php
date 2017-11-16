@@ -182,6 +182,8 @@
           if( !isset($_SESSION['Carrito']) ){?>
             <p>No hay productos en su carrito!</p>
           <?php } ?>
+          
+
         </div>
       </div>
     </div>
@@ -224,7 +226,7 @@
     </div>
     <!-- Change Pass Modal-->
 
-    
+
 
       <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -23,6 +23,16 @@
 
   	<?php require("nav.php"); ?>
 
+  	<header class="bg-dark"">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-white">
+					<h1>Gestión Productos</h1>
+				</div>
+			</div>
+		</div>
+	</header>
+
 
 
 	<div class="container">
@@ -91,31 +101,31 @@
 
 
 
-					<table BORDER="5" CELLPADDING="2" CELLSPACING="100" BORDERCOLOR="black">
+					<table class="table table-bordered table-responsive text-center table-light">
 						<thead class="thead-inverse">
 							<tr>
 								<th>Id</th>
 								<th>Descripcion</th>
 								<th>Cerveza</th>
-								<th>Capacidad en Litros</th>
+								<th>Capacidad/Litros</th>
 								<th>Factor</th>
 								<th>Precio</th>
 								<th>Imagen</th>
 								<th colspan="2">Opciones</th>
 							</tr>
 						</thead>
-						<tbody id="transboxTEXT">
+						<tbody class="transboxTEXT">
 							<?php 
 									foreach ($producto as $key => $value) { ?>
 								
 									<tr>
-										<td><strong style="font-size:25px;"><?= $value->getId(); ?></strong></td>
-										<td><strong style="font-size:25px;"><?= $value->getDescripcion(); ?></strong></td>
-										<td><strong style="font-size:25px;"><?= $value->getMTiposDeCerveza(); ?></strong></td>
-										<td><strong style="font-size:25px;"><?= $value->getCapacidad(); ?></strong></td>
-										<td><strong style="font-size:25px;"><?= $value->getFactor(); ?></strong></td>
-										<td><strong style="font-size:25px;">$<?= $value->getPrecio(); ?></strong></td>
-										<td><img src="<?= "../" . $value->getImagen(); ?>" width="100"></td>
+										<td><strong><?= $value->getId(); ?></td>
+										<td><strong><?= $value->getDescripcion(); ?></td>
+										<td><strong><?= $value->getMTiposDeCerveza(); ?></td>
+										<td><strong><?= $value->getCapacidad(); ?></td>
+										<td><strong><?= $value->getFactor(); ?></td>
+										<td><strong>$<?= $value->getPrecio(); ?></td>
+										<td><img src="<?= "../" . $value->getImagen(); ?>" width="50"></td>
 
 										<td>
 										<!-- Boton Modal y Modal modificar-->
@@ -190,36 +200,7 @@
     	</div>
 	</div>
   	
-	<!-- Estilos para footer y varios divs -->
-	<style>
-		#transparent
-		{
-			opacity: 0.5;
-		}
-		#tbody {
-	    border: 5px solid #ccc;
-	    opacity: 0.5;
-		}
-		#footer 
-		{
-		    position:absolute;
-		    bottom:0;
-		    width:100%;
-		    height:60px;   
-		    background:#6cf;
-		}
-		#transboxTEXT
-		{
-			margin: 5%;
-		    font-weight: bold;
-		    color: #000000;
-		}
-		#td 
-		{
-  			border: 1px solid orange;
-		}
 
-	</style>
 	<?php require(ROOT . "Vistas/footer.php"); ?>
 
 

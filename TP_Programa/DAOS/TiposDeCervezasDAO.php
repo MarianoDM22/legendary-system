@@ -170,7 +170,7 @@ class TiposDeCervezasDAO extends SingletonAbstractDAO implements IDAO
 
 
 		}
-		
+
 		return $objects;
 	}
 }

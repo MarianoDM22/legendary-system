@@ -1,9 +1,7 @@
 <?php namespace Cliente;
 
-//include_once (ROOT . '/Vistas/home.php');
-?>
 
- 
+ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +23,7 @@
   </head>
   <body>
 
-    <?php require("headerCliente.php"); ?>
+    <?php //require("headerCliente.php"); ?>
 
     <div class="container-fluid">
       <div class="row">
@@ -78,8 +76,7 @@
               
                 <div class="card-deck">
                   <?php 
-                    $productos=$_SESSION['prod'];
-                    foreach ($productos as $key => $value) {  ?>
+                    foreach ($producto as $key => $value) {  ?>
                       <div class="p-4 align-self-center col-md-4"> 
                         <div class="card bg-light text-center">
 

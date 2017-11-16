@@ -29,12 +29,7 @@
 	$router = new Router();
 
 	
-
 	$router->direccionar($request);
-
-	
-	
-	
 	
 	//Autoload::start();
 	//Router::direccionar(new Request());

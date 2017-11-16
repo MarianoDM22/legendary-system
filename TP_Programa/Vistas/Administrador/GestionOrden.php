@@ -19,7 +19,7 @@
     <link href="css/estilos.css" type="text/css" rel="stylesheet">
 
   </head>
-  <body>
+  <body style="background-image: url(&quot;http://localhost/TP_Programa/images/fondoGestionCerveza.jpg&quot;);">
   	<header class="bg-dark"">
 		<div class="container">
 			<div class="row">
@@ -42,7 +42,7 @@
 				if(isset($_SESSION['Pedido'])) {
 					$Pedido = $_SESSION['Pedido']; ?>
 
-					<table class="table table-bordered table-responsive">
+					<table class="table table-bordered table-responsive text-center table-lightr">
 						<thead class="thead-inverse">
 							<tr>
 								<th>Nro de Orden</th>
@@ -52,7 +52,7 @@
 								<th>Tipo de Envio</td>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody class="transboxTEXT">
 							<?php 
 									foreach ($Pedido as $key => $value) { ?>
 								

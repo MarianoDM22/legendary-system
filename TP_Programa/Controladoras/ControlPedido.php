@@ -53,7 +53,7 @@
 	
 	   		}
 
-	   		require_once(ROOT . '/Vistas/Cliente/homeCliente.php');
+	   		$this->index();
 	   	}
 
 	   	private function crearSesion($linea)
@@ -146,7 +146,7 @@
 
 		public function traerTodosProductos()
 	   	{
-	   		$producto= array();
+	   		$producto=array();
 	   		$producto=$this->DAOProducto->traerTodos();
 	   		
 	   		return $producto;

@@ -22,6 +22,16 @@
   <body style="background-image: url(&quot;http://localhost/TP_Programa/images/fondoGestionCerveza.jpg&quot;);">
 
   	<?php require("nav.php"); ?>
+  	
+  	<header class="bg-dark"">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-white">
+					<h1>Gestión Sucursales</h1>
+				</div>
+			</div>
+		</div>
+	</header>
 
 	<div class="container">
 		<div class="row">
@@ -77,27 +87,27 @@
 				<!-- Fin Modal -->
 
 
-					<table  BORDER="5" CELLPADDING="10" CELLSPACING="5" BORDERCOLOR="black" >
-						<thead class="thead-inverse" >
+					<table class="table table-bordered table-responsive text-center table-light">
+						<thead class="thead-inverse">
 							<tr>
-								<th>Id </th>
+								<th>Id</th>
 								<th>Nombre</th>
 								<th>Direccion</th>
 								<th colspan="2">Coordenadas</th>
 								<th colspan="2">Opciones</td>
 							</tr>
 						</thead>
-						<tbody id="transboxTEXT" >
+						<tbody class="transboxTEXT">
 							<?php
 
 									foreach ($sucursal  as $key => $value) { ?>
 								
 									<tr>
-										<td > <strong style="font-size:20px;"> <?= $value->getId(); ?> </strong></td>
-										<td> <strong style="font-size:20px;"><?= $value->getNombre(); ?></strong></td>
-										<td><strong style="font-size:20px;"><?= $value->getDomicilio(); ?></strong></td>
-										<td><strong style="font-size:20px;">Lat: <?= $value->getLatitud(); ?></strong></td>
-										<td><strong style="font-size:20px;">Long: <?= $value->getLongitud(); ?></strong></td>
+										<td><strong><?= $value->getId(); ?></td>
+										<td><strong><?= $value->getNombre(); ?></td>
+										<td><strong><?= $value->getDomicilio(); ?></td>
+										<td><strong>Lat: <?= $value->getLatitud(); ?></td>
+										<td><strong>Long: <?= $value->getLongitud(); ?></td>
 										<td>
 											<!-- Boton Modal y Modal modificar-->
 											<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-inscp-<?= $value->getId() ?>">Modificar</button>
@@ -166,36 +176,7 @@
 
 
 
-	<!-- Estilos para footer y varios divs -->
-	<style>
-		#transparent
-		{
-			opacity: 0.5;
-		}
-		#tbody {
-	    border: 5px solid #ccc;
-	    opacity: 0.5;
-		}
-		#footer 
-		{
-		    position:absolute;
-		    bottom:0;
-		    width:100%;
-		    height:60px;   
-		    background:#6cf;
-		}
-		#transboxTEXT
-		{
-			margin: 5%;
-		    font-weight: bold;
-		    color: #000000;
-		}
-		#td 
-		{
-  			border: 1px solid orange;
-		}
 
-	</style>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
