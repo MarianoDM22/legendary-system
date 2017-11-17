@@ -16,14 +16,14 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <!-- Font Awesome-->
-    <link href="font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="font-awesome-4.7.0/css/font-awesome.min.css"  type="text/css">
     <!-- Mi CSS -->
-    <link href="css/estilos.css" type="text/css" rel="stylesheet">
+    <link href="css/estilos.css" type="text/css" >
 
   </head>
   <body>
 
-    <?php //require("headerCliente.php"); ?>
+    <?php require("headerCliente.php"); ?>
 
     <div class="container-fluid">
       <div class="row">

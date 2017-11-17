@@ -13,7 +13,7 @@ $productos = $DAOProductos->traertodos();
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title></title>
+  <title>Beer Recharge MDP</title>
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
@@ -56,35 +56,14 @@ $productos = $DAOProductos->traertodos();
 
 </head>
 
-<body>
+<body style="background-image: url(&quot;http://localhost/TP_Programa/images/fondoHome.jpg&quot;);" >
+
+  <?php require("header.php"); ?> <!-- llamado a la barra nav de home-->
+  
 
 
-  <!-- INICIO HEADER  -->
-  <nav class="navbar navbar-expand-md bg-primary navbar-dark">
-    <div class="container">
-      <a class="navbar-brand" href=""><i class="fa d-inline fa-lg fa-cloud"></i><b>&nbsp;Beer Recharge MDP</b></a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-      <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fa d-inline fa-lg fa-bookmark-o"></i> Contactenos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href= "<?= ROOT_VIEW ?>/Login/cerrarSesion"><i class="fa d-inline fa-lg fa-envelope-o"></i>&nbsp;LogOut</a>
-          </li>
-        </ul>
-        <a class="btn navbar-btn ml-2 text-white btn-secondary" data-toggle="modal" data-target="#loginModal">
-        <i class="fa d-inline fa-lg fa-user-circle-o"></i>&nbsp; Iniciar Sesion</a>
-      </div>
-    </div>
-  </nav><!-- fin header  -->
-
-
-
-
-  <!-- INICIO MUESTRARIO CERVEZAS    -->
-   
-  <div class="p-5 bg-primary opaque-overlay" style="background-image: url(&quot;http://localhost/TP_Programa/images/fondoHome.jpg&quot;);">
+  <!-- INICIO MUESTRARIO CERVEZAS    -->   
+  <div>
     <div class="container">
       <div class="row">
 
@@ -119,7 +98,7 @@ $productos = $DAOProductos->traertodos();
   <!-- FINMUESTRARIO CERVEZAS  --> 
 
 
-  <?php //require(ROOT . "Vistas/footer.php"); ?>
+  <?php require(ROOT . "Vistas/footer.php"); ?>
 
 
   <!-- Login Modal-->

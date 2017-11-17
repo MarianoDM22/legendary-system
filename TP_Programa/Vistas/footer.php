@@ -21,7 +21,7 @@ $sucursales = $DAOSucursal->traertodos();// agarro todas las sucursales de la BD
     <!-- Font Awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
      <!-- Mi CSS -->
-    <link rel="stylesheet" href="css/estilos.css" type="text/css" >
+    <link  href="css/estilos.css" type="text/css" >
 
     <!-- Google Maps Key y URL -->
     <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=AIzaSyA8zxt5WxVz1tas7WyeLebU0d2gyL4DYOs" type="text/javascript"></script>     
@@ -112,6 +112,9 @@ $sucursales = $DAOSucursal->traertodos();// agarro todas las sucursales de la BD
   </footer>  
   <!-- fin Footer -->
 
+  <style>/*PROVISORIO HASTA QE FUNCIONE LA HOJA DE ESTILOS CSS*/
+    .footer { position:absolute; bottom:0; width:100%; height:60px; background:#6cf; }
+  </style>
 
 
      <!-- Optional JavaScript -->
