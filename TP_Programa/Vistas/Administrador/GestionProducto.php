@@ -101,7 +101,7 @@
 
 
 
-					<table class="table table-bordered table-responsive text-center table-light">
+					<table class="table table-bordered table-responsive text-center table-light" id="div">
 						<thead class="thead-inverse">
 							<tr>
 								<th>Id</th>
@@ -119,12 +119,12 @@
 									foreach ($producto as $key => $value) { ?>
 								
 									<tr>
-										<td><strong><?= $value->getId(); ?></td>
-										<td><strong><?= $value->getDescripcion(); ?></td>
-										<td><strong><?= $value->getMTiposDeCerveza(); ?></td>
-										<td><strong><?= $value->getCapacidad(); ?></td>
-										<td><strong><?= $value->getFactor(); ?></td>
-										<td><strong>$<?= $value->getPrecio(); ?></td>
+										<td><font color="#fff"><strong><?= $value->getId(); ?></td>
+										<td><font color="#fff"><strong><?= $value->getDescripcion(); ?></td>
+										<td><font color="#fff"><strong><?= $value->getMTiposDeCerveza(); ?></td>
+										<td><font color="#fff"><strong><?= $value->getCapacidad(); ?></td>
+										<td><font color="#fff"><strong><?= $value->getFactor(); ?></td>
+										<td><font color="#fff"><strong>$<?= $value->getPrecio(); ?></td>
 										<td><img src="<?= "../" . $value->getImagen(); ?>" width="50"></td>
 
 										<td>
@@ -203,7 +203,13 @@
 
 	<?php require(ROOT . "Vistas/footer.php"); ?>
 
-
+	<style>	/*provisorio hasta que ande los estilos. en este caso combiene por id para no afectaro todos los div*/	
+		#div
+		{
+			   	
+	    	background: rgba(0,0,0,0.3)    /* transparencia solo del fondo , resaltando los botones y texto */
+		}
+	</style>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

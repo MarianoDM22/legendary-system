@@ -33,7 +33,7 @@
 		</div>
 	</header>
 
-	<div class="container">
+	<div class="container" >
 		<div class="row">
 			<section class="col-md-10">
 				<h2>Tipos de Cerveza</h2>
@@ -44,8 +44,8 @@
 				</button>
 
 				<!-- Modal Nueva Cerveza-->
-				<div class="modal fade" id="modal-insc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">		  
-					<div class="modal-dialog" role="document">
+				<div class="modal fade" id="modal-insc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >		  
+					<div class="modal-dialog" role="document" id="text">
 					    <div class="modal-content">
 					      	<form action= "<?= ROOT_VIEW ?> /GestionTipoCerveza/nuevo" method="post" enctype="multipart/form-data">
 						      	<div class="modal-header">
@@ -79,10 +79,10 @@
 				<!-- Fin Modal -->
 
 
-					<table class="table table-bordered table-responsive text-center table-light">
+					<table class="table table-bordered table-responsive text-center table-light" id="div" >
 						<thead class="thead-inverse">
 							<tr>
-								<th>Id</th>
+								<th><Id</th>
 								<th>Descripcion</th>
 								<th>Precio/litro</th>
 								<th>Imagen</th>
@@ -95,11 +95,11 @@
 									foreach ($cervezas  as $key => $value) { ?>
 								
 									<tr>
-										<td><strong><?= $value->getId(); ?></td>
-										<td><strong><?= $value->getDescripcion(); ?></td>
-										<td><strong>$<?= $value->getPrecio_Litro(); ?></td>
-										<td><img src="<?= "../" . $value->getImagen(); ?>" width="50"></td>
-										<td>
+										<td ><font color="#fff"><strong><?= $value->getId(); ?></font></td>
+										<td ><font color="#fff"><strong><?= $value->getDescripcion(); ?></font></td>
+										<td ><font color="#fff"><strong>$<?= $value->getPrecio_Litro(); ?></font></td>
+										<td ><<img src="<?= "../" . $value->getImagen(); ?>" width="50" ></font></td>
+										<td >
 											<!-- Boton Modal y Modal modificar-->
 											<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-inscp-<?= $value->getId() ?>">Modificar</button>
 											
@@ -161,7 +161,16 @@
 
 
 
+	<style>	/*provisorio hasta que ande los estilos. en este caso combiene por id para no afectaro todos los div*/	
+		#div
+		{
+			   	
+	    	background: rgba(0,0,0,0.3)    /* transparencia solo del fondo , resaltando los botones y texto */
+		}
+	</style>
 
+
+	</script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

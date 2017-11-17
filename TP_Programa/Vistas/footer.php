@@ -76,7 +76,7 @@ $sucursales = $DAOSucursal->traertodos();// agarro todas las sucursales de la BD
   <!-- FIN Funcion Google Maps-->
 
   <!-- Footer -->
-  <footer class="footer bg-dark footer tbody">
+  <footer class="footer bg-dark footer tbody" >
     <div class="py-2 bg-dark text-white">
       <div class="container">
         <div class="row">
@@ -111,6 +111,7 @@ $sucursales = $DAOSucursal->traertodos();// agarro todas las sucursales de la BD
     </div>
   </footer>  
   <!-- fin Footer -->
+
 
 
      <!-- Optional JavaScript -->

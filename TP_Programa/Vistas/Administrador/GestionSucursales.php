@@ -87,7 +87,7 @@
 				<!-- Fin Modal -->
 
 
-					<table class="table table-bordered table-responsive text-center table-light">
+					<table class="table table-bordered table-responsive text-center table-light" id="div">
 						<thead class="thead-inverse">
 							<tr>
 								<th>Id</th>
@@ -103,11 +103,11 @@
 									foreach ($sucursal  as $key => $value) { ?>
 								
 									<tr>
-										<td><strong><?= $value->getId(); ?></td>
-										<td><strong><?= $value->getNombre(); ?></td>
-										<td><strong><?= $value->getDomicilio(); ?></td>
-										<td><strong>Lat: <?= $value->getLatitud(); ?></td>
-										<td><strong>Long: <?= $value->getLongitud(); ?></td>
+										<td><font color="#fff"><strong><?= $value->getId(); ?></font></td>
+										<td><font color="#fff"><strong><?= $value->getNombre(); ?></font></td>
+										<td><font color="#fff"><strong><?= $value->getDomicilio(); ?></font></td>
+										<td><font color="#fff"><strong>Lat: <?= $value->getLatitud(); ?></font></td>
+										<td><font color="#fff"><strong>Long: <?= $value->getLongitud(); ?></font></td>
 										<td>
 											<!-- Boton Modal y Modal modificar-->
 											<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-inscp-<?= $value->getId() ?>">Modificar</button>
@@ -175,7 +175,13 @@
 	<?php require(ROOT . "Vistas/footer.php"); ?>
 
 
-
+	<style>	/*provisorio hasta que ande los estilos. en este caso combiene por id para no afectaro todos los div*/	
+		#div
+		{
+			   	
+	    	background: rgba(0,0,0,0.3)    /* transparencia solo del fondo , resaltando los botones y texto */
+		}
+	</style>
 
 
     <!-- Optional JavaScript -->
