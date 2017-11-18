@@ -16,7 +16,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
      <!-- Mi CSS -->
-    <link href="css/estilos.css" type="text/css" rel="stylesheet">
+    <link href="css/estilos.css" type="text/css">
 
   </head>
   <body style="background-image: url(&quot;http://localhost/TP_Programa/images/fondoGestionCerveza.jpg&quot;);">
@@ -101,7 +101,7 @@
 
 
 
-					<table class="table table-bordered table-responsive text-center table-light" id="div">
+					<table class="table table-bordered table-responsive text-center table-light table-transparent">
 						<thead class="thead-inverse">
 							<tr>
 								<th>Id</th>
@@ -114,17 +114,17 @@
 								<th colspan="2">Opciones</th>
 							</tr>
 						</thead>
-						<tbody class="transboxTEXT">
+						<tbody class="fn-lg">
 							<?php 
 									foreach ($producto as $key => $value) { ?>
 								
 									<tr>
-										<td><font color="#fff"><strong><?= $value->getId(); ?></td>
-										<td><font color="#fff"><strong><?= $value->getDescripcion(); ?></td>
-										<td><font color="#fff"><strong><?= $value->getMTiposDeCerveza(); ?></td>
-										<td><font color="#fff"><strong><?= $value->getCapacidad(); ?></td>
-										<td><font color="#fff"><strong><?= $value->getFactor(); ?></td>
-										<td><font color="#fff"><strong>$<?= $value->getPrecio(); ?></td>
+										<td class="text-white"><?= $value->getId(); ?></td>
+										<td class="text-white"><?= $value->getDescripcion(); ?></td>
+										<td class="text-white"><?= $value->getMTiposDeCerveza(); ?></td>
+										<td class="text-white"><?= $value->getCapacidad(); ?></td>
+										<td class="text-white"><?= $value->getFactor(); ?></td>
+										<td class="text-white">$<?= $value->getPrecio(); ?></td>
 										<td><img src="<?= "../" . $value->getImagen(); ?>" width="50"></td>
 
 										<td>

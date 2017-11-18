@@ -16,7 +16,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
      <!-- Mi CSS -->
-    <link rel="stylesheet" href="css/estilos.css" type="text/css">
+    <link rel="stylesheet" href="../css/estilos.css" type="text/css">
 
   </head>
   <body style="background-image: url(&quot;http://localhost/TP_Programa/images/fondoGestionCerveza.jpg&quot;);">
@@ -79,7 +79,7 @@
 				<!-- Fin Modal -->
 
 
-					<table class="table table-bordered table-responsive text-center table-light" id="div" >
+					<table class="table table-bordered table-responsive text-center  table-light table-transparent" id="div">
 						<thead class="thead-inverse">
 							<tr>
 								<th><Id</th>
@@ -89,17 +89,17 @@
 								<th colspan="2">Opciones</th>
 							</tr>
 						</thead>
-						<tbody class="fn-lg transboxTEXT">
+						<tbody class="fn-lg ">
 							<?php
 
 									foreach ($cervezas  as $key => $value) { ?>
 								
 									<tr>
-										<td ><font color="#fff"><strong><?= $value->getId(); ?></font></td>
-										<td ><font color="#fff"><strong><?= $value->getDescripcion(); ?></font></td>
-										<td ><font color="#fff"><strong>$<?= $value->getPrecio_Litro(); ?></font></td>
-										<td ><<img src="<?= "../" . $value->getImagen(); ?>" width="50" ></font></td>
-										<td >
+										<td class="text-white"><?= $value->getId(); ?></font></td>
+										<td class="text-white"><?= $value->getDescripcion(); ?></font></td>
+										<td class="text-white">$<?= $value->getPrecio_Litro(); ?></font></td>
+										<td><img src="<?= "../" . $value->getImagen(); ?>" width="50" ></font></td>
+										<td>
 											<!-- Boton Modal y Modal modificar-->
 											<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-inscp-<?= $value->getId() ?>">Modificar</button>
 											

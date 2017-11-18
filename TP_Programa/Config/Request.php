@@ -34,7 +34,7 @@
              */
 
             if(empty($ArregloUrl)) {
-                $this->controlador = 'home';
+                $this->controlador = 'login';
             } else {
                 $this->controlador = ucwords(array_shift($ArregloUrl));
             }

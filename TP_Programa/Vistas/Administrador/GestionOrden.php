@@ -16,7 +16,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
      <!-- Mi CSS -->
-    <link href="css/estilos.css" type="text/css" rel="stylesheet">
+    <link href="css/estilos.css" type="text/css">
 
   </head>
   <body style="background-image: url(&quot;http://localhost/TP_Programa/images/fondoGestionCerveza.jpg&quot;);">
@@ -42,7 +42,7 @@
 				if(isset($_SESSION['Pedido'])) {
 					$Pedido = $_SESSION['Pedido']; ?>
 
-					<table class="table table-bordered table-responsive text-center table-lightr">
+					<table class="table table-bordered table-responsive text-center table-light table-transparent">
 						<thead class="thead-inverse">
 							<tr>
 								<th>Nro de Orden</th>
@@ -52,18 +52,18 @@
 								<th>Tipo de Envio</td>
 							</tr>
 						</thead>
-						<tbody class="transboxTEXT">
+						<tbody class="fn-lg">
 							<?php 
 									foreach ($Pedido as $key => $value) { ?>
 								
 									<tr>
-										<td>
+										<td class="text-white">
 											<form action="../GestionOrden/ " method="POST">
 												<input type="hidden" name="id" value="<?= $value->getId(); ?>">
 												<button type="submit" class="btn btn-primary" ><?= $value->getId(); ?></button>
 											</form>
 										</td>
-										<td>
+										<td >
 											<select name="Estado" class="custom-select">
 												<option selected <?= $value->getEstado(); ?> </option>
 													<?php 
@@ -72,8 +72,8 @@
 													<?php } ?>
 											</select>
 										</td>
-										<td><?= $value->getFecha(); ?></td>
-										<td><?= $value->getMcCliente(); ?></td>
+										<td class="text-white"><?= $value->getFecha(); ?></td>
+										<td class="text-white"><?= $value->getMcCliente(); ?></td>
 										<td></td>
 										<td>							
 									</tr>

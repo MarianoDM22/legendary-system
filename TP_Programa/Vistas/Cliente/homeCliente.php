@@ -16,7 +16,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <!-- Font Awesome-->
-    <link href="font-awesome-4.7.0/css/font-awesome.min.css"  type="text/css">
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css"  type="text/css">
     <!-- Mi CSS -->
     <link href="css/estilos.css" type="text/css" >
 
@@ -93,7 +93,7 @@
                                       <option value="4"> 4 </option>
                                     </select>
                                     
-                                    <input class="btn btn-primary"  type="submit" value="Agregar">
+                                    <input type="submit" class="btn btn-primary" value="Agregar">
 
                                     <input type="hidden" name="importe" class="form-control" value= "<?= $value->getPrecio();  ?>" >
                                     <input type="hidden" name="id" class="form-control" value="<?= $value->getId();?>" >

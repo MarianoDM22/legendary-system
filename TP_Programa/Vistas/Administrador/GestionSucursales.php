@@ -16,7 +16,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
      <!-- Mi CSS -->
-    <link href="css/estilos.css" type="text/css" rel="stylesheet">
+    <link href="css/estilos.css" type="text/css">
 
   </head>
   <body style="background-image: url(&quot;http://localhost/TP_Programa/images/fondoGestionCerveza.jpg&quot;);">
@@ -87,7 +87,7 @@
 				<!-- Fin Modal -->
 
 
-					<table class="table table-bordered table-responsive text-center table-light" id="div">
+					<table class="table table-bordered table-responsive text-center table-light table-transparent">
 						<thead class="thead-inverse">
 							<tr>
 								<th>Id</th>
@@ -97,17 +97,17 @@
 								<th colspan="2">Opciones</td>
 							</tr>
 						</thead>
-						<tbody class="transboxTEXT">
+						<tbody clas="fn-lg">
 							<?php
 
 									foreach ($sucursal  as $key => $value) { ?>
 								
 									<tr>
-										<td><font color="#fff"><strong><?= $value->getId(); ?></font></td>
-										<td><font color="#fff"><strong><?= $value->getNombre(); ?></font></td>
-										<td><font color="#fff"><strong><?= $value->getDomicilio(); ?></font></td>
-										<td><font color="#fff"><strong>Lat: <?= $value->getLatitud(); ?></font></td>
-										<td><font color="#fff"><strong>Long: <?= $value->getLongitud(); ?></font></td>
+										<td class="text-white"><?= $value->getId(); ?></font></td>
+										<td class="text-white"><?= $value->getNombre(); ?></font></td>
+										<td class="text-white"><?= $value->getDomicilio(); ?></font></td>
+										<td class="text-white">Lat: <?= $value->getLatitud(); ?></font></td>
+										<td class="text-white">Long: <?= $value->getLongitud(); ?></font></td>
 										<td>
 											<!-- Boton Modal y Modal modificar-->
 											<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-inscp-<?= $value->getId() ?>">Modificar</button>

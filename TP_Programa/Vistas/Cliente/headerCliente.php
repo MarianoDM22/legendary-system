@@ -18,7 +18,7 @@
     <!-- Font Awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
      <!-- Mi CSS -->
-    <link href="css/estilos.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet"  href="css/estilos.css" type="text/css">
 
   </head>
   <body>
@@ -157,7 +157,24 @@
                 </tbody>  
               </table>      
           </div>
-          
+          <div class="modal-footer">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-8 text-right">
+                  <h6>Total: $ $<?= $value->getPrecioTotal(); ?></h6>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 text-right">
+                  <div class="center-block">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Update</button>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" href="<?= ROOT_VIEW ?>/Pedido/checkOut">CheckOut</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <?php } ?><!-- Fin sessionl-->
 
           

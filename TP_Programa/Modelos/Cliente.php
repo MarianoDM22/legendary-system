@@ -7,7 +7,6 @@ class Cliente
     private $nombre;
 	private $apellido;
 	private $domicilio;
-	
 	private $telefono;
 	private $m_Cuenta;
 	private $m_Pedido=array();
@@ -30,6 +29,17 @@ class Cliente
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
     }
 
     public function getApellido()
@@ -55,19 +65,8 @@ class Cliente
         $this->domicilio = $domicilio;
     }
 
-   
-    public function getNombre()
-    {
-        return $this->nombre;
-    }
 
-    
-    public function setNombre($nombre)
-    {
-        $this->nombre = $nombre;
-    }
-
-        public function getTelefono()
+    public function getTelefono()
     {
         return $this->telefono;
     }

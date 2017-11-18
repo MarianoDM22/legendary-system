@@ -32,13 +32,24 @@
           <div id="shipAdd">
             <h2>1. Direccion de Envío: </h2>
             <br>
+
+            <?php if (isset($_SESSION['Login']) ) {
+              $cuenta = $_SESSION['Login'];
+              $cliente = $cuenta->getMCliente();?>
+
             <address>
               <!-- aca van los datos por defecto que estan en session-->
-              <!-- nombre apellido-->
-              <!-- direccion-->
-              <!-- mail-->
-              <!-- telefono-->
-            </address>
+              <p><?= $cliente->getNombre(); $cliente->getApellido(); ?></p><!-- nombre apellido-->
+              <br>
+              <p><?= $cliente->getDireccion(); ?></p><!-- direccion-->
+              <br>
+              <p><?= $cuenta->getEmail(); ?></p><!-- mail-->
+              <br>
+              <p><?= $cliente->getTelefono(); ?></p><!-- telefono-->
+              <br>
+            </address> 
+            <?php } ?>
+
           </div>
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
           Ingresar/Cambiar Dirección de envío.
