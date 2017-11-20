@@ -12,6 +12,7 @@ class LineasDePedido
         $this->setCantidad($cantidad);
         $this->setImporte($importe);
         $this->setMProducto($m_Producto);
+        $this->setId(null);
         
     }
 

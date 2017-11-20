@@ -1,6 +1,13 @@
 <?php namespace Cliente;
-
-
+      if (isset($_SESSION['Carrito']) )
+      {
+        if (count($_SESSION['Carrito'])==0 )
+        {
+            unset($_SESSION["Carrito"]);          
+            echo "borro la session";
+        }
+      }
+        
  ?>
 
 <!DOCTYPE html>
@@ -97,6 +104,7 @@
 
                                     <input type="hidden" name="importe" class="form-control" value= "<?= $value->getPrecio();  ?>" >
                                     <input type="hidden" name="id" class="form-control" value="<?= $value->getId();?>" >
+                                    <input type="hidden" name="descripcion" class="form-control" value="<?= $value->getDescripcion(); ?>" >
                                     
                                   </div>
                               </div>

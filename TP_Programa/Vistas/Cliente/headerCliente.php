@@ -1,6 +1,10 @@
 <?php namespace Cliente;
 
 
+use \Controladoras\ControlGestionProducto as ControlGestionTipoProducto;
+$DAOProductos= new ControlGestionTipoProducto();
+
+
  ?>
 
 <!DOCTYPE html>
@@ -101,20 +105,17 @@
     <div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Tu carrito:</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
           <div class="modal-body">
 
-           <?php
-             if(isset($_SESSION['Carrito'])) {
-               $lineaCarrito = $_SESSION['Carrito']; ?>
+            <?php
+             if(isset($_SESSION['Carrito'])) 
+             {
+               $lineaCarrito = $_SESSION['Carrito'];
 
-              <!-- todas las lineas del pedido-->
-              <table class="table table-bordered">
+               
+                ?>
+               existe carrito
+               <table class="table table-bordered">
                 <thead class="thead-inverse">
                   <tr>            
                     <th>Descripcion</th>
@@ -127,61 +128,60 @@
                 <tbody>
                
                   <?php 
-                      foreach ($lineaCarrito as $key => $value) { ?>
+
+
+                      foreach ($lineaCarrito as $value) 
+                      {
+                      ?>
                     
                       <tr>
                         <td>
-                          <img src="<?= "../" . $value->getImagen(); ?>" width="40">
-                          <?= $value->getDescripcion(); ?>    
+                         
+                          
+
                         </td>
                         
-                        <td>$<?= $value->getPrecio(); ?></td>
-                        <td> 
-                          <select class="custom-select" name="qty">
-                            <option> 1 </option>
-                            <option> 2 </option>
-                            <option> 3 </option>
-                            <option> 4 </option>
-                          </select>
-                        </td>
-                        <td>$<?= $value->getPrecioSubTotal($value); ?> </td>
                         <td>
-                          <form action="<?= ROOT_VIEW ?>/ /borrar" method="POST">
+                          $<?= $value->getImporte(); ?>
+
+                        </td>
+
+                        <td> 
+                          <?= $value->getCantidad(); ?>  
+                        </td>
+
+                        <td>
+                          <?= $value->getCantidad() * $value->getImporte();?>
+                        </td>
+                        <td>
+                          <form action="<?= ROOT_VIEW ?>/Pedido/borrar" method="POST">
                             <input type="hidden" name="id" value="<?= $value->getId(); ?>">
                             <button type="submit" class="btn btn-primary">Eliminar</button>
+                            <button type="submit" class="btn btn-primary">CheckOut</button>
                           </form>
                         </td>
-                      </tr>  
+                         
                       
-                  <?php } ?>     
+                  <?php } //fin foreach ?>    
                 </tbody>  
-              </table>      
-          </div>
-          <div class="modal-footer">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-8 text-right">
-                  <h6>Total: $ $<?= $value->getPrecioTotal(); ?></h6>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12 text-right">
-                  <div class="center-block">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Update</button>
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="<?= ROOT_VIEW ?>/Pedido/checkOut">CheckOut</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <?php } ?><!-- Fin sessionl-->
+              </table>
 
-          
-          <?php
-          if( !isset($_SESSION['Carrito']) ){?>
-            <p>No hay productos en su carrito!</p>
-          <?php } ?>
+              <?php
+             }//fin IF SESSION
+              ?>
+
+            <?php
+            if ( !isset($_SESSION['Carrito']) )
+            { ?>
+              <p>No hay productos en su carrito!</p>
+
+            <?php  
+            }//fin if no session
+            ?>
+            
+          </div>
+
+
           
 
         </div>

@@ -21,32 +21,43 @@
 		}
 
 
-	   	public function agregarAlCarrito($cantidad, $importe, $id)
-	   	{
+	   	public function agregarAlCarrito($cantidad, $importe, $id,$descripcion)
+	   	{	
+
 	   		session_start();
 
+	   		$cantidad=(int) $cantidad;
 	   		if(	!isset($_SESSION['Carrito']) )//si es el primer producto agregado, creo la sesion y lo agrego
 	   		{
-	   			$linea= new \Modelos\LineasDePedido($importe, $cantidad, $id);	
-
-	   			$this->crearSesion($linea);
-
+	   			$subt=$cantidad*$importe;
+	   			$linea= new \Modelos\LineasDePedido($cantidad, $subt, $id);	
+	   			
+	   			$this->crearSesion();
 	   			$this->insertar($linea);
+
+	   			
 	   			echo '<script language="javascript">alert("Producto agregado!");</script>';
 	   		}
 	   		else
 	   		{
+	   			
+	   			
+	   			$subt=$cantidad*$importe;//multiplico la cantidad elejida por el precio del producto
 	   			$lineaBuscada=$this->buscarLinea($id);//si ya hay un carrito activo, busco si ese producto ya existe
+	   				   			
+	   			
 
-	   			if($lineaBuscada==null)//si no existe, agrrego la linea
+	   			if( $lineaBuscada==null )//si no existe, agrrego la linea
 	   			{
-	   				$linea= new \Modelos\LineasDePedido($importe, $cantidad, $id);	
+	   				
+	   				$linea= new \Modelos\LineasDePedido($cantidad, $subt, $id);	
 
 		   			$this->insertar($linea);
 		   			echo '<script language="javascript">alert("Producto agregado!");</script>';
 	   			}
 	   			else//si ya existe le sumo la cantidad
 	   			{
+	   				
 	   				$this->incrementarArtPedido($lineaBuscada, $cantidad);
 	   				echo '<script language="javascript">alert("Producto actualizado!");</script>';
 	   			}
@@ -56,7 +67,18 @@
 	   		$this->index();
 	   	}
 
-	   	private function crearSesion($linea)
+	   	private function crearSesion()
+		{	
+			
+
+			if(!isset($_SESSION['Carrito']))
+			{
+				$_SESSION['Carrito'] = array();
+			}			
+
+		}
+
+		private function cerrarSesion($linea)
 		{	
 			$this->linea = Array();
 
@@ -67,51 +89,94 @@
 
 		}
 
-		private function buscarLinea($id)
+		private function buscarLinea($idProducto)
+		{
+
+          $retorno=null;
+
+            foreach ( $_SESSION['Carrito'] as $key => $value) 
+			{
+					$idProd=$value->getMProducto();//tomo el id del producto a buscar
+					$idProd=(int) $idProd;//casteo de string a int					
+					
+					$ProductoBuscado=$this->DAOProducto->buscarPorID($idProd);//busco el producto por ID
+					if( strcmp($ProductoBuscado->getId() , $idProducto) ==0 )
+					{
+						$retorno=$key;
+					}
+			}
+			return $retorno;		
+			
+		}
+
+		private function buscarLineaID($id)
 		{
 			$lineaBuscada=null;
-
+		
 		 	if( !empty($_SESSION['Carrito']) )
-			{
+			{	
+				
 				foreach ( $_SESSION['Carrito'] as $key => $value) 
-				{
-					if( strcmp($id, $value->getId())==0 )
+				{	
+					
+					
+					if( strcmp($value->getId(), $id)==0 )
 					{
-						$lineaBuscada=$value;
+						
+						$lineaBuscada=$key;
 					}
 				}
 			}
-
+			
+			
 			return $lineaBuscada;
 		}
 
 		private function devolverUltimoId()
 		{
-			$rta=0;
+			
 
 			if(!empty($_SESSION['Carrito']))
-			{
+			{	
+				
 				$rta=end($_SESSION['Carrito'])->getId();
+				$rta + 1;
+			}
+			else
+			{
+				$rta=null;
 			}
 
-			return $rta + 1;
+			return $rta;
 		}
 
 		private function insertar($linea)
 		{
 		 	$id=$this->devolverUltimoId();
-		 	$linea->setId($id);
+		 	
+		 	if ($id ==null)
+		 	{
+		 		$linea->setId(1
+		 		);
+		 	}
+		 	else
+		 	{
+		 		$linea->setId($id+1);
+		 	}
+		 	
 		 	
 			array_push($_SESSION['Carrito'], $linea);
+			var_dump($_SESSION['Carrito']);
 		}
 
 		private function incrementarArtPedido($lineaBuscada, $cantidad)
 		{
 			$cantidadActualizada=0;
 
-			$cantidadActualizada= ( ($lineaBuscada->getCantidad()) + $cantidad);
+			$cantidadActualizada= ( ($_SESSION['Carrito'][$lineaBuscada]->getCantidad() ) + $cantidad);
 
-			$lineaBuscada->setCantidad($cantidadActualizada);
+			$_SESSION['Carrito'][$lineaBuscada]->setCantidad($cantidadActualizada);
+
 		}
 
 		private function getPrecioSubTotal($linea)
@@ -154,10 +219,16 @@
 
 		public function borrar($id)
 	   	{
-	   		$lineaAborrar=null;
+	   		
+	   		session_start();
 
-			$lineaAborrar=$this->buscar($id);
-			array_pop($_SESSION['TipoCerveza'], $lineaAborrar);
+	   		$lineaAborrar=null;
+			$lineaAborrar=$this->buscarLineaID($id);//busco la linea			
+			unset($_SESSION['Carrito'][$lineaAborrar]);//borro la linea del array de lineas de pedido
+			echo '<script language="javascript">alert("Producto eliminado!");</script>';
+						
+			$this->index();
+			
 	   	}
 
 	   	public function checkOut()
