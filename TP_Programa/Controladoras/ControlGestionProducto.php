@@ -14,6 +14,7 @@ class ControlGestionProducto
 
 	public function __construct()
 	{
+		
 		//$this->DAOProducto=\DAOS\listaProducto::getInstance();
 		$this->DAOProducto=\DAOS\ProductosDAO::getInstance(); //cuando pasemos a BD
 		$this->DAOTipoCerveza=\DAOS\TiposDeCervezasDAO::getInstance();

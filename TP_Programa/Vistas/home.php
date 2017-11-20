@@ -2,6 +2,7 @@
 
 use \Controladoras\ControlGestionProducto as ControlGestionTipoProducto;
 $DAOProductos= new ControlGestionTipoProducto();
+
 $productos = $DAOProductos->traertodos();
 ?>
 

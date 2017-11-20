@@ -105,7 +105,8 @@
 			
 			if (isset($_SESSION['Login']) )//entra si existe la session
 			{	
-    			unset($_SESSION["Login"]);    			
+    			unset($_SESSION["Login"]);
+    			unset($_SESSION["Carrito"]);     			
     			$this->index();
 			}
 
@@ -131,7 +132,7 @@
 			//$pass2=$_POST ['pass2'];
 			
 			$rol='cliente';
-
+			var_dump($domicilio);
 
 			$buscado=$this->DAOCuentas->buscarPorNombre($email);//busco si existe el email en BD
 			if ($buscado == null)

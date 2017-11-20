@@ -1,4 +1,6 @@
 <?php namespace Cliente;
+
+
       if (isset($_SESSION['Carrito']) )
       {
         if (count($_SESSION['Carrito'])==0 )

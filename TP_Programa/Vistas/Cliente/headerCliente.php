@@ -1,8 +1,8 @@
 <?php namespace Cliente;
 
 
-use \Controladoras\ControlGestionProducto as ControlGestionTipoProducto;
-$DAOProductos= new ControlGestionTipoProducto();
+
+
 
 
  ?>
@@ -110,8 +110,9 @@ $DAOProductos= new ControlGestionTipoProducto();
             <?php
              if(isset($_SESSION['Carrito'])) 
              {
-               $lineaCarrito = $_SESSION['Carrito'];
-
+               $lineasCarrito = $_SESSION['Carrito'];
+               $usuarioLogueado=$_SESSION['Login'];
+               
                
                 ?>
                existe carrito
@@ -130,14 +131,13 @@ $DAOProductos= new ControlGestionTipoProducto();
                   <?php 
 
 
-                      foreach ($lineaCarrito as $value) 
+                      foreach ($lineasCarrito as $value) 
                       {
                       ?>
                     
                       <tr>
                         <td>
-                         
-                          
+                                          
 
                         </td>
                         
@@ -149,7 +149,6 @@ $DAOProductos= new ControlGestionTipoProducto();
                         <td> 
                           <?= $value->getCantidad(); ?>  
                         </td>
-
                         <td>
                           <?= $value->getCantidad() * $value->getImporte();?>
                         </td>
@@ -157,14 +156,18 @@ $DAOProductos= new ControlGestionTipoProducto();
                           <form action="<?= ROOT_VIEW ?>/Pedido/borrar" method="POST">
                             <input type="hidden" name="id" value="<?= $value->getId(); ?>">
                             <button type="submit" class="btn btn-primary">Eliminar</button>
-                            <button type="submit" class="btn btn-primary">CheckOut</button>
                           </form>
                         </td>
+                       
                          
                       
                   <?php } //fin foreach ?>    
                 </tbody>  
               </table>
+
+              <form action="<?= ROOT_VIEW ?>/Pedido/checkOut" method="POST">                        
+                <button type="submit" class="btn btn-primary">CheckOut</button>
+              </form>
 
               <?php
              }//fin IF SESSION
@@ -180,9 +183,6 @@ $DAOProductos= new ControlGestionTipoProducto();
             ?>
             
           </div>
-
-
-          
 
         </div>
       </div>

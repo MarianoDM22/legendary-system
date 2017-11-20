@@ -233,6 +233,8 @@
 
 	   	public function checkOut()
 	   	{
+	   		
+	   		
 	   		require_once(ROOT . '/Vistas/Cliente/checkoutCliente.php');
 	   	}
 

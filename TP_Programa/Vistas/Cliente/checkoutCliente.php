@@ -1,5 +1,24 @@
 <?php namespace Cliente;
 
+session_start();
+
+$lineaPedido=array();
+$lineaPedido=$_SESSION['Carrito'];
+$cuenta = $_SESSION['Login'];
+
+
+use \Controladoras\ControlGestionSucursal as ControlGestionSucursal;
+use \Controladoras\ControlCliente as ControlCliente;
+$DAOClientes= new ControlCliente();
+$DAOSucursal= new ControlGestionSucursal();
+
+
+
+
+$sucursales=$DAOSucursal->traerTodos();//me devuelve todas las sucursales de la BD, null si no hay 
+
+$idCliente=$cuenta->getMCliente();//tomo el id de cliente asignado a la cuenta logueada
+$cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE O NULL SI NO LO ENCUENTRA
 
  ?>
 
@@ -33,34 +52,101 @@
             <h2>1. Direccion de Envío: </h2>
             <br>
 
-            <?php if (isset($_SESSION['Login']) ) {
-              $cuenta = $_SESSION['Login'];
-              $cliente = $cuenta->getMCliente();?>
+            
 
             <address>
-              <!-- aca van los datos por defecto que estan en session-->
-              <p><?= $cliente->getNombre(); $cliente->getApellido(); ?></p><!-- nombre apellido-->
-              <br>
-              <p><?= $cliente->getDireccion(); ?></p><!-- direccion-->
-              <br>
-              <p><?= $cuenta->getEmail(); ?></p><!-- mail-->
-              <br>
-              <p><?= $cliente->getTelefono(); ?></p><!-- telefono-->
-              <br>
-            </address> 
-            <?php } ?>
+              <table class="table table-bordered">
+                <thead class="thead-inverse">
+                  <tr>            
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Domicilio</th> 
+                    <th>Email</th>
+                    <th>Telefono</th>
+                  </tr>
+                </thead>
+                <tbody>
+               
+                  <?php 
 
-          </div>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
-          Ingresar/Cambiar Dirección de envío.
-          </button>
+
+                      foreach ($lineasCarrito as $value) 
+                      {
+                      ?>
+                    
+                      <tr>
+                        <td>
+                          <?= $cliente->getNombre(); ?>
+                            
+                        </td>                        
+                        <td>
+                          <?= $cliente->getApellido(); ?>
+
+                        </td>
+
+                        <td> 
+                          <?= $cliente->getDomicilio(); ?>  
+                        </td>
+
+                        <td>
+                          <?= $cuenta->getEmail();?>
+                        </td>
+                        <td>
+                          <?= $cliente->getTelefono(); ?>                          
+                        </td>
+                       
+                         
+                      
+                  <?php } //fin foreach ?>    
+                </tbody> 
+              </table>
+            </address> 
+            
+
+          </div>          
         </div>
 
         <div class="col-lg-5">
           <div id="shipOpt">
             <h2>2. Opciones de Envío: </h2>
-                <!-- elegir alguna de las sucursales-->
-                <!-- o a domicilio-->
+            <table class="table table-bordered">
+                <thead class="thead-inverse">
+                  <tr>            
+                    <th>Direccion</th>
+                    <th>Nombre</th>
+                    
+                    
+                  </tr>
+                </thead>
+                <tbody>
+               
+                  <?php 
+
+                      foreach ($sucursales as $suc) 
+                      {
+                      ?>                    
+                      <tr>                             
+                        <td>
+                          <?= $suc->getDomicilio(); ?>
+
+                        </td>
+
+                        <td> 
+                          <?= $suc->getNombre(); ?>  
+                        </td>
+
+                        <td>
+                            <input type="radio" name="gender" value="<?= $suc->getId(); ?>">                          
+                        </td> 
+                                              
+                      
+                  <?php } //fin foreach ?>                            
+                </tbody>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+                      Ingresar/Cambiar Dirección de envío.
+                  </button>  
+              </table>
+
             <br>
           
           </div>
@@ -82,35 +168,45 @@
                       <th>Opciones</th>
                     </tr>
                   </thead>
-                  <tbody>
+                    <tbody>
+                 
                     <?php 
-                        foreach ($lineaPedido as $key => $value) { ?>
+
+
+                        foreach ($lineaPedido as $value) 
+                        {
+                        ?>
                       
                         <tr>
                           <td>
-                            <img src="<?= "../" . $value->getImagen(); ?>" width="40">
-                            <?= $value->getDescripcion(); ?>
+                           
+                            
+
                           </td>
                           
-                          <td><?= $value->getPrecio(); ?></td>
-                          <td> 
-                            <select class="custom-select" name="qty">
-                              <option> 1 </option>
-                              <option> 2 </option>
-                              <option> 3 </option>
-                              <option> 4 </option>
-                            </select>
-                          </td>
-                          <td> </td>
                           <td>
-                            <form action="<?= ROOT_VIEW ?>/ /borrar" method="POST">
+                            $<?= $value->getImporte(); ?>
+
+                          </td>
+
+                          <td> 
+                            <?= $value->getCantidad(); ?>  
+                          </td>
+
+                          <td>
+                            <?= $value->getCantidad() * $value->getImporte();?>
+                          </td>
+                          <td>
+                            <form action="<?= ROOT_VIEW ?>/Pedido/borrar" method="POST">
                               <input type="hidden" name="id" value="<?= $value->getId(); ?>">
                               <button type="submit" class="btn btn-primary">Eliminar</button>
                             </form>
                           </td>
-                        </tr>  
-                    <?php } ?>     
-                  </tbody>  
+                         
+                           
+                        
+                    <?php } //fin foreach ?>    
+                  </tbody>   
                 </table>          
           </div>
         </div>
