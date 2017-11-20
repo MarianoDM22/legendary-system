@@ -43,11 +43,12 @@
 	   			
 	   			
 	   			$subt=$cantidad*$importe;//multiplico la cantidad elejida por el precio del producto
+
 	   			$lineaBuscada=$this->buscarLinea($id);//si ya hay un carrito activo, busco si ese producto ya existe
-	   				   			
+	   			   			
 	   			
 
-	   			if( $lineaBuscada==null )//si no existe, agrrego la linea
+	   			if( $lineaBuscada< 0 )//si no existe, agrrego la linea
 	   			{
 	   				
 	   				$linea= new \Modelos\LineasDePedido($cantidad, $subt, $id);	
@@ -92,17 +93,14 @@
 		private function buscarLinea($idProducto)
 		{
 
-          $retorno=null;
+          $retorno=-1;
 
             foreach ( $_SESSION['Carrito'] as $key => $value) 
 			{
-					$idProd=$value->getMProducto();//tomo el id del producto a buscar
-					$idProd=(int) $idProd;//casteo de string a int					
-					
-					$ProductoBuscado=$this->DAOProducto->buscarPorID($idProd);//busco el producto por ID
-					if( strcmp($ProductoBuscado->getId() , $idProducto) ==0 )
-					{
-						$retorno=$key;
+
+					if( strcmp($value->getMProducto() , $idProducto) ==0 )
+					{	
+						$retorno=$key;//asigno la pos del arreglo carrito 
 					}
 			}
 			return $retorno;		
@@ -134,8 +132,6 @@
 
 		private function devolverUltimoId()
 		{
-			
-
 			if(!empty($_SESSION['Carrito']))
 			{	
 				

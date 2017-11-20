@@ -87,7 +87,7 @@
 				<!-- Fin Modal -->
 
 
-					<table class="table table-bordered table-responsive text-center table-light table-transparent">
+					<table class="table table-bordered table-responsive text-center table-light table-transparent" id="div">
 						<thead class="thead-inverse">
 							<tr>
 								<th>Id</th>
