@@ -240,5 +240,14 @@
 			
 			require_once(ROOT . '/Vistas/Cliente/homeCliente.php');
 		}
+		public function sumarLineasPedido($carrito)
+		{
+			$total=null;
+			foreach ($carrito as $pos => $valor)
+		    {
+				$total= $total + $valor->getCantidad() * $valor->getImporte();//multiplico la cantidad por el importe de cada linea de pedido y la acumulo
+			}
+			return $total;
+		}
 	}
 ?>

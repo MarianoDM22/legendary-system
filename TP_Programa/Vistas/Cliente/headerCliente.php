@@ -1,7 +1,8 @@
 <?php namespace Cliente;
 
 
-
+use \Controladoras\ControlPedido as ControlPedido;
+$DAOPedido= new ControlPedido();
 
  ?>
 
@@ -174,7 +175,12 @@
             <div class="container">
               <div class="row">
                 <div class="col-md-8 text-right">
-                  <h6>Total: $<?= $value->getCantidad(); ?></h6>
+                  <?php
+                  {
+                    $totalFilas=$DAOPedido->sumarLineasPedido($lineaCarrito);//sumo el importe total de todas las filas
+                  }
+                  ?>
+                  <h6>Total: $<?= $totalFilas ?></h6>
                 </div>
               </div>
               <div class="row">
