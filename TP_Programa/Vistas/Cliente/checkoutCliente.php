@@ -74,26 +74,36 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
             <br>
               <p> Seleccione el tipo de envio que desee (a sucursal o a su domicilio), para una mejor refrencia de en dónde
               se encuentran nuestros locales, utilice el mapa al pie de esta página.</p>
-            <h5>A Sucursal:</h3>
-          
-              <select class="custom-select">
-                <option disabled>Seleccione la sucursal...</option>
-                <?php  foreach ($sucursales as $suc) {?> 
-                  <option value="<?= $suc->getId();  ?>"><?= $suc->getNombre(); ?>, <?= $suc->getDomicilio();  ?></option>
-                <?php } //fin foreach ?> 
-              </select>  
 
-            <br>
-            
-            <h5>A Domicilio</h3>
-            <!--Como indca la consigna, se deberia indicar fecha y rango de horarios -->
+              <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-primary">
+                  <input type="radio" name="options" id="option1" autocomplete="off" checked>A Sucursal:
+                </label>
+                
+                <select class="custom-select">
+                  <option disabled>Seleccione la sucursal...</option>
+                  <?php  foreach ($sucursales as $suc) {?> 
+                    <option value="<?= $suc->getId();  ?>"><?= $suc->getNombre(); ?>, <?= $suc->getDomicilio();  ?></option>
+                  <?php } //fin foreach ?> 
+                </select>  
+
+                  <br>
+                          
+                <label class="btn btn-primary">
+                  <input type="radio" name="options" id="option2" autocomplete="off">A Domicilio:
+                </label>
+
+                <!--Como indca la consigna, se deberia indicar fecha y rango de horarios -->
+              </div>
+
           </div>
         </div>  
+
       </div>
 
       <div class="row">
         <div class="col-lg-10">
-          <div id="shipResum" style="margin: 10px;">
+          <div id="shipResum" >
             <h2>Resumen del Pedido: </h2>
               <br>
                <table class="table table-bordered">
@@ -138,7 +148,8 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
                   </tbody>   
                 </table>          
           </div>
-        </div>
+           <button type="button" class="btn btn-secondary btn-lg">CheckOuT!</button>
+        </div>    
       </div> 
 
     </div>

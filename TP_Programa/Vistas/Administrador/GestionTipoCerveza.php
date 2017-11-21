@@ -43,42 +43,6 @@
 				  Nuevo Tipo de Cerveza
 				</button>
 
-				<!-- Modal Nueva Cerveza-->
-				<div class="modal fade" id="modal-insc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >		  
-					<div class="modal-dialog" role="document" id="text">
-					    <div class="modal-content">
-					      	<form action= "<?= ROOT_VIEW ?> /GestionTipoCerveza/nuevo" method="post" enctype="multipart/form-data">
-						      	<div class="modal-header">
-							        <h5 class="modal-title">Nuevo Tipo de Cerveza</h5>
-							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							          	<span aria-hidden="true">&times;</span>
-							        </button>
-							   	</div>
-								<div class="modal-body">
-									<div class="container-fluid">
-										<div class="row">
-											<div class="col-md-11">
-												<label>Descripción: </label>
-												<input type="text" name="descripcion" class="form-control" required><br>
-												<label>Precio/litro: </label>
-												<input type="number" name="precio" class="form-control" required><br>
-												<label>Imagen: </label>
-												<input type="file" name="fileToUpload" id="fileToUpload" class="form-control" required="required"><br>
-											</div>
-										</div>	
-									</div>			
-								</div>
-								<div class="modal-footer">
-								        <input type="submit"  class="btn btn-default" value="Guardar" name="upload">
-								        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-							    </div>
-						 	 </form>
-					    </div>
-				  	</div>
-				</div>
-				<!-- Fin Modal -->
-
-
 					<table class="table table-bordered table-responsive text-center  table-light table-transparent" id="div">
 						<thead class="thead-inverse">
 							<tr>
@@ -90,9 +54,7 @@
 							</tr>
 						</thead>
 						<tbody class="fn-lg ">
-							<?php
-
-									foreach ($cervezas  as $key => $value) { ?>
+							<?php foreach ($cervezas  as $key => $value) { ?>
 								
 									<tr>
 										<td class="text-white"><?= $value->getId(); ?></font></td>
@@ -100,45 +62,7 @@
 										<td class="text-white">$<?= $value->getPrecio_Litro(); ?></font></td>
 										<td><img src="<?= "../" . $value->getImagen(); ?>" width="50" ></font></td>
 										<td>
-											<!-- Boton Modal y Modal modificar-->
-											<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-inscp-<?= $value->getId() ?>">Modificar</button>
-											
-											<div class="modal fade" id="modal-inscp-<?= $value->getId() ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-
-												<div class="modal-dialog" role="document">
-												    <div class="modal-content">
-												      	<form action="<?= ROOT_VIEW ?>/GestionTipoCerveza/modificar" method="post" enctype="multipart/form-data">
-													      	<div class="modal-header">
-														        <h5 class="modal-title">Modificar Cerveza</h5>
-														        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-														          	<span aria-hidden="true">&times;</span>
-														        </button>
-														   	</div>
-															<div class="modal-body">
-																<div class="container-fluid">
-																	<div class="row">
-																		<div class="col-md-11">
-																			<label>Descripción: </label>
-																			<input type="text" name="descripcion" class="form-control" value="<?= $value->getDescripcion(); ?>" required><br>
-																			<label>Precio/litro: </label>
-																			<input type="number" name="precio" class="form-control" value="<?= $value->getPrecio_Litro(); ?>" required><br>
-																			<label>Imagen: </label>
-																			<input type="file" name="fileToUpload" id="fileToUpload" class="form-control" required="required"><br>
-																			<input type="hidden" name="id" class="form-control" value="<?= $value->getId();?>" >
-
-																		</div>
-																	</div>	
-																</div>			
-															</div>
-															<div class="modal-footer">
-															        <input type="submit" name="guardar" class="btn btn-default" value="Guardar">
-															        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-														    </div>
-													 	 </form>
-												    </div>
-											  	</div>
-											</div>
-											<!-- Fin Modal -->
+											<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-inscp-<?= $value->getId() ?>">Modificar</button>	
 										</td>
 										<td>
 											<form action="<?= ROOT_VIEW ?>/GestionTipoCerveza/borrar" method="POST">
@@ -158,7 +82,76 @@
   	
 	<?php require(ROOT . "Vistas/footer.php"); ?>
 
+	<!-- Modal Nueva Cerveza-->
+	<div class="modal fade" id="modal-insc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >		  
+		<div class="modal-dialog" role="document" id="text">
+			<div class="modal-content">
+				<form action= "<?= ROOT_VIEW ?> /GestionTipoCerveza/nuevo" method="post" enctype="multipart/form-data">
+					<div class="modal-header">
+						<h5 class="modal-title">Nuevo Tipo de Cerveza</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							 <span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-md-11">
+									<label>Descripción: </label>
+									<input type="text" name="descripcion" class="form-control" required><br>
+									<label>Precio/litro: </label>
+									<input type="number" name="precio" class="form-control" required><br>
+									<label>Imagen: </label>
+									<input type="file" name="fileToUpload" id="fileToUpload" class="form-control" required="required"><br>
+								</div>
+							</div>	
+						</div>			
+					</div>
+					<div class="modal-footer">
+						<input type="submit"  class="btn btn-default" value="Guardar" name="upload">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Fin Modal -->
 
+	<!--Modal Modificar-->
+	<div class="modal fade" id="modal-inscp-<?= $value->getId() ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<form action="<?= ROOT_VIEW ?>/GestionTipoCerveza/modificar" method="post" enctype="multipart/form-data">
+					<div class="modal-header">
+						<h5 class="modal-title">Modificar Cerveza</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+					</div>
+					<div class="modal-body">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-md-11">
+									<label>Descripción: </label>
+									<input type="text" name="descripcion" class="form-control" value="<?= $value->getDescripcion(); ?>" required><br>
+									<label>Precio/litro: </label>
+									<input type="number" name="precio" class="form-control" value="<?= $value->getPrecio_Litro(); ?>" required><br>
+									<label>Imagen: </label>
+									<input type="file" name="fileToUpload" id="fileToUpload" class="form-control" required="required"><br>
+									<input type="hidden" name="id" class="form-control" value="<?= $value->getId();?>" >
+								</div>
+							</div>	
+						</div>			
+					</div>
+					<div class="modal-footer">
+						<input type="submit" name="guardar" class="btn btn-default" value="Guardar">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Fin Modal -->
 
 
 	<style>	/*provisorio hasta que ande los estilos. en este caso combiene por id para no afectaro todos los div*/	

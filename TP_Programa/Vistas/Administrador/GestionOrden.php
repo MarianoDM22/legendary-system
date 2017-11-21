@@ -37,11 +37,6 @@
 			<section class="col-md-8">
 				<h2>Gestión Ordenes</h2>
 
-
-			<?php
-				if(isset($_SESSION['Pedido'])) {
-					$Pedido = $_SESSION['Pedido']; ?>
-
 					<table class="table table-bordered table-responsive text-center table-light table-transparent">
 						<thead class="thead-inverse">
 							<tr>
@@ -81,7 +76,6 @@
 							<?php } ?>
 						</tbody>
 					</table>
-			<?php } ?>
 
 			</section>
     	</div>
