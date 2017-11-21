@@ -253,7 +253,7 @@ $DAOPedido= new ControlPedido();
     </div>
     <!-- Fin Change Pass Modal-->
 
-     <!-- Change Acount Modal-->
+     <!-- Change Acount Modal
     <div class="modal fade" id="changeAcountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -268,32 +268,32 @@ $DAOPedido= new ControlPedido();
                 <div class="form-row">
                   <div class="col-md-6">
                     <label for="InputName">Nombre</label>
-                    <input class="form-control" id="InputName" name="nombre" type="text" aria-describedby="nameHelp" value="<?= $cliente->getNombre(); ?>" required>
+                    <input class="form-control" id="InputName" name="nombre" type="text" aria-describedby="nameHelp" value="" required>
                   </div>
                   <div class="col-md-6">
                     <label for="InputLastName">Apellido</label>
-                    <input class="form-control" id="InputLastName" name="apellido" type="text" aria-describedby="nameHelp" value="<?= $cliente->getApellido(); ?>" required>
+                    <input class="form-control" id="InputLastName" name="apellido" type="text" aria-describedby="nameHelp" value="" required>
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <label for="InputAddress">Domicilio</label>
-                <input class="form-control" id="InputAddress" name="domicilio" type="text" aria-describedby="nameHelp" value="<?= $cliente->getDomicilio(); ?>" required>
+                <input class="form-control" id="InputAddress" name="domicilio" type="text" aria-describedby="nameHelp" value="" required>
               </div>  
               <div class="form-group">    
                 <label for="InputTel">Teléfono</label>
-                <input class="form-control" id="InputTel" name="telefono" type="text" aria-describedby="nameHelp" value="<?= $cliente->getTelefono(); ?>" required>
+                <input class="form-control" id="InputTel" name="telefono" type="text" aria-describedby="nameHelp" value="" required>
               </div>
             </div>
             <div class="modal-footer center-block">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-              <a class="btn btn-primary" href="<?= ROOT_VIEW ?>/">Actualizar datos</a>
+              <a class="btn btn-primary" href="/">Actualizar datos</a>
             </div>
           </form>
         </div>
       </div>
     </div>
-    <!-- Fin Change Acount Modall-->
+    Fin Change Acount Modall-->
 
 
 
