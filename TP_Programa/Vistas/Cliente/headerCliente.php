@@ -125,7 +125,7 @@ $DAOPedido= new ControlPedido();
                 <thead class="thead-inverse">
                   <tr>            
                     <th>Descripción</th>
-                    <th>Precio</th>
+                    <th>Precio Unitario</th>
                     <th>Cantidad</th> 
                     <th>Sub Total</th>
                     <th>Opciones</th>
