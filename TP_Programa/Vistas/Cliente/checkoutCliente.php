@@ -95,7 +95,7 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
                       <th id="textCentrado">Domicilio</th>
                       <th id="textCentrado">Email</th>
                       <th id="textCentrado">Fecha</th> 
-                      <th id="textCentrado">Horario de entrega</th>
+                      <th id="textCentrado" colspan="2">Horario de entrega</th>
                       <th id="textCentrado">Telefono</th>
                     </tr>
                   </thead>
@@ -115,11 +115,14 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
                           </td>
 
                           <td class="text-white" id="textCentrado">
-                            <?= $cuenta->getEmail();?>
+                            <input type="time" name="horaDesde" >
                           </td>
                           <td class="text-white" id="textCentrado">
-                            <?= $cliente->getTelefono(); ?>                          
-                          </td>                  
+                            <input type="time" name="horaHasta" placeholder="11" >                       
+                          </td>
+                          <td class="text-white" id="textCentrado">
+                            <?= $cliente->getTelefono(); ?> 
+                          </td>                 
                   </tbody>
           
         </table>
