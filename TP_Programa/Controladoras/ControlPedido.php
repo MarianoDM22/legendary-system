@@ -29,8 +29,8 @@
 	   		$cantidad=(int) $cantidad;
 	   		if(	!isset($_SESSION['Carrito']) )//si es el primer producto agregado, creo la sesion y lo agrego
 	   		{
-	   			$subt=$cantidad*$importe;
-	   			$linea= new \Modelos\LineasDePedido($cantidad, $subt, $id);	
+	   			//$subt=$cantidad*$importe;
+	   			$linea= new \Modelos\LineasDePedido($cantidad, $importe, $id);	
 	   			
 	   			$this->crearSesion();
 	   			$this->insertar($linea);
@@ -42,7 +42,7 @@
 	   		{
 	   			
 	   			
-	   			$subt=$cantidad*$importe;//multiplico la cantidad elejida por el precio del producto
+	   			//$subt=$cantidad*$importe;//multiplico la cantidad elejida por el precio del producto
 
 	   			$lineaBuscada=$this->buscarLinea($id);//si ya hay un carrito activo, busco si ese producto ya existe
 	   			   			
@@ -51,7 +51,7 @@
 	   			if( $lineaBuscada< 0 )//si no existe, agrrego la linea
 	   			{
 	   				
-	   				$linea= new \Modelos\LineasDePedido($cantidad, $subt, $id);	
+	   				$linea= new \Modelos\LineasDePedido($cantidad, $importe, $id);	
 
 		   			$this->insertar($linea);
 		   			echo '<script language="javascript">alert("Producto agregado!");</script>';
