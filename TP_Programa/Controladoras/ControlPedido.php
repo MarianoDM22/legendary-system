@@ -29,7 +29,7 @@
 	   		$cantidad=(int) $cantidad;
 	   		if(	!isset($_SESSION['Carrito']) )//si es el primer producto agregado, creo la sesion y lo agrego
 	   		{
-	   			//$subt=$cantidad*$importe;
+	   			
 	   			$linea= new \Modelos\LineasDePedido($cantidad, $importe, $id);	
 	   			
 	   			$this->crearSesion();
@@ -42,7 +42,7 @@
 	   		{
 	   			
 	   			
-	   			//$subt=$cantidad*$importe;//multiplico la cantidad elejida por el precio del producto
+	   			
 
 	   			$lineaBuscada=$this->buscarLinea($id);//si ya hay un carrito activo, busco si ese producto ya existe
 	   			   			
@@ -162,7 +162,7 @@
 		 	
 		 	
 			array_push($_SESSION['Carrito'], $linea);
-			var_dump($_SESSION['Carrito']);
+			
 		}
 
 		private function incrementarArtPedido($lineaBuscada, $cantidad)
