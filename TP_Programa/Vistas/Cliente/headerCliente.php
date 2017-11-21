@@ -3,8 +3,6 @@
 
 
 
-
-
  ?>
 
 <!DOCTYPE html>
@@ -105,69 +103,91 @@
     <div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-          <div class="modal-body">
+          <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Tu carrito:</h5> 
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
 
             <?php
              if(isset($_SESSION['Carrito'])) 
              {
-               $lineasCarrito = $_SESSION['Carrito'];
-               $usuarioLogueado=$_SESSION['Login'];
-               
+               $lineaCarrito = $_SESSION['Carrito'];
+
                
                 ?>
-               existe carrito
+          <div class="modal-body">
+
                <table class="table table-bordered">
                 <thead class="thead-inverse">
                   <tr>            
-                    <th>Descripcion</th>
+                    <th>Descripción</th>
                     <th>Precio</th>
                     <th>Cantidad</th> 
                     <th>Sub Total</th>
                     <th>Opciones</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center">
                
                   <?php 
-
-
-                      foreach ($lineasCarrito as $value) 
-                      {
-                      ?>
+                      foreach ($lineaCarrito as $value) 
+                      {?>
                     
                       <tr>
                         <td>
-                                          
+                         
+                          
 
                         </td>
                         
-                        <td>
-                          $<?= $value->getImporte(); ?>
-
-                        </td>
+                        <td>$<?= $value->getImporte(); ?></td>
 
                         <td> 
-                          <?= $value->getCantidad(); ?>  
+                          <select class="custom-select">
+                            <option selected><?= $value->getCantidad(); ?></option>
+                            <option> 1 </option>
+                            <option> 2 </option>
+                            <option> 3 </option>
+                            <option> 4 </option>
+                          </select>
                         </td>
-                        <td>
-                          <?= $value->getCantidad() * $value->getImporte();?>
-                        </td>
+
+                        <td>$<?= $value->getCantidad() * $value->getImporte();?></td>
+
                         <td>
                           <form action="<?= ROOT_VIEW ?>/Pedido/borrar" method="POST">
                             <input type="hidden" name="id" value="<?= $value->getId(); ?>">
                             <button type="submit" class="btn btn-primary">Eliminar</button>
                           </form>
                         </td>
-                       
-                         
+                      </tr>  
                       
-                  <?php } //fin foreach ?>    
+                  <?php } //fin foreach ?>   
+
                 </tbody>  
               </table>
+          </div>
 
-              <form action="<?= ROOT_VIEW ?>/Pedido/checkOut" method="POST">                        
-                <button type="submit" class="btn btn-primary">CheckOut</button>
-              </form>
+          <div class="modal-footer">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-8 text-right">
+                  <h6>Total: $<?= $value->getCantidad(); ?></h6>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 text-right">
+                  <div class="center-block">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Update</button>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Delete</button>
+                    <a class="btn btn-primary" href="<?= ROOT_VIEW ?>/Pedido/checkOut">CheckOut</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
               <?php
              }//fin IF SESSION
@@ -176,14 +196,13 @@
             <?php
             if ( !isset($_SESSION['Carrito']) )
             { ?>
+               <div class="modal-body">
               <p>No hay productos en su carrito!</p>
-
+               </div>
             <?php  
             }//fin if no session
             ?>
             
-          </div>
-
         </div>
       </div>
     </div>

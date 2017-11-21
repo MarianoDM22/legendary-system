@@ -13,8 +13,6 @@ $DAOClientes= new ControlCliente();
 $DAOSucursal= new ControlGestionSucursal();
 
 
-
-
 $sucursales=$DAOSucursal->traerTodos();//me devuelve todas las sucursales de la BD, null si no hay 
 
 $idCliente=$cuenta->getMCliente();//tomo el id de cliente asignado a la cuenta logueada
@@ -52,103 +50,43 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
             <h2>1. Direccion de Envío: </h2>
             <br>
 
-            
-
-            <address>
-              <table class="table table-bordered">
-                <thead class="thead-inverse">
-                  <tr>            
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Domicilio</th> 
-                    <th>Email</th>
-                    <th>Telefono</th>
-                  </tr>
-                </thead>
-                <tbody>
-               
-                  <?php 
-
-
-                      foreach ($lineasCarrito as $value) 
-                      {
-                      ?>
-                    
-                      <tr>
-                        <td>
-                          <?= $cliente->getNombre(); ?>
-                            
-                        </td>                        
-                        <td>
-                          <?= $cliente->getApellido(); ?>
-
-                        </td>
-
-                        <td> 
-                          <?= $cliente->getDomicilio(); ?>  
-                        </td>
-
-                        <td>
-                          <?= $cuenta->getEmail();?>
-                        </td>
-                        <td>
-                          <?= $cliente->getTelefono(); ?>                          
-                        </td>
-                       
-                         
-                      
-                  <?php } //fin foreach ?>    
-                </tbody> 
-              </table>
+              <address>
+              <!-- aca van los datos por defecto que estan en session-->
+              <?= $cliente->getNombre(); ?>
+              <?= $cliente->getApellido(); ?>
+              <br>
+              <?= $cliente->getDomicilio(); ?>
+              <br>
+              <?= $cuenta->getEmail(); ?>
+              <br>
+              <?= $cliente->getTelefono(); ?>
+              <br>
             </address> 
             
-
-          </div>          
+          </div>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+          Ingresar/Cambiar Dirección de envío.</button>   
         </div>
 
         <div class="col-lg-5">
           <div id="shipOpt">
             <h2>2. Opciones de Envío: </h2>
-            <table class="table table-bordered">
-                <thead class="thead-inverse">
-                  <tr>            
-                    <th>Direccion</th>
-                    <th>Nombre</th>
-                    
-                    
-                  </tr>
-                </thead>
-                <tbody>
-               
-                  <?php 
-
-                      foreach ($sucursales as $suc) 
-                      {
-                      ?>                    
-                      <tr>                             
-                        <td>
-                          <?= $suc->getDomicilio(); ?>
-
-                        </td>
-
-                        <td> 
-                          <?= $suc->getNombre(); ?>  
-                        </td>
-
-                        <td>
-                            <input type="radio" name="gender" value="<?= $suc->getId(); ?>">                          
-                        </td> 
-                                              
-                      
-                  <?php } //fin foreach ?>                            
-                </tbody>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
-                      Ingresar/Cambiar Dirección de envío.
-                  </button>  
-              </table>
+            <br>
+              <p> Seleccione el tipo de envio que desee (a sucursal o a su domicilio), para una mejor refrencia de en dónde
+              se encuentran nuestros locales, utilice el mapa al pie de esta página.</p>
+            <h5>A Sucursal:</h3>
+          
+              <select class="custom-select">
+                <option disabled>Seleccione la sucursal...</option>
+                <?php  foreach ($sucursales as $suc) {?> 
+                  <option value="<?= $suc->getId();  ?>"><?= $suc->getNombre(); ?>, <?= $suc->getDomicilio();  ?></option>
+                <?php } //fin foreach ?> 
+              </select>  
 
             <br>
-          
+            
+            <h5>A Domicilio</h3>
+            <!--Como indca la consigna, se deberia indicar fecha y rango de horarios -->
           </div>
         </div>  
       </div>
@@ -168,43 +106,34 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
                       <th>Opciones</th>
                     </tr>
                   </thead>
-                    <tbody>
+                    <tbody class="text-center">
                  
                     <?php 
-
-
                         foreach ($lineaPedido as $value) 
-                        {
-                        ?>
+                        {?>
                       
                         <tr>
                           <td>
-                           
-                            
 
                           </td>
-                          
+                          <td>$<?= $value->getImporte(); ?></td>
                           <td>
-                            $<?= $value->getImporte(); ?>
-
+                            <select class="custom-select">
+                              <option selected><?= $value->getCantidad(); ?></option>
+                              <option> 1 </option>
+                              <option> 2 </option>
+                              <option> 3 </option>
+                              <option> 4 </option>
+                            </select>
                           </td>
-
-                          <td> 
-                            <?= $value->getCantidad(); ?>  
-                          </td>
-
-                          <td>
-                            <?= $value->getCantidad() * $value->getImporte();?>
-                          </td>
+                          <td><?= $value->getCantidad() * $value->getImporte();?></td>
                           <td>
                             <form action="<?= ROOT_VIEW ?>/Pedido/borrar" method="POST">
                               <input type="hidden" name="id" value="<?= $value->getId(); ?>">
                               <button type="submit" class="btn btn-primary">Eliminar</button>
                             </form>
                           </td>
-                         
-                           
-                        
+                        </tr>     
                     <?php } //fin foreach ?>    
                   </tbody>   
                 </table>          
@@ -232,29 +161,21 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
                 <div class="form-row">
                   <div class="col-md-6">
                     <label for="InputName">Nombre</label>
-                    <input class="form-control" id="InputName" name="nombre" type="text" aria-describedby="nameHelp" placeholder="Ingrese su nombre" required>
+                    <input class="form-control" id="InputName" name="nombre" type="text" aria-describedby="nameHelp" value="<?= $cliente->getNombre(); ?>" required>
                   </div>
                   <div class="col-md-6">
                     <label for="InputLastName">Apellido</label>
-                    <input class="form-control" id="InputLastName" name="apellido" type="text" aria-describedby="nameHelp" placeholder="Ingrese su apellido" required>
+                    <input class="form-control" id="InputLastName" name="apellido" type="text" aria-describedby="nameHelp" value="<?= $cliente->getApellido(); ?>" required>
                   </div>
                 </div>
               </div>
               <div class="form-group">
-                <div class="form-row">
-                  <div class="col-md-6">
-                    <label for="InputAddress">Domicilio</label>
-                    <input class="form-control" id="InputAddress" name="domicilio" type="text" aria-describedby="nameHelp" placeholder="Ingrese su domicilio" required>
-                  </div>
-                  <div class="col-md-6">
-                    <label for="InputTel">Teléfono</label>
-                    <input class="form-control" id="InputTel" name="telefono" type="text" aria-describedby="nameHelp" placeholder="Ingrese su teléfono" required>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="InputEmail1">Direccion de Email</label>
-                <input class="form-control" id="InputEmail1" name="email" type="email" aria-describedby="emailHelp" placeholder="Correo electrónico" required>
+                <label for="InputAddress">Domicilio</label>
+                <input class="form-control" id="InputAddress" name="domicilio" type="text" aria-describedby="nameHelp" value="<?= $cliente->getDomicilio(); ?>" required>
+              </div>  
+              <div class="form-group">    
+                <label for="InputTel">Teléfono</label>
+                <input class="form-control" id="InputTel" name="telefono" type="text" aria-describedby="nameHelp" value="<?= $cliente->getTelefono(); ?>" required>
               </div>
             </div>
             <div class="modal-footer center-block">
