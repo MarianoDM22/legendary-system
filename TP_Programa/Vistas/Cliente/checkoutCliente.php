@@ -93,7 +93,7 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
 
       <div class="row">
         <div class="col-lg-10">
-          <div id="shipResum">
+          <div id="shipResum" style="margin: 10px;">
             <h2>Resumen del Pedido: </h2>
               <br>
                <table class="table table-bordered">

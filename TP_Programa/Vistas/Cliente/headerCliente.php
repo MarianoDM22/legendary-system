@@ -173,14 +173,15 @@ $DAOPedido= new ControlPedido();
 
           <div class="modal-footer">
             <div class="container">
-              <div class="row">
-                <div class="col-md-8 text-right">
+              <div class="row" >
+                <div class="col-md-3 text-right " style="text-align: center; ">
                   <?php
                   {
                     $totalFilas=$DAOPedido->sumarLineasPedido($lineaCarrito);//sumo el importe total de todas las filas
                   }
                   ?>
-                  <h6>Total: $<?= $totalFilas ?></h6>
+                  <br>
+                  <h3 style="text-align: left;" ><strong>Total: $<?= $totalFilas ?></strong></h3>
                 </div>
               </div>
               <div class="row">
