@@ -30,25 +30,12 @@
     <link href="css/estilos.css" type="text/css" >
 
   </head>
-  <body>
+  <body style="background-image: url(&quot;http://localhost/TP_Programa/images/fondoHome.jpg&quot;);">
 
     <?php require("headerCliente.php"); ?>
 
     <div class="container-fluid">
       <div class="row">
-
-        <div class="col-lg-2">
-
-          <h1 class="my-4">Categorias</h1>
-
-          <div class="list-group">
-            <a href= "" class="list-group-item">Categoria 1</a>
-            <a href=" " class="list-group-item">Categoria 2</a>
-            <a href=" " class="list-group-item">Categoria 3</a>
-          </div>
-
-        </div>
-
         <div class="col-lg-10">
         
         <!-- slider
@@ -100,14 +87,11 @@
                                       <option value="2"> 2 </option>
                                       <option value="3"> 3 </option>
                                       <option value="4"> 4 </option>
-                                    </select>
-                                    
+                                    </select>                                    
                                     <input type="submit" class="btn btn-primary" value="Agregar">
-
                                     <input type="hidden" name="importe" class="form-control" value= "<?= $value->getPrecio();  ?>" >
                                     <input type="hidden" name="id" class="form-control" value="<?= $value->getId();?>" >
-                                    <input type="hidden" name="descripcion" class="form-control" value="<?= $value->getDescripcion(); ?>" >
-                                    
+                                    <input type="hidden" name="descripcion" class="form-control" value="<?= $value->getDescripcion(); ?>" >                     
                                   </div>
                               </div>
                           </form>

@@ -132,8 +132,7 @@
 			//$pass2=$_POST ['pass2'];
 			
 			$rol='cliente';
-			var_dump($domicilio);
-
+			
 			$buscado=$this->DAOCuentas->buscarPorNombre($email);//busco si existe el email en BD
 			if ($buscado == null)
 			{//entra si el email buscado en BD no existe
