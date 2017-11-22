@@ -73,9 +73,6 @@ class EnviosDAO extends SingletonAbstractDAO implements IDAO
 			
 		return $dato;
 	}
-	public function buscarPorNombre($dato){
-
-	}
 	public function buscarPorID($dato){
 
 	}

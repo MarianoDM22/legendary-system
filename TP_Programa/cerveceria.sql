@@ -44,27 +44,27 @@ hora_hasta varchar(5),
 telefono varchar(30),
 constraint pk_envio primary key(id_envio)
 );
-CREATE TABLE lineasdepedido(
-id_lineadepedido int auto_increment not null,
-cantidad int,
-importe int,
-fk_producto int not null,
-constraint pk_lineadepedido primary key(id_lineadepedido),
-constraint fk_lineadepedido_producto foreign key(fk_producto) references productos(id_producto)
-);
 CREATE TABLE pedidos(
 id_pedido int auto_increment not null,
 estado varchar(30),
 fecha varchar(10),
 fk_cliente int not null,
-fk_lineadepedido int not null,
 fk_envio int not null,
 fk_sucursal int not null,
 constraint pk_pedido primary key(id_pedido),
 constraint fk_pedido_cliente foreign key(fk_cliente) references clientes(id_cliente),
-constraint fk_pedido_lineadepedido foreign key(fk_lineadepedido) references lineasdepedido(id_lineadepedido),
 constraint fk_pedido_envio foreign key(fk_envio) references envios(id_envio),
 constraint fk_pedido_sucursal foreign key(fk_sucursal) references sucursales(id_sucursal)
+);
+CREATE TABLE lineasdepedido(
+id_lineadepedido int auto_increment not null,
+cantidad int,
+importe int,
+fk_producto int not null,
+fk_pedido int not null,
+constraint pk_lineadepedido primary key(id_lineadepedido),
+constraint fk_lineadepedido_pedido foreign key(fk_pedido) references pedidos(id_pedido),
+constraint fk_lineadepedido_producto foreign key(fk_producto) references productos(id_producto)
 );
 CREATE TABLE cuentas(
 id_cuenta int auto_increment not null,

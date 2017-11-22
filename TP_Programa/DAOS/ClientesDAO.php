@@ -67,9 +67,6 @@ class ClientesDAO extends SingletonAbstractDAO implements IDAO
 		return $dato;
 		*/
 	}
-	public function buscarPorNombre($dato){
-
-	}
 	public function buscarPorID($dato){
 		
 		$object = null;

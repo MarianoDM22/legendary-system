@@ -6,8 +6,6 @@ interface IDAO
 	public function insertar($dato);
 	// Mandar un dato de tipo object a la BBDD para cargarlo, retorna el objeto con el ID cargado.
 	public function insertarDevolverID($dato);
-	// Busca en la tabla la fila con el mismo nombre/descripcion pasado por parametros, y lo retorna en forma de objeto.
-	public function buscarPorNombre($dato);
 	// Busca en la tabla la fila con el mismo ID pasado por parametros, y lo retorna en forma de objeto.
 	public function buscarPorID($dato);
 	// Busca en la tabla la fila con el mismo ID pasado por parametros, y lo borra. No retorna nada.

@@ -31,9 +31,11 @@
             <li class="nav-item">
               <a class="nav-link" href="#"><i class="fa d-inline fa-lg fa-bookmark-o"></i> Contactenos</a>
             </li>
+            <?php if(isset($_SESSION['Login'])){ ?>
             <li class="nav-item">
               <a class="nav-link" href= "<?= ROOT_VIEW ?>/Login/cerrarSesion"><i class="fa d-inline fa-lg fa-envelope-o"></i>&nbsp;LogOut</a>
             </li>
+            <?php } ?>
           </ul>
           <a class="btn navbar-btn ml-2 text-white btn-secondary" data-toggle="modal" data-target="#loginModal">
           <i class="fa d-inline fa-lg fa-user-circle-o"></i>&nbsp; Iniciar Sesion</a>
