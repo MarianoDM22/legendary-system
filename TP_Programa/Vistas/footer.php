@@ -112,7 +112,7 @@ $sucursales = $DAOSucursal->traertodos();// agarro todas las sucursales de la BD
   </footer>  
   <!-- fin Footer -->
 <style>
-  #footer-pos { position:absolute; bottom:0; width:100%; height:60px; background:#6cf; }
+  #footer-pos { position:absolute;  width:100%; height:60px; background:#6cf; }
 </style>
 
      <!-- Optional JavaScript -->

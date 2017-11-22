@@ -15,9 +15,6 @@ namespace DAOS;
  *);
  */
 
-use \Exception as Exception;
-use \PDOException as PDOException;
-
 class CuentasDAO extends SingletonAbstractDAO implements IDAO
 {
 	private $table = 'clientes';

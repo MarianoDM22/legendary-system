@@ -15,16 +15,11 @@ namespace DAOS;
  *	);
  */
 
-use \Exception as Exception;
-use \PDOException as PDOException;
-
 class EnviosDAO extends SingletonAbstractDAO implements IDAO
 {
 	private $table = 'envios';
 
 	public function insertar($dato){
-		try 
-    	{
 		$query = 'INSERT INTO '.$this->table.' 
 		( domicilio , email , fecha_programada , hora_desde , hora_hasta , telefono ) 
 		VALUES 
@@ -48,18 +43,8 @@ class EnviosDAO extends SingletonAbstractDAO implements IDAO
 		$command->bindParam(':hora_hasta', $hora_hasta);
 		$command->bindParam(':telefono', $telefono);
 		$command->execute();
-
-    	}
-    	catch (PDOException $ex) {
-			throw $ex;
-    	}
-    	catch (Exception $e) {
-			throw $e;
-    	}
 	}
 	public function insertarDevolverID($dato){
-		try 
-    	{
 		$query = 'INSERT INTO '.$this->table.' 
 		( domicilio , email , fecha_programada , hora_desde , hora_hasta , telefono ) 
 		VALUES 
@@ -87,14 +72,6 @@ class EnviosDAO extends SingletonAbstractDAO implements IDAO
 		$dato->setId($connection->lastInsertId());
 			
 		return $dato;
-
-    	}
-    	catch (PDOException $ex) {
-			throw $ex;
-    	}
-    	catch (Exception $e) {
-			throw $e;
-    	}
 	}
 	public function buscarPorID($dato){
 

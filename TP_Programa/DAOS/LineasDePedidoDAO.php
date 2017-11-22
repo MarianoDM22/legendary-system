@@ -14,213 +14,151 @@ namespace DAOS;
  * 	constraint fk_lineadepedido_producto foreign key(fk_producto) references productos(id_producto)
  * 	);
  */
-use \Exception as Exception;
-use \PDOException as PDOException;
 
 class LineasDePedidoDAO extends SingletonAbstractDAO implements IDAO
 {
 	private $table = 'lineasdepedido';
 
 	public function insertar($dato){
-		try 
-    	{
-			$query = 'INSERT INTO '.$this->table.' 
-			( cantidad , importe , fk_producto , fk_pedido) 
-			VALUES 
-			( :cantidad , :importe , :fk_producto , fk_pedido )';
+		$query = 'INSERT INTO '.$this->table.' 
+		( cantidad , importe , fk_producto , fk_pedido) 
+		VALUES 
+		( :cantidad , :importe , :fk_producto , fk_pedido )';
 
-			$pdo = new Connection();
-			$connection = $pdo->Connect();
-			$command = $connection->prepare($query);
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);
 
-			$cantidad = $dato->getCantidad();
-			$importe = $dato->getImporte();
-			$fk_producto = $dato->getMProducto();
-			$fk_pedido = $dato->getIdPedido();
+		$cantidad = $dato->getCantidad();
+		$importe = $dato->getImporte();
+		$fk_producto = $dato->getMProducto();
+		$fk_pedido = $dato->getIdPedido();
 
-			$command->bindParam(':cantidad', $cantidad);
-			$command->bindParam(':importe', $importe);
-			$command->bindParam(':fk_producto', $fk_producto);
-			$command->bindParam(':fk_pedido', $fk_pedido);
-			$command->execute();
-
-    	}
-    	catch (PDOException $ex) {
-			throw $ex;
-    	}
-    	catch (Exception $e) {
-			throw $e;
-    	}
+		$command->bindParam(':cantidad', $cantidad);
+		$command->bindParam(':importe', $importe);
+		$command->bindParam(':fk_producto', $fk_producto);
+		$command->bindParam(':fk_pedido', $fk_pedido);
+		$command->execute();
 	}
 	public function insertarDevolverID($dato){
-		try 
-    	{
-			$query = 'INSERT INTO '.$this->table.' 
-			( cantidad , importe , fk_producto , fk_pedido) 
-			VALUES 
-			( :cantidad , :importe , :fk_producto , fk_pedido )';
+		$query = 'INSERT INTO '.$this->table.' 
+		( cantidad , importe , fk_producto , fk_pedido) 
+		VALUES 
+		( :cantidad , :importe , :fk_producto , fk_pedido )';
 
-			$pdo = new Connection();
-			$connection = $pdo->Connect();
-			$command = $connection->prepare($query);
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);
 
-			$cantidad = $dato->getCantidad();
-			$importe = $dato->getImporte();
-			$fk_producto = $dato->getMProducto();
-			$fk_pedido = $dato->getIdPedido();
+		$cantidad = $dato->getCantidad();
+		$importe = $dato->getImporte();
+		$fk_producto = $dato->getMProducto();
+		$fk_pedido = $dato->getIdPedido();
 
-			$command->bindParam(':cantidad', $cantidad);
-			$command->bindParam(':importe', $importe);
-			$command->bindParam(':fk_producto', $fk_producto);
-			$command->bindParam(':fk_pedido', $fk_pedido);
-			$command->execute();
+		$command->bindParam(':cantidad', $cantidad);
+		$command->bindParam(':importe', $importe);
+		$command->bindParam(':fk_producto', $fk_producto);
+		$command->bindParam(':fk_pedido', $fk_pedido);
+		$command->execute();
 
-			$dato->setId($connection->lastInsertId());
-				
-			return $dato;
-
-    	}
-    	catch (PDOException $ex) {
-			throw $ex;
-    	}
-    	catch (Exception $e) {
-			throw $e;
-    	}
+		$dato->setId($connection->lastInsertId());
+			
+		return $dato;
 	}
 	public function buscarPorID($dato){
-		try 
-    	{
-			$object = null;
+		$object = null;
 
-			$query = 'SELECT * FROM '.$this->table.' WHERE id_lineadepedido = :id';
+		$query = 'SELECT * FROM '.$this->table.' WHERE id_lineadepedido = :id';
 
-			$pdo = new Connection();
-			$connection = $pdo->Connect();
-			$command = $connection->prepare($query);			
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);			
 
-			$command->bindParam(':id', $dato);
-			$command->execute();
+		$command->bindParam(':id', $dato);
+		$command->execute();
 
-			while ($row = $command->fetch())
-			{
-				$cantidad = ($row['cantidad']);
-				$importe = ($row['importe']);
-				$fk_producto = ($row['fk_producto']);
+		while ($row = $command->fetch())
+		{
+			$cantidad = ($row['cantidad']);
+			$importe = ($row['importe']);
+			$fk_producto = ($row['fk_producto']);
 
-				$object = new \Modelos\LineasDePedido($cantidad,  $importe, $m_Producto);
+			$object = new \Modelos\LineasDePedido($cantidad,  $importe, $m_Producto);
 
-				$object->setId($row['id_lineadepedido']);	
-				$object->setId($row['setIdPedido']);
-			}
+			$object->setId($row['id_lineadepedido']);	
+			$object->setId($row['setIdPedido']);
+		}
 
-			
-			return $object;
-
-    	}
-    	catch (PDOException $ex) {
-			throw $ex;
-    	}
-    	catch (Exception $e) {
-			throw $e;
-    	}
+		
+		return $object;
 	}
 	public function borrar($dato){
-		try 
-    	{
+		$query = 'DELETE FROM '.$this->table.' WHERE id_lineadepedido = :id';
 
-			$query = 'DELETE FROM '.$this->table.' WHERE id_lineadepedido = :id';
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);
 
-			$pdo = new Connection();
-			$connection = $pdo->Connect();
-			$command = $connection->prepare($query);
-
-			$command->bindParam(':id', $dato);
-			$command->execute();
-    	}
-    	catch (PDOException $ex) {
-			throw $ex;
-    	}
-    	catch (Exception $e) {
-			throw $e;
-    	}
+		$command->bindParam(':id', $dato);
+		$command->execute();
 	}
 	public function actualizar($dato){
 
 	}
 	public function lineasPorPedido($idPedido){
-		try 
-    	{
-			$objects = array();
+		$objects = array();
 
-			$query = 'SELECT * FROM '.$this->table. ' WHERE fk_pedido = :idPedido';
+		$query = 'SELECT * FROM '.$this->table. ' WHERE fk_pedido = :idPedido';
 
-			$pdo = new Connection();
-			$connection = $pdo->Connect();
-			$command = $connection->prepare($query);
-			$command->bindParam(':idPedido', $idPedido);
-			$command->execute();
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);
+		$command->bindParam(':idPedido', $idPedido);
+		$command->execute();
 
-			while ($row = $command->fetch())
-			{
-				$cantidad = ($row['cantidad']);
-				$importe = ($row['importe']);
-				$fk_producto = ($row['fk_producto']);
+		while ($row = $command->fetch())
+		{
+			$cantidad = ($row['cantidad']);
+			$importe = ($row['importe']);
+			$fk_producto = ($row['fk_producto']);
 
-				$object = new \Modelos\LineasDePedido($cantidad,  $importe, $m_Producto);
+			$object = new \Modelos\LineasDePedido($cantidad,  $importe, $m_Producto);
 
-				$object->setId($row['id_lineadepedido']);	
-				$object->setId($row['setIdPedido']);
+			$object->setId($row['id_lineadepedido']);	
+			$object->setId($row['setIdPedido']);
 
-				array_push($objects, $object);
+			array_push($objects, $object);
 
-			}
+		}
 
-			return $objects;
-
-    	}
-    	catch (PDOException $ex) {
-			throw $ex;
-    	}
-    	catch (Exception $e) {
-			throw $e;
-    	}
+		return $objects;
 	}
 	public function traerTodos(){
-		try 
-    	{
-			$objects = array();
+		$objects = array();
 
-			$query = 'SELECT * FROM '.$this->table;
+		$query = 'SELECT * FROM '.$this->table;
 
-			$pdo = new Connection();
-			$connection = $pdo->Connect();
-			$command = $connection->prepare($query);
-			$command->execute();
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);
+		$command->execute();
 
-			while ($row = $command->fetch())
-			{
-				$cantidad = ($row['cantidad']);
-				$importe = ($row['importe']);
-				$fk_producto = ($row['fk_producto']);
+		while ($row = $command->fetch())
+		{
+			$cantidad = ($row['cantidad']);
+			$importe = ($row['importe']);
+			$fk_producto = ($row['fk_producto']);
 
-				$object = new \Modelos\LineasDePedido($cantidad,  $importe, $m_Producto);
+			$object = new \Modelos\LineasDePedido($cantidad,  $importe, $m_Producto);
 
-				$object->setId($row['id_lineadepedido']);	
-				$object->setId($row['setIdPedido']);
+			$object->setId($row['id_lineadepedido']);	
+			$object->setId($row['setIdPedido']);
 
-				array_push($objects, $object);
+			array_push($objects, $object);
 
-			}
+		}
 
-			return $objects;
-
-    	}
-    	catch (PDOException $ex) {
-			throw $ex;
-    	}
-    	catch (Exception $e) {
-			throw $e;
-    	}
+		return $objects;
 	}
 }
 ?>

@@ -34,9 +34,9 @@
 
     <?php require("headerCliente.php"); ?>
 
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-10">
+    <div class="container-fluid" >
+      <div class="row" style="margin-left: 40px;margin-right: : 40px;">
+        <div class="col-lg-11" style="margin-left: 40px;margin-right: : 40px;">
         
         <!-- slider
           <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -73,11 +73,11 @@
                 <div class="card-deck">
                   <?php 
                     foreach ($producto as $key => $value) {  ?>
-                      <div class="p-4 align-self-center col-md-4"> 
+                      <div class="p-4 align-self-center col-md-3" > 
                         <div class="card bg-light text-center">
 
                           <form action= "<?= ROOT_VIEW ?>/Pedido/agregarAlCarrito" method="post" enctype="multipart/form-data">
-                            <a href=""><img src="<?= "../" . $value->getImagen(); ?>" width="50"></a>
+                            <a href=""><img src="<?= "../" . $value->getImagen(); ?>" width="150"></a>
                               <div class="card-body">
                                   <h4 class="card-title"><a href=" "><?= $value->getDescripcion(); ?></a></h4>
                                   <h5 class="card-subtitle" > $<?= $value->getPrecio(); ?></h5>
