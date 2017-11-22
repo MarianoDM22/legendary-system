@@ -40,9 +40,6 @@
 	   		}
 	   		else
 	   		{
-	   			
-	   			
-	   			
 
 	   			$lineaBuscada=$this->buscarLinea($id);//si ya hay un carrito activo, busco si ese producto ya existe
 	   			   			
@@ -229,8 +226,8 @@
 
 	   	public function checkOut()
 	   	{
-	   		
 	   		$productos=$this->traerTodosProductos();
+	   		$instanciaProducto=$this->DAOProducto;
 	   		
 	   		require_once(ROOT . '/Vistas/Cliente/checkoutCliente.php');
 	   	}

@@ -29,11 +29,6 @@ class ControlGestionProducto
 		if(!file_exists($imageDirectory))
 		mkdir($imageDirectory);
 
-		//$desc=$_POST['descripcion'];
-		//$tipo_cerveza=$_POST ['TipoCerveza'];
-		//$capacidad=$_POST['capacidad'];
-		//$factor=$_POST['factor'];		
-		//$imagen=$_FILES['fileToUpload'];
 
 		if((isset($_FILES['fileToUpload'])) && ($_FILES['fileToUpload']['name'] != ''))
 		{
@@ -152,11 +147,6 @@ class ControlGestionProducto
 		if(!file_exists($imageDirectory))
 		mkdir($imageDirectory);
 
-		//$desc=$_POST['descripcion'];
-		//$tipo_cerveza=$_POST ['TipoCerveza'];
-		//$capacidad=$_POST['capacidad'];
-		//$factor=$_POST['factor'];
-		//$imagen=$_FILES['fileToUpload'];
 
 		if((isset($_FILES['fileToUpload'])) && ($_FILES['fileToUpload']['name'] != ''))
 		{
@@ -248,11 +238,11 @@ class ControlGestionProducto
 	   	return $precio;
    	}
 
-   	public function BuscarPorId($dato)
+   	public function buscarPorID($id)
    	{
-   		$prod=$this->DAOProducto->buscarPorID($dato);
+   		$prod=$this->DAOProducto->buscarPorID($id);
+
    		return $prod;
    	}
-
 }
 ?>

@@ -56,17 +56,17 @@
 								<th colspan="2">Opciones</th>
 							</tr>
 						</thead>
-						<tbody class="fn-lg">
+						<tbody class="fn-lg text-white">
 							<?php 
 									foreach ($producto as $key => $value) { ?>
 								
 									<tr>
-										<td class="text-white"><?= $value->getId(); ?></td>
-										<td class="text-white"><?= $value->getDescripcion(); ?></td>
-										<td class="text-white"><?= $value->getMTiposDeCerveza(); ?></td>
-										<td class="text-white"><?= $value->getCapacidad(); ?></td>
-										<td class="text-white"><?= $value->getFactor(); ?></td>
-										<td class="text-white">$<?= $value->getPrecio(); ?></td>
+										<td><?= $value->getId(); ?></td>
+										<td><?= $value->getDescripcion(); ?></td>
+										<td><?= $value->getMTiposDeCerveza(); ?></td>
+										<td><?= $value->getCapacidad(); ?></td>
+										<td><?= $value->getFactor(); ?></td>
+										<td>$<?= $value->getPrecio(); ?></td>
 										<td><img src="<?= "../" . $value->getImagen(); ?>" width="50"></td>
 
 										<td>

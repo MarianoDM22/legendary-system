@@ -9,14 +9,12 @@ $cuenta = $_SESSION['Login'];
 
 use \Controladoras\ControlGestionSucursal as ControlGestionSucursal;
 use \Controladoras\ControlCliente as ControlCliente;
-use \Controladoras\ControlGestionProducto as ControlGestionProducto;
+
 
 $DAOClientes= new ControlCliente();
 $DAOSucursal= new ControlGestionSucursal();
 $sucursales=$DAOSucursal->traerTodos();//me devuelve todas las sucursales de la BD, null si no hay 
 
-$DAOProductos= new ControlGestionProducto();//creo la instancia de la controladora
-//var_dump($DAOProductos); //este var dump tira como qe esta null la instancia daoproductos
 
 $idCliente=$cuenta->getMCliente();//tomo el id de cliente asignado a la cuenta logueada
 $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE O NULL SI NO LO ENCUENTRA
@@ -45,167 +43,131 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
 
     <?php require("headerCliente.php"); ?>
 
-    <div id="centrado" >
-      <div class="container-fluid">
-        <br>
-        <br>
-        <h4 style="text-align: center;" class="text-white"><strong>Datos Personales</strong></h4>
-        <table class="table table-bordered" id="div">
-          <thead class="thead-inverse">
-                    <tr>            
-                      <th id="textCentrado">Nombre</th>
-                      <th id="textCentrado">Apellido</th>
-                      <th id="textCentrado">Domicilio</th> 
-                      <th id="textCentrado">Email</th>
-                      <th id="textCentrado">Telefono</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                        <tr>
-                          <td class="text-white" id="textCentrado">
-                            <?= $cliente->getNombre(); ?>
-                              
-                          </td>                        
-                          <td class="text-white" id="textCentrado">
-                            <?= $cliente->getApellido(); ?>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <br>
+          <br>
+          <h4  class="text-white text-center"><strong>Datos Personales:</strong></h4>
+          <table class="table table-bordered" id="div">
+            <thead class="thead-inverse text-center">
+              <tr>            
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Domicilio</th> 
+                <th>Email</th>
+                <th>Telefono</th>
+              </tr>
+            </thead>
+            <tbody class="text-white text-center">
+              <tr>
+                <td><?= $cliente->getNombre(); ?></td>                        
+                <td><?= $cliente->getApellido(); ?></td>
+                <td><?= $cliente->getDomicilio(); ?></td>
+                <td><?= $cuenta->getEmail(); ?></td>
+                <td><?= $cliente->getTelefono(); ?></td> 
+              </tr>              
+            </tbody>          
+          </table>
 
-                          </td>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+            Ingresar/Cambiar Dirección de envío
+          </button>
 
-                          <td class="text-white" id="textCentrado"> 
-                            <?= $cliente->getDomicilio(); ?>  
-                          </td>
-
-                          <td class="text-white" id="textCentrado">
-                            <?= $cuenta->getEmail();?>
-                          </td>
-                          <td class="text-white" id="textCentrado">
-                            <?= $cliente->getTelefono(); ?>                          
-                          </td>                  
-                  </tbody>
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
-          Ingresar/Cambiar Dirección de envío</button>          
-        </table>
-        <br>
+        </div>  
       </div>
 
-      <div class="container-fluid">
-        <h4 style="text-align: center;" class="text-white"><strong>Envio:</strong></h4>            
-        <table class="table table-bordered" id="div">
-          <thead class="thead-inverse">
-                    <tr>            
-                      <th id="textCentrado">Domicilio</th>
-                      <th id="textCentrado">Email</th>
-                      <th id="textCentrado">Fecha</th> 
-                      <th id="textCentrado" colspan="2">Horario de entrega</th>
-                      <th id="textCentrado">Telefono</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                        <tr>
-                          <td class="text-white" id="textCentrado">
-                            <?= $cliente->getDomicilio(); ?>
-                              
-                          </td>                        
-                          <td class="text-white" id="textCentrado">
-                            <?= $cuenta->getEmail(); ?>
+      <br> 
 
-                          </td>
+      <div class="row">
+        <div class="col-lg-12">
+          <h4 class="text-white text-center"><strong>Envio:</strong></h4>            
+          <table class="table table-bordered" id="div">
+            <thead class="thead-inverse text-center">
+              <tr>            
+                <th>Domicilio</th>
+                <th>Email</th>
+                <th>Fecha</th> 
+                <th colspan="2">Horario de entrega</th>
+                <th>Telefono</th>
+              </tr>
+            </thead>
+            <tbody class="text-white text-center">
+              <tr>
+                <td><?= $cliente->getDomicilio(); ?></td>                        
+                <td><?= $cuenta->getEmail(); ?> </td>
+                <td><input type="datetime-local" name="fecha"></td>   
+                <td>Desde: <input type="time" name="horaDesde" ></td>
+                <td>Hasta: <input type="time" name="horaHasta" placeholder="11" ></td>
+                <td><?= $cliente->getTelefono(); ?> </td>  
+              </tr>               
+            </tbody>    
+          </table>
 
-                          <td class="text-white" id="textCentrado"> 
-                            <input type="datetime-local" name="fecha" >  
-                          </td>
-
-                          <td class="text-white" id="textCentrado">
-                            Desde: <input type="time" name="horaDesde" >
-                          </td>
-                          <td class="text-white" id="textCentrado">
-                            Hasta: <input type="time" name="horaHasta" placeholder="11" >                       
-                          </td>
-                          <td class="text-white" id="textCentrado">
-                            <?= $cliente->getTelefono(); ?> 
-                          </td>                 
-                  </tbody>
-          
-        </table>
-        <table class="table table-bordered" id="div">
-          <thead class="thead-inverse">
-            <tr>
-              <th id="textCentrado">Sucursal</th>
-              <th id="textCentrado">Domicilio</th>
-            </tr>            
-          </thead>
-          <tbody>
-            <tr>
-              <td class="text-white">
-                <select class="custom-select">
-                  <option disabled>Seleccione la sucursal...</option>
-                  <?php  foreach ($sucursales as $suc) {?> 
-                    <option value="<?= $suc->getId();  ?>"><?= $suc->getNombre(); ?></option>
-                  <?php } //fin foreach ?> 
-                </select>                
-              </td>
-              <td class="text-white" id="textCentrado">
-                <?= $suc->getDomicilio();  ?>
-              </td>
-            </tr>
-          </tbody>          
-        </table>
-        <br>      
+          <table class="table table-bordered" id="div">
+            <thead class="thead-inverse text-center">
+              <tr>
+                <th>Sucursal</th>
+                <th>Domicilio</th>
+              </tr>            
+            </thead>
+            <tbody class="text-white text-center">
+              <tr>
+                <td>
+                  <select class="custom-select">
+                    <option disabled>Seleccione la sucursal...</option>
+                    <?php  foreach ($sucursales as $suc) {?> 
+                      <option value="<?= $suc->getId();  ?>"><?= $suc->getNombre(); ?></option>
+                    <?php } //fin foreach ?> 
+                  </select>                
+                </td>
+                <td>
+                  <?= $suc->getDomicilio();  ?>
+                </td>
+              </tr>
+            </tbody>          
+          </table>
+              
+        </div>
       </div>
-      <div>
-        <div id="shipResum">
-              <h4 style="text-align: center;" class="text-white"><strong>Resumen del Pedido</strong></h4>
-                 <table class="table table-bordered" id="div">
-                    <thead class="thead-inverse">
-                      <tr>            
-                        <th id="textCentrado">Descripcion</th>
-                        <th id="textCentrado">Precio</th>
-                        <th id="textCentrado">Cantidad</th> 
-                        <th id="textCentrado">Total</th> 
-                        <th id="textCentrado">Opciones</th>
-                      </tr>
-                    </thead>
-                      <tbody>
-                   
-                      <?php 
 
+      <br>
 
-                          foreach ($lineaPedido as $value)
-                            $prodBuscado=$DAOProductos->BuscarPorId($value->getMProducto() );//busco el producto pasandole el id de prod qe tiene cada linea de pedido
-                          {
-                          ?>
-                        
-                          <tr>
-                            <td class="text-white" id="textCentrado">                             
-                              <img src="<?= "../" . $prodBuscado->getImagen(); ?>" width="50" ><!--muestro la imgagen del producto buscado -->
-                            </td>
-                            
-                            <td class="text-white" id="textCentrado">
-                              $<?= $value->getImporte(); ?>
+      <div class="row">
+        <div class="col-lg-12">
+          <h4 class="text-white text-center"><strong>Resumen del Pedido</strong></h4>
+            <table class="table table-bordered" id="div">
+              <thead class="thead-inverse text-center">
+                <tr>            
+                  <th>Descripcion</th>
+                  <th>Precio</th>
+                  <th>Cantidad</th> 
+                  <th>Total</th> 
+                  <th>Opciones</th>
+                </tr>
+              </thead>
+              <tbody class="text-white text-center">
+                <?php  foreach ($lineaPedido as $value) 
+                { $prod=$instanciaProducto->buscarPorID($value->getMProducto());?>
+                <tr>
+                  <td><?= $prod->getDescripcion(); ?></td> 
+                  <td>$<?= $value->getImporte(); ?></td>
+                  <td><?= $value->getCantidad(); ?></td>
+                  <td><?= $value->getCantidad() * $value->getImporte();?></td>
+                  <td>
+                  <form action="<?= ROOT_VIEW ?>/Pedido/borrar" method="POST">
+                    <input type="hidden" name="id" value="<?= $value->getId(); ?>">
+                    <button type="submit" class="btn btn-primary">Eliminar</button>
+                  </form>
+                  </td>
+                </tr>    
+                <?php } //fin foreach ?>    
+              </tbody>   
+            </table>  
 
-                            </td>
+        </div>
+      </div>  
 
-                            <td class="text-white" id="textCentrado"> 
-                              <?= $value->getCantidad(); ?>  
-                            </td>
-
-                            <td class="text-white" id="textCentrado">
-                              <?= $value->getCantidad() * $value->getImporte();?>
-                            </td>
-                            <td class="text-white" id="textCentrado">
-                              <form action="<?= ROOT_VIEW ?>/Pedido/borrar" method="POST">
-                                <input type="hidden" name="id" value="<?= $value->getId(); ?>">
-                                <button type="submit" class="btn btn-primary">Eliminar</button>
-                              </form>
-                            </td>
-                           
-                             
-                          
-                      <?php } //fin foreach ?>    
-                    </tbody>   
-                  </table>          
-            </div>
-      </div>      
     </div>
       
       
@@ -215,7 +177,6 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-
           <form action="<?= ROOT_VIEW ?> /" method="post" enctype="multipart/form-data">
             <div class="modal-header">
               <h5 class="modal-title">Dirección de envío</h5>
@@ -250,24 +211,18 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
               <a class="btn btn-primary" href="<?= ROOT_VIEW ?>/">Actualizar</a>
             </div>
           </form>
-
         </div>
       </div>
     </div>
     <!--Fin Address Modal-->
 
-    <style>
-    #centrado 
-        {margin-left: 300px;margin-right:300px;}
-    #div
-        {background: rgba(0,0,0,0.6)}   /* transparencia solo del fondo , resaltando los botones y texto */
-    #textCentrado
-        {text-align: center;} 
-    </style>
-
-
     <?php require(ROOT . "Vistas/footer.php"); ?>
 
+    <style>
+  
+    #div {background: rgba(0,0,0,0.6)}   /* transparencia solo del fondo , resaltando los botones y texto */
+  
+    </style>
 
       <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
