@@ -8,11 +8,13 @@
 		private $DAOPedido;
 		private $DAOProducto;
 		private $DAOTipoCerveza;
+		
 
 		private $linea;
 
 		public function __construct()
 		{
+			
 			$this->DAOCuentas=\DAOS\CuentasDAO::getInstance();
 			$this->DAOPedido=\DAOS\PedidosDAO::getInstance(); 
 			$this->DAOProducto=\DAOS\ProductosDAO::getInstance();
@@ -246,6 +248,31 @@
 				$total= $total + $valor->getCantidad() * $valor->getImporte();//multiplico la cantidad por el importe de cada linea de pedido y la acumulo
 			}
 			return $total;
+		}
+		public function finalizarCompra()
+		{
+			//crear objeto pedido con los datos que llegan 
+			//crear envio si fuera necesario
+			//guardar pedido en bd con el estado qe corresponda
+
+			$this->cerrarSesion();//destruyo la session Carrito
+			echo '<script language="javascript">alert("Compra realizada");</script>';
+			require_once(ROOT . '/Vistas/Cliente/homeCliente.php');//redirijo al home cliente
+		}
+		public function actualizarDatosEnvio($nombre,$apellido,$domicilio,$telefono,$Idcliente)
+		{
+			
+			$cliente=$this->DAOCuentas->buscarClientePorID($Idcliente);//busco el cliente y lo retorno
+
+			$cliente->setNombre($nombre);//asigno nuevos datos
+			$cliente->setApellido($apellido);
+			$cliente->setDomicilio($domicilio);
+			$cliente->setTelefono($telefono);
+
+			$this->DAOCuentas->actualizarDatos($cliente);//actualizo BD
+
+			$this->checkOut();//vuelvo al checkout
+
 		}
 	}
 ?>

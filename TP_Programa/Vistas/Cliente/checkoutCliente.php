@@ -43,7 +43,9 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
 
     <?php require("headerCliente.php"); ?>
 
-    <div class="container">
+<form action="<?= ROOT_VIEW ?>/Pedido/finalizarCompra" method="post" enctype="multipart/form-data"><!-- FORMULARIO GENERAL PARA ENVIAR COMPRA FINAL A BD -->
+
+  <div class="container"> <!-- TABLA DATOS PERSONALES -->
       <div class="row">
         <div class="col-lg-12">
           <br>
@@ -79,36 +81,44 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
 
       <br> 
 
-      <div class="row">
+      <div class="row"> <!-- TABLA ENVIO -->
         <div class="col-lg-12">
-          <h4 class="text-white text-center"><strong>Envio:</strong></h4>            
-          <table class="table table-bordered" id="div">
+          <h4 class="text-white text-center"><strong>Envio:</strong></h4>
+          <table class="table table-bordered">
+            
+          </table>           
+          <table class="table table-bordered"  >
             <thead class="thead-inverse text-center">
-              <tr>            
+              
+              <tr>
+              
                 <th>Domicilio</th>
                 <th>Email</th>
                 <th>Fecha</th> 
                 <th colspan="2">Horario de entrega</th>
                 <th>Telefono</th>
               </tr>
+
             </thead>
             <tbody class="text-white text-center">
+              
               <tr>
-                <td><?= $cliente->getDomicilio(); ?></td>                        
-                <td><?= $cuenta->getEmail(); ?> </td>
-                <td><input type="datetime-local" name="fecha"></td>   
-                <td>Desde: <input type="time" name="horaDesde" ></td>
-                <td>Hasta: <input type="time" name="horaHasta" placeholder="11" ></td>
-                <td><?= $cliente->getTelefono(); ?> </td>  
+                
+                <td id="div"><?= $cliente->getDomicilio(); ?></td>                        
+                <td id="div"><?= $cuenta->getEmail(); ?> </td>
+                <td id="div"><input type="datetime-local" name="fecha"></td>   
+                <td id="div"> Desde: <input type="time" name="horaDesde" ></td>
+                <td id="div">Hasta: <input type="time" name="horaHasta" placeholder="11" ></td>
+                <td id="div"> <?= $cliente->getTelefono(); ?> </td>  
               </tr>               
             </tbody>    
           </table>
 
-          <table class="table table-bordered" id="div">
+          <table class="table table-bordered" id="div"  >
             <thead class="thead-inverse text-center">
               <tr>
                 <th>Sucursal</th>
-                <th>Domicilio</th>
+                <th>Direccion</th>
               </tr>            
             </thead>
             <tbody class="text-white text-center">
@@ -126,14 +136,13 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
                 </td>
               </tr>
             </tbody>          
-          </table>
-              
+          </table>              
         </div>
       </div>
 
       <br>
 
-      <div class="row">
+      <div class="row"><!-- TABLA RESUMEN -->
         <div class="col-lg-12">
           <h4 class="text-white text-center"><strong>Resumen del Pedido</strong></h4>
             <table class="table table-bordered" id="div">
@@ -163,12 +172,13 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
                 </tr>    
                 <?php } //fin foreach ?>    
               </tbody>   
-            </table>  
-
+            </table> 
         </div>
-      </div>  
-
+      </div>
     </div>
+  
+</form><!-- fin formulario general -->
+    
       
       
    
@@ -177,7 +187,7 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <form action="<?= ROOT_VIEW ?> /" method="post" enctype="multipart/form-data">
+          <form action="<?= ROOT_VIEW ?> /Pedido/actualizarDatosEnvio" method="post" enctype="multipart/form-data">
             <div class="modal-header">
               <h5 class="modal-title">Dirección de envío</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -189,26 +199,32 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
                 <div class="form-row">
                   <div class="col-md-6">
                     <label for="InputName">Nombre</label>
-                    <input class="form-control" id="InputName" name="nombre" type="text" aria-describedby="nameHelp" value="<?= $cliente->getNombre(); ?>" required>
+                    <input class="form-control" id="nombre" name="nombre" type="text" aria-describedby="nameHelp" value="<?= $cliente->getNombre(); ?>" required>
                   </div>
                   <div class="col-md-6">
                     <label for="InputLastName">Apellido</label>
-                    <input class="form-control" id="InputLastName" name="apellido" type="text" aria-describedby="nameHelp" value="<?= $cliente->getApellido(); ?>" required>
+                    <input class="form-control" id="apellido" name="apellido" type="text" aria-describedby="nameHelp" value="<?= $cliente->getApellido(); ?>" required>
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <label for="InputAddress">Domicilio</label>
-                <input class="form-control" id="InputAddress" name="domicilio" type="text" aria-describedby="nameHelp" value="<?= $cliente->getDomicilio(); ?>" required>
+                <input class="form-control" id="domicilio" name="domicilio" type="text" aria-describedby="nameHelp" value="<?= $cliente->getDomicilio(); ?>" required>
               </div>  
               <div class="form-group">    
                 <label for="InputTel">Teléfono</label>
-                <input class="form-control" id="InputTel" name="telefono" type="text" aria-describedby="nameHelp" value="<?= $cliente->getTelefono(); ?>" required>
+                <input class="form-control" id="telefono" name="telefono" type="text" aria-describedby="nameHelp" value="<?= $cliente->getTelefono(); ?>" required>                
               </div>
+            </div>
+            <div class="form-group">
+              <input class="form-control" id="cliente" name="cliente" type="hidden" value="<?=$cliente->getId(); ?>">
+            </div>
+            <div class="form-group">
+              <input class="form-control" id="idCuenta" name="idCuenta" type="hidden" value="<?=$cuenta->getId(); ?>">
             </div>
             <div class="modal-footer center-block">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-              <a class="btn btn-primary" href="<?= ROOT_VIEW ?>/">Actualizar</a>
+              <input type="submit" name="guardar" class="btn btn-default" value="Guardar">              
             </div>
           </form>
         </div>
@@ -221,6 +237,7 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
     <style>
   
     #div {background: rgba(0,0,0,0.6)}   /* transparencia solo del fondo , resaltando los botones y texto */
+    #cell {background:rgba(255, 125, 0, 0);} /*transparencia total*/
   
     </style>
 

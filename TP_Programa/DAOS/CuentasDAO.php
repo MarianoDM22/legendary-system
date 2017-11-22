@@ -133,9 +133,33 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 		return $object;//retorno el objeto o null si no lo encontro
 
 	}
-	public function buscarPorID($dato)
+	public function buscarClientePorID($dato)
 	{
+		$object = null;
 
+		$query = 'SELECT * FROM '.$this->table.' WHERE id_cliente = :id';
+
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);			
+
+		$command->bindParam(':id', $dato);
+		$command->execute();
+
+		while ($row = $command->fetch())
+		{
+			$apellido = ($row['apellido']);
+			$domicilio = ($row['domicilio']);
+			$nombre = ($row['nombre']);
+			$telefono = ($row['telefono']);
+
+			$object = new \Modelos\Cliente( $nombre , $apellido , $domicilio , $telefono ) ;
+
+			$object->setId($row['id_cliente']);	
+		}
+
+		
+		return $object;
 	}
 	public function borrar($dato)
 	{
@@ -144,10 +168,46 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 	public function actualizar($dato)
 	{
 
+
 	}
 	public function traerTodos()
 	{
 		
+	}
+	public function buscarPorID($dato)
+	{
+
+	}
+	public function actualizarDatos($dato)
+	{
+		$query= 'UPDATE '.$this->table.'
+				SET apellido = :apellido, 
+					domicilio = :domicilio,
+					nombre = :nombre,
+					telefono = :telefono
+					
+				WHERE id_cliente = :id';
+
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);
+
+		$id = $dato->getId();
+		$apellido = $dato->getApellido();
+		$domicilio = $dato->getDomicilio();
+		$nombre = $dato->getNombre();
+		$telefono = $dato->getTelefono();		
+
+
+		$command->bindParam(':id', $id);
+		$command->bindParam(':apellido', $apellido);
+		$command->bindParam(':domicilio', $domicilio);
+		$command->bindParam(':nombre', $nombre);
+		$command->bindParam(':telefono', $telefono);
+		
+
+		$command->execute();
+
 	}
 }
 ?>
