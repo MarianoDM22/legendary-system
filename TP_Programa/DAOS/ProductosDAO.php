@@ -135,6 +135,7 @@ class ProductosDAO extends SingletonAbstractDAO implements IDAO
 		
 		return $object;
 	}
+	
 	public function borrar($dato){
 		$query = 'DELETE FROM '.$this->table.' WHERE id_producto = :id';
 

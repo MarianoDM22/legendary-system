@@ -230,6 +230,7 @@
 	   	public function checkOut()
 	   	{
 	   		
+	   		$productos=$this->traerTodosProductos();
 	   		
 	   		require_once(ROOT . '/Vistas/Cliente/checkoutCliente.php');
 	   	}

@@ -247,5 +247,12 @@ class ControlGestionProducto
 
 	   	return $precio;
    	}
+
+   	public function BuscarPorId($dato)
+   	{
+   		$prod=$this->DAOProducto->buscarPorID($dato);
+   		return $prod;
+   	}
+
 }
 ?>

@@ -9,13 +9,14 @@ $cuenta = $_SESSION['Login'];
 
 use \Controladoras\ControlGestionSucursal as ControlGestionSucursal;
 use \Controladoras\ControlCliente as ControlCliente;
+use \Controladoras\ControlGestionProducto as ControlGestionProducto;
+
 $DAOClientes= new ControlCliente();
 $DAOSucursal= new ControlGestionSucursal();
-
-
-
-
 $sucursales=$DAOSucursal->traerTodos();//me devuelve todas las sucursales de la BD, null si no hay 
+
+$DAOProductos= new ControlGestionProducto();//creo la instancia de la controladora
+//var_dump($DAOProductos); //este var dump tira como qe esta null la instancia daoproductos
 
 $idCliente=$cuenta->getMCliente();//tomo el id de cliente asignado a la cuenta logueada
 $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE O NULL SI NO LO ENCUENTRA
@@ -115,10 +116,10 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
                           </td>
 
                           <td class="text-white" id="textCentrado">
-                            <input type="time" name="horaDesde" >
+                            Desde: <input type="time" name="horaDesde" >
                           </td>
                           <td class="text-white" id="textCentrado">
-                            <input type="time" name="horaHasta" placeholder="11" >                       
+                            Hasta: <input type="time" name="horaHasta" placeholder="11" >                       
                           </td>
                           <td class="text-white" id="textCentrado">
                             <?= $cliente->getTelefono(); ?> 
@@ -169,15 +170,14 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
                       <?php 
 
 
-                          foreach ($lineaPedido as $value) 
+                          foreach ($lineaPedido as $value)
+                            $prodBuscado=$DAOProductos->BuscarPorId($value->getMProducto() );//busco el producto pasandole el id de prod qe tiene cada linea de pedido
                           {
                           ?>
                         
                           <tr>
-                            <td class="text-white" id="textCentrado">
-                             
-                              
-
+                            <td class="text-white" id="textCentrado">                             
+                              <img src="<?= "../" . $prodBuscado->getImagen(); ?>" width="50" ><!--muestro la imgagen del producto buscado -->
                             </td>
                             
                             <td class="text-white" id="textCentrado">
@@ -215,6 +215,7 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
+
           <form action="<?= ROOT_VIEW ?> /" method="post" enctype="multipart/form-data">
             <div class="modal-header">
               <h5 class="modal-title">Dirección de envío</h5>
@@ -246,9 +247,10 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
             </div>
             <div class="modal-footer center-block">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-              <a class="btn btn-primary" href="<?= ROOT_VIEW ?>/">Confirmar</a>
+              <a class="btn btn-primary" href="<?= ROOT_VIEW ?>/">Actualizar</a>
             </div>
           </form>
+
         </div>
       </div>
     </div>
