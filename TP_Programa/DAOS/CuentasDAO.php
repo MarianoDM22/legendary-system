@@ -192,18 +192,17 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 				$object = new \Modelos\Cliente( $nombre , $apellido , $domicilio , $telefono ) ;
 
 				$object->setId($row['id_cliente']);	
-
+			}
+			return $object;
     	}
     	catch (PDOException $ex) {
 			throw $ex;
     	}
     	catch (Exception $e) {
 			throw $e;
-    	}
 		}
 
 		
-		return $object;
 	}
 	public function borrar($dato)
 	{
