@@ -15,6 +15,8 @@ namespace DAOS;
  *	foreign key(fk_tipodecerveza) references tiposdecervezas(id_tipodecerveza)
  *	);
  */
+use \Exception as Exception;
+use \PDOException as PDOException;
 
 class ProductosDAO extends SingletonAbstractDAO implements IDAO
 {
@@ -22,31 +24,43 @@ class ProductosDAO extends SingletonAbstractDAO implements IDAO
 
 
 	public function insertar($dato){
-		$query = 'INSERT INTO '.$this->table.' 
-		( descripcion , fk_tipodecerveza , capacidad , factor , precio , imagen ) 
-		VALUES 
-		( :descripcion , :fk_tipodecerveza , :capacidad , :factor , :precio , :imagen )';
+		try 
+    	{
+			$query = 'INSERT INTO '.$this->table.' 
+			( descripcion , fk_tipodecerveza , capacidad , factor , precio , imagen ) 
+			VALUES 
+			( :descripcion , :fk_tipodecerveza , :capacidad , :factor , :precio , :imagen )';
 
-		$pdo = new Connection();
-		$connection = $pdo->Connect();
-		$command = $connection->prepare($query);
+			$pdo = new Connection();
+			$connection = $pdo->Connect();
+			$command = $connection->prepare($query);
 
-		$descripcion = $dato->getDescripcion();
-		$fk_tipodecerveza = $dato->getMTiposDeCerveza();
-		$capacidad = $dato->getCapacidad();
-		$factor = $dato->getFactor();
-		$precio = $dato->getPrecio();
-		$imagen = $dato->getImagen();
+			$descripcion = $dato->getDescripcion();
+			$fk_tipodecerveza = $dato->getMTiposDeCerveza();
+			$capacidad = $dato->getCapacidad();
+			$factor = $dato->getFactor();
+			$precio = $dato->getPrecio();
+			$imagen = $dato->getImagen();
 
-		$command->bindParam(':descripcion', $descripcion);
-		$command->bindParam(':fk_tipodecerveza', $fk_tipodecerveza);
-		$command->bindParam(':capacidad', $capacidad);
-		$command->bindParam(':factor', $factor);
-		$command->bindParam(':precio' , $precio);
-		$command->bindParam(':imagen', $imagen);
-		$command->execute();
+			$command->bindParam(':descripcion', $descripcion);
+			$command->bindParam(':fk_tipodecerveza', $fk_tipodecerveza);
+			$command->bindParam(':capacidad', $capacidad);
+			$command->bindParam(':factor', $factor);
+			$command->bindParam(':precio' , $precio);
+			$command->bindParam(':imagen', $imagen);
+			$command->execute();
+    		
+    	}
+    	catch (PDOException $ex) {
+			throw $ex;
+    	}
+    	catch (Exception $e) {
+			throw $e;
+    	}
 	}
 	public function insertarDevolverID($dato){
+		try 
+    	{
 		$query = 'INSERT INTO '.$this->table.' 
 		( descripcion , fk_tipodecerveza , capacidad , factor , precio , imagen ) 
 		VALUES 
@@ -74,8 +88,18 @@ class ProductosDAO extends SingletonAbstractDAO implements IDAO
 		$dato->setId($connection->lastInsertId());
 			
 		return $dato;
+    		
+    	}
+    	catch (PDOException $ex) {
+			throw $ex;
+    	}
+    	catch (Exception $e) {
+			throw $e;
+    	}
 	}
 	public function buscarPorNombre($dato){
+		try 
+    	{
 		$object = null;
 
 		$query = 'SELECT * FROM '.$this->table.' WHERE descripcion = :descripcion';
@@ -104,9 +128,19 @@ class ProductosDAO extends SingletonAbstractDAO implements IDAO
 		}
 
 		return $object;
+    		
+    	}
+    	catch (PDOException $ex) {
+			throw $ex;
+    	}
+    	catch (Exception $e) {
+			throw $e;
+    	}
 	}
 	public function buscarPorID($dato)
 	{
+		try 
+    	{
 		$object = null;
 
 		
@@ -134,8 +168,18 @@ class ProductosDAO extends SingletonAbstractDAO implements IDAO
 		}
 		
 		return $object;
+    		
+    	}
+    	catch (PDOException $ex) {
+			throw $ex;
+    	}
+    	catch (Exception $e) {
+			throw $e;
+    	}
 	}
 	public function borrar($dato){
+		try 
+    	{
 		$query = 'DELETE FROM '.$this->table.' WHERE id_producto = :id';
 
 		$pdo = new Connection();
@@ -144,8 +188,18 @@ class ProductosDAO extends SingletonAbstractDAO implements IDAO
 
 		$command->bindParam(':id', $dato);
 		$command->execute();
+    		
+    	}
+    	catch (PDOException $ex) {
+			throw $ex;
+    	}
+    	catch (Exception $e) {
+			throw $e;
+    	}
 	}
 	public function actualizar($dato){
+		try 
+    	{
 		$query= 'UPDATE '.$this->table.'
 				SET descripcion = :descripcion, 
 					capacidad = :capacidad,
@@ -177,8 +231,18 @@ class ProductosDAO extends SingletonAbstractDAO implements IDAO
 		$command->bindParam(':fk_tipodecerveza', $fk_tipodecerveza);
 
 		$command->execute();
+    		
+    	}
+    	catch (PDOException $ex) {
+			throw $ex;
+    	}
+    	catch (Exception $e) {
+			throw $e;
+    	}
 	}
 	public function traerTodos(){
+		try 
+    	{
 		$objects = array();
 
 		$query = 'SELECT * FROM '.$this->table;
@@ -206,6 +270,14 @@ class ProductosDAO extends SingletonAbstractDAO implements IDAO
 		}
 
 		return $objects;	
+    		
+    	}
+    	catch (PDOException $ex) {
+			throw $ex;
+    	}
+    	catch (Exception $e) {
+			throw $e;
+    	}
 	}
 
 }
