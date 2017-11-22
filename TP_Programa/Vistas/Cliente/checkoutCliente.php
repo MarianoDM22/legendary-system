@@ -73,7 +73,7 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
           </table>
 
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
-            Ingresar/Cambiar Dirección de envío
+            Modificar datos Personales
           </button>
 
         </div>  
@@ -175,6 +175,9 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
             </table> 
         </div>
       </div>
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary btn-lg">Finalizar Compra</button>
     </div>
   
 </form><!-- fin formulario general -->

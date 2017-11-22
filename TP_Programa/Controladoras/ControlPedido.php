@@ -78,14 +78,15 @@
 
 		}
 
-		private function cerrarSesion($linea)
+		private function cerrarSesion()
 		{	
-			$this->linea = Array();
-
-			if(!isset($_SESSION['Carrito']))
-			{
-				$_SESSION['Carrito'] = $this->linea;
-			}			
+			session_start();
+			
+			if (isset($_SESSION["Carrito"]) )//entra si existe la session
+			{	
+    			
+    			unset($_SESSION["Carrito"]);     			
+    		}			
 
 		}
 
@@ -237,6 +238,7 @@
 	   	public function index() 
 		{
 			$producto=$this->traerTodosProductos();
+			$instanciaProducto=$this->DAOProducto;
 			
 			require_once(ROOT . '/Vistas/Cliente/homeCliente.php');
 		}
@@ -251,13 +253,15 @@
 		}
 		public function finalizarCompra()
 		{
+			//definir los parametros qe llegan
 			//crear objeto pedido con los datos que llegan 
 			//crear envio si fuera necesario
 			//guardar pedido en bd con el estado qe corresponda
 
 			$this->cerrarSesion();//destruyo la session Carrito
 			echo '<script language="javascript">alert("Compra realizada");</script>';
-			require_once(ROOT . '/Vistas/Cliente/homeCliente.php');//redirijo al home cliente
+			$this->index();//redirijo al home cliente
+			
 		}
 		public function actualizarDatosEnvio($nombre,$apellido,$domicilio,$telefono,$Idcliente)
 		{
