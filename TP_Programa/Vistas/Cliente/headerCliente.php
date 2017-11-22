@@ -135,14 +135,10 @@ $DAOPedido= new ControlPedido();
                
                   <?php 
                       foreach ($lineaCarrito as $value) 
-                      {?>
+                      { $prod=$instanciaProducto->buscarPorID($value->getMProducto());?>
                     
                       <tr>
-                        <td>
-                         
-                          
-
-                        </td>
+                        <td><?= $prod->getDescripcion(); ?></td>
                         
                         <td>$<?= $value->getImporte(); ?></td>
 
@@ -253,7 +249,7 @@ $DAOPedido= new ControlPedido();
     </div>
     <!-- Fin Change Pass Modal-->
 
-     <!-- Change Acount Modal
+     <!-- Change Acount Modal-->
     <div class="modal fade" id="changeAcountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -293,7 +289,7 @@ $DAOPedido= new ControlPedido();
         </div>
       </div>
     </div>
-    Fin Change Acount Modall-->
+    <!--Fin Change Acount Modall-->
 
 
 

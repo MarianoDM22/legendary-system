@@ -107,6 +107,7 @@ class ControlGestionProducto
    	{
    		$producto=$this->traerTodos();
    		$cervezas=$this->traerTodosCervezas();
+   		
    		if ($producto != null)
    		{
    			$this->calcularTodosPrecio($producto);

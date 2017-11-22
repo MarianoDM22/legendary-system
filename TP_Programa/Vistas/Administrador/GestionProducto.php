@@ -56,21 +56,73 @@
 								<th colspan="2">Opciones</th>
 							</tr>
 						</thead>
-						<tbody class="fn-lg text-white">
+						<tbody class="fn-lg">
 							<?php 
-									foreach ($producto as $key => $value) { ?>
+									foreach ($producto as $key => $value) 
+										{// $cervezas=buscarPorID($value->getMTiposDeCerveza());?>
 								
 									<tr>
-										<td><?= $value->getId(); ?></td>
-										<td><?= $value->getDescripcion(); ?></td>
-										<td><?= $value->getMTiposDeCerveza(); ?></td>
-										<td><?= $value->getCapacidad(); ?></td>
-										<td><?= $value->getFactor(); ?></td>
-										<td>$<?= $value->getPrecio(); ?></td>
+										<td class="text-white"><?= $value->getId(); ?></td>
+										<td class="text-white"><?= $value->getDescripcion(); ?></td>
+										<td></td>
+										<td class="text-white"><?= $value->getCapacidad(); ?></td>
+										<td class="text-white"><?= $value->getFactor(); ?></td>
+										<td class="text-white">$<?= $value->getPrecio(); ?></td>
 										<td><img src="<?= "../" . $value->getImagen(); ?>" width="50"></td>
 
 										<td>
 											<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-inscp-<?= $value->getId() ?>">Modificar</button>	
+
+												<!-- Modal Modificar -->
+												<div class="modal fade" id="modal-inscp-<?= $value->getId() ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+													<div class="modal-dialog" role="document">
+														<div class="modal-content">
+															<form action="<?= ROOT_VIEW ?>/GestionProducto/modificar" method="post" enctype="multipart/form-data">
+																<div class="modal-header">
+																	<h5 class="modal-title">Modificar Producto</h5>
+																	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																		<span aria-hidden="true">&times;</span>
+																	</button>
+																</div>
+																<div class="modal-body">
+																	<div class="container-fluid">
+																		<div class="row">
+																			<div class="col-md-11">
+																				<label>Descripción: </label>
+																				<input type="text" name="descripcion" class="form-control" value="<?= $value->getDescripcion(); ?>" required><br>
+																				<label>Tipo de Cerveza: </label><br>
+																				<select name="TipoCerveza" class="custom-select">
+																					<option disabled>Seleccione el Tipo de Cerveza...</option>
+																					<?php foreach ($cervezas as $key => $valor) { ?>
+																						<option value="<?= $valor->getId();  ?>"><?= $valor->getDescripcion();  ?></option>
+																					<?php } ?>
+																				</select><br><br>
+																				<div class="row">
+																					<div class="col-sm-6">
+																						<label>Capacidad en Litros: </label>
+																						<input type="text" name="capacidad" class="form-control" value="<?= $value->getCapacidad(); ?>" required>
+																					</div>
+																					<div class="col-sm-6">
+																						<label>Factor: </label>
+																						<input type="text" name="factor" class="form-control" value="<?= $value->getFactor(); ?>" required><br>
+																					</div>	
+																				</div>
+																				<label>Imagen: </label>
+																				<input type="file" name="fileToUpload" id="fileToUpload" class="form-control" required="required"><br>
+																				<input type="hidden" name="id" class="form-control" value="<?= $value->getId();?>" >
+																			</div>
+																		</div>	
+																	</div>			
+																</div>
+																<div class="modal-footer">
+																	<input type="submit" name="guardar" class="btn btn-default" value="Guardar">
+																	<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+																</div>
+															</form>
+														</div>
+													</div>
+												</div>
+												<!-- Fin Modal -->
 										</td>
 										<td>
 											<form action="<?= ROOT_VIEW ?>/GestionProducto/borrar" method="POST">
@@ -141,56 +193,7 @@
 	</div>
 	<!-- Fin Modal -->
 
-	<!-- Modal Modificar -->
-	<div class="modal fade" id="modal-inscp-<?= $value->getId() ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<form action="<?= ROOT_VIEW ?>/GestionProducto/modificar" method="post" enctype="multipart/form-data">
-					<div class="modal-header">
-						<h5 class="modal-title">Modificar Producto</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<div class="container-fluid">
-							<div class="row">
-								<div class="col-md-11">
-									<label>Descripción: </label>
-									<input type="text" name="descripcion" class="form-control" value="<?= $value->getDescripcion(); ?>" required><br>
-									<label>Tipo de Cerveza: </label><br>
-									<select name="TipoCerveza" class="custom-select">
-										<option disabled>Seleccione el Tipo de Cerveza...</option>
-										<?php foreach ($cervezas as $key => $valor) { ?>
-											<option value="<?= $valor->getId();  ?>"><?= $valor->getDescripcion();  ?></option>
-										<?php } ?>
-									</select><br><br>
-									<div class="row">
-										<div class="col-sm-6">
-											<label>Capacidad en Litros: </label>
-											<input type="text" name="capacidad" class="form-control" value="<?= $value->getCapacidad(); ?>" required>
-										</div>
-										<div class="col-sm-6">
-											<label>Factor: </label>
-											<input type="text" name="factor" class="form-control" value="<?= $value->getFactor(); ?>" required><br>
-										</div>	
-									</div>
-									<label>Imagen: </label>
-									<input type="file" name="fileToUpload" id="fileToUpload" class="form-control" required="required"><br>
-									<input type="hidden" name="id" class="form-control" value="<?= $value->getId();?>" >
-								</div>
-							</div>	
-						</div>			
-					</div>
-					<div class="modal-footer">
-						<input type="submit" name="guardar" class="btn btn-default" value="Guardar">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	<!-- Fin Modal -->
+
 
 	<style>	/*provisorio hasta que ande los estilos. en este caso combiene por id para no afectaro todos los div*/	
 		#div

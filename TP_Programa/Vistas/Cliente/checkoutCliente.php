@@ -107,7 +107,7 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
                 <td id="div"><?= $cliente->getDomicilio(); ?></td>                        
                 <td id="div"><?= $cuenta->getEmail(); ?> </td>
                 <td id="div"><input type="datetime-local" name="fecha"></td>   
-                <td id="div"> Desde: <input type="time" name="horaDesde" ></td>
+                <td id="div">Desde: <input type="time" name="horaDesde" ></td>
                 <td id="div">Hasta: <input type="time" name="horaHasta" placeholder="11" ></td>
                 <td id="div"> <?= $cliente->getTelefono(); ?> </td>  
               </tr>               

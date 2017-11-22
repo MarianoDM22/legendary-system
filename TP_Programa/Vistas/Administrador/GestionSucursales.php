@@ -64,6 +64,51 @@
 										<td class="text-white">Long: <?= $value->getLongitud(); ?></font></td>
 										<td>
 											<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-inscp-<?= $value->getId() ?>">Modificar</button>
+
+											
+												<!-- Modal Modificar -->
+												<div class="modal fade" id="modal-inscp-<?= $value->getId() ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+													<div class="modal-dialog" role="document">
+														<div class="modal-content">
+															<form action="<?= ROOT_VIEW ?>/GestionSucursal/modificar" method="post" enctype="multipart/form-data">
+																<div class="modal-header">
+																	<h5 class="modal-title">Modificar Sucursal</h5>
+																		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																			<span aria-hidden="true">&times;</span>
+																		</button>
+																</div>
+																<div class="modal-body">
+																	<div class="container-fluid">
+																		<div class="row">
+																			<div class="col-md-11">
+																				<label>Nombre: </label>
+																				<input type="text" name="nombre" class="form-control" value="<?= $value->getNombre(); ?>" required><br>
+																				<label>Direccion: </label>
+																				<input type="text" name="direccion" class="form-control" value="<?= $value->getDomicilio(); ?>" required><br>
+																				<div class="row">
+																					<div class="col-sm-6">
+																						<label>Latitud: </label>
+																						<input type="text" name="latitud" class="form-control" value="<?= $value->getLatitud(); ?>" required>
+																					</div>
+																					<div class="col-sm-6">
+																						<label>Longitud: </label>
+																						<input type="text" name="longitud" class="form-control" value="<?= $value->getLongitud(); ?>" required><br>
+																					</div>	
+																				</div>
+																				<input type="hidden" name="id" class="form-control" value="<?= $value->getId();?>" >
+																			</div>
+																		</div>	
+																	</div>			
+																</div>
+																<div class="modal-footer">
+																	<input type="submit" name="guardar" class="btn btn-default" value="Guardar">
+																	<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+																</div>
+															</form>
+														</div>
+													</div>
+												</div>
+												<!-- Fin Modal -->
 										</td>
 										<td>
 											<form action="<?= ROOT_VIEW ?>/GestionSucursal/borrar" method="POST">
@@ -126,49 +171,6 @@
 	</div>
 	<!-- Fin Modal -->
 
-	<!-- Modal Modificar -->
-	<div class="modal fade" id="modal-inscp-<?= $value->getId() ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<form action="<?= ROOT_VIEW ?>/GestionSucursal/modificar" method="post" enctype="multipart/form-data">
-					<div class="modal-header">
-						<h5 class="modal-title">Modificar Sucursal</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-					</div>
-					<div class="modal-body">
-						<div class="container-fluid">
-							<div class="row">
-								<div class="col-md-11">
-									<label>Nombre: </label>
-									<input type="text" name="nombre" class="form-control" value="<?= $value->getNombre(); ?>" required><br>
-									<label>Direccion: </label>
-									<input type="text" name="direccion" class="form-control" value="<?= $value->getDomicilio(); ?>" required><br>
-									<div class="row">
-										<div class="col-sm-6">
-											<label>Latitud: </label>
-											<input type="text" name="latitud" class="form-control" value="<?= $value->getLatitud(); ?>" required>
-										</div>
-										<div class="col-sm-6">
-											<label>Longitud: </label>
-											<input type="text" name="longitud" class="form-control" value="<?= $value->getLongitud(); ?>" required><br>
-										</div>	
-									</div>
-									<input type="hidden" name="id" class="form-control" value="<?= $value->getId();?>" >
-								</div>
-							</div>	
-						</div>			
-					</div>
-					<div class="modal-footer">
-						<input type="submit" name="guardar" class="btn btn-default" value="Guardar">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	<!-- Fin Modal -->
 
 	<style>	/*provisorio hasta que ande los estilos. en este caso combiene por id para no afectaro todos los div*/	
 		#div
