@@ -253,6 +253,15 @@
 		}
 		public function finalizarCompra($idCliente,$fechaDomicilio,$horaDesde,$horaHasta,$fechaSucursal)
 		{
+			session_start();
+			$lineaPedido=$_SESSION['Carrito'];
+
+			foreach ($lineaPedido as $pos => $valor)
+		    {
+				$this->DAOLineaDePedido->insertar($valor);//inserto en la bd cada linea del array
+			}
+			
+			
 			//crear objetos linea pedido y envio, y guardarlos en bd antes de crear el obj pedido
 			if ($idCliente ==1)
 		    {	
@@ -270,6 +279,10 @@
 				//retira en sucursal
 				//guardar pedido en bd con el estado qe corresponda
 			}	
+
+			$this->cerrarSesion();//destruyo la session Carrito
+			echo '<script language="javascript">alert("Compra realizada");</script>';
+			$this->index();//redirijo al home cliente
 
 			$this->cerrarSesion();//destruyo la session Carrito
 			echo '<script language="javascript">alert("Compra realizada");</script>';

@@ -130,6 +130,7 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
     	catch (Exception $e) {
 			throw $e;
     	}
+    	return $dato;
 
 	}
 	public function buscarPorNombre($dato)

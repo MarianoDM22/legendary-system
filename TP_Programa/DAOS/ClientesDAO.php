@@ -41,7 +41,7 @@ class ClientesDAO extends SingletonAbstractDAO implements IDAO
 		*/
 	}
 	public function insertarDevolverID($dato){
-		/*
+		
 		$query = 'INSERT INTO '.$this->table.' 
 		( apellido , domicilio , nombre , telefono ) 
 		VALUES 
@@ -65,7 +65,7 @@ class ClientesDAO extends SingletonAbstractDAO implements IDAO
 		$dato->setId($connection->lastInsertId());
 			
 		return $dato;
-		*/
+		
 	}
 	public function buscarPorID($dato){
 		
