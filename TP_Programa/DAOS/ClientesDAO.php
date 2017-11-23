@@ -13,6 +13,9 @@ namespace DAOS;
  *	);
  */
 
+use \Exception as Exception;
+use \PDOException as PDOException;
+
 class ClientesDAO extends SingletonAbstractDAO implements IDAO
 {
 	private $table = 'clientes';
@@ -41,7 +44,7 @@ class ClientesDAO extends SingletonAbstractDAO implements IDAO
 		*/
 	}
 	public function insertarDevolverID($dato){
-		
+		/*
 		$query = 'INSERT INTO '.$this->table.' 
 		( apellido , domicilio , nombre , telefono ) 
 		VALUES 
@@ -65,36 +68,44 @@ class ClientesDAO extends SingletonAbstractDAO implements IDAO
 		$dato->setId($connection->lastInsertId());
 			
 		return $dato;
-		
+		*/
 	}
-	public function buscarPorID($dato){
-		
-		$object = null;
-		echo "llega";
-		$query = 'SELECT * FROM '.$this->table.' WHERE id_cliente = :id';
+	public function buscarPorID($dato)
+	{
+		try 
+    	{
+			var_dump($dato);
+			$object = null;
+			
+			$query = 'SELECT * FROM '.$this->table.' WHERE id_cliente = :id';
 
-		$pdo = new Connection();
-		$connection = $pdo->Connect();
-		$command = $connection->prepare($query);			
+			$pdo = new Connection();
+			$connection = $pdo->Connect();
+			$command = $connection->prepare($query);			
 
-		$command->bindParam(':id', $dato);
-		$command->execute();
+			$command->bindParam(':id', $dato);
+			$command->execute();
 
-		while ($row = $command->fetch())
-		{
-			$apellido = ($row['apellido']);
-			$domicilio = ($row['domicilio']);
-			$nombre = ($row['nombre']);
-			$telefono = ($row['telefono']);
+			while ($row = $command->fetch())
+			{
+				$apellido = ($row['apellido']);
+				$domicilio = ($row['domicilio']);
+				$nombre = ($row['nombre']);
+				$telefono = ($row['telefono']);
 
-			$object = new \Modelos\Cliente( $nombre , $apellido , $domicilio , $telefono ) ;
+				$object = new \Modelos\Cliente( $nombre , $apellido , $domicilio , $telefono ) ;
 
-			$object->setId($row['id_cliente']);	
+				$object->setId($row['id_cliente']);	
+			}
+
+			return $object;
 		}
-
-		
-		return $object;
-		
+    	catch (PDOException $ex) {
+			throw $ex;
+    	}
+    	catch (Exception $e) {
+			throw $e;
+		}
 	}
 	public function borrar($dato){
 

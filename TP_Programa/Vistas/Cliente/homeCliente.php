@@ -35,8 +35,18 @@
     <?php require("headerCliente.php"); ?>
 
     <div class="container-fluid" >
-      <div class="row" style="margin-left: 40px;margin-right: : 40px;">
-        <div class="col-lg-11" style="margin-left: 40px;margin-right: : 40px;">
+      <div class="row">
+
+        <div class="col-lg-2">
+          <h1 class="my-4 text-white">Categorías</h1>
+          <div class="list-group">
+            <a href="#" class="list-group-item">Categoria 1</a>
+            <a href="#" class="list-group-item">Categoria 2</a>
+            <a href="#" class="list-group-item">Categoria 3</a>
+          </div>
+        </div>
+
+        <div class="col-lg-10">
         
         <!-- slider
           <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -73,14 +83,16 @@
                 <div class="card-deck">
                   <?php 
                     foreach ($producto as $key => $value) {  ?>
-                      <div class="p-4 align-self-center col-md-3" > 
+                      <div class="p-4 align-self-center col-md-4" > 
                         <div class="card bg-light text-center">
-
                           <form action= "<?= ROOT_VIEW ?>/Pedido/agregarAlCarrito" method="post" enctype="multipart/form-data">
-                            <a href=""><img src="<?= "../" . $value->getImagen(); ?>" width="150"></a>
+                            <div class="card background">
+
+                              <img src="http://localhost/TP_Programa/<?=$value->getImagen(); ?>" class="img-responsive" style="width:100%" alt="Image ">
+                            
                               <div class="card-body">
-                                  <h4 class="card-title"><a href=" "><?= $value->getDescripcion(); ?></a></h4>
-                                  <h5 class="card-subtitle" > $<?= $value->getPrecio(); ?></h5>
+                                <h4 class="card-title"><a href=" "><?= $value->getDescripcion(); ?></a></h4>
+                                <h5 class="card-subtitle" > $<?= $value->getPrecio(); ?></h5>
                                   <div class="center-block">
                                     <select class="custom-select" name="cantidad">
                                       <option value="1"> 1 </option>
@@ -91,9 +103,11 @@
                                     <input type="submit" class="btn btn-primary" value="Agregar">
                                     <input type="hidden" name="importe" class="form-control" value= "<?= $value->getPrecio();  ?>" >
                                     <input type="hidden" name="id" class="form-control" value="<?= $value->getId();?>" >
-                                    <input type="hidden" name="descripcion" class="form-control" value="<?= $value->getDescripcion(); ?>" >                     
+                                    <input type="hidden" name="descripcion" class="form-control" value="<?= $value->getDescripcion(); ?>" >
                                   </div>
                               </div>
+
+                            </div>  
                           </form>
                         </div>
                       </div>     

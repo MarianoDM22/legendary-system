@@ -1,5 +1,7 @@
 <?php namespace DAOS;
 
+use \Exception as Exception;
+
     class Connection {
         
         public function Connect() 

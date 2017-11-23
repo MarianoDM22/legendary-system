@@ -118,11 +118,11 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 			$command->bindParam(':nombre', $nombre);
 			$command->bindParam(':telefono', $telefono);
 
-
 			$command->execute();
 			
-
 			$dato->setId($connection->lastInsertId());
+
+			return $dato;
     	}
     	catch (PDOException $ex) {
 			throw $ex;
@@ -130,9 +130,10 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
     	catch (Exception $e) {
 			throw $e;
     	}
-    	return $dato;
+    	
 
 	}
+
 	public function buscarPorNombre($dato)
 	{
 		try 
@@ -171,10 +172,12 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
     	}
 
 	}
+
 	public function buscarClientePorID($dato)
 	{
 		try 
     	{
+    		var_dump($dato);
 			$object = null;
 
 			$query = 'SELECT * FROM '.$this->table.' WHERE id_cliente = :id';
@@ -197,6 +200,7 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 
 				$object->setId($row['id_cliente']);	
 			}
+
 			return $object;
     	}
     	catch (PDOException $ex) {
@@ -204,10 +208,9 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
     	}
     	catch (Exception $e) {
 			throw $e;
-		}
-
-		
+		}		
 	}
+	
 	public function borrar($dato)
 	{
 
@@ -225,6 +228,7 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 	{
 
 	}
+
 	public function actualizarDatos($dato)
 	{
 		try 

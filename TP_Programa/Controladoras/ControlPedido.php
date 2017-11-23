@@ -218,8 +218,7 @@
 	   	}
 
 		public function borrar($id)
-	   	{
-	   		
+	   	{	   		
 	   		session_start();
 
 	   		$lineaAborrar=null;
@@ -227,8 +226,7 @@
 			unset($_SESSION['Carrito'][$lineaAborrar]);//borro la linea del array de lineas de pedido
 			echo '<script language="javascript">alert("Producto eliminado!");</script>';
 						
-			$this->index();
-			
+			$this->index();			
 	   	}
 
 	   	public function checkOut()
@@ -307,5 +305,15 @@
 			$this->checkOut();//vuelvo al checkout
 
 		}
+
+		public function buscarClientePorId($id)
+		{	
+			var_dump($id);
+
+			$cliente=$this->DAOCuentas->buscarClientePorID($id);
+			
+			return $cliente;
+		}
+
 	}
 ?>

@@ -8,15 +8,16 @@ $cuenta = $_SESSION['Login'];
 
 
 use \Controladoras\ControlGestionSucursal as ControlGestionSucursal;
-use \Controladoras\ControlCliente as ControlCliente;
+use \Controladoras\ControlPedido as ControlPedido;
 
 
-$DAOClientes= new ControlCliente();
+$DAOClientes= new ControlPedido();
 $DAOSucursal= new ControlGestionSucursal();
 $sucursales=$DAOSucursal->traerTodos();//me devuelve todas las sucursales de la BD, null si no hay 
 
 
 $idCliente=$cuenta->getMCliente();//tomo el id de cliente asignado a la cuenta logueada
+var_dump($idCliente);
 $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE O NULL SI NO LO ENCUENTRA
 
  ?>
@@ -41,7 +42,7 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
   </head>
   <body style="background-image: url(&quot;http://localhost/TP_Programa/images/fondocheck.png&quot;);">
 
-    <?php require("headerCliente.php"); ?>
+    <?php //require("headerCliente.php"); ?>
 
 <form action="<?= ROOT_VIEW ?>/Pedido/finalizarCompra" method="post" enctype="multipart/form-data"><!-- FORMULARIO GENERAL PARA ENVIAR COMPRA FINAL A BD -->
 
@@ -84,6 +85,10 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
       <div class="row"> <!-- TABLA ENVIO -->
         <div class="col-lg-12">
           <h4 class="text-white text-center"><strong>Envio:</strong></h4>
+          <br>
+          <p class="text-white text-center"> Seleccione el tipo de envio que desee (a su domicilio o alguna de nuestrtas sucursales), para una mejor refrencia de en dónde se encuentran nuestros locales, utilice el mapa al pie de esta página.</p>
+          <br>
+
           <table class="table table-bordered">
             
           </table>           
@@ -91,7 +96,6 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
             <thead class="thead-inverse text-center">
               
               <tr>
-              
                 <th>Domicilio</th>
                 <th>Email</th>
                 <th>Fecha</th> 
@@ -126,7 +130,7 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
               <tr>
                 <td>
                   <select class="custom-select">
-                    <option disabled>Seleccione la sucursal...</option>
+                    <option>Envio a Domicilio</option>
                     <?php if ($sucursales != null){ foreach ($sucursales as $suc)
                       {?> 
                       <option value="<?= $suc->getId();  ?>"><?= $suc->getNombre(); ?></option>
@@ -169,7 +173,7 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
                   <td><?= $prod->getDescripcion(); ?></td> 
                   <td>$<?= $value->getImporte(); ?></td>
                   <td><?= $value->getCantidad(); ?></td>
-                  <td><?= $value->getCantidad() * $value->getImporte();?></td>
+                  <td>$<?= $value->getCantidad() * $value->getImporte();?></td>
                   <td>
 
                   <form action="<?= ROOT_VIEW ?>/Pedido/borrar" method="POST">

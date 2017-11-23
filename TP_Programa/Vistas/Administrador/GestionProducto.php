@@ -59,12 +59,12 @@
 						<tbody class="fn-lg">
 							<?php 
 									foreach ($producto as $key => $value) 
-										{// $cervezas=buscarPorID($value->getMTiposDeCerveza());?>
+										{ $cerv=$instanciaCerveza->buscarPorID($value->getMTiposDeCerveza());?>
 								
 									<tr>
 										<td class="text-white"><?= $value->getId(); ?></td>
 										<td class="text-white"><?= $value->getDescripcion(); ?></td>
-										<td></td>
+										<td class="text-white"><?= $cerv->getDescripcion(); ?></td>
 										<td class="text-white"><?= $value->getCapacidad(); ?></td>
 										<td class="text-white"><?= $value->getFactor(); ?></td>
 										<td class="text-white">$<?= $value->getPrecio(); ?></td>

@@ -35,7 +35,7 @@
 	<div class="container">
 		<div class="row">
 			<section class="col-md-8">
-				<h2>Gestión Ordenes</h2>
+				<h2>Ordenes</h2>
 
 					<table class="table table-bordered table-responsive text-center table-light table-transparent">
 						<thead class="thead-inverse">

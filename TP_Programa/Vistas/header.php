@@ -29,7 +29,13 @@
         <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fa d-inline fa-lg fa-bookmark-o"></i> Contactenos</a>
+              <a class="nav-link js-scroll-trigger" href="#about">Nosotros</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#prod">Nuestros Productos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact"><i class="fa d-inline fa-lg fa-bookmark-o"></i> Contactenos</a>
             </li>
             <?php if(isset($_SESSION['Login'])){ ?>
             <li class="nav-item">
@@ -61,11 +67,11 @@
 
                 <div class="form-group">
                   <label for="InputEmail">Direccion de Email</label>
-                  <input class="form-control" id="InputEmail" type="email" name=email aria-describedby="emailHelp" placeholder="Correo electrónico">
+                  <input class="form-control" id="InputEmail" type="email" name=email aria-describedby="emailHelp" placeholder="Correo electrónico" required="">
                 </div>
                 <div class="form-group">
                   <label for="InputPassword">Contraseña</label>
-                  <input class="form-control" id="InputPassword" name="passLogin" type="password" placeholder="Password">
+                  <input class="form-control" id="InputPassword" name="passLogin" type="password" placeholder="Password" required="">
                 </div>                
                 <input type="submit"  class="btn btn-primary btn-block" value="Login" name="upload">
             
@@ -188,7 +194,7 @@
 
                 <div class="form-group">
                   <label for="InputReEmail">Direccion de Email</label>
-                  <input class="form-control" id="InputReEmail" type="email" aria-describedby="emailHelp" placeholder="Ingrese su correo electrónico">
+                  <input class="form-control" id="InputReEmail" type="email" aria-describedby="emailHelp" placeholder="Ingrese su correo electrónico" required>
                 </div>
                 
              

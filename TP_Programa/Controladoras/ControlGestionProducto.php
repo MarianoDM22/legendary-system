@@ -108,6 +108,8 @@ class ControlGestionProducto
    		$producto=$this->traerTodos();
    		$cervezas=$this->traerTodosCervezas();
    		
+   		$instanciaCerveza=$this->DAOTipoCerveza;
+   		
    		if ($producto != null)
    		{
    			$this->calcularTodosPrecio($producto);

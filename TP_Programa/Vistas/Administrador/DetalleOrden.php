@@ -35,37 +35,52 @@
 	<div class="container">
 		<div class="row">
 			<section class="col-md-8">
-				<h2>Orden Nro <?= $value->getEstado(); ?></h2>
-
-
-			<?php
-				if(isset($_SESSION['Pedido'])) {
-					$Pedido = $_SESSION['Pedido']; ?>
+				<h2>Datos del Cliente:</h2>
 
 					<table class="table table-bordered table-responsive">
 						<thead class="thead-inverse">
 							<tr>
+								<th>Nombre</th>
+								<th>Apellido</th>
+								<th>Domicilio</th>
+								<th>Email</th>
+								<th>Telefono</th>
+							</tr>
+						</thead>
+						<tbody>					
+							<tr>
+								<td><?= $cliente->getNombre(); ?></td>
+								<td><?= $cliente->getApellido(); ?></td>
+								<td><?= $cliente->getDomicilio(); ?></td>
+								<td><?= $cuenta->getEmail(); ?></td>
+                				<td><?= $cliente->getTelefono(); ?></td> 							
+							</tr>		
+						</tbody>
+					</table>
+
+					<h2>Detalle de la Orden:</h2>
+					<table class="table table-bordered table-responsive">
+						<thead class="thead-inverse">
+							<tr>
 								<th>Producto</th>
-								<th>Capacidad/Litros</th>
+								<th>Precio</th>
 								<th>Cantidad</th>
-								<th>Importe</th>
+								<th>Total</th>
 							</tr>
 						</thead>
 						<tbody>
-							<?php 
-									foreach ($Pedido as $key => $value) { ?>
+							<?php  foreach ($lineaPedido as $value) 
+                				{ $prod=$instanciaProducto->buscarPorID($value->getMProducto());?>
 								
-									<tr>
-										<td><?= $value->getDescripcion(); ?></td>
-										<td><?= $value->getCapacidad(); ?></td>
-										<td><?= $value->getCantidad(); ?></td>
-										<td><?= $value->getImporte(); ?></td>							
-									</tr>
-
+								<tr>
+									<td><?= $prod->getDescripcion(); ?></td>
+									<td>$<?= $value->getImporte(); ?></td>
+                  					<td><?= $value->getCantidad(); ?></td>
+                  					<td>$<?= $value->getCantidad() * $value->getImporte();?></td>							
+								</tr>
 							<?php } ?>
 						</tbody>
 					</table>
-			<?php } ?>
 
 			</section>
     	</div>
