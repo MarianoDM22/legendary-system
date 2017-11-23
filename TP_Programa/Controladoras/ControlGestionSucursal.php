@@ -52,6 +52,7 @@ class ControlGestionSucursal
    	{
    		$sucursal=$this->traerTodos();
    		
+   		
    		require_once(ROOT . 'Vistas/Administrador/GestionSucursales.php');
    	}
 

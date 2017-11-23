@@ -61,7 +61,7 @@ id_lineadepedido int auto_increment not null,
 cantidad int,
 importe int,
 fk_producto int not null,
-fk_pedido int not null,
+fk_pedido int ,
 constraint pk_lineadepedido primary key(id_lineadepedido),
 constraint fk_lineadepedido_pedido foreign key(fk_pedido) references pedidos(id_pedido),
 constraint fk_lineadepedido_producto foreign key(fk_producto) references productos(id_producto)

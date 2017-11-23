@@ -54,6 +54,7 @@
 							</tr>
 						</thead>
 						<tbody clas="fn-lg">
+							<?php if($sucursal!=null){?>
 							<?php foreach ($sucursal  as $key => $value) { ?>
 								
 									<tr>
@@ -118,7 +119,8 @@
 										</td>
 									</tr>
 
-							<?php } ?>
+								<?php } ?><!-- Fin foreach -->
+							<?php } ?><!-- Fin if -->
 						</tbody>
 					</table>
 

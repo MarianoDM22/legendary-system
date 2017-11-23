@@ -70,7 +70,7 @@ class ClientesDAO extends SingletonAbstractDAO implements IDAO
 	public function buscarPorID($dato){
 		
 		$object = null;
-
+		echo "llega";
 		$query = 'SELECT * FROM '.$this->table.' WHERE id_cliente = :id';
 
 		$pdo = new Connection();

@@ -8,6 +8,8 @@
 		private $DAOPedido;
 		private $DAOProducto;
 		private $DAOTipoCerveza;
+		private $DAOLineaDePedido;
+		private $DAOCliente;
 		
 
 		private $linea;
@@ -19,6 +21,8 @@
 			$this->DAOPedido=\DAOS\PedidosDAO::getInstance(); 
 			$this->DAOProducto=\DAOS\ProductosDAO::getInstance();
 			$this->DAOTipoCerveza=\DAOS\TiposDeCervezasDAO::getInstance();
+			$this->DAOLineaDePedido=\DAOS\LineasDePedidoDAO::getInstance();
+			$this->DAOCliente=\DAOS\ClientesDAO::getInstance();
 			
 		}
 
@@ -256,15 +260,16 @@
 			session_start();
 			$lineaPedido=$_SESSION['Carrito'];
 
+			
 			foreach ($lineaPedido as $pos => $valor)
 		    {
 				$this->DAOLineaDePedido->insertar($valor);//inserto en la bd cada linea del array
 			}
-			
+			//if cliente elijio envio a domicilio, creo objeto envio con $fechaDomicilio,$$horaDesde,$horaHasta. y datos del cliente
+			//if cliente elijio sucursal, creo objeto envio con $fechaSucursal y los demas parametros en null
 			
 			//crear objetos linea pedido y envio, y guardarlos en bd antes de crear el obj pedido
-			if ($idCliente ==1)
-		    {	
+			
 
 
 		    	//envio seleccionado es domicilio
@@ -273,12 +278,10 @@
 				//ESTADO DEL PEDIDO se asigna a SOLICITADO
 				//guardar pedido en bd con el estado qe corresponda
 
-			}
-			else
-			{
+			
 				//retira en sucursal
 				//guardar pedido en bd con el estado qe corresponda
-			}	
+				
 
 			$this->cerrarSesion();//destruyo la session Carrito
 			echo '<script language="javascript">alert("Compra realizada");</script>';

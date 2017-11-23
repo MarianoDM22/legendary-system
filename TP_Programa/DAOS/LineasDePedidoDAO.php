@@ -8,7 +8,7 @@ namespace DAOS;
  * 	cantidad int,
  * 	importe int,
  * 	fk_producto int not null,
- * 	fk_pedido int not null,
+ * 	fk_pedido int,
  * 	constraint pk_lineadepedido primary key(id_lineadepedido),
  * 	constraint fk_lineadepedido_pedido foreign key(fk_pedido) references pedidos(id_pedido),
  * 	constraint fk_lineadepedido_producto foreign key(fk_producto) references productos(id_producto)
@@ -24,10 +24,11 @@ class LineasDePedidoDAO extends SingletonAbstractDAO implements IDAO
 	public function insertar($dato){
 		try 
     	{
+    		echo "llego a insertar";
 			$query = 'INSERT INTO '.$this->table.' 
 			( cantidad , importe , fk_producto , fk_pedido) 
 			VALUES 
-			( :cantidad , :importe , :fk_producto , fk_pedido )';
+			( :cantidad , :importe , :fk_producto , :fk_pedido )';
 
 			$pdo = new Connection();
 			$connection = $pdo->Connect();
@@ -42,6 +43,7 @@ class LineasDePedidoDAO extends SingletonAbstractDAO implements IDAO
 			$command->bindParam(':importe', $importe);
 			$command->bindParam(':fk_producto', $fk_producto);
 			$command->bindParam(':fk_pedido', $fk_pedido);
+
 			$command->execute();
 
     	}
