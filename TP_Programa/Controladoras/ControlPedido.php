@@ -255,7 +255,7 @@
 		}
 		public function finalizarCompra($idCliente,$fechaDomicilio,$horaDesde,$horaHasta,$fechaSucursal)
 		{
-			session_start();
+			session_start();//revisar porqe sale el aviso de qe ya hay una session,,pero si la sacas no reconoce la session WTF
 			$lineaPedido=$_SESSION['Carrito'];
 
 			
