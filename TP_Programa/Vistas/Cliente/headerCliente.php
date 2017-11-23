@@ -33,15 +33,11 @@ $DAOPedido= new ControlPedido();
         <div class="container-fluid">
           <div class="row">
             
-            <div class="col-lg-6 col-sm-8">
-
-
-            </div>
-          
-            <div class="col-lg-6 col-sm-4">
+    
+            <div class="col-lg-12 col-sm-4">
               <nav class="navbar navbar-expand-md navbar-dark bg-dark bd-navbar">
                 <div class="container">
-                  <a class="navbar-brand" href="#"><i class="fa d-inline fa-lg fa-cloud"></i><b>&nbsp;Beer Recharge</b></a>
+                  <a class="navbar-brand" href="#"><img src="http://localhost/TP_Programa/images/Icono-lúpulo.png" width="40" height="40" alt=""><b>&nbsp;Beer Recharge</b></a>
                     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button> 
 
                       <div class="collapse navbar-collapse text-center justify-content-end" id="navbarNav" >
@@ -66,7 +62,7 @@ $DAOPedido= new ControlPedido();
 
                           <li class="nav-item">
                             <a class="nav-link" data-toggle="modal" data-target="#checkoutModal">
-                              <i class=""></i>CheckOut</a>
+                              <i class="fa fa-cart-arrow-down"></i> CheckOut</a>
                           </li>
                         </ul>
                       </div>   

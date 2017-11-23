@@ -24,9 +24,42 @@ $productos = $DAOProductos->traertodos();
   <link href="css/estilos.css" type="text/css" rel="stylesheet">
 </head>
 
-<body id="top" style="background-image: url(&quot;http://localhost/TP_Programa/images/fondoHome.jpg&quot;);" >
+<body id="top" style="background-image: url(&quot;http://localhost/TP_Programa/images/fondocheck.png&quot;);" >
 
   <?php require("header.php"); ?> <!-- llamado a la barra nav de home-->
+
+   <!-- slider-->
+   <section  id="slider">
+      <div class="container">
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img class="d-block w-100" src="images/slider/cerveceria1.jpg" alt="First slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100" src="images/slider/cerveceria2.jpg" alt="Second slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100" src="images/slider/cerveceria3.jpg" alt="Third slide">
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Anterior</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Siguiente</span>
+            </a>
+          </div>
+      </div>
+    </section>
+      <!-- fin slider-->
   
   <!-- About Section -->
     <section class="success text-white" id="about">
@@ -47,43 +80,44 @@ $productos = $DAOProductos->traertodos();
 
 
   <!-- INICIO MUESTRARIO CERVEZAS    -->   
-  <section class="text-white" id="prod">
-    <div>
-      <div class="container">
-        <div class="row">
+  <section class="text-white" id="prod"> 
+      <div class="container">    
+          <h2 class="text-center">Nuestros Productos</h2>
+          <hr class="star-primary">
+           <div class="row">
+           
+              <?php
+              foreach ($productos as $valor) 
+              { ?>      
+               
 
-        <?php
-        foreach ($productos as $valor) 
-        { ?>      
-         
+                <div class="p-4 align-self-center col-md-4">
+                  <div class="card background">
+                    <img src="http://localhost/TP_Programa/<?=$valor->getImagen(); ?>" class="img-responsive" style="width:100%" alt="Image ">           
+                    <div class="card-block p-2">
+                      <div class="panel-body ">   
 
-          <div class="p-4 align-self-center col-md-4">
-            <div class="card background">
-              <img src="http://localhost/TP_Programa/<?=$valor->getImagen(); ?>" class="img-responsive" style="width:100%" alt="Image ">           
-              <div class="card-block p-2">
-                <div class="panel-body ">   
-
+                      </div>
+                      <div class="p-1 col-md-4">                
+                                        
+                      </div>                               
+                    </div>
+                  </div>
                 </div>
-                <div class="p-1 col-md-4">                
-                                  
-                </div>                               
-              </div>
-            </div>
-          </div>
 
-        <?php
-        }//fin FOR EACH
-        ?>
+              <?php
+              }//fin FOR EACH
+              ?>
+          
         </div>
       </div>
-    </div>
   </section>
   <!-- FINMUESTRARIO CERVEZAS  --> 
 
   <!-- Contact Section -->
     <section class="text-white" id="contact">
       <div class="container">
-        <h2 class="text-center">Contáctanos<h2>
+        <h2 class="text-center">Contáctenos<h2>
         <hr class="star-primary">
         <div class="row">
           <div class="col-lg-8 mx-auto">
@@ -123,6 +157,9 @@ $productos = $DAOProductos->traertodos();
                 <button type="submit" class="btn btn-success btn-lg" id="sendMessageButton">Enviar</button>
               </div>
             </form>
+          </div>
+          <div class="col-lg-12 text-right">
+            <a class="fa fa-arrow-circle-up btn-lg btn-secondary" href="#top" aria-hidden="true"></a>
           </div>
         </div>
       </div>

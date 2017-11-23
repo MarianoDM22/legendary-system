@@ -22,9 +22,9 @@
   <body>
 
          <!-- INICIO HEADER  -->
-    <nav class="navbar navbar-expand-md bg-primary navbar-dark" >
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark" >
       <div class="container">
-        <a class="navbar-brand" href=""><i class="fa d-inline fa-lg fa-cloud"></i><b>&nbsp;Beer Recharge MDP</b></a>
+        <a class="navbar-brand" href=""><img src="http://localhost/TP_Programa/images/Icono-lúpulo.png" width="40" height="40" alt=""><b>&nbsp;Beer Recharge MDP</b></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
         <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
           <ul class="navbar-nav">

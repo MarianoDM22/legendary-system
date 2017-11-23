@@ -20,22 +20,25 @@
 
   </head>
   <body style="background-image: url(&quot;http://localhost/TP_Programa/images/fondoGestionCerveza.jpg&quot;);">
+
+  	<?php require("nav.php"); ?>
+
   	<header class="bg-dark"">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12">
-					<h1>Gestión Ordenes</h1>
+				<div class="col-md-12 text-white">
+					<h1>Gestión Órdenes</h1>
 				</div>
 			</div>
 		</div>
 	</header>
 
-	<?php require("nav.php"); ?>
+	
 
 	<div class="container">
 		<div class="row">
 			<section class="col-md-8">
-				<h2>Ordenes</h2>
+				<h2>Órdenes</h2>
 
 					<table class="table table-bordered table-responsive text-center table-light table-transparent">
 						<thead class="thead-inverse">
@@ -49,7 +52,7 @@
 						</thead>
 						<tbody class="fn-lg">
 							<?php 
-									foreach ($Pedido as $key => $value) { ?>
+									foreach ($orden as $key => $value) { ?>
 								
 									<tr>
 										<td class="text-white">
@@ -62,7 +65,7 @@
 											<select name="Estado" class="custom-select">
 												<option selected <?= $value->getEstado(); ?> </option>
 													<?php 
-														foreach ($Pedido as $key => $value) { ?>
+														foreach ($orden as $key => $value) { ?>
 															<option value="<?= $value->getId();  ?>"><?= $value->getEstado();  ?></option>
 													<?php } ?>
 											</select>

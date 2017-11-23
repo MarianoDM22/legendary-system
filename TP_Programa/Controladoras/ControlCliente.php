@@ -17,6 +17,7 @@ class ControlCliente
 	{
 		
 		$cliente=$this->DAOCliente->buscarPorID($id);
+		
 		return $cliente;
 
 	}

@@ -33,7 +33,7 @@
               Gestión de Órdenes
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#"> Solicitado</a>
+              <a class="dropdown-item" href="<?= ROOT_VIEW ?>/GestionOrden/index"> Solicitado</a>
               <a class="dropdown-item" href="#">Procesando</a>
               <a class="dropdown-item" href="#">Enviado</a>
               <div class="dropdown-divider"></div>

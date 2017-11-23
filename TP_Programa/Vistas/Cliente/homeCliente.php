@@ -25,7 +25,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <!-- Font Awesome-->
-    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css"  type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
     <!-- Mi CSS -->
     <link href="css/estilos.css" type="text/css" >
 
@@ -47,35 +47,6 @@
         </div>
 
         <div class="col-lg-10">
-        
-        <!-- slider
-          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img class="d-block w-100" src="../images/slider/cerveceria1.jpg" alt="First slide">
-              </div>
-              <div class="carousel-item">
-                <img class="d-block w-100" src="../images/slider/cerveceria2.jpg" alt="Second slide">
-              </div>
-              <div class="carousel-item">
-                <img class="d-block w-100" src="../images/slider/cerveceria3.jpg" alt="Third slide">
-              </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Anterior</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Siguiente</span>
-            </a>
-          </div>
-         fin slider-->
 
 
           <!-- aca se comienzan a listar los productos -->            
@@ -100,7 +71,9 @@
                                       <option value="3"> 3 </option>
                                       <option value="4"> 4 </option>
                                     </select>                                    
-                                    <input type="submit" class="btn btn-primary" value="Agregar">
+
+                                    <button type="submit" class="fa fa-cart-arrow-down btn-lg btn-primary "></button> 
+
                                     <input type="hidden" name="importe" class="form-control" value= "<?= $value->getPrecio();  ?>" >
                                     <input type="hidden" name="id" class="form-control" value="<?= $value->getId();?>" >
                                     <input type="hidden" name="descripcion" class="form-control" value="<?= $value->getDescripcion(); ?>" >

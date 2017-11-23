@@ -17,7 +17,7 @@ $sucursales=$DAOSucursal->traerTodos();//me devuelve todas las sucursales de la 
 
 
 $idCliente=$cuenta->getMCliente();//tomo el id de cliente asignado a la cuenta logueada
-var_dump($idCliente);
+
 $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE O NULL SI NO LO ENCUENTRA
 
  ?>
@@ -133,7 +133,7 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
                     <option>Envio a Domicilio</option>
                     <?php if ($sucursales != null){ foreach ($sucursales as $suc)
                       {?> 
-                      <option value="<?= $suc->getId();  ?>"><?= $suc->getNombre(); ?></option>
+                      <option value="<?= $suc->getId();  ?>"><?= $suc->getNombre();?>, <?= $suc->getDomicilio();?></option>
                     <?php } //fin foreach 
                       }//fin if?>
                       <?php if($sucursales ==null){?><option>No hay sucursales</option> <?php }?>
