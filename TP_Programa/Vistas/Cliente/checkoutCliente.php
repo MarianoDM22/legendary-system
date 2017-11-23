@@ -106,9 +106,9 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
                 
                 <td id="div"><?= $cliente->getDomicilio(); ?></td>                        
                 <td id="div"><?= $cuenta->getEmail(); ?> </td>
-                <td id="div"><input type="datetime-local" name="fecha"></td>   
-                <td id="div">Desde: <input type="time" name="horaDesde" ></td>
-                <td id="div">Hasta: <input type="time" name="horaHasta" placeholder="11" ></td>
+                <td id="div"><input type="date" name="fechaDomicilio"></td>   
+                <td id="div">Desde: <input type="time" name="horaDesde" min="08:00" max="18:00" ></td>
+                <td id="div">Hasta: <input type="time" name="horaHasta" min="08:00" max="18:00" ></td>
                 <td id="div"> <?= $cliente->getTelefono(); ?> </td>  
               </tr>               
             </tbody>    
@@ -119,6 +119,7 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
               <tr>
                 <th>Sucursal</th>
                 <th>Direccion</th>
+                <th>Fecha</th>
               </tr>            
             </thead>
             <tbody class="text-white text-center">
@@ -136,6 +137,9 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
                 </td>
                 <td>
                    <?php if (isset($suc)) {?> <?=$suc->getDomicilio();  }?>
+                </td>
+                <td>
+                   <td id="div"><input type="date" name="fechaSucursal"></td>
                 </td>
               </tr>
             </tbody>          
@@ -167,7 +171,7 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
                   <td><?= $value->getCantidad(); ?></td>
                   <td><?= $value->getCantidad() * $value->getImporte();?></td>
                   <td>
-                    
+
                   <form action="<?= ROOT_VIEW ?>/Pedido/borrar" method="POST">
                     <input type="hidden" name="id" value="<?= $value->getId(); ?>">
                     <button type="submit" class="btn btn-primary">Eliminar</button>
@@ -182,6 +186,7 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
       </div>
     </div>
     <div class="text-center">
+      <input type="hidden" name="idCliente" value="<?= $cliente->getId(); ?>">
       <button type="submit" class="btn btn-primary btn-lg">Finalizar Compra</button>
     </div>
   
