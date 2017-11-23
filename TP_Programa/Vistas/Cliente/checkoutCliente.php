@@ -18,7 +18,7 @@ $sucursales=$DAOSucursal->traerTodos();//me devuelve todas las sucursales de la 
 
 $idCliente=$cuenta->getMCliente();//tomo el id de cliente asignado a la cuenta logueada
 $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE O NULL SI NO LO ENCUENTRA
-
+ var_dump($sucursales);
  ?>
 
 <!DOCTYPE html>
@@ -126,13 +126,16 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
                 <td>
                   <select class="custom-select">
                     <option disabled>Seleccione la sucursal...</option>
-                    <?php  foreach ($sucursales as $suc) {?> 
+                    <?php if ($sucursales != null){ foreach ($sucursales as $suc)
+                      {?> 
                       <option value="<?= $suc->getId();  ?>"><?= $suc->getNombre(); ?></option>
-                    <?php } //fin foreach ?> 
+                    <?php } //fin foreach 
+                      }//fin if?>
+                      <?php if($sucursales ==null){?><option>No hay sucursales</option> <?php }?>
                   </select>                
                 </td>
                 <td>
-                  <?= $suc->getDomicilio();  ?>
+                   <?php if (isset($suc)) {?> <?=$suc->getDomicilio();  }?>
                 </td>
               </tr>
             </tbody>          

@@ -63,8 +63,19 @@ class ControlGestionSucursal
 
    	public function traerTodos()
    	{
-   		$sucursal= array();
-   		$sucursal=$this->DAOSucursal->traerTodos();
+   		$sucursal= null;
+   		try
+   		{
+   			$sucursal=$this->DAOSucursal->traerTodos();
+   		}
+   		catch(PDOException $ex)
+   		{
+   			echo "<script> if(alert('Error en BD'));</script>";
+   		}
+   		catch(Exception $ex)
+   		{
+   			echo "<script> if(alert('Ocurrio un error!'));</script>";
+   		}   		
 
    		return $sucursal;
    	}

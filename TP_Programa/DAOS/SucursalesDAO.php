@@ -221,7 +221,7 @@ class SucursalesDAO extends SingletonAbstractDAO implements IDAO
 	public function traerTodos(){
 		try 
     	{
-			$objects = array();
+			$objects = null;
 
 			$query = 'SELECT * FROM '.$this->table;
 
