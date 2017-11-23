@@ -9,7 +9,7 @@
 		private $DAOProducto;
 		private $DAOTipoCerveza;
 		private $DAOLineaDePedido;
-		private $DAOCliente;
+		
 		
 
 		private $linea;
@@ -22,7 +22,7 @@
 			$this->DAOProducto=\DAOS\ProductosDAO::getInstance();
 			$this->DAOTipoCerveza=\DAOS\TiposDeCervezasDAO::getInstance();
 			$this->DAOLineaDePedido=\DAOS\LineasDePedidoDAO::getInstance();
-			$this->DAOCliente=\DAOS\ClientesDAO::getInstance();
+			
 			
 		}
 
@@ -309,6 +309,7 @@
 		public function buscarClientePorId($id)
 		{	
 			var_dump($id);
+			var_dump($this->DAOCuentas);
 
 			$cliente=$this->DAOCuentas->buscarClientePorID($id);
 			

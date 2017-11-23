@@ -8,10 +8,10 @@ $cuenta = $_SESSION['Login'];
 
 
 use \Controladoras\ControlGestionSucursal as ControlGestionSucursal;
-use \Controladoras\ControlPedido as ControlPedido;
+use \Controladoras\ControlCliente as ControlCliente;
 
 
-$DAOClientes= new ControlPedido();
+$DAOClientes= new ControlCliente();
 $DAOSucursal= new ControlGestionSucursal();
 $sucursales=$DAOSucursal->traerTodos();//me devuelve todas las sucursales de la BD, null si no hay 
 
