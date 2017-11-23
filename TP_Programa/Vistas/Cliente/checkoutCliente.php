@@ -71,11 +71,11 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
               </tr>              
             </tbody>          
           </table>
-
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+          <div class="text-center">
+            <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#addModal">
             Modificar datos Personales
-          </button>
-
+            </button>
+          </div>
         </div>  
       </div>
 
@@ -138,8 +138,8 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
                 <td>
                    <?php if (isset($suc)) {?> <?=$suc->getDomicilio();  }?>
                 </td>
-                <td>
-                   <td id="div"><input type="date" name="fechaSucursal"></td>
+                <td >
+                   <input type="date" name="fechaSucursal">
                 </td>
               </tr>
             </tbody>          
@@ -189,6 +189,7 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
       <input type="hidden" name="idCliente" value="<?= $cliente->getId(); ?>">
       <button type="submit" class="btn btn-primary btn-lg">Finalizar Compra</button>
     </div>
+    <br>
   
 </form><!-- fin formulario general -->
     

@@ -251,13 +251,17 @@
 			}
 			return $total;
 		}
-		public function finalizarCompra($idCliente)
+		public function finalizarCompra($idCliente,$fechaDomicilio,$horaDesde,$horaHasta,$fechaSucursal)
 		{
+			//crear objetos linea pedido y envio, y guardarlos en bd antes de crear el obj pedido
 			if ($idCliente ==1)
-				//crear objetos linea pedido y envio, y guardarlos en bd antes de crear el obj pedido
-		    {	//envio seleccionado es domicilio
+		    {	
+
+
+		    	//envio seleccionado es domicilio
 		    	//crear objeto envio
 				//crear objeto pedido con los datos que llegan
+				//ESTADO DEL PEDIDO se asigna a SOLICITADO
 				//guardar pedido en bd con el estado qe corresponda
 
 			}
