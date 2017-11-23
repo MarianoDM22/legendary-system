@@ -18,7 +18,7 @@ $sucursales=$DAOSucursal->traerTodos();//me devuelve todas las sucursales de la 
 
 $idCliente=$cuenta->getMCliente();//tomo el id de cliente asignado a la cuenta logueada
 $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE O NULL SI NO LO ENCUENTRA
- var_dump($sucursales);
+
  ?>
 
 <!DOCTYPE html>
@@ -167,10 +167,12 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
                   <td><?= $value->getCantidad(); ?></td>
                   <td><?= $value->getCantidad() * $value->getImporte();?></td>
                   <td>
+                    
                   <form action="<?= ROOT_VIEW ?>/Pedido/borrar" method="POST">
                     <input type="hidden" name="id" value="<?= $value->getId(); ?>">
                     <button type="submit" class="btn btn-primary">Eliminar</button>
                   </form>
+
                   </td>
                 </tr>    
                 <?php } //fin foreach ?>    

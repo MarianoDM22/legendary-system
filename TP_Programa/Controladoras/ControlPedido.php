@@ -251,12 +251,20 @@
 			}
 			return $total;
 		}
-		public function finalizarCompra()
+		public function finalizarCompra(//definir los parametros qe llegan)
 		{
-			//definir los parametros qe llegan
-			//crear objeto pedido con los datos que llegan 
-			//crear envio si fuera necesario
-			//guardar pedido en bd con el estado qe corresponda
+			if (/*envio seleccionado es domicilio*/)
+		    {
+		    	//crear objeto envio
+				//crear objeto pedido con los datos que llegan
+				//guardar pedido en bd con el estado qe corresponda
+
+			}
+			else
+			{
+				//retira en sucursal
+				//guardar pedido en bd con el estado qe corresponda
+			}	
 
 			$this->cerrarSesion();//destruyo la session Carrito
 			echo '<script language="javascript">alert("Compra realizada");</script>';

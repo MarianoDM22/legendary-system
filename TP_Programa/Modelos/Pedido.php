@@ -8,8 +8,8 @@ class Pedido
 	private $fecha;
 	private $m_Cliente;
 	private $m_LineasDePedido;//array
-	private $m_Envio;
-	private $m_Sucursales;
+	private $m_Envio;//si es null es porqe retira en sucursal
+	private $m_Sucursales;//si es null es envio a domicilio
 
 
 	public function __construct($estado, $fecha, $m_Cliente, $m_LineasDePedido, $m_Envio, $m_Sucursales)
