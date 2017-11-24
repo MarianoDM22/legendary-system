@@ -27,6 +27,7 @@ class PedidosDAO extends SingletonAbstractDAO implements IDAO
 	public function insertar($dato){
 		try 
     	{
+    		
 			$query = 'INSERT INTO '.$this->table.' 
 			( estado , fecha , fk_cliente , fk_envio , fk_sucursal ) 
 			VALUES 
@@ -41,6 +42,8 @@ class PedidosDAO extends SingletonAbstractDAO implements IDAO
 			$fk_cliente = $dato->getMCliente();
 			$fk_envio = $dato->getMEnvio();
 			$fk_sucursal = $dato->getMSucursales();
+			
+
 
 			$command->bindParam(':estado', $estado);
 			$command->bindParam(':fecha', $fecha);

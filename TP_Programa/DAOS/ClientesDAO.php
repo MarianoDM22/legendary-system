@@ -98,6 +98,7 @@ class ClientesDAO extends SingletonAbstractDAO implements IDAO
 				$object->setId($row['id_cliente']);	
 			}
 			
+
 			return $object;
 		}
     	catch (PDOException $ex) {

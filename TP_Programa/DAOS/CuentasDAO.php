@@ -177,7 +177,7 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 	{
 		try 
     	{
-    		var_dump($dato);
+    		
 			$object = null;
 
 			$query = 'SELECT * FROM '.$this->table.' WHERE id_cliente = :id';
@@ -269,6 +269,45 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 			throw $e;
     	}
 
+	}
+	public function buscarCuentaPorIDCliente($dato)
+	{
+		try 
+    	{
+    		
+			$object = null;
+
+			$query = 'SELECT * FROM '.$this->table2.' WHERE fk_cliente = :id';
+
+			$pdo = new Connection();
+			$connection = $pdo->Connect();
+			$command = $connection->prepare($query);			
+
+			var_dump($dato);
+			$command->bindParam(':id', $dato);
+			$command->execute();
+
+			while ($row = $command->fetch())
+			{
+				$email = ($row['email']);
+				$pass = ($row['pass']);
+				$rol = ($row['rol']);
+				$fk_cliente = ($row['fk_cliente']);
+
+				$object = new \Modelos\Cuenta($email, $pass, $rol, $fk_cliente) ;
+
+				$object->setId($row['id_cuenta']);	
+			}
+
+
+			return $object;
+    	}
+    	catch (PDOException $ex) {
+			throw $ex;
+    	}
+    	catch (Exception $e) {
+			throw $e;
+		}		
 	}
 }
 ?>

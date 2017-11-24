@@ -1,6 +1,6 @@
 <?php namespace Controladoras;
 
-
+	use \Controladoras\ControlCliente as ControlCliente;
 
 	class ControlPedido
 	{
@@ -9,6 +9,8 @@
 		private $DAOProducto;
 		private $DAOTipoCerveza;
 		private $DAOLineaDePedido;
+		private $DAOClientes;
+		private $DAOEnvio;
 		
 		
 
@@ -22,6 +24,9 @@
 			$this->DAOProducto=\DAOS\ProductosDAO::getInstance();
 			$this->DAOTipoCerveza=\DAOS\TiposDeCervezasDAO::getInstance();
 			$this->DAOLineaDePedido=\DAOS\LineasDePedidoDAO::getInstance();
+			$this->DAOClientes=\DAOS\ClientesDAO::getInstance();
+			$this->DAOEnvio=\DAOS\EnviosDAO::getInstance();
+			//$this->DAOSucursales=\DAOS\SucursalesDAO::getInstance();
 			
 			
 		}
@@ -231,6 +236,7 @@
 
 	   	public function checkOut()
 	   	{
+	   		$instanciaClientes=$this->DAOClientes;//le paso la instancia de la controladora
 	   		$productos=$this->traerTodosProductos();
 	   		$instanciaProducto=$this->DAOProducto;
 	   		
@@ -253,18 +259,72 @@
 			}
 			return $total;
 		}
-		public function finalizarCompra($idCliente,$fechaDomicilio,$horaDesde,$horaHasta,$fechaSucursal)
+		public function finalizarCompra()
 		{
+			
+			
+			//esto es provisorio, ya que al ser variable la seleccion de envio, cambia el orden en el qe se envian los valores por parametro 	
+			$envio=$_POST['radioButton']; 
+			$fechaDomicilio=$_POST['fechaDomicilio'];
+			$horaDesde=$_POST['horaDesde'];
+			$horaHasta=$_POST['horaHasta'];
+			$fechaSucursal=$_POST['fechaSucursal'];
+			$idCliente=$_POST['id'];
+			$sucursal=$_POST['sucursalElejida'];
+			//*************************************
+
+
 			session_start();
-			$lineaPedido=$_SESSION['Carrito'];
+			$lineaPedido=$_SESSION['Carrito'];//asigno el carrito a variable
 
 			
-			foreach ($lineaPedido as $pos => $valor)
-		    {
-				$this->DAOLineaDePedido->insertar($valor);//inserto en la bd cada linea del array
+
+			$cliente=$this->DAOClientes->buscarPorID($idCliente);//busco cliente en bd				
+			$cuenta=$this->DAOCuentas->buscarCuentaPorIDCliente($idCliente );//busco la cuenta asociada al cliente			
+			
+			if($envio=="Domicilio")
+			{
+
+								
+				$envioDomicilio = new \Modelos\Envio ($cliente->getDomicilio(), $cuenta->getEmail(), $fechaDomicilio, $horaDesde, $horaHasta, $cliente->getTelefono());//creo obj envio	
+
+				$envioDomicilio=$this->DAOEnvio->insertarDevolverID($envioDomicilio);//guardo el envio en bd
+
+				$pedido = new \Modelos\Pedido ("Solicitado", $fechaDomicilio, $idCliente, null, $envioDomicilio->getId(), null);
+				$pedido=$this->DAOPedido->insertarDevolverID($pedido);//guardo el pedido en bd
+
+				foreach ($lineaPedido as $pos => $valor)
+		    	{
+		    		$valor->setIdPedido($pedido->getId());//asigno el id del pedido a la linea de pedido
+		    		
+					$this->DAOLineaDePedido->insertar($valor);//guardo la linea de pedido en bd con la referencia a la id del pedido
+				}
+				
 			}
-			//if cliente elijio envio a domicilio, creo objeto envio con $fechaDomicilio,$$horaDesde,$horaHasta. y datos del cliente
-			//if cliente elijio sucursal, creo objeto envio con $fechaSucursal y los demas parametros en null
+
+			if($envio=="Sucursal")
+			{
+					
+				$envioSucursal= new \Modelos\Envio ($sucursal, $cuenta->getEmail(), $fechaSucursal, null, null, $cliente->getTelefono());//creo obj envio
+
+				$Envio=$this->DAOEnvio->insertarDevolverID($envioSucursal);//guardo el envio en bd
+
+				$pedido = new \Modelos\Pedido ("Solicitado", $fechaSucursal, $idCliente, null, $Envio->getId(), $sucursal);
+				$pedido = $this->DAOPedido->insertarDevolverID($pedido);//guardo el pedido en bd
+
+				foreach ($lineaPedido as $pos => $valor)
+		    	{
+		    		$valor->setIdPedido($pedido->getId());//asigno el id del pedido a la linea de pedido
+		    		
+					$this->DAOLineaDePedido->insertar($valor);//guardo la linea de pedido en bd con la referencia a la id del pedido
+				}
+			}//pasar los id
+
+			
+
+			
+
+			
 			
 			//crear objetos linea pedido y envio, y guardarlos en bd antes de crear el obj pedido
 			

@@ -8,17 +8,17 @@ $cuenta = $_SESSION['Login'];
 
 
 use \Controladoras\ControlGestionSucursal as ControlGestionSucursal;
-use \Controladoras\ControlCliente as ControlCliente;
+//use \Controladoras\ControlCliente as ControlCliente;
 
 
-$DAOClientes= new ControlCliente();
+//$DAOClientes= new ControlCliente();
 $DAOSucursal= new ControlGestionSucursal();
 $sucursales=$DAOSucursal->traerTodos();//me devuelve todas las sucursales de la BD, null si no hay 
 
 
 $idCliente=$cuenta->getMCliente();//tomo el id de cliente asignado a la cuenta logueada
 
-$cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE O NULL SI NO LO ENCUENTRA
+$cliente=$instanciaClientes->buscarPorID($idCliente);//RECIBE EL OBJETO CLIENTE O NULL SI NO LO ENCUENTRA
 
  ?>
 
@@ -91,7 +91,8 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
 
           <table class="table table-bordered">
             
-          </table>           
+          </table> 
+          <input type="radio" name="radioButton" id="radioButton" value="Domicilio" checked>         
           <table class="table table-bordered"  >
             <thead class="thead-inverse text-center">
               
@@ -117,7 +118,8 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
               </tr>               
             </tbody>    
           </table>
-
+          
+          <input type="radio" name="radioButton" id="radioButton" value="Sucursal"> 
           <table class="table table-bordered" id="div"  >
             <thead class="thead-inverse text-center">
               <tr>
@@ -129,11 +131,11 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
             <tbody class="text-white text-center">
               <tr>
                 <td>
-                  <select class="custom-select">
-                    <option>Envio a Domicilio</option>
+                  <select class="custom-select" name="sucursalElejida" >
+                    
                     <?php if ($sucursales != null){ foreach ($sucursales as $suc)
                       {?> 
-                      <option value="<?= $suc->getId();  ?>"><?= $suc->getNombre();?>, <?= $suc->getDomicilio();?></option>
+                      <option  value="<?= $suc->getId();  ?>"><?= $suc->getNombre();?>, <?= $suc->getDomicilio();?></option>
                     <?php } //fin foreach 
                       }//fin if?>
                       <?php if($sucursales ==null){?><option>No hay sucursales</option> <?php }?>
@@ -191,6 +193,7 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
     </div>
     <div class="text-center">
       <input type="hidden" name="idCliente" value="<?= $cliente->getId(); ?>">
+      <input type="hidden" name="sessionCarrito" value="<?= $_SESSION['Carrito']; ?>">
       <button type="submit" class="btn btn-primary btn-lg">Finalizar Compra</button>
     </div>
     <br>
@@ -237,8 +240,7 @@ $cliente=$DAOClientes->buscarClientePorId($idCliente);//RECIBE EL OBJETO CLIENTE
             <div class="form-group">
               <input class="form-control" id="cliente" name="cliente" type="hidden" value="<?=$cliente->getId(); ?>">
             </div>
-            <div class="form-group">
-              <input class="form-control" id="idCuenta" name="idCuenta" type="hidden" value="<?=$cuenta->getId(); ?>">
+            <div class="form-group">              
             </div>
             <div class="modal-footer center-block">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
