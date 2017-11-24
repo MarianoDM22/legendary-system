@@ -23,12 +23,20 @@ class ControlGestionOrden
 
 	 public function getOrden()
     {
+      try {
         return $this->$orden;
+      } catch (Exception $e) {
+        echo "<script>alert('Error al traer orden!'));</script>";
+      }
     }
 
     public function index()
    	{
-   		$orden=$this->traerTodos();
+      try {
+   		 $orden=$this->traerTodos();
+      } catch (Exception $e) {
+        echo "<script>alert('Error al traer todos!'));</script>";
+      }
    		
    		
    		require_once(ROOT . 'Vistas/Administrador/GestionOrden.php');
@@ -36,7 +44,11 @@ class ControlGestionOrden
 
    	public function borrar($id)
    	{
-   		$this->DAOOrden->borrar($id);
+      try {
+   		 $this->DAOOrden->borrar($id);
+      } catch (Exception $e) {
+        echo "<script>alert('Error al intentar borrar!'));</script>";
+      }
 
    		$this->index();
    	}
