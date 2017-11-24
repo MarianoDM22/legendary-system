@@ -57,14 +57,20 @@ class ControlGestionTipoCerveza
 	    					//llama al DAO para insertarlo
 	    					
 	    				
-	 
-	    					$buscado=$this->DAOTipoCerveza->buscarPorNombre($desc);
+	 						try {
+	    						$buscado=$this->DAOTipoCerveza->buscarPorNombre($desc);
+						    } catch (Exception $e) {
+						    	echo "<script>alert('Error al buscar Tipo de Cerveza en BBDD'));</script>";
+						    }
 	    				
 
 	    					if ($buscado==null)
 	    					{	
-	    						
-	    						$this->DAOTipoCerveza->insertar($value);
+	    						try {
+	    							$this->DAOTipoCerveza->insertar($value);
+							    } catch (Exception $e) {
+							    	echo "<script>alert('Error al insertar Tipo de Cerveza en BBDD'));</script>";
+							    }
 	    						//echo "<script> if(alert('Nuevo Tipo de Cerveza ingresado!'));</script>";
 
 	    					}
@@ -111,15 +117,24 @@ class ControlGestionTipoCerveza
 
    	public function borrar($id)
    	{
-   		$this->DAOTipoCerveza->borrar($id);
+   		try {
+   			$this->DAOTipoCerveza->borrar($id);
+	    } catch (Exception $e) {
+	    	echo "<script>alert('Error al borrar Tipo de Cerveza de BBDD'));</script>";
+	    }
    		$this->index();
    	}
 
    	public function traertodos()
    	{
+   		$cervezas = null;
 
-   		$cervezas= array();
-   		$cervezas =$this->DAOTipoCerveza->traerTodos();
+   		try {
+	   		$cervezas= array();
+	   		$cervezas =$this->DAOTipoCerveza->traerTodos();
+	    } catch (Exception $e) {
+	    	echo "<script>alert('Error al traer tipos de cerveza de BBDD'));</script>";
+	    }
 
 		return $cervezas;  
    	}
@@ -164,12 +179,21 @@ class ControlGestionTipoCerveza
 					   		$object->setImagen($imagen);
 
 					   		//LLAMA A ACTUALIZAR
-							$buscado=$this->DAOTipoCerveza->buscarPorID($_POST['id']);
+
+					   		try {
+								$buscado=$this->DAOTipoCerveza->buscarPorID($_POST['id']);
+						    } catch (Exception $e) {
+						    	echo "<script>alert('Error al buscar Tipo de Cerveza en BBDD'));</script>";
+						    }
 	    				
 
 	    					if ($buscado!=null)
 	    					{	
-	    						$this->DAOTipoCerveza->actualizar($object);
+	    						try {
+	    							$this->DAOTipoCerveza->actualizar($object);
+							    } catch (Exception $e) {
+							    	echo "<script>alert('Error al actualizar Tipo de Cerveza en BBDD'));</script>";
+							    }
 	    						//echo "<script> if(alert('Tipo de Cerveza modificado!'));</script>";
 	    					}
 	    					else
