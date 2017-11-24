@@ -14,9 +14,14 @@ class ControlCliente
 
 
 	public function buscarClientePorId($id)
-	{
+	{	
+		$cliente = null;
+		try {
+			$cliente=$this->DAOCliente->buscarPorID($id);
+		} catch (PDOException $pdoEx) {
+			echo "<script>alert('Error en BBDD al buscar el cliente.'));</script>";
+		}
 		
-		$cliente=$this->DAOCliente->buscarPorID($id);
 		
 		return $cliente;
 
