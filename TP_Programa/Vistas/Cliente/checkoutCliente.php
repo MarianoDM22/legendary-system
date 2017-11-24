@@ -124,7 +124,6 @@ $cliente=$instanciaClientes->buscarPorID($idCliente);//RECIBE EL OBJETO CLIENTE 
             <thead class="thead-inverse text-center">
               <tr>
                 <th>Sucursal</th>
-                <th>Direccion</th>
                 <th>Fecha</th>
               </tr>            
             </thead>
@@ -140,9 +139,6 @@ $cliente=$instanciaClientes->buscarPorID($idCliente);//RECIBE EL OBJETO CLIENTE 
                       }//fin if?>
                       <?php if($sucursales ==null){?><option>No hay sucursales</option> <?php }?>
                   </select>                
-                </td>
-                <td>
-                   <?php if (isset($suc)) {?> <?=$suc->getDomicilio();  }?>
                 </td>
                 <td >
                    <input type="date" name="fechaSucursal">
