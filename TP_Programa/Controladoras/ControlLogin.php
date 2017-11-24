@@ -53,8 +53,11 @@
 		
 				//$emailBuscado=$_POST['email'];//tomo mail ingresado
 				//$passLogin=$_POST['passLogin'];//tomo password ingresada
-
-				$buscado=$this->DAOCuentas->buscarPorNombre($emailBuscado);//busco si existe el email en BD ,devuelve null o el objeto CUENTA
+				try {
+					$buscado=$this->DAOCuentas->buscarPorNombre($emailBuscado);//busco si existe el email en BD ,devuelve null o el objeto CUENTA
+			    } catch (Exception $e) {
+			    	echo "<script>alert('Error al buscar datos del Login en BBDD'));</script>";
+			    }
 
 				if ( $buscado !=null)//entra si encontro el mail
 				{
@@ -133,18 +136,30 @@
 			
 			$rol='cliente';
 			
-			$buscado=$this->DAOCuentas->buscarPorNombre($email);//busco si existe el email en BD
+			try {
+				$buscado=$this->DAOCuentas->buscarPorNombre($email);//busco si existe el email en BD
+		    } catch (Exception $e) {
+		    	echo "<script>alert('Error al buscar datos del Login en BBDD'));</script>";
+		    }
 			if ($buscado == null)
 			{//entra si el email buscado en BD no existe
 
-				$cliente = new \Modelos\Cliente($nombre, $apellido, $domicilio, $telefono);//creo el cliente				
-				$clienteConID = $this->DAOCuentas->insertarDevolverID($cliente);// le paso un cliente sin id, lo guarda en BD y me devuelve el cliente con ID
+				$cliente = new \Modelos\Cliente($nombre, $apellido, $domicilio, $telefono);//creo el cliente
+				try {
+					$clienteConID = $this->DAOCuentas->insertarDevolverID($cliente);// le paso un cliente sin id, lo guarda en BD y me devuelve el cliente con ID
+			    } catch (Exception $e) {
+			    	echo "<script>alert('Error al insertar datos de Login en BBDD'));</script>";
+			    }				
 				
 				if ($pass1 == $pass2)//verifico que coincidan las pass
 				{
 					$cuentaNueva = new \Modelos\Cuenta($email, $pass1, $rol, $clienteConID->getId() );//creo la cuenta con el ID del cliente
-					$this->DAOCuentas->insertarCuenta($cuentaNueva);//agrego la cuenta completa a la BD
-					echo "<script> if(alert('Usuario Registrado !'));</script>";
+					try {
+						$this->DAOCuentas->insertarCuenta($cuentaNueva);//agrego la cuenta completa a la BD
+						echo "<script> if(alert('Usuario Registrado !'));</script>";
+				    } catch (Exception $e) {
+				    	echo "<script>alert('Error al insertar Cuenta en BBDD'));</script>";
+				    }
 				}
 				else
 				{
