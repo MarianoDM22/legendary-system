@@ -31,8 +31,11 @@ class ControlGestionSucursal
 
 	    if ($buscado==null)
 	    	{	
-	    					
-	    		$this->DAOSucursal->insertar($value);	
+	    		try {
+	    			$this->DAOSucursal->insertar($value);	
+			    } catch (Exception $e) {
+			    	echo "<script>alert('Error al intentar insertar Sucursal en BBDD'));</script>";
+			    }	
 	    		//echo "<script> if(alert('Nuevo Sucursal ingresado!'));</script>";
 	    	}
 	    else
@@ -58,7 +61,11 @@ class ControlGestionSucursal
 
    	public function borrar($id)
    	{
-   		$this->DAOSucursal->borrar($id);
+   		try {
+   			$this->DAOSucursal->borrar($id);
+	    } catch (Exception $e) {
+	    	echo "<script>alert('Error en BBDD al intentar borrar Sucursal'));</script>";
+	    }
    		$this->index();
    	}
 
@@ -93,11 +100,19 @@ class ControlGestionSucursal
 		$object->setLongitud($longitud);
 			
 		//LLAMA A ACTUALIZAR
-		$buscado=$this->DAOSucursal->buscarPorID($_POST['id']);    				
+		try {
+			$buscado=$this->DAOSucursal->buscarPorID($_POST['id']);    				
+	    } catch (Exception $e) {
+	    	echo "<script>alert('Error buscando Sucursal en BBDD'));</script>";
+	    }
 
 	    if ($buscado!=null)
 	    	{	
-	    		$this->DAOSucursal->actualizar($object);
+	    		try {
+	    			$this->DAOSucursal->actualizar($object);
+			    } catch (Exception $e) {
+			    	echo "<script>alert('Error al intentar actualizar sucursal en BBDD!'));</script>";
+			    }
 	    		//echo "<script> if(alert('Sucursal modificado!'));</script>";
 	    	}
 	    else
