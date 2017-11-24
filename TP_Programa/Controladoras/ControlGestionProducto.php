@@ -64,8 +64,11 @@ class ControlGestionProducto
 
 	    					if ($buscado==null)
 	    					{	
-	    						
+							  try {
 	    						$this->DAOProducto->insertar($value);
+						      } catch (Exception $e) {
+						        echo "<script>alert('Error al insertar Producto en BBDD!'));</script>";
+						      }
 	    						//echo "<script> if(alert('Nuevo Producto ingresado!'));</script>";
 	    					}
 	    					else
@@ -100,11 +103,16 @@ class ControlGestionProducto
 
 	 public function getProducto()
     {
-        return $this->$producto;
+    	try {
+        	return $this->$producto;
+      	} catch (Exception $e) {
+        	echo "<script>alert('Error al traer producto de la BBDD!'));</script>";
+      	}
     }
 
     public function index()
    	{
+   		try {
    		$producto=$this->traerTodos();
    		$cervezas=$this->traerTodosCervezas();
    		
@@ -114,6 +122,9 @@ class ControlGestionProducto
    		{
    			$this->calcularTodosPrecio($producto);
    		}		
+	    } catch (Exception $e) {
+	    	echo "<script>alert('Error en BBDD!'));</script>";
+	    }
    		
    		
    		require_once(ROOT . 'Vistas/Administrador/GestionProducto.php');
@@ -121,14 +132,23 @@ class ControlGestionProducto
 
    	public function borrar($id)
    	{
+   		try {
    		$this->DAOProducto->borrar($id);
    		$this->index();
+	    } catch (Exception $e) {
+	    	echo "<script>alert('Error al borrar en BBDD'));</script>";
+	    }
    	}
 
    	public function traerTodos()
    	{
-   		$producto= array();
-   		$producto=$this->DAOProducto->traerTodos();
+   		$producto = null;
+   		try {
+	   		$producto= array();
+	   		$producto=$this->DAOProducto->traerTodos();
+	    } catch (Exception $e) {
+	    	echo "<script>alert(''));</script>";
+	    }
 
    		return $producto;
    	}
@@ -188,7 +208,11 @@ class ControlGestionProducto
 
 	    					if ($buscado!=null)
 	    					{	
-	    						$this->DAOProducto->actualizar($object);
+	    						try {
+	    							$this->DAOProducto->actualizar($object);
+							    } catch (Exception $e) {
+							    	echo "<script>alert('Error al actualizar producto en BBDD!'));</script>";
+							    }
 	    						//echo "<script> if(alert('Producto modificado!'));</script>";
 	    					}
 	    					else
@@ -233,8 +257,12 @@ class ControlGestionProducto
    	{
    		$precio= 0;
   		
+  		try {
    			$x= $this->DAOTipoCerveza->buscarPorID($obj->getMTiposDeCerveza())->getPrecio_litro();
    			$precio=(  ($obj->getCapacidad() ) * $x * ($obj->getFactor())  );
+	    } catch (Exception $e) {
+	    	echo "<script>alert('Error al calcular precio'));</script>";
+	    }
 
 	   		//$obj->setPrecio($precio);
 
@@ -243,7 +271,12 @@ class ControlGestionProducto
 
    	public function buscarPorID($id)
    	{
-   		$prod=$this->DAOProducto->buscarPorID($id);
+   		$prod = null;
+   		try {
+   			$prod=$this->DAOProducto->buscarPorID($id);
+	    } catch (Exception $e) {
+	    	echo "<script>alert('Error al buscar producto en BBDD!'));</script>";
+	    }
 
    		return $prod;
    	}
