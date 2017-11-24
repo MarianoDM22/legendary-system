@@ -209,7 +209,11 @@
 		private function traerTodos()
 	   	{
 	   		$lineas=array();
-	   		$lineas=$this->DAOProducto->traerTodosLineas();
+	   		try {
+	   			$lineas=$this->DAOProducto->traerTodosLineas();
+		    } catch (Exception $e) {
+		    	echo "<script>alert('Error al en BBDD al traer Lineas de Pedido'));</script>";
+		    }
 
 	   		return $lineas;
 	   	}
@@ -217,7 +221,11 @@
 		public function traerTodosProductos()
 	   	{
 	   		$producto=array();
-	   		$producto=$this->DAOProducto->traerTodos();
+	   		try {
+	   			$producto=$this->DAOProducto->traerTodos();
+		    } catch (Exception $e) {
+		    	echo "<script>alert('Error en BBDD al traer Productos'));</script>";
+		    }
 	   		
 	   		return $producto;
 	   	}
@@ -278,26 +286,46 @@
 			$lineaPedido=$_SESSION['Carrito'];//asigno el carrito a variable
 
 			
+			try {
+				$cliente=$this->DAOClientes->buscarPorID($idCliente);//busco cliente en bd				
+		    } catch (Exception $e) {
+		    	echo "<script>alert('Error al buscar Cliente en BBDD'));</script>";
+		    }
 
-			$cliente=$this->DAOClientes->buscarPorID($idCliente);//busco cliente en bd				
-			$cuenta=$this->DAOCuentas->buscarCuentaPorIDCliente($idCliente );//busco la cuenta asociada al cliente			
+		    try {
+				$cuenta=$this->DAOCuentas->buscarCuentaPorIDCliente($idCliente );//busco la cuenta asociada al cliente			
+		    } catch (Exception $e) {
+		    	echo "<script>alert('Erro al buscar Cliente en BBDD'));</script>";
+		    }
 			
 			if($envio=="Domicilio")
 			{
 
 								
 				$envioDomicilio = new \Modelos\Envio ($cliente->getDomicilio(), $cuenta->getEmail(), $fechaDomicilio, $horaDesde, $horaHasta, $cliente->getTelefono());//creo obj envio	
-
-				$envioDomicilio=$this->DAOEnvio->insertarDevolverID($envioDomicilio);//guardo el envio en bd
+				try {
+					$envioDomicilio=$this->DAOEnvio->insertarDevolverID($envioDomicilio);//guardo el envio en bd
+			    } catch (Exception $e) {
+			    	echo "<script>alert('Error al insertar Envio en BBDD'));</script>";
+			    }
 
 				$pedido = new \Modelos\Pedido ("Solicitado", $fechaDomicilio, $idCliente, null, $envioDomicilio->getId(), null);
-				$pedido=$this->DAOPedido->insertarDevolverID($pedido);//guardo el pedido en bd
+				
+				try {
+					$pedido=$this->DAOPedido->insertarDevolverID($pedido);//guardo el pedido en bd
+			    } catch (Exception $e) {
+			    	echo "<script>alert('Error al insertar Pedido en BBDD'));</script>";
+			    }
+
 
 				foreach ($lineaPedido as $pos => $valor)
 		    	{
 		    		$valor->setIdPedido($pedido->getId());//asigno el id del pedido a la linea de pedido
-		    		
-					$this->DAOLineaDePedido->insertar($valor);//guardo la linea de pedido en bd con la referencia a la id del pedido
+		    		try {
+						$this->DAOLineaDePedido->insertar($valor);//guardo la linea de pedido en bd con la referencia a la id del pedido
+				    } catch (Exception $e) {
+				    	echo "<script>alert('Error al insertar Linea de Pedido en BBDD'));</script>";
+				    }
 				}
 				
 			}
@@ -306,17 +334,30 @@
 			{
 					
 				$envioSucursal= new \Modelos\Envio ($sucursal, $cuenta->getEmail(), $fechaSucursal, null, null, $cliente->getTelefono());//creo obj envio
-
-				$Envio=$this->DAOEnvio->insertarDevolverID($envioSucursal);//guardo el envio en bd
+				
+				try {
+					$Envio=$this->DAOEnvio->insertarDevolverID($envioSucursal);//guardo el envio en bd
+			    } catch (Exception $e) {
+			    	echo "<script>alert('Error al insertar envio en BBDD'));</script>";
+			    }
 
 				$pedido = new \Modelos\Pedido ("Solicitado", $fechaSucursal, $idCliente, null, $Envio->getId(), $sucursal);
-				$pedido = $this->DAOPedido->insertarDevolverID($pedido);//guardo el pedido en bd
+
+				try {
+					$pedido = $this->DAOPedido->insertarDevolverID($pedido);//guardo el pedido en bd
+			    } catch (Exception $e) {
+			    	echo "<script>alert('Error al insertar Pedido en BBDD'));</script>";
+			    }
 
 				foreach ($lineaPedido as $pos => $valor)
 		    	{
 		    		$valor->setIdPedido($pedido->getId());//asigno el id del pedido a la linea de pedido
 		    		
-					$this->DAOLineaDePedido->insertar($valor);//guardo la linea de pedido en bd con la referencia a la id del pedido
+		    		try {
+						$this->DAOLineaDePedido->insertar($valor);//guardo la linea de pedido en bd con la referencia a la id del pedido
+				    } catch (Exception $e) {
+				    	echo "<script>alert('Error al insertar Linea de Pedido en BBDD'));</script>";
+				    }
 				}
 			}//pasar los id
 
@@ -352,15 +393,22 @@
 		}
 		public function actualizarDatosEnvio($nombre,$apellido,$domicilio,$telefono,$Idcliente)
 		{
-			
-			$cliente=$this->DAOCuentas->buscarClientePorID($Idcliente);//busco el cliente y lo retorno
+			try {
+				$cliente=$this->DAOCuentas->buscarClientePorID($Idcliente);//busco el cliente y lo retorno
+		    } catch (Exception $e) {
+		    	echo "<script>alert('Error al buscar Cliente en BBDD'));</script>";
+		    }
 
 			$cliente->setNombre($nombre);//asigno nuevos datos
 			$cliente->setApellido($apellido);
 			$cliente->setDomicilio($domicilio);
 			$cliente->setTelefono($telefono);
 
-			$this->DAOCuentas->actualizarDatos($cliente);//actualizo BD
+			try {
+				$this->DAOCuentas->actualizarDatos($cliente);//actualizo BD
+		    } catch (Exception $e) {
+		    	echo "<script>alert('Error al actualizar datos de Cuenta en BBDD'));</script>";
+		    }
 
 			$this->checkOut();//vuelvo al checkout
 
@@ -371,7 +419,13 @@
 			var_dump($id);
 			var_dump($this->DAOCuentas);
 
-			$cliente=$this->DAOCuentas->buscarClientePorID($id);
+			$cliente = null;
+
+			try {
+				$cliente=$this->DAOCuentas->buscarClientePorID($id);
+		    } catch (Exception $e) {
+		    	echo "<script>alert('Error al buscar Cliente en BBDD'));</script>";
+		    }
 			
 			return $cliente;
 		}
