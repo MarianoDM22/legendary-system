@@ -283,7 +283,7 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 			$connection = $pdo->Connect();
 			$command = $connection->prepare($query);			
 
-			var_dump($dato);
+			
 			$command->bindParam(':id', $dato);
 			$command->execute();
 

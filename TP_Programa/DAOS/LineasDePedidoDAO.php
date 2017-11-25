@@ -24,7 +24,7 @@ class LineasDePedidoDAO extends SingletonAbstractDAO implements IDAO
 	public function insertar($dato){
 		try 
     	{
-    		echo "llego a insertar";
+    		
 			$query = 'INSERT INTO '.$this->table.' 
 			( cantidad , importe , fk_producto , fk_pedido) 
 			VALUES 

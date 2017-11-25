@@ -17,6 +17,7 @@ $sucursales=$DAOSucursal->traerTodos();//me devuelve todas las sucursales de la 
 
 
 $idCliente=$cuenta->getMCliente();//tomo el id de cliente asignado a la cuenta logueada
+
 $cliente=$instanciaClientes->buscarPorID($idCliente);//RECIBE EL OBJETO CLIENTE O NULL SI NO LO ENCUENTRA
 
  ?>
