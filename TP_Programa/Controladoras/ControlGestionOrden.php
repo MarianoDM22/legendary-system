@@ -13,6 +13,8 @@ class ControlGestionOrden
 	private $DAOOrden;
   private $DAOEnvio;
   private $DAOLineaDeProductos;
+  private $DAOProductos;
+  private $DAOTiposDeCerveza;
   
 
 
@@ -22,6 +24,8 @@ class ControlGestionOrden
 		$this->DAOOrden=\DAOS\PedidosDAO::getInstance();
     $this->DAOEnvio=\DAOS\EnviosDAO::getInstance();
     $this->DAOLineaDeProductos=\DAOS\LineasDePedidoDAO::getInstance();
+    $this->DAOProductos=\DAOS\ProductosDAO::getInstance();
+    $this->DAOTiposDeCerveza=\DAOS\TiposDeCervezasDAO::getInstance();
 
 		
 	}
@@ -42,6 +46,8 @@ class ControlGestionOrden
       try
       {
         //$lineasDePedido=$this->DAOLineaDeProductos->
+        $InstanciaTiposCervezas=$this->DAOTiposDeCerveza;
+        $productos=$this->DAOProductos->traerTodos();
         $envios=$this->DAOEnvio->traerTodos();//trae todos los envios de la BD
    		 $orden=$this->DAOOrden->traerTodos();//trae todos los pedidos de la BD
        

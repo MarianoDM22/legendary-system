@@ -47,38 +47,37 @@
 								<th>Estado</th>
 								<th>Fecha</th>
 								<th>Cliente</th>
-								<th>Productos</td>
+								<th>Cerveza</td>
 								<th>Tipo de Envio</td>
 							</tr>
 						</thead>
 						<tbody class="fn-lg">
 							<?php 
 									foreach ($orden as $key => $value) { ?>
-										
+										<?php $lineas=$this->DAOLineaDeProductos->lineasPorPedido($value->getId()); ?> 
+										<?php foreach ($lineas as $pos => $linea) { ?>
 								
 									<tr>
-										<td class="text-white">
+										<td class="cl-dark">
 											<form action="../GestionOrden/ " method="POST">
 												<input type="hidden" name="id" value="<?= $value->getId(); ?>">
 												<button type="submit" class="btn btn-primary" ><?= $value->getId(); ?></button>
 											</form>
 										</td>
-										<td >
+										<td  class="cl-dark">
 											<option selected value="<?= $value->getId();  ?>"><?= $value->getEstado();  ?></option>							
 										</td>
-										<td class="text-white"><?= $value->getFecha(); ?></td>
-										<td class="text-white"><?= $value->getMCliente(); ?></td>
-										<?php
-											$lineas=$this->DAOLineaDeProductos->lineasPorPedido($value->getId());//traigo todas las lineas qe referencian a ese pedido
-											var_dump($lineas);
+										<td class="cl-dark"><?= $value->getFecha(); ?></td>
+										<td class="cl-dark"><?= $value->getMCliente(); ?></td>
+										
 
-										?>
-										<td class="text-white"><?= $value->getMCliente(); ?></td>
-										<td>
+										
+										<td class="cl-dark"><?=$InstanciaTiposCervezas->buscarPorID( $linea->getMProducto() )->getDescripcion();?></td>
+										<td>asdasd</td>
 
 									</tr>
-									
-							<?php } ?>
+									<?php } //fin segundo for each?>
+							<?php } //fin primer for each?>
 						</tbody>
 					</table>
 
