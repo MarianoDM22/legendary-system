@@ -11,12 +11,18 @@ use PDOException as PDOException;
 class ControlGestionOrden
 {
 	private $DAOOrden;
+  private $DAOEnvio;
+  private $DAOLineaDeProductos;
+  
 
 
 	public function __construct()
 	{
 		
-		$this->DAOOrden=\DAOS\PedidosDAO::getInstance(); 
+		$this->DAOOrden=\DAOS\PedidosDAO::getInstance();
+    $this->DAOEnvio=\DAOS\EnviosDAO::getInstance();
+    $this->DAOLineaDeProductos=\DAOS\LineasDePedidoDAO::getInstance();
+
 		
 	}
 	
@@ -35,7 +41,9 @@ class ControlGestionOrden
    	{
       try
       {
-   		 $orden=$this->DAOOrden->traerTodos();
+        //$lineasDePedido=$this->DAOLineaDeProductos->
+        $envios=$this->DAOEnvio->traerTodos();//trae todos los envios de la BD
+   		 $orden=$this->DAOOrden->traerTodos();//trae todos los pedidos de la BD
        
       } 
       catch (Exception $e)

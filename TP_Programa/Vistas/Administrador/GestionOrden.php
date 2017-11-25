@@ -47,12 +47,14 @@
 								<th>Estado</th>
 								<th>Fecha</th>
 								<th>Cliente</th>
+								<th>Productos</td>
 								<th>Tipo de Envio</td>
 							</tr>
 						</thead>
 						<tbody class="fn-lg">
 							<?php 
 									foreach ($orden as $key => $value) { ?>
+										
 								
 									<tr>
 										<td class="text-white">
@@ -62,20 +64,20 @@
 											</form>
 										</td>
 										<td >
-											<select name="Estado" class="custom-select">
-												<option selected <?= $value->getEstado(); ?> </option>
-													<?php 
-														foreach ($orden as $key => $value) { ?>
-															<option value="<?= $value->getId();  ?>"><?= $value->getEstado();  ?></option>
-													<?php } ?>
-											</select>
+											<option selected value="<?= $value->getId();  ?>"><?= $value->getEstado();  ?></option>							
 										</td>
 										<td class="text-white"><?= $value->getFecha(); ?></td>
 										<td class="text-white"><?= $value->getMCliente(); ?></td>
-										<td></td>
-										<td>							
-									</tr>
+										<?php
+											$lineas=$this->DAOLineaDeProductos->lineasPorPedido($value->getId());//traigo todas las lineas qe referencian a ese pedido
+											var_dump($lineas);
 
+										?>
+										<td class="text-white"><?= $value->getMCliente(); ?></td>
+										<td>
+
+									</tr>
+									
 							<?php } ?>
 						</tbody>
 					</table>

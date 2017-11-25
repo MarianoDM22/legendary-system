@@ -168,10 +168,10 @@ class LineasDePedidoDAO extends SingletonAbstractDAO implements IDAO
 				$importe = ($row['importe']);
 				$fk_producto = ($row['fk_producto']);
 
-				$object = new \Modelos\LineasDePedido($cantidad,  $importe, $m_Producto);
+				$object = new \Modelos\LineasDePedido($cantidad,  $importe, $fk_producto);
 
 				$object->setId($row['id_lineadepedido']);	
-				$object->setId($row['setIdPedido']);
+				$object->setIdPedido($row['fk_pedido']);
 
 				array_push($objects, $object);
 
