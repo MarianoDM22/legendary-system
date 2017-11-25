@@ -71,7 +71,7 @@
 											</select>
 										</td>
 										<td class="text-white"><?= $value->getFecha(); ?></td>
-										<td class="text-white"><?= $value->getMcCliente(); ?></td>
+										<td class="text-white"><?= $value->getMCliente(); ?></td>
 										<td></td>
 										<td>							
 									</tr>

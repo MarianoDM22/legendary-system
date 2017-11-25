@@ -4,6 +4,7 @@
 
 use Modelos\Sucursal as Sucursal;
 use Exception as Exception;
+use PDOException as PDOException;
 
 
 
@@ -32,10 +33,18 @@ class ControlGestionOrden
 
     public function index()
    	{
-      try {
-   		 $orden=$this->traerTodos();
-      } catch (Exception $e) {
-        echo "<script>alert('Error al traer todos!'));</script>";
+      try
+      {
+   		 $orden=$this->DAOOrden->traerTodos();
+       
+      } 
+      catch (Exception $e)
+      {
+        echo "<script>alert('Exception ! Error al traer todos!'));</script>";
+      }
+      catch (PDOException $e)
+      {
+        echo "<script>alert('Exception ! Error al traer todos de BD!'));</script>";
       }
    		
    		
