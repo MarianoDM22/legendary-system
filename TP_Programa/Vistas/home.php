@@ -116,7 +116,7 @@ $productos = $DAOProductos->traertodos();
 
   <!-- Contact Section -->
     <section class="text-white" id="contact">
-      <form action="<?= ROOT_VIEW ?>/Contacto/insertar" method="post" enctype="multipart/form-data">
+      <form action="<?= ROOT_VIEW ?>/Contacto/Enviar" method="post" enctype="multipart/form-data">
           <div class="container">
           <h2 class="text-center">Contáctenos<h2>
           <hr class="star-primary">
@@ -124,7 +124,7 @@ $productos = $DAOProductos->traertodos();
             <div class="col-lg-8 mx-auto">
             
               <form name="sentMessage" id="contactForm" novalidate>
-                <div class="control-group">
+                <!--<div class="control-group">
                   <div class="form-group floating-label-form-group controls">
                     <label>Nombre</label>
                     <input class="form-control" id="name" type="text" placeholder="Name" required data-validation-required-message="Ingrese su nombre">
@@ -144,11 +144,25 @@ $productos = $DAOProductos->traertodos();
                     <input class="form-control" id="phone" type="tel" placeholder="Numero de Telefono" required data-validation-required-message="Por favor ingrese su numero de Telefono">
                     <p class="help-block text-danger"></p>
                   </div>
+                </div>-->
+                <div class="control-group">
+                  <div class="form-group floating-label-form-group controls">
+                    <label>Email de respuesta:</label>
+                    <input class="form-control" id="headers" name="headers" placeholder="Su email aqui" required data-validation-required-message="Por favor ingrese su Email">
+                    <p class="help-block text-danger"></p>
+                  </div>
                 </div>
                 <div class="control-group">
                   <div class="form-group floating-label-form-group controls">
-                    <label>Mensage</label>
-                    <textarea class="form-control" id="message" rows="5" placeholder="Mensaje" required data-validation-required-message="Por favor ingrese su mensaje"></textarea>
+                    <label>Asunto</label>
+                    <input class="form-control" id="subject" name="subject" placeholder="Su asunto aqui" required data-validation-required-message="Por favor ingrese un asunto">
+                    <p class="help-block text-danger"></p>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <div class="form-group floating-label-form-group controls">
+                    <label>Mensaje</label>
+                    <textarea class="form-control" id="message" name="message" rows="5" placeholder="Su mensaje aqui" required data-validation-required-message="Por favor ingrese su mensaje"></textarea>
                     <p class="help-block text-danger"></p>
                   </div>
                 </div>
