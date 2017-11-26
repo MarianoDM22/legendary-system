@@ -24,7 +24,7 @@ $productos = $DAOProductos->traertodos();
   <link href="css/estilos.css" type="text/css" rel="stylesheet">
 </head>
 
-<body id="top" style="background-image: url(&quot;http://localhost/TP_Programa/images/fondocheck.png&quot;);" >
+<body id="top" style="background-image: url(&quot;http://localhost/TP_Programa/images/fondocheck.jpg&quot;);" >
 
   <?php require("header.php"); ?> <!-- llamado a la barra nav de home-->
 
@@ -39,13 +39,13 @@ $productos = $DAOProductos->traertodos();
             </ol>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img class="d-block w-100" src="images/slider/cerveceria1.jpg" alt="First slide">
+                <img class="d-block w-100" src="<?php echo ROOT_VIEW; ?>/images/slider/cerveceria1.jpg" alt="First slide">
               </div>
               <div class="carousel-item">
-                <img class="d-block w-100" src="images/slider/cerveceria2.jpg" alt="Second slide">
+                <img class="d-block w-100" src="<?php echo ROOT_VIEW; ?>/images/slider/cerveceria2.jpg" alt="Second slide">
               </div>
               <div class="carousel-item">
-                <img class="d-block w-100" src="images/slider/cerveceria3.jpg" alt="Third slide">
+                <img class="d-block w-100" src="<?php echo ROOT_VIEW; ?>/images/slider/cerveceria3.jpg" alt="Third slide">
               </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

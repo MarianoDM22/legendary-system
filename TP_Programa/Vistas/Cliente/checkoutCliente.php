@@ -40,7 +40,7 @@ $cliente=$instanciaClientes->buscarPorID($idCliente);//RECIBE EL OBJETO CLIENTE 
     <link href="css/estilos.css" type="text/css" rel="stylesheet">
 
   </head>
-  <body style="background-image: url(&quot;http://localhost/TP_Programa/images/fondocheck.png&quot;);">
+  <body style="background-image: url(&quot;http://localhost/TP_Programa/images/fondocheck.jpg&quot;);">
 
     <?php //require("headerCliente.php"); ?>
 
