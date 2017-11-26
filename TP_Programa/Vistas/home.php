@@ -93,7 +93,7 @@ $productos = $DAOProductos->traertodos();
 
                 <div class="p-4 align-self-center col-md-4">
                   <div class="card background">
-                    <img src="http://localhost/TP_Programa/<?=$valor->getImagen(); ?>" class="img-responsive" style="width:100%" alt="Image ">           
+                    <img src="http://localhost/TP_Programa/<?=$valor->getImagen(); ?>" class="img-responsive" style="width:100%" alt="Image ">
                     <div class="card-block p-2">
                       <div class="panel-body ">   
 
@@ -148,7 +148,14 @@ $productos = $DAOProductos->traertodos();
                 <div class="control-group">
                   <div class="form-group floating-label-form-group controls">
                     <label>Email de respuesta:</label>
-                    <input class="form-control" id="headers" name="headers" placeholder="Su email aqui" required data-validation-required-message="Por favor ingrese su Email">
+                    <input class="form-control" id="email" name="email" placeholder="Su email aqui" required data-validation-required-message="Por favor ingrese su Email">
+                    <p class="help-block text-danger"></p>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <div class="form-group floating-label-form-group controls">
+                    <label>Nombre completo:</label>
+                    <input class="form-control" id="name" name="name" placeholder="Quien eres?" required data-validation-required-message="Por favor ingrese quien es usted">
                     <p class="help-block text-danger"></p>
                   </div>
                 </div>

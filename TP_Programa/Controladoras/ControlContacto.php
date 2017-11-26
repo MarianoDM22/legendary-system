@@ -10,9 +10,11 @@
 		{
 
 		}
-		public function enviar($headers, $subject, $message){
-			$from = "From: $headers";
-			mail("marco.julian.torre@gmail.com",$subject,$message,$from);
+		public function enviar($email, $name, $subject, $message){
+			$txt .= "From: ".$email;
+			$txt .= "\nName: ".$name;
+			$txt .= "\nMessage: ".$message;
+			mail("cerveceria.socialmediamanager@gmail.com",$subject,$txt);
 			echo "<script>alert('Mensaje enviado!'));</script>";
 			require_once(ROOT . 'Vistas/home.php');
 		}
