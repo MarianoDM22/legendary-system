@@ -83,8 +83,7 @@
                     <div class="text-center">
 
                       <a class="d-block small mt-3" id="registerLink" data-toggle="modal" data-target="#registerModal" data-dismiss="modal">Registra una cuenta</a>
-                      <a class="d-block small mt-3" id="forgotLink" data-toggle="modal" data-target="#forgotModal" data-dismiss="modal">Olvidaste tu Contaseña?</a>
-
+                    
                     </div>
                   </div>
                 </div>
@@ -161,7 +160,7 @@
 
                       
                       <a class="d-block small mt-3" id="loginLink" data-toggle="modal" data-target="#loginModal" data-dismiss="modal">Login</a>
-                       <a class="d-block small mt-3" id="forgot2Link" data-toggle="modal" data-target="#forgotModal" data-dismiss="modal">Olvidaste tu Contaseña?</a>
+                   
 
                     </div>
                   </div>
@@ -174,55 +173,7 @@
     </div>
     <!-- Fin Register Modal-->
 
-    <!-- Forgot Modal-->
-     <div class="modal fade" id="forgotModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <form action="<?= ROOT_VIEW ?>/Forgot/prueba" method="post" enctype="multipart/form-data">
-            <div class="modal-header">
-              <h5 class="modal-title">Reestablecer Contraseña</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                 <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-
-            <div class="modal-body">
-               <div class="text-center mt-4 mb-5">
-                <h4>Olvidaste tu Contraseña?</h4>
-                <p>Ingrese su dirección de email y te enviaremos instrucciones para que puedas reestablecer tu contraseña.</p>
-              </div>
-
-                <div class="form-group">
-                  <label for="InputReEmail">Direccion de Email</label>
-                  <input class="form-control" id="InputReEmail" type="email" aria-describedby="emailHelp" placeholder="Ingrese su correo electrónico" required>
-                </div>
-                
-             
-                <a class="btn btn-primary btn-block" href=" ">Reestablecer Contraseña</a>
-            
-            </div>
-
-            <div class="modal-footer">
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="text-center">
-
-                      <a class="d-block small mt-3" id="register2Link" data-toggle="modal" data-target="#registerModal" data-dismiss="modal">Registra una cuenta</a>
-
-                      <a class="d-block small mt-3" id="login2Link" data-toggle="modal" data-target="#loginModal" data-dismiss="modal">Login</a>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <!-- Fin Forgot Modal-->
-
+   
       <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -256,32 +207,6 @@
           });
       </script>
 
-      <script>
-        $(function () {
-          $("#forgot2Link").on("click", function() 
-            {
-              $("#registerModal").modal("hide");
-            });
-          });
-      </script>
-
-      <script>
-        $(function () {
-          $("#register2Link").on("click", function() 
-            {
-              $("#forgotModal").modal("hide");
-            });
-          });
-      </script>
-
-      <script>
-        $(function () {
-          $("#login2Link").on("click", function() 
-            {
-              $("#forgotModal").modal("hide");
-            });
-          });
-      </script>
-      
+  
   </body>
 </html>

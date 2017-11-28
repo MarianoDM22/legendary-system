@@ -4,7 +4,9 @@ session_start();
 
 $lineaPedido=array();
 $lineaPedido=$_SESSION['Carrito'];
+
 $cuenta = $_SESSION['Login'];
+
 
 
 use \Controladoras\ControlGestionSucursal as ControlGestionSucursal;
@@ -17,7 +19,6 @@ $sucursales=$DAOSucursal->traerTodos();//me devuelve todas las sucursales de la 
 
 
 $idCliente=$cuenta->getMCliente();//tomo el id de cliente asignado a la cuenta logueada
-
 $cliente=$instanciaClientes->buscarPorID($idCliente);//RECIBE EL OBJETO CLIENTE O NULL SI NO LO ENCUENTRA
 
  ?>
@@ -53,13 +54,13 @@ $cliente=$instanciaClientes->buscarPorID($idCliente);//RECIBE EL OBJETO CLIENTE 
           <br>
           <h4  class="text-white text-center"><strong>Datos Personales:</strong></h4>
           <table class="table table-bordered" id="div">
-            <thead class="thead-inverse text-center">
+            <thead class="thead-inverse">
               <tr>            
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Domicilio</th> 
-                <th>Email</th>
-                <th>Telefono</th>
+                <th class="text-center">Nombre</th>
+                <th class="text-center">Apellido</th>
+                <th class="text-center">Domicilio</th> 
+                <th class="text-center">Email</th>
+                <th class="text-center">Telefono</th>
               </tr>
             </thead>
             <tbody class="text-white text-center">
@@ -97,11 +98,11 @@ $cliente=$instanciaClientes->buscarPorID($idCliente);//RECIBE EL OBJETO CLIENTE 
             <thead class="thead-inverse text-center">
               
               <tr>
-                <th>Domicilio</th>
-                <th>Email</th>
-                <th>Fecha</th> 
-                <th colspan="2">Horario de entrega</th>
-                <th>Telefono</th>
+                <th class="text-center">Domicilio</th>
+                <th class="text-center">Email</th>
+                <th class="text-center">Fecha</th> 
+                <th class="text-center" colspan="2">Horario de entrega</th>
+                <th class="text-center">Telefono</th>
               </tr>
 
             </thead>
@@ -111,9 +112,9 @@ $cliente=$instanciaClientes->buscarPorID($idCliente);//RECIBE EL OBJETO CLIENTE 
                 
                 <td id="div"><?= $cliente->getDomicilio(); ?></td>                        
                 <td id="div"><?= $cuenta->getEmail(); ?> </td>
-                <td id="div"><input type="date" name="fechaDomicilio"></td>   
-                <td id="div">Desde: <input type="time" name="horaDesde" min="08:00" max="18:00" ></td>
-                <td id="div">Hasta: <input type="time" name="horaHasta" min="08:00" max="18:00" ></td>
+                <td id="div"><input type="date" name="fechaDomicilio" required></td>   
+                <td id="div">Desde: <input type="time" name="horaDesde" min="08:00" max="18:00" required></td>
+                <td id="div">Hasta: <input type="time" name="horaHasta" min="08:00" max="18:00" required></td>
                 <td id="div"> <?= $cliente->getTelefono(); ?> </td>  
               </tr>               
             </tbody>    
@@ -123,8 +124,8 @@ $cliente=$instanciaClientes->buscarPorID($idCliente);//RECIBE EL OBJETO CLIENTE 
           <table class="table table-bordered" id="div"  >
             <thead class="thead-inverse text-center">
               <tr>
-                <th>Sucursal</th>
-                <th>Fecha</th>
+                <th class="text-center">Sucursal</th>
+                <th class="text-center">Fecha</th>
               </tr>            
             </thead>
             <tbody class="text-white text-center">
@@ -141,7 +142,7 @@ $cliente=$instanciaClientes->buscarPorID($idCliente);//RECIBE EL OBJETO CLIENTE 
                   </select>                
                 </td>
                 <td >
-                   <input type="date" name="fechaSucursal">
+                   <input type="date" name="fechaSucursal" required>
                 </td>
               </tr>
             </tbody>          
@@ -157,11 +158,12 @@ $cliente=$instanciaClientes->buscarPorID($idCliente);//RECIBE EL OBJETO CLIENTE 
             <table class="table table-bordered" id="div">
               <thead class="thead-inverse text-center">
                 <tr>            
-                  <th>Descripcion</th>
-                  <th>Precio</th>
-                  <th>Cantidad</th> 
-                  <th>Total</th> 
-                  <th>Opciones</th>
+                  <th class="text-white text-center">Descripcion</th>
+                  <th class="text-white text-center">Precio</th>
+                  <th class="text-white text-center">Cantidad</th> 
+                  <th class="text-white text-center">Total</th> 
+                  
+                  
                 </tr>
               </thead>
               <tbody class="text-white text-center">
@@ -172,16 +174,14 @@ $cliente=$instanciaClientes->buscarPorID($idCliente);//RECIBE EL OBJETO CLIENTE 
                   <td>$<?= $value->getImporte(); ?></td>
                   <td><?= $value->getCantidad(); ?></td>
                   <td>$<?= $value->getCantidad() * $value->getImporte();?></td>
-                  <td>
-
-                  <form action="<?= ROOT_VIEW ?>/Pedido/borrar" method="POST">
-                    <input type="hidden" name="id" value="<?= $value->getId(); ?>">
-                    <button type="submit" class="btn btn-primary">Eliminar</button>
-                  </form>
-
-                  </td>
-                </tr>    
-                <?php } //fin foreach ?>    
+               
+                </tr>
+                    <?php $subtotal+=$value->getImporte() * $value->getCantidad(); } ?>
+                <tr>
+                  <td class="text-right" colspan=3><strong> Total Pedido: </strong></td>
+                  <td class="text-center" colspan=1><strong>$<?= $subtotal?></strong></td> 
+                </tr>  
+                    
               </tbody>   
             </table> 
         </div>
@@ -204,7 +204,7 @@ $cliente=$instanciaClientes->buscarPorID($idCliente);//RECIBE EL OBJETO CLIENTE 
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <form action="<?= ROOT_VIEW ?> /Pedido/actualizarDatosEnvio" method="post" enctype="multipart/form-data">
+          <form action="<?= ROOT_VIEW ?> /Pedido/actualizarDatosCliente" method="post" enctype="multipart/form-data">
             <div class="modal-header">
               <h5 class="modal-title">Dirección de envío</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -235,12 +235,11 @@ $cliente=$instanciaClientes->buscarPorID($idCliente);//RECIBE EL OBJETO CLIENTE 
             </div>
             <div class="form-group">
               <input class="form-control" id="cliente" name="cliente" type="hidden" value="<?=$cliente->getId(); ?>">
-            </div>
-            <div class="form-group">              
+              <input class="form-control" id="check" name="check" type="hidden" value="check">
             </div>
             <div class="modal-footer center-block">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-              <input type="submit" name="guardar" class="btn btn-default" value="Guardar">              
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button> 
+              <button type="submit"  class="btn btn-default">Guardar</button>            
             </div>
           </form>
         </div>

@@ -25,8 +25,8 @@
 
 				if($_SESSION['Login']->getRol()=="adm")//SI ES ADMIN LO LLEVA A SU PAG
 				{
-					$var= new ControlGestionTipoCerveza;
-					$var->index();
+					$var= new ControlGestionOrden;
+					$var->index('Solicitado');
 				}
 				if($_SESSION['Login']->getRol()=="cliente")// SI ES CLIENTE AL HOME DE CLIENTE
 				{
@@ -123,17 +123,7 @@
 
 
 		public function nuevo($nombre, $apellido, $domicilio,  $telefono, $email, $pass1, $pass2) 
-		{
-
-			//recibo valores y los asigno a variables
-			//$nombre =$_POST['nombre'];
-			//$apellido =$_POST['apellido'];
-			//$domicilio=$_POST ['domicilio'];
-			//$telefono=$_POST ['telefono'];
-			//$email=$_POST ['email'];
-			//$pass1 =$_POST['pass1'];
-			//$pass2=$_POST ['pass2'];
-			
+		{			
 			$rol='cliente';
 			
 			try {

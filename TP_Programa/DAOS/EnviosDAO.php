@@ -97,8 +97,44 @@ class EnviosDAO extends SingletonAbstractDAO implements IDAO
     	}
 	}
 	
-	public function buscarPorID($dato){
+	public function buscarPorID($dato)
+	{
+		try 
+    	{
+    		
+			$object = null;
 
+			$query = 'SELECT * FROM '.$this->table.' WHERE id_envio = :id';
+
+			$pdo = new Connection();
+			$connection = $pdo->Connect();
+			$command = $connection->prepare($query);			
+
+			$command->bindParam(':id', $dato);
+			$command->execute();
+
+			while ($row = $command->fetch())
+			{
+				$domicilio = ($row['domicilio']);
+				$email = ($row['email']);
+				$fecha_programada = ($row['fecha_programada']);
+				$hora_desde = ($row['hora_desde']);
+				$hora_hasta = ($row['hora_hasta']);
+				$telefono = ($row['telefono']);
+
+				$object = new \Modelos\Envio( $domicilio, $email, $fecha_programada, $hora_desde, $hora_hasta, $telefono) ;
+
+				$object->setId($row['id_envio']);	
+			}
+
+			return $object;
+    	}
+    	catch (PDOException $ex) {
+			throw $ex;
+    	}
+    	catch (Exception $e) {
+			throw $e;
+		}
 	}
 	public function borrar($dato){
 

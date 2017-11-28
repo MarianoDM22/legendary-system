@@ -53,13 +53,15 @@ class ControlGestionProducto
 						{	//guarda el archivo subido en el directorio 'images/' tomando true si lo subio, y false si no lo hizo
 							$imagen = str_replace("../", "", $file); 
 							//crea el objeto
-	    					$value = new Producto($desc, $tipo_cerveza, $capacidad, $factor, $imagen);
+							$tipo=$this->DAOTipoCerveza->buscarPorID($tipo_cerveza);
+							$descrip=($desc . " " . $capacidad . "L" ." " . $tipo->getDescripcion());
+	    					$value = new Producto($descrip, $tipo_cerveza, $capacidad, $factor, $imagen);
 
 	    					$value->setPrecio($this->calcularPrecio($value));//le seteo el precio antes de insertarlo
 
 
 	    					//llama al DAO para insertarlo
-	    					$buscado=$this->DAOProducto->buscarPorNombre($desc);
+	    					$buscado=$this->DAOProducto->buscarPorNombre($descrip);
 	    				
 
 	    					if ($buscado==null)
@@ -196,7 +198,9 @@ class ControlGestionProducto
 							//crea el objeto
 	    					$object = $this->DAOProducto->buscarPorID($_POST['id']);
 	    					
-	    					$object->setDescripcion($desc);
+	    					$tipo=$this->DAOTipoCerveza->buscarPorID($tipo_cerveza);	
+	    					$descrip=($desc . " " . $capacidad . "L" ." " . $tipo->getDescripcion());
+	    					$object->setDescripcion($descrip);
 					   		$object->setMTiposDeCerveza($tipo_cerveza);
 					   		$object->setCapacidad($capacidad);
 					   		$object->setFactor($factor);

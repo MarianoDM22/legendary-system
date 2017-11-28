@@ -1,9 +1,9 @@
 <?php namespace Vistas;
 
-use \Controladoras\ControlGestionProducto as ControlGestionTipoProducto;
-$DAOProductos= new ControlGestionTipoProducto();
+use \Controladoras\ControlGestionTipoCerveza as ControlGestionTipoCerveza;
+$ControladoraProductos= new ControlGestionTipoCerveza();
 
-$productos = $DAOProductos->traertodos();
+$cervezas = $ControladoraProductos->traertodos();
 ?>
 
 
@@ -81,36 +81,29 @@ $productos = $DAOProductos->traertodos();
 
   <!-- INICIO MUESTRARIO CERVEZAS    -->   
   <section class="text-white" id="prod"> 
-      <div class="container">    
-          <h2 class="text-center">Nuestros Productos</h2>
-          <hr class="star-primary">
-           <div class="row">
-           
-              <?php
-              foreach ($productos as $valor) 
-              { ?>      
-               
+    <div class="container">    
+      <h2 class="text-center">Nuestros Productos</h2>
+      <hr class="star-primary">
+      <div class="row">
+        <?php
+        foreach ($cervezas as $valor) {?>
+          <div class="p-4 align-self-center col-md-4">
+            <div class="card background">
+              <img src="http://localhost/TP_Programa/<?=$valor->getImagen(); ?>" class="img-responsive" style="width:100%" alt="Image ">           
+              <div class="card-block p-2">
+                <div class="panel-body ">   
 
-                <div class="p-4 align-self-center col-md-4">
-                  <div class="card background">
-                    <img src="http://localhost/TP_Programa/<?=$valor->getImagen(); ?>" class="img-responsive" style="width:100%" alt="Image ">
-                    <div class="card-block p-2">
-                      <div class="panel-body ">   
-
-                      </div>
-                      <div class="p-1 col-md-4">                
-                                        
-                      </div>                               
-                    </div>
-                  </div>
                 </div>
-
-              <?php
-              }//fin FOR EACH
-              ?>
-          
-        </div>
+                <div class="p-1 col-md-4">                
+                                        
+                </div>                               
+              </div>
+            </div>
+          </div>
+        <?php }?>    
+        <br>
       </div>
+    </div>
   </section>
   <!-- FINMUESTRARIO CERVEZAS  --> 
 

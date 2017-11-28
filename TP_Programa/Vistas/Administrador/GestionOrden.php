@@ -16,67 +16,74 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
      <!-- Mi CSS -->
-    <link href="css/estilos.css" type="text/css">
+    <link rel="stylesheet" href="../css/estilos.css" type="text/css">
 
   </head>
   <body style="background-image: url(&quot;http://localhost/TP_Programa/images/fondoGestionCerveza.jpg&quot;);">
 
   	<?php require("nav.php"); ?>
 
-  	<header class="bg-dark"">
+  	<br>
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12 text-white">
-					<h1>Gestión Órdenes</h1>
+				<div class="col-md-12 ">
+					<h1><strong>Gestión Órdenes</strong></h1>
 				</div>
 			</div>
 		</div>
-	</header>
+	
 
 	
 
-	<div class="container">
-		<div class="row">
-			<section class="col-md-8">
-				<h2>Órdenes</h2>
-
-					<table class="table table-bordered table-responsive text-center table-light table-transparent">
+	<div class="container" >
+		<div>
+			<section >
+				<br>
+				<br>
+					<table class="table table-bordered table-responsive text-center table-light table-transparent" id="div">
 						<thead class="thead-inverse">
 							<tr>
-								<th>Nro de Orden</th>
-								<th>Estado</th>
-								<th>Fecha</th>
-								<th>Cliente</th>
-								<th>Cerveza</td>
-								<th>Tipo de Envio</td>
+								<th class="text-center">Nro de Orden</th>
+								<th class="text-center">Estado</th>
+								<th class="text-center">Cliente</th>
+								<th class="text-center">Fecha</th>																
+								<th class="text-center">Tipo de Envio</td>
 							</tr>
 						</thead>
-						<tbody class="fn-lg">
+						<tbody class="text-white text-center">
 							<?php 
-									foreach ($orden as $key => $value) { ?>
-										<?php $lineas=$this->DAOLineaDeProductos->lineasPorPedido($value->getId()); ?> 
-										<?php foreach ($lineas as $pos => $linea) { ?>
+									foreach ($orden as $key => $value) { ?>										
 								
 									<tr>
-										<td class="cl-dark">
-											<form action="../GestionOrden/ " method="POST">
-												<input type="hidden" name="id" value="<?= $value->getId(); ?>">
-												<button type="submit" class="btn btn-primary" ><?= $value->getId(); ?></button>
+										<td class="cl-dark text-center"><strong>
+											<form action="<?= ROOT_VIEW ?>/GestionOrden/detalleOrden" method="POST">
+												<input type="hidden" name="id" value="<?= $value->getId(); ?>">												
+												<button type="submit" class="btn btn-primary" ><?= $value->getId(); ?></strong></button>
 											</form>
 										</td>
-										<td  class="cl-dark">
-											<option selected value="<?= $value->getId();  ?>"><?= $value->getEstado();  ?></option>							
-										</td>
-										<td class="cl-dark"><?= $value->getFecha(); ?></td>
-										<td class="cl-dark"><?= $value->getMCliente(); ?></td>
-										
+										<td  class="cl-dark text-center">
+											<form action="<?= ROOT_VIEW ?>/GestionOrden/cambiarEstadoPedido" method="post" enctype="multipart/form-data">
+												<select name="nuevoEstado">
 
-										
-										<td class="cl-dark"><?=$InstanciaTiposCervezas->buscarPorID( $linea->getMProducto() )->getDescripcion();?></td>
-										<td>asdasd</td>
+													<strong><option name="Actual" value="<?= $value->getEstado();  ?>" selected><?= $value->getEstado();?></option></strong>
+													<strong><option name="Procesando" value="Procesando">Procesando</option></strong>	
+													<strong><option name="Enviado" value="Enviado">Enviado</option></strong>
+													<strong><option name="Finalizado" value="Finalizado">Finalizado</option></strong>	
+												</select>											
+												<input type="hidden" name="idPedido" value="<?= $value->getId(); ?>">											
+												<button type="submit" class="btn btn-primary" >Cambiar Estado</strong></button>	
+											</form>
+																										
+										</td>
+
+										<td class="cl-dark text-center"><strong><?= $value->getMCliente();?></strong></td>	
+											
+										<td class="cl-dark text-center"><strong><?= $value->getFecha();?></strong></td>										
+										<?php if($value->getMSucursales()==null )$tipoEnvio="Domicilio"; else $tipoEnvio="Sucursal"?>
+										<td class="cl-dark text-center"><strong><?=$tipoEnvio ?></strong></td>
 
 									</tr>
-									<?php } //fin segundo for each?>
+									
 							<?php } //fin primer for each?>
 						</tbody>
 					</table>
@@ -88,7 +95,13 @@
 
 
 	<?php require(ROOT . "Vistas/footer.php"); ?>
-
+	<style>
+  
+    #div {background: rgba(0,0,0,0.6)}   /* transparencia solo del fondo , resaltando los botones y texto */
+    #cell {background:rgba(255, 125, 0, 0);} /*transparencia total*/
+    #center-block {  display: block;  margin-left: auto;  margin-right: auto;}
+  
+    </style>
 
 
     <!-- Optional JavaScript -->

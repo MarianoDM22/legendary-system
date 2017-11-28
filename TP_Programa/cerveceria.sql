@@ -63,7 +63,7 @@ importe int,
 fk_producto int not null,
 fk_pedido int ,
 constraint pk_lineadepedido primary key(id_lineadepedido),
-constraint fk_lineadepedido_pedido foreign key(fk_pedido) references pedidos(id_pedido),
+constraint fk_lineadepedido_pedido foreign key(fk_pedido) references pedidos(id_pedido) ON DELETE CASCADE,
 constraint fk_lineadepedido_producto foreign key(fk_producto) references productos(id_producto)
 );
 CREATE TABLE cuentas(
@@ -76,13 +76,5 @@ constraint pk_cuenta primary key(id_cuenta),
 constraint fk_cuenta_cliente foreign key(fk_cliente) references clientes(id_cliente),
 constraint unq_cuenta_email unique (email)
 );
-CREATE TABLE contacto(
-id_contacto int auto_increment not null,
-email varchar(100),
-telefono varchar(100),
-mensaje varchar(150),
-primary key(id_contacto)
-);
 
 INSERT into cuentas (email,pass,rol) VALUES ('admin@mdp','1234' , 'adm');
-INSERT into cuentas (email,pass,rol) VALUES ('nico@hot.com','a' , 'cliente');

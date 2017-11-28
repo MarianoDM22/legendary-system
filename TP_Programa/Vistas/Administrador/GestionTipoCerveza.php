@@ -22,21 +22,14 @@
   <body style="background-image: url(&quot;http://localhost/TP_Programa/images/fondoGestionCerveza.jpg&quot;);">
 
   	<?php require("nav.php"); ?>
+  	<br>
   	
-  	<header class="bg-dark"">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 text-white">
-					<h1>Gestión Tipos de Cerveza</h1>
-				</div>
-			</div>
-		</div>
-	</header>
 
 	<div class="container" >
 		<div class="row">
 			<section class="col-md-10">
-				<h2>Tipos de Cerveza</h2>
+				
+				<h2 class="text-center"><strong>Tipos de Cerveza</strong></h2>
 
 				<!-- Button trigger modal -->
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-insc">
@@ -46,23 +39,24 @@
 					<table class="table table-bordered table-responsive text-center  table-light table-transparent" id="div">
 						<thead class="thead-inverse">
 							<tr>
-								<th>Id</th>
-								<th>Descripcion</th>
-								<th>Precio/litro</th>
-								<th>Imagen</th>
-								<th colspan="2">Opciones</th>
+								<th class="text-center"><strong>Id</strong></th>
+								<th class="text-center"><strong>Descripcion</strong></th>
+								<th class="text-center"><strong>Precio/litro</strong></th>
+								<th class="text-center"><strong>Imagen</strong></th>
+								<th colspan="2" class="text-center"><strong>Opciones</strong></th>
 							</tr>
 						</thead>
 						<tbody class="fn-lg ">
 							<?php foreach ($cervezas  as $key => $value) { ?>
 								
 									<tr>
-										<td class="text-white"><?= $value->getId(); ?></font></td>
-										<td class="text-white"><?= $value->getDescripcion(); ?></font></td>
-										<td class="text-white">$<?= $value->getPrecio_Litro(); ?></font></td>
-										<td><img src="<?= "../" . $value->getImagen(); ?>" width="50" ></font></td>
+										<td class="text-white"><strong><?= $value->getId(); ?></strong></td>
+										<td class="text-white"><strong><?= $value->getDescripcion(); ?></strong></td>
+										<td class="text-white"><strong>$<?= $value->getPrecio_Litro(); ?></strong></td>
+										<td><img src="<?= "../" . $value->getImagen(); ?>" width="50" ></strong></td>
 										<td>
 											<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-inscp-<?= $value->getId() ?>">Modificar</button>	
+
 
 											<!--Modal Modificar-->
 											<div class="modal fade" id="modal-inscp-<?= $value->getId() ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

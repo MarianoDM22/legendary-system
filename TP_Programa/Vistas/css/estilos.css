@@ -60,9 +60,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d34d66', end
 
 .transparent { opacity: 0.5; }
 .tbody { border: 5px solid #ccc; opacity: 0.5; }
-.footer-pos { position:absolute; bottom:0; width:100%; height:60px; background:#6cf; }
+.footer-pos { position:absolute;width: 100%;height: 40px; background:#6cf; }
 .transboxTEXT { margin: 5%; font-weight: bold; color: #000000; }
 
 .table-transparent { background: rgba(0,0,0,0.3) }   /* transparencia solo del fondo , resaltando los botones y texto */
-
+.tamañoSpinner{width: 3em;}
 /* Bootstrap */

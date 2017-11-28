@@ -15,6 +15,8 @@ class ControlGestionOrden
   private $DAOLineaDeProductos;
   private $DAOProductos;
   private $DAOTiposDeCerveza;
+  private $DAOCuenta;
+  private $DAOSucursales;
   
 
 
@@ -26,6 +28,8 @@ class ControlGestionOrden
     $this->DAOLineaDeProductos=\DAOS\LineasDePedidoDAO::getInstance();
     $this->DAOProductos=\DAOS\ProductosDAO::getInstance();
     $this->DAOTiposDeCerveza=\DAOS\TiposDeCervezasDAO::getInstance();
+    $this->DAOCuenta=\DAOS\CuentasDAO::getInstance();
+    $this->DAOSucursales=\DAOS\SucursalesDAO::getInstance();
 
 		
 	}
@@ -41,15 +45,24 @@ class ControlGestionOrden
       }
     }
 
-    public function index()
+    public function index($estado)
    	{
       try
       {
-        //$lineasDePedido=$this->DAOLineaDeProductos->
+        
         $InstanciaTiposCervezas=$this->DAOTiposDeCerveza;
         $productos=$this->DAOProductos->traerTodos();
         $envios=$this->DAOEnvio->traerTodos();//trae todos los envios de la BD
-   		 $orden=$this->DAOOrden->traerTodos();//trae todos los pedidos de la BD
+        $orden=$this->DAOOrden->traerTodosPorEstado($estado);//trae todos los pedidos de la BD
+        $instanciaCuentas=$this->DAOCuenta;
+
+        foreach ($orden as $key => $value) 
+        {         
+            
+            $lineasDePedido=$this->DAOLineaDeProductos->lineasPorPedido($value->getId() );
+            $value->setMLineasDePedido($lineasDePedido);                       
+          
+        }
        
       } 
       catch (Exception $e)
@@ -64,7 +77,7 @@ class ControlGestionOrden
    		
    		require_once(ROOT . 'Vistas/Administrador/GestionOrden.php');
    	}
-
+    
    	public function borrar($id)
    	{
       try {
@@ -80,6 +93,7 @@ class ControlGestionOrden
    	{
    		$orden= null;
    		try
+
    		{
    			$orden=$this->DAOOrden->traerTodos();
    		}
@@ -94,6 +108,43 @@ class ControlGestionOrden
 
    		return $orden;
    	}
+   
+    public function detalleOrden($idPedido)
+    {
+      
+      $orden=$this->DAOOrden->buscarPorID($idPedido);//busco el pedido por su ID 
+      $cliente=$this->DAOCuenta->buscarClientePorID($orden->getMCliente());//busco el cliente asociado al pedido
+      $cuenta=$this->DAOCuenta->buscarCuentaPorIDCliente($cliente->getId());//busco la cuenta asociada al cliente
+      $instanciaProducto=$this->DAOProductos;//le paso la instancia de la controladora producto
+
+      $lineasDePedido=$this->DAOLineaDeProductos->lineasPorPedido($orden->getId() );//le paso id de pedido y devuelve todas las lineas de productos
+      $orden->setMLineasDePedido($lineasDePedido);//asigno las lineas al pedido
+     
+      $envio=$this->DAOEnvio->buscarPorID($orden->getMEnvio());
+      $instanciaSucursal=$this->DAOSucursales;
+      
+      
+      require_once(ROOT . 'Vistas/Administrador/DetalleOrden.php');
+    }
+
+    public function cambiarEstadoPedido($nuevoEstado,$idPedido)
+    {
+      $this->DAOOrden->actualizarEstado($idPedido,$nuevoEstado);
+      echo "<script>alert('Estado cambiado'));</script>";
+
+      $this->index($nuevoEstado);
+
+      
+    }
+    public function finalizarCompra($idPedido)
+    {
+      
+      $this->DAOOrden->borrar($idPedido);
+
+      echo "<script> if(alert('Pedido Eliminado!'));</script>";
+      $this->index("Solicitado");
+
+    }
 
 
 

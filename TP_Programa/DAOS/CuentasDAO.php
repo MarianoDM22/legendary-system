@@ -217,7 +217,33 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 	}
 	public function actualizar($dato)
 	{
+		try 
+    	{
+			$query= 'UPDATE '.$this->table.'
+					SET 
+						pass = :pass
+						
+					WHERE id_cuenta = :id';
 
+			$pdo = new Connection();
+			$connection = $pdo->Connect();
+			$command = $connection->prepare($query);
+
+			$id = $dato->getId();
+			$pass = $dato->getPassword();
+			
+			$command->bindParam(':id', $id);
+			$command->bindParam(':pass', $pass);
+			
+			$command->execute();
+
+    	}
+    	catch (PDOException $ex) {
+			throw $ex;
+    	}
+    	catch (Exception $e) {
+			throw $e;
+    	}
 
 	}
 	public function traerTodos()

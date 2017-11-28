@@ -76,7 +76,11 @@ $sucursales = $DAOSucursal->traertodos();// agarro todas las sucursales de la BD
   <!-- FIN Funcion Google Maps-->
 
   <!-- Footer -->
-  <footer class="footer bg-dark footer-pos tbody" id="footer-pos" >
+
+  <footer class="footer bg-dark   "  >
+
+  <footer class="footer bg-dark footer-pos"  >
+
     <div class="py-2 bg-dark text-white">
       <div class="container">
         <div class="row">
@@ -111,9 +115,7 @@ $sucursales = $DAOSucursal->traertodos();// agarro todas las sucursales de la BD
     </div>
   </footer>  
   <!-- fin Footer -->
-<style>
-  #footer-pos { position:absolute;  width:100%; height:60px; background:#6cf; }
-</style>
+
 
      <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

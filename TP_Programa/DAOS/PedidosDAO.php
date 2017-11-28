@@ -134,7 +134,8 @@ class PedidosDAO extends SingletonAbstractDAO implements IDAO
 			throw $e;
     	}
 	}
-	public function borrar($dato){
+	public function borrar($dato)
+	{
 		try 
     	{
 			$query = 'DELETE FROM '.$this->table.' WHERE id_pedido = :id';
@@ -147,17 +148,23 @@ class PedidosDAO extends SingletonAbstractDAO implements IDAO
 			$command->execute();
 
     	}
-    	catch (PDOException $ex) {
+    	catch (PDOException $ex)
+    	 {
 			throw $ex;
+			echo "Error en BD al borrar pedido";
     	}
-    	catch (Exception $e) {
+    	catch (Exception $e)
+    	 {
 			throw $e;
+			echo "Error al borrar pedido";
     	}
 	}
-	public function actualizar($dato){
+	public function actualizar($dato)
+	{
 
 	}
-	public function traerTodos(){
+	public function traerTodos()
+	{
 		try 
     	{
 			$objects = array();
@@ -167,6 +174,7 @@ class PedidosDAO extends SingletonAbstractDAO implements IDAO
 			$pdo = new Connection();
 			$connection = $pdo->Connect();
 			$command = $connection->prepare($query);
+
 			$command->execute();
 
 			while ($row = $command->fetch())
@@ -194,6 +202,118 @@ class PedidosDAO extends SingletonAbstractDAO implements IDAO
     	catch (Exception $e) {
 			throw $e;
     	}
+	}
+	public function pedidosPorCliente($dato)
+	{
+		try 
+    	{
+			$objects = array();
+
+			$query = 'SELECT * FROM '.$this->table. ' WHERE fk_cliente = :dato';
+
+			$pdo = new Connection();
+			$connection = $pdo->Connect();
+			$command = $connection->prepare($query);
+			$command->bindParam(':dato', $dato);
+			$command->execute();
+
+			while ($row = $command->fetch())
+			{
+				$estado = ($row['estado']);
+				$fecha = ($row['fecha']);
+				$fk_cliente = ($row['fk_cliente']);
+				$fk_envio = ($row['fk_envio']);
+				$fk_sucursal = ($row['fk_sucursal']);
+
+				$object = new \Modelos\Pedido($estado, $fecha, $fk_cliente, null , $fk_envio, $fk_sucursal);
+
+				$object->setId($row['id_pedido']);	
+
+				array_push($objects, $object);
+
+			}
+			
+			return $objects;
+
+    	}
+    	catch (PDOException $ex) {
+			throw $ex;
+    	}
+    	catch (Exception $e) {
+			throw $e;
+    	}
+	}
+	public function traerTodosPorEstado($estado)
+	{
+		try 
+    	{
+			$objects = array();
+
+			$query = 'SELECT * FROM '.$this->table.' WHERE estado = :estado';
+
+			$pdo = new Connection();
+			$connection = $pdo->Connect();
+			$command = $connection->prepare($query);
+			$command->bindParam(':estado', $estado);
+			$command->execute();
+
+			while ($row = $command->fetch())
+			{
+				$estado = ($row['estado']);
+				$fecha = ($row['fecha']);
+				$fk_cliente = ($row['fk_cliente']);
+				$fk_envio = ($row['fk_envio']);
+				$fk_sucursal = ($row['fk_sucursal']);
+
+				$object = new \Modelos\Pedido($estado, $fecha, $fk_cliente, null , $fk_envio, $fk_sucursal);
+
+				$object->setId($row['id_pedido']);	
+
+				array_push($objects, $object);
+
+			}
+
+			return $objects;
+
+    	}
+    	catch (PDOException $ex) {
+			throw $ex;
+    	}
+    	catch (Exception $e) {
+			throw $e;
+    	}
+	}
+	public function actualizarEstado($idPedido, $nuevoEstado)
+	{
+
+		try 
+    	{
+			$query= 'UPDATE '.$this->table.'
+					SET estado = :estado
+
+					WHERE id_pedido = :id';
+
+			$pdo = new Connection();
+			$connection = $pdo->Connect();
+			$command = $connection->prepare($query);
+
+			
+			$command->bindParam(':estado', $nuevoEstado);
+			$command->bindParam(':id', $idPedido);			
+
+			$command->execute();
+
+    	}
+    	catch (PDOException $ex) 
+    	{
+			throw $ex;
+    	}
+    	catch (Exception $e) 
+    	{
+			throw $e;
+    	}
+
+    	
 	}
 }
 ?>

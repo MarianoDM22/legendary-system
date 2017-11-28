@@ -16,27 +16,20 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
      <!-- Mi CSS -->
-    <link href="css/estilos.css" type="text/css">
+    <link rel="stylesheet" href="../css/estilos.css" type="text/css">
 
   </head>
   <body style="background-image: url(&quot;http://localhost/TP_Programa/images/fondoGestionCerveza.jpg&quot;);">
 
   	<?php require("nav.php"); ?>
+  	<br>
   	
-  	<header class="bg-dark"">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 text-white">
-					<h1>Gestión Sucursales</h1>
-				</div>
-			</div>
-		</div>
-	</header>
 
 	<div class="container">
 		<div class="row">
 			<section class="col-md-10">
-				<h2>Sucursales</h2>
+				<h2 class="text-center"><strong>Sucursales</strong></h2>
+				<br>
 
 				<!-- Button trigger modal -->
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-insc">
@@ -46,11 +39,11 @@
 					<table class="table table-bordered table-responsive text-center table-light table-transparent" id="div">
 						<thead class="thead-inverse">
 							<tr>
-								<th>Id</th>
-								<th>Nombre</th>
-								<th>Direccion</th>
-								<th colspan="2">Coordenadas</th>
-								<th colspan="2">Opciones</td>
+								<th class="text-center"><strong>Id</strong></th>
+								<th class="text-center"><strong>Nombre</strong></th>
+								<th class="text-center"><strong>Direccion</strong></th>
+								<th colspan="2" class="text-center"><strong>Coordenadas</strong></th>
+								<th colspan="2" class="text-center"><strong>Opciones</strong></td>
 							</tr>
 						</thead>
 						<tbody clas="fn-lg">
@@ -58,11 +51,11 @@
 							<?php foreach ($sucursal  as $key => $value) { ?>
 								
 									<tr>
-										<td class="text-white"><?= $value->getId(); ?></font></td>
-										<td class="text-white"><?= $value->getNombre(); ?></font></td>
-										<td class="text-white"><?= $value->getDomicilio(); ?></font></td>
-										<td class="text-white">Lat: <?= $value->getLatitud(); ?></font></td>
-										<td class="text-white">Long: <?= $value->getLongitud(); ?></font></td>
+										<td class="text-white"><strong><?= $value->getId(); ?></strong></td>
+										<td class="text-white"><strong><?= $value->getNombre(); ?></strong></td>
+										<td class="text-white"><strong><?= $value->getDomicilio(); ?></strong></td>
+										<td class="text-white"><strong>Lat: <?= $value->getLatitud(); ?></strong></td>
+										<td class="text-white"><strong>Long: <?= $value->getLongitud(); ?></strong></td>
 										<td>
 											<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-inscp-<?= $value->getId() ?>">Modificar</button>
 

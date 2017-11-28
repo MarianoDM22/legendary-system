@@ -16,27 +16,19 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
      <!-- Mi CSS -->
-    <link href="css/estilos.css" type="text/css">
+    <link rel="stylesheet" href="../css/estilos.css" type="text/css">
 
   </head>
   <body style="background-image: url(&quot;http://localhost/TP_Programa/images/fondoGestionCerveza.jpg&quot;);">
 
   	<?php require("nav.php"); ?>
-
-  	<header class="bg-dark"">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 text-white">
-					<h1>Gestión Productos</h1>
-				</div>
-			</div>
-		</div>
-	</header>
+  	<br>
+  	
 
 	<div class="container">
 		<div class="row">
 			<section class="col-md-10">
-				<h2>Productos</h2>
+				<h2 class="text-center"><strong>Productos</strong></h2>
 
 				<!-- Button trigger modal -->
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-insc">
@@ -46,14 +38,14 @@
 					<table class="table table-bordered table-responsive text-center table-light table-transparent" id="div">
 						<thead class="thead-inverse">
 							<tr>
-								<th>Id</th>
-								<th>Descripcion</th>
-								<th>Cerveza</th>
-								<th>Capacidad/Litros</th>
-								<th>Factor</th>
-								<th>Precio</th>
-								<th>Imagen</th>
-								<th colspan="2">Opciones</th>
+								<th class="text-center"><strong>Id</strong></th>
+								<th class="text-center"><strong>Descripcion</strong></th>
+								<th class="text-center"><strong>Cerveza</strong></th>
+								<th class="text-center"><strong>Capacidad/Litros</strong></th>
+								<th class="text-center"><strong>Factor</strong></th>
+								<th class="text-center"><strong>Precio</strong></th>
+								<th class="text-center"><strong>Imagen</strong></th>
+								<th colspan="2" class="text-center"><strong>Opciones</strong></th>
 							</tr>
 						</thead>
 						<tbody class="fn-lg">
@@ -62,12 +54,12 @@
 										{ $cerv=$instanciaCerveza->buscarPorID($value->getMTiposDeCerveza());?>
 								
 									<tr>
-										<td class="text-white"><?= $value->getId(); ?></td>
-										<td class="text-white"><?= $value->getDescripcion(); ?></td>
-										<td class="text-white"><?= $cerv->getDescripcion(); ?></td>
-										<td class="text-white"><?= $value->getCapacidad(); ?></td>
-										<td class="text-white"><?= $value->getFactor(); ?></td>
-										<td class="text-white">$<?= $value->getPrecio(); ?></td>
+										<td class="text-white"><strong><?= $value->getId(); ?></strong></td>
+										<td class="text-white"><strong><?= $value->getDescripcion(); ?></strong></td>
+										<td class="text-white"><strong><?= $cerv->getDescripcion(); ?></strong></td>
+										<td class="text-white"><strong><?= $value->getCapacidad(); ?></strong></td>
+										<td class="text-white"><strong><?= $value->getFactor(); ?></strong></td>
+										<td class="text-white"><strong>$<?= $value->getPrecio(); ?></strong></td>
 										<td><img src="<?= "../" . $value->getImagen(); ?>" width="50"></td>
 
 										<td>

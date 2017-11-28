@@ -1,15 +1,14 @@
 <?php namespace Cliente;
 
-
+session_start();
       if (isset($_SESSION['Carrito']) )
       {
         if (count($_SESSION['Carrito'])==0 )
         {
-            unset($_SESSION["Carrito"]);          
-            echo "borro la session";
+            unset($_SESSION["Carrito"]);
         }
       }
-        
+    
  ?>
 
 <!DOCTYPE html>
@@ -27,30 +26,17 @@
     <!-- Font Awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
     <!-- Mi CSS -->
-    <link href="css/estilos.css" type="text/css" >
+    <link href="Vistas/css/estilos.css" type="text/css" >
 
   </head>
   <body style="background-image: url(&quot;http://localhost/TP_Programa/images/fondoHome.jpg&quot;);">
 
     <?php require("headerCliente.php"); ?>
 
-    <div class="container-fluid" >
+    <div class="container" >
       <div class="row">
-
-        <div class="col-lg-2">
-          <h1 class="my-4 text-white">Categorías</h1>
-          <div class="list-group">
-            <a href="#" class="list-group-item">Categoria 1</a>
-            <a href="#" class="list-group-item">Categoria 2</a>
-            <a href="#" class="list-group-item">Categoria 3</a>
-          </div>
-        </div>
-
-        <div class="col-lg-10">
-
-
-          <!-- aca se comienzan a listar los productos -->            
-              
+        <div class="col-lg-12">
+          <!-- aca se comienzan a listar los productos -->                
                 <div class="card-deck">
                   <?php 
                     foreach ($producto as $key => $value) {  ?>
@@ -65,14 +51,9 @@
                                 <h4 class="card-title"><a href=" "><?= $value->getDescripcion(); ?></a></h4>
                                 <h5 class="card-subtitle" > $<?= $value->getPrecio(); ?></h5>
                                   <div class="center-block">
-                                    <select class="custom-select" name="cantidad">
-                                      <option value="1"> 1 </option>
-                                      <option value="2"> 2 </option>
-                                      <option value="3"> 3 </option>
-                                      <option value="4"> 4 </option>
-                                    </select>                                    
+                                    <input type="number" name="cantidad" min="1" max="50" value="1" style="width: 3em;">                                 
 
-                                    <button type="submit" class="fa fa-cart-arrow-down btn-lg btn-primary "></button> 
+                                    <button type="submit" class="fa fa-cart-plus btn-lg btn-primary "></button> 
 
                                     <input type="hidden" name="importe" class="form-control" value= "<?= $value->getPrecio();  ?>" >
                                     <input type="hidden" name="id" class="form-control" value="<?= $value->getId();?>" >

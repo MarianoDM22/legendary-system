@@ -22,7 +22,7 @@
   <body>
 
 
-    <footer class="sticky-footer bg-dark pad-v-sm">
+    <footer class="sticky-footer bg-dark pad-v-sm ">
       <div class="container">
         <div class="text-center text-white">
           <small>Copyright © UTN 2017</small>

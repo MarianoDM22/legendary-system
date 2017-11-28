@@ -2,7 +2,9 @@
 
 
 use \Controladoras\ControlPedido as ControlPedido;
-$DAOPedido= new ControlPedido();
+$ControladoraPedido= new ControlPedido();
+
+
 
  ?>
 
@@ -47,11 +49,12 @@ $DAOPedido= new ControlPedido();
                             <i class="fa d-inline fa-lg fa-user-circle-o"></i>&nbsp;</a>  
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
                               <a class="dropdown-item" data-toggle="modal" data-target="#changeAcountModal">
                                 <i class=""></i>Mi Cuenta</a>
-                              <a class="dropdown-item " data-toggle="modal" data-target="#changeModal">
-                                <i class=""></i>Cambiar Contraseña</a>
-                              <a class="dropdown-item" href="#">Mis Ordenes</a>
+                             
+                              <a class="dropdown-item " data-toggle="modal" data-target="#historialModal">
+                                <i class=""></i>Mis Ordenes</a>
                               
                               <div class="dropdown-divider"></div>
 
@@ -109,6 +112,7 @@ $DAOPedido= new ControlPedido();
           </div>
 
             <?php
+            session_start();
              if(isset($_SESSION['Carrito'])) 
              {
                $lineaCarrito = $_SESSION['Carrito'];
@@ -139,13 +143,7 @@ $DAOPedido= new ControlPedido();
                         <td>$<?= $value->getImporte(); ?></td>
 
                         <td> 
-                          <select class="custom-select">
-                            <option selected><?= $value->getCantidad(); ?></option>
-                            <option> 1 </option>
-                            <option> 2 </option>
-                            <option> 3 </option>
-                            <option> 4 </option>
-                          </select>
+                          <?= $value->getCantidad(); ?>
                         </td>
 
                         <td>$<?= $value->getCantidad() * $value->getImporte();?></td>
@@ -170,7 +168,7 @@ $DAOPedido= new ControlPedido();
                 <div class="col-md-3 text-right ">
                   <?php
                   {
-                    $totalFilas=$DAOPedido->sumarLineasPedido($lineaCarrito);//sumo el importe total de todas las filas
+                    $totalFilas=$ControladoraPedido->sumarLineasPedido($lineaCarrito);//sumo el importe total de todas las filas
                   }
                   ?>
                   <br>
@@ -180,8 +178,8 @@ $DAOPedido= new ControlPedido();
               <div class="row">
                 <div class="col-md-12 text-right">
                   <div class="center-block">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Update</button>
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Delete</button>
+                    
+                    <a class="btn btn-secondary" href="<?= ROOT_VIEW ?>/Pedido/destruirCarrito">Delete</a>
                     <a class="btn btn-primary" href="<?= ROOT_VIEW ?>/Pedido/checkOut">CheckOut</a>
                   </div>
                 </div>
@@ -212,46 +210,52 @@ $DAOPedido= new ControlPedido();
     <div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Cambiar Contraseña</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="form-group">
-              <label for="InputPass">Contraseña actual</label>
-              <input class="form-control" id="InputPass" type="password" placeholder="Ingrese su password actual">
+          <form action="<?= ROOT_VIEW ?> /Pedido/actualizarPassword" method="post" enctype="multipart/form-data">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Cambiar Contraseña</h5>
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
             </div>
-            <div class="form-group">
-              <div class="form-row">
-                <div class="col-md-6">
-                  <label for="InputNewPass">Contraseña Nueva</label>
-                  <input class="form-control" id="InputNewPass" type="password" placeholder="Ingrese su nueva password">
-                </div>
-                <div class="col-md-6">
-                  <label for="ConfirmNewPassword">Confirme su Contraseña</label>
-                  <input class="form-control" id="ConfirmNewPassword" type="password" placeholder="Confirme password">
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="InputPass">Contraseña actual</label>
+                <input class="form-control" id="InputPass" type="password" placeholder="Ingrese su password actual" required>
+              </div>
+              <div class="form-group">
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <label for="InputNewPass">Contraseña Nueva</label>
+                    <input class="form-control" id="InputNewPass" type="password" placeholder="Ingrese su nueva password" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="ConfirmNewPassword">Confirme su Contraseña</label>
+                    <input class="form-control" id="ConfirmNewPassword" type="password" placeholder="Confirme password" required>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-            <a class="btn btn-primary" href="<?= ROOT_VIEW ?>//index">Confirmar</a>
-          </div>
+            <div class="form-group">
+              <input class="form-control" id="cliente" name="cliente" type="hidden" value="<?=$cliente->getId(); ?>">
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+              <a class="btn btn-primary" href="<?= ROOT_VIEW ?>//index">Confirmar</a>
+            </div>
+          </form>
         </div>
       </div>
     </div>
     <!-- Fin Change Pass Modal-->
 
-     <!-- Change Acount Modal-->
+      <!-- Change Acount Modal-->
     <div class="modal fade" id="changeAcountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Mi Cuenta</h5>
-             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <form action="<?= ROOT_VIEW ?> /Pedido/actualizarDatosCliente" method="post" enctype="multipart/form-data">
+            <div class="modal-header">
+              <h5 class="modal-title">Mi Cuenta</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                  <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -260,26 +264,30 @@ $DAOPedido= new ControlPedido();
                 <div class="form-row">
                   <div class="col-md-6">
                     <label for="InputName">Nombre</label>
-                    <input class="form-control" id="InputName" name="nombre" type="text" aria-describedby="nameHelp" value="" required>
+                    <input class="form-control" id="nombre" name="nombre" type="text" aria-describedby="nameHelp" value="<?= $cliente->getNombre(); ?>" required>
                   </div>
                   <div class="col-md-6">
                     <label for="InputLastName">Apellido</label>
-                    <input class="form-control" id="InputLastName" name="apellido" type="text" aria-describedby="nameHelp" value="" required>
+                    <input class="form-control" id="apellido" name="apellido" type="text" aria-describedby="nameHelp" value="<?= $cliente->getApellido(); ?>" required>
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <label for="InputAddress">Domicilio</label>
-                <input class="form-control" id="InputAddress" name="domicilio" type="text" aria-describedby="nameHelp" value="" required>
+                <input class="form-control" id="domicilio" name="domicilio" type="text" aria-describedby="nameHelp" value="<?= $cliente->getDomicilio(); ?>" required>
               </div>  
               <div class="form-group">    
                 <label for="InputTel">Teléfono</label>
-                <input class="form-control" id="InputTel" name="telefono" type="text" aria-describedby="nameHelp" value="" required>
+                <input class="form-control" id="telefono" name="telefono" type="text" aria-describedby="nameHelp" value="<?= $cliente->getTelefono(); ?>" required>                
               </div>
+            </div>
+            <div class="form-group">
+              <input class="form-control" id="cliente" name="cliente" type="hidden" value="<?=$cliente->getId(); ?>">
+              <input class="form-control" id="home" name="home" type="hidden" value="home">
             </div>
             <div class="modal-footer center-block">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-              <a class="btn btn-primary" href="/">Actualizar datos</a>
+              <button type="submit"  class="btn btn-default">Actualizar datos</button>            
             </div>
           </form>
         </div>
@@ -287,6 +295,53 @@ $DAOPedido= new ControlPedido();
     </div>
     <!--Fin Change Acount Modall-->
 
+  <!-- Historial Modal-->
+    <div class="modal fade" id="historialModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog  modal-lg" role="document">
+        <div class="modal-content">
+          
+            <div class="modal-header">
+              <h5 class="modal-title">Mi historial de ordenes</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            <table class="table table-bordered table-responsive text-center">
+              <thead class="thead-inverse">
+                <tr>
+                  <th class="text-center">Nro de Orden</th>
+                  <th class="text-center">Estado</th>
+                  <th class="text-center">Fecha</th>               
+                  <th class="text-center">Tipo de Envio</td>
+                </tr>
+              </thead>
+              <tbody class="text-center">
+                <?php 
+                    foreach ($pedidos as $value) { ?>                   
+                  
+                    <tr>
+                      <td class="cl-dark text-center"><strong><?=$value->getId(); ?></td>
+                      <td class="cl-dark text-center"><?= $value->getEstado();?></strong></td>
+                      <td class="cl-dark text-center"><strong><?= $value->getFecha();?></strong></td>
+                      <?php if($value->getMSucursales()==null )$tipoEnvio="Domicilio"; else $tipoEnvio="Sucursal"?>
+                      <td class="cl-dark text-center"><strong><?=$tipoEnvio ?></strong></td>
+                    </tr>
+                    
+                <?php } //fin primer for each?>
+              </tbody>
+            </table>
+
+            </div>
+
+            <div class="modal-footer center-block">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>                   
+            </div>
+          
+        </div>
+      </div>
+    </div>
+    <!--Fin Historial Modal-->
 
 
       <!-- Optional JavaScript -->
