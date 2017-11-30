@@ -227,14 +227,6 @@
 	   	private function pedidosPorCliente($dato)
 	   	{	
 
-	   		/*var_dump($this->DAOCuentas);
-			var_dump($this->DAOPedido);
-			var_dump($this->DAOProducto);
-			var_dump($this->DAOTipoCerveza);
-			var_dump($this->DAOLineaDePedido);
-			var_dump($this->DAOClientes);
-			var_dump($this->DAOEnvio);*/
-
 	   		$pedidos=array();
 	   		try {
 	   			$pedidos=$this->DAOPedido->pedidosPorCliente($dato);
@@ -441,7 +433,8 @@
 
 		public function actualizarPassword($pass,$newPass,$confirmNewPass,$Idcliente)
 		{
-			try {
+			try 
+			{
 				$cuenta=$this->DAOCuentas->buscarCuentaPorIDCliente($Idcliente);
 		    } catch (Exception $e) {
 		    	echo "<script>alert('Error al buscar Cliente en BBDD'));</script>";
@@ -464,7 +457,8 @@
 																							
 			}
 
-			try {
+			try
+			{
 				$this->DAOCuentas->actualizar($cuenta);//actualizo BD
 		    } catch (Exception $e) {
 		    	echo "<script>alert('Error al actualizar password en BBDD'));</script>";
@@ -475,9 +469,6 @@
 
 		public function buscarClientePorId($id)
 		{	
-			
-			var_dump($this->DAOCuentas);
-
 			$cliente = null;
 
 			try {
@@ -488,11 +479,13 @@
 			
 			return $cliente;
 		}
-		public function destruirCarrito(){
+
+		public function destruirCarrito()
+		{
 			session_start();
+
 			if (isset($_SESSION["Carrito"]) )//entra si existe la session
-			{	
-    			
+			{	   			
     			unset($_SESSION["Carrito"]);     			
     		}
 	   		

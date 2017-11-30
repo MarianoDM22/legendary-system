@@ -47,42 +47,54 @@ class ControlGestionOrden
 
     public function index($estado)
    	{
-      try
+      if($estado!="Buscar")
       {
-        
-        $InstanciaTiposCervezas=$this->DAOTiposDeCerveza;
-        $productos=$this->DAOProductos->traerTodos();
-        $envios=$this->DAOEnvio->traerTodos();//trae todos los envios de la BD
-        $orden=$this->DAOOrden->traerTodosPorEstado($estado);//trae todos los pedidos de la BD
-        $instanciaCuentas=$this->DAOCuenta;
-
-        foreach ($orden as $key => $value) 
-        {         
-            
-            $lineasDePedido=$this->DAOLineaDeProductos->lineasPorPedido($value->getId() );
-            $value->setMLineasDePedido($lineasDePedido);                       
+        try
+        {
           
+          $InstanciaTiposCervezas=$this->DAOTiposDeCerveza;
+          $productos=$this->DAOProductos->traerTodos();
+          $envios=$this->DAOEnvio->traerTodos();//trae todos los envios de la BD
+          $orden=$this->DAOOrden->traerTodosPorEstado($estado);//trae todos los pedidos de la BD
+          $instanciaCuentas=$this->DAOCuenta;
+
+          foreach ($orden as $key => $value) 
+          {         
+              
+              $lineasDePedido=$this->DAOLineaDeProductos->lineasPorPedido($value->getId() );
+              $value->setMLineasDePedido($lineasDePedido);                       
+            
+          }
+         
+        } 
+        catch (Exception $e)
+        {
+          echo "<script>alert('Exception ! Error al traer todos!'));</script>";
         }
-       
-      } 
-      catch (Exception $e)
-      {
-        echo "<script>alert('Exception ! Error al traer todos!'));</script>";
+        catch (PDOException $e)
+        {
+          echo "<script>alert('Exception ! Error al traer todos de BD!'));</script>";
+        }
+        
+        
+        require_once(ROOT . 'Vistas/Administrador/GestionOrden.php');
       }
-      catch (PDOException $e)
+
+      else
       {
-        echo "<script>alert('Exception ! Error al traer todos de BD!'));</script>";
+        require_once(ROOT . 'Vistas/Administrador/Buscador.php');        
       }
-   		
-   		
-   		require_once(ROOT . 'Vistas/Administrador/GestionOrden.php');
+
    	}
     
    	public function borrar($id)
    	{
-      try {
+      try 
+      {
    		 $this->DAOOrden->borrar($id);
-      } catch (Exception $e) {
+      } 
+      catch (Exception $e) 
+      {
         echo "<script>alert('Error al intentar borrar!'));</script>";
       }
 
@@ -111,19 +123,30 @@ class ControlGestionOrden
    
     public function detalleOrden($idPedido)
     {
-      
-      $orden=$this->DAOOrden->buscarPorID($idPedido);//busco el pedido por su ID 
-      $cliente=$this->DAOCuenta->buscarClientePorID($orden->getMCliente());//busco el cliente asociado al pedido
-      $cuenta=$this->DAOCuenta->buscarCuentaPorIDCliente($cliente->getId());//busco la cuenta asociada al cliente
-      $instanciaProducto=$this->DAOProductos;//le paso la instancia de la controladora producto
+       try
+      {
 
-      $lineasDePedido=$this->DAOLineaDeProductos->lineasPorPedido($orden->getId() );//le paso id de pedido y devuelve todas las lineas de productos
-      $orden->setMLineasDePedido($lineasDePedido);//asigno las lineas al pedido
-     
-      $envio=$this->DAOEnvio->buscarPorID($orden->getMEnvio());
-      $instanciaSucursal=$this->DAOSucursales;
-      
-      
+        $orden=$this->DAOOrden->buscarPorID($idPedido);//busco el pedido por su ID 
+        $cliente=$this->DAOCuenta->buscarClientePorID($orden->getMCliente());//busco el cliente asociado al pedido
+        $cuenta=$this->DAOCuenta->buscarCuentaPorIDCliente($cliente->getId());//busco la cuenta asociada al cliente
+        $instanciaProducto=$this->DAOProductos;//le paso la instancia de la controladora producto
+
+        $lineasDePedido=$this->DAOLineaDeProductos->lineasPorPedido($orden->getId() );//le paso id de pedido y devuelve todas las lineas de productos
+        $orden->setMLineasDePedido($lineasDePedido);//asigno las lineas al pedido
+       
+        $envio=$this->DAOEnvio->buscarPorID($orden->getMEnvio());
+        $instanciaSucursal=$this->DAOSucursales;
+
+      }
+      catch (Exception $e)
+      {
+        echo "<script>alert('Exception ! Error al traer todos!'));</script>";
+      }
+      catch (PDOException $e)
+      {
+        echo "<script>alert('Exception ! Error al traer todos de BD!'));</script>";
+      }
+ 
       require_once(ROOT . 'Vistas/Administrador/DetalleOrden.php');
     }
 
@@ -136,6 +159,7 @@ class ControlGestionOrden
 
       
     }
+
     public function finalizarCompra($idPedido)
     {
       
@@ -146,8 +170,51 @@ class ControlGestionOrden
 
     }
 
+    public function buscador($email)
+    {
+       try
+      {
+        $instanciaCuentas=$this->DAOCuenta;
+        $cliente=$instanciaCuentas->buscarPorNombre($email); //utilizo el email enviado para buscarlo
+       
 
+        $InstanciaTiposCervezas=$this->DAOTiposDeCerveza;
+        $productos=$this->DAOProductos->traerTodos();
+        $envios=$this->DAOEnvio->traerTodos();//trae todos los envios de la BD
 
+        try
+        {
+          $orden=$this->DAOOrden->pedidosPorCliente($cliente->getId()-1);//trae todos los pedidos del cliente de la BD
+        }
+        catch (Exception $e)
+        {
+          echo "<script>alert('Exception ! El Email no se encuentra en la base de datos!'));</script>";
+        }
+        catch (PDOException $e)
+        {
+          echo "<script>alert('Exception ! El Email no se encuentra en la base de datos!'));</script>";
+        }
+
+        foreach ($orden as $key => $value) 
+        {         
+            
+            $lineasDePedido=$this->DAOLineaDeProductos->lineasPorPedido($value->getId() );
+            $value->setMLineasDePedido($lineasDePedido);                       
+          
+        }
+       
+      } 
+      catch (Exception $e)
+      {
+        echo "<script>alert('Exception ! Error al traer todos!'));</script>";
+      }
+      catch (PDOException $e)
+      {
+        echo "<script>alert('Exception ! Error al traer todos de BD!'));</script>";
+      }
+
+      require_once(ROOT . 'Vistas/Administrador/Buscador.php');
+    }
 
 }
 ?>

@@ -1,5 +1,6 @@
-<?php namespace Administrador;
-
+<?php namespace Vistas;
+use \Controladoras\ControlPedido as ControlPedido;
+$ControladoraPedido= new ControlPedido();
 
  ?>
 
@@ -11,23 +12,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- No viene de bootstrap -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Gestion_Ordenes</title>
+    <title>Buscador_por_Cliente?></title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
      <!-- Mi CSS -->
-    <link rel="stylesheet" href="../css/estilos.css" type="text/css">
+    <link rel="stylesheet" href="../css/estilos.css" type="text/css" >
 
   </head>
   <body style="background-image: url(&quot;http://localhost/TP_Programa/images/fondoGestionCerveza.jpg&quot;);">
-
   	<?php require("nav.php"); ?>
 
-  	<br>
+  	
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 ">
-					<h1><strong>Gestión Órdenes</strong></h1>
+					<h1 ><strong>Buscar Pedidos por Cliente</strong></h1>
+					<br>
 				</div>
 			</div>
 		</div>
@@ -37,9 +38,28 @@
 
 	<div class="container" >
 		<div>
-			<section >
+			<section>
+
+				<h2 class=""><strong>Ingrese Email del Cliente:</strong></h2>
+
+				<div class="row">				
+					
+					<div class="col-lg-4 col-lg-offset-4">
+						<form action="<?= ROOT_VIEW ?>/GestionOrden/buscador" method="POST">
+	
+							<div class="input-group">
+							    <input class="form-control" id="email" name="email" placeholder="Ingrese Email" required>
+							    <span class="input-group-btn">
+							        <button type="submit" class="btn btn-primary">Buscar!</strong></button>
+							    </span>
+						    </div>
+
+						</form>
+					</div>
+				</div>
+
 				<br>
-				<br>
+				
 					<table class="table table-bordered table-responsive text-center table-light table-transparent" id="div">
 						<thead class="thead-inverse">
 							<tr>
@@ -91,10 +111,11 @@
 			</section>
     	</div>
 	</div>
-  	
+
 
 
 	<?php require(ROOT . "Vistas/footer.php"); ?>
+
 	<style>
   
     #div {background: rgba(0,0,0,0.6)}   /* transparencia solo del fondo , resaltando los botones y texto */
@@ -102,7 +123,6 @@
     #center-block {  display: block;  margin-left: auto;  margin-right: auto;}
   
     </style>
-
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

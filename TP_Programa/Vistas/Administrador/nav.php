@@ -38,6 +38,8 @@
               <a class="dropdown-item" href="<?= ROOT_VIEW ?>/GestionOrden/index/Enviado">Enviado</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="<?= ROOT_VIEW ?>/GestionOrden/index/Finalizado">Finalizado</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="<?= ROOT_VIEW ?>/GestionOrden/index/Buscar">Buscar por Cliente</a>
             </div>
           </li>
           <li class="nav-item">
